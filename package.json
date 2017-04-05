@@ -6,7 +6,8 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "lint": "eslint src/",
-    "start": "webpack-dev-server --host 0.0.0.0"
+    "start": "webpack-dev-server --host 0.0.0.0",
+    "test": "jest"
   },
   "keywords": [
     "planner",
@@ -21,6 +22,8 @@
     "babel-preset-latest": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-1": "^6.22.0",
+    "enzyme": "^2.8.0",
+    "enzyme-to-json": "^1.5.0",
     "eslint": "^3.16.1",
     "eslint-config-react-app": "^0.6.2",
     "eslint-loader": "^1.7.1",
@@ -28,8 +31,10 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.0.0 || ^3.0.0 || ^4.0.0",
     "eslint-plugin-react": "^6.4.1",
+    "jest": "^19.0.2",
     "lint-staged": "^3.4.0",
     "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
@@ -41,5 +46,10 @@
   },
   "lint-staged": {
     "*.js": "eslint"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
