@@ -2,11 +2,13 @@
   "name": "canvas-planner",
   "version": "0.0.1",
   "description": "UI portion of planner application for canvas-lms.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "extract": "format-message extract src/**/**/*.js -o config/locales/en.json",
     "lint-staged": "lint-staged",
     "lint": "eslint src/",
+    "prepublish": "scripts/build",
     "start": "npm-run-all --parallel start:*",
     "start:json-server": "json-server --watch --port 3004 db.json",
     "start:webpack-dev": "webpack-dev-server --host 0.0.0.0 --port 3005",
@@ -19,10 +21,11 @@
   "author": "Instructure, Inc.",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.4.1",
-    "babel-preset-latest": "^6.24.0",
+    "babel-preset-env": "^1.3.2",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-1": "^6.22.0",
     "enzyme": "^2.8.0",
@@ -59,10 +62,10 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.16.0",
     "esrever": "^0.2.0",
     "format-message": "^5.1.2",
     "format-message-parse": "^5.1.2",
-    "format-message-print": "^5.1.2",
-    "axios": "^0.16.0"
+    "format-message-print": "^5.1.2"
   }
 }
