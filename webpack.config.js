@@ -28,7 +28,10 @@ module.exports = {
 
   devServer: {
     proxy: {
-      '/v1/api/': 'http://localhost:3004',
+      '**': {
+        target: 'http://localhost:3004',
+        changeOrigin: true
+      }
     },
     contentBase: path.join(__dirname, 'public'),
     // hot: true
