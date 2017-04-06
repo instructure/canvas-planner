@@ -1,0 +1,9 @@
+version: '2'
+services:
+  test:
+    build:
+      context: .
+    volumes:
+      - "coverage:/usr/src/app/coverage"
+volumes:
+  coverage:

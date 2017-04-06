@@ -1819,8 +1819,8 @@ elliptic@^6.0.0:
     minimalistic-crypto-utils "^1.0.0"
 
 emoji-regex@^6.1.0:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-6.4.1.tgz#77486fe9cd45421d260a6238b88d721e2fad2050"
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-6.4.2.tgz#a30b6fee353d406d96cfb9fa765bdc82897eff6e"
 
 emojis-list@^2.0.0:
   version "2.1.0"
@@ -3941,8 +3941,8 @@ mute-stream@0.0.5:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
 nan@^2.3.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.1.tgz#8c84f7b14c96b89f57fbc838012180ec8ca39a01"
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -4662,8 +4662,8 @@ regexpu-core@^2.0.0:
     regjsparser "^0.1.4"
 
 registry-auth-token@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/registry-auth-token/-/registry-auth-token-3.1.0.tgz#997c08256e0c7999837b90e944db39d8a790276b"
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/registry-auth-token/-/registry-auth-token-3.1.1.tgz#1b93317b42527732f56f88c41b73b7bf855e05a5"
   dependencies:
     rc "^1.1.6"
 
