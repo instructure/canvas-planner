@@ -1,5 +1,4 @@
 {
-  "presets": ["stage-1", "react"],
   "env": {
     "ES": {
       "presets": [["env", {
@@ -7,7 +6,9 @@
           "browsers": ["last 2 versions", "not ie <= 10"],
         },
         "modules": false
-        }]
+        }],
+        "react",
+        "stage-1"
       ]
     },
     "development": {
@@ -15,14 +16,19 @@
         "targets": {
           "browsers": ["last 2 versions", "not ie <= 10"]
         }
-      }]]
+      }],
+      "react",
+      "stage-1"
+      ]
     },
     "test": {
       "presets": [["env", {
         "targets": {
           "browsers": ["last 2 versions", "not ie <= 10"]
         }
-      }]]
-    }
+      }],
+      "react",
+      "stage-1"
+    ]}
   }
 }

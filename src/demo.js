@@ -8,4 +8,5 @@
 
 import CanvasPlanner from './index';
 
-CanvasPlanner.render(document.getElementById('mount_point'));
+const mount_point = document.getElementById('mount_point');
+CanvasPlanner.render(mount_point);

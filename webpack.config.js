@@ -30,7 +30,8 @@ module.exports = {
     proxy: {
       '**': {
         target: 'http://localhost:3004',
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: { '^/api/v1' : '' }
       }
     },
     contentBase: path.join(__dirname, 'public'),

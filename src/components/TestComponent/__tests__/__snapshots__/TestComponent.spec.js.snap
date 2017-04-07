@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <span />
+  <Button
+    as="button"
+    buttonRef={[Function]}
+    isBlock={false}
+    margin="0"
+    onClick={[Function]}
+    size="medium"
+    type="button"
+    variant="default"
+  >
+    Click Me!
+  </Button>
+</div>
+`;
+
+exports[`renders the proper value 1`] = `
+<div>
+  <span>
+    100
+  </span>
+  <Button
+    as="button"
+    buttonRef={[Function]}
+    isBlock={false}
+    margin="0"
+    onClick={[Function]}
+    size="medium"
+    type="button"
+    variant="default"
+  >
+    Click Me!
+  </Button>
+</div>
+`;

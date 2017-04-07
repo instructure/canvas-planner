@@ -4,5 +4,8 @@ exports[`renders correctly 1`] = `
 <div>
   This is a placeholder
   <div />
+  <div>
+    <Connect(TestComponent) />
+  </div>
 </div>
 `;

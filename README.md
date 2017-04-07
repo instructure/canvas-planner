@@ -1,6 +1,28 @@
 canvas-planner
 ==================
 
+Canvas Planner is the UI component for the Planner feature in [Canvas](https://github.com/instructure/canvas-lms).
+
+## Production
+
+### Usage
+
+```bash
+yarn add canvas-planner
+```
+
+```js
+import Planner from 'canvas-planner';
+```
+
+### Polyfill
+
+Canvas Planner is developed using modern JavaScript and supports modern browsers.
+If you are using it in an environment such as IE 11 where some core browser features
+are unavailable, then you should make sure to polyfill appropriately.  This package
+does not ship any polyfills to maintain a smaller footprint.
+
+
 ## Development
 
 ### Getting Started
