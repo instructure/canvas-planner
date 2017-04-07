@@ -12,6 +12,9 @@
       ]
     },
     "development": {
+      "plugins": [
+        "transform-class-display-name"
+      ],
       "presets": [["env", {
         "targets": {
           "browsers": ["last 2 versions", "not ie <= 10"]
@@ -22,6 +25,16 @@
       ]
     },
     "test": {
+      "plugins": [
+        "transform-class-display-name",
+        [
+          "./node_modules/instructure-ui/babel/plugins/transform-themeable",
+          {
+            "postcssrc": "./postcss.config.js",
+            "themeablerc": "./themeable.config.js"
+          }
+        ]
+      ],
       "presets": [["env", {
         "targets": {
           "browsers": ["last 2 versions", "not ie <= 10"]

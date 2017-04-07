@@ -19,8 +19,42 @@ module.exports = {
       {
         test: /\.js$/,
         include: [path.resolve(__dirname, 'src')],
-        loader: 'babel-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              babelrc: true,
+              cacheDirectory: process.env.NODE_ENV === 'production' ? false : '.babel-cache'
+            }
+          }
+        ]
       },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              babelrc: true,
+              cacheDirectory: process.env.NODE_ENV === 'production' ? false : '.babel-cache'
+            }
+          },
+          'instructure-ui/webpack/loaders/themeable-css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+               discardComments: true,
+               discardEmpty: true,
+               discardUnused: true,
+               importLoaders: 1,
+               localIdentName: require('./themeable.config').generateScopedName({ env: process.env.NODE_ENV }),
+               minimize: process.env.NODE_ENV === 'production',
+               modules: true
+             }
+          },
+          'postcss-loader'
+        ]
+      }
     ],
   },
 

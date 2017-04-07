@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import formatMessage from '../../format-message';
-import TestComponent from '../TestComponent';
+import Placeholder from '../Placeholder';
+import 'instructure-ui/lib/themes/canvas';
 
 export default class PlannerApp extends Component {
   constructor (props) {
@@ -25,9 +26,7 @@ export default class PlannerApp extends Component {
       <div>
         {formatMessage('This is a placeholder')}
         <div>{this.state.response}</div>
-        <div>
-          <TestComponent />
-        </div>
+        <Placeholder />
       </div>
     )
   }
