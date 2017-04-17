@@ -1,4 +1,4 @@
-import formatMessage from 'format-message'
+import formatMessage from '../format-message'
 import locales from './indexLocales'
 
 export default {

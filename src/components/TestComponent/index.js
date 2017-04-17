@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from 'instructure-ui/lib/components/Button';
-import formatMessage from 'format-message';
+import formatMessage from '../../format-message';
 import { testAsyncAction } from '../../actions/index';
 
 export class TestComponent extends Component {

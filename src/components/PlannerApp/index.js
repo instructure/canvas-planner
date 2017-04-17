@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import formatMessage from 'format-message';
+import formatMessage from '../../format-message';
 import TestComponent from '../TestComponent';
 
 export default class PlannerApp extends Component {
