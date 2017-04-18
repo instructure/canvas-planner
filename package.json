@@ -11,9 +11,9 @@
     "build": "./scripts/build",
     "start": "npm-run-all --parallel start:*",
     "start:json-server": "json-server --watch --port 3004 db.json",
-    "start:webpack-dev": "webpack-dev-server --host 0.0.0.0 --port 3005",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
+    "start:webpack-dev": "BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --port 3005",
+    "test": "jest --no-cache",
+    "test:coverage": "jest --coverage --no-cache",
     "generate-themeable": "./scripts/generate-themeable",
     "clean": "rm -rf .babel-cache && rm -rf es && rm -rf lib && rm -rf coverage"
   },
@@ -64,6 +64,7 @@
     "eslint-plugin-jsx-a11y": "^2.0.0 || ^3.0.0 || ^4.0.0",
     "eslint-plugin-react": "^6.4.1",
     "format-message-cli": "^5.1.4",
+    "identity-obj-proxy": "^3.0.0",
     "instructure-ui": "^1.3.4",
     "jest": "^19.0.2",
     "json-server": "^0.9.6",
@@ -89,6 +90,10 @@
     "*.js": "eslint"
   },
   "jest": {
+    "transform": {
+      "^.+\\.(js)$": "babel-jest",
+      "^.+\\.(css)$": "<rootDir>/jest-themeable-styles"
+    },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],

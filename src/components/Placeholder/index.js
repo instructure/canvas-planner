@@ -37,6 +37,8 @@ const mapDispatchToProps = dispatch => ({
   onClick() { dispatch(testAsyncAction()) }
 });
 
+export const ThemeablePlaceholder = themeable(theme, styles)(Placeholder)
+
 export default connect(mapStateToProps, mapDispatchToProps)(
-  themeable(theme, styles)(Placeholder)
+  ThemeablePlaceholder
 );

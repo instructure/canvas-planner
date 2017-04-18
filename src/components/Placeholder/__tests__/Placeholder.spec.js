@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Placeholder } from '../index';
+import 'instructure-ui/lib/themes/canvas';
+import { ThemeablePlaceholder as Placeholder } from '../index';
 
 it('renders correctly', () => {
   const wrapper = shallow(

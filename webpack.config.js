@@ -24,7 +24,7 @@ module.exports = {
             loader: 'babel-loader',
             query: {
               babelrc: true,
-              cacheDirectory: process.env.NODE_ENV === 'production' ? false : '.babel-cache'
+              cacheDirectory: '.babel-cache'
             }
           }
         ]
@@ -36,19 +36,15 @@ module.exports = {
             loader: 'babel-loader',
             query: {
               babelrc: true,
-              cacheDirectory: process.env.NODE_ENV === 'production' ? false : '.babel-cache'
+              cacheDirectory: '.babel-cache'
             }
           },
           'instructure-ui/webpack/loaders/themeable-css-loader',
           {
             loader: 'css-loader',
             options: {
-               discardComments: true,
-               discardEmpty: true,
-               discardUnused: true,
                importLoaders: 1,
-               localIdentName: require('./themeable.config').generateScopedName({ env: process.env.NODE_ENV }),
-               minimize: process.env.NODE_ENV === 'production',
+               localIdentName: require('./themeable.config').generateScopedName({ env: 'development'}),
                modules: true
              }
           },
@@ -68,7 +64,6 @@ module.exports = {
         pathRewrite: { '^/api/v1' : '' }
       }
     },
-    contentBase: path.join(__dirname, 'public'),
-    // hot: true
+    contentBase: path.join(__dirname, 'public')
   },
 };

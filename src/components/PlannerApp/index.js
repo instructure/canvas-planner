@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import formatMessage from '../../format-message';
-import Placeholder from '../Placeholder';
 import 'instructure-ui/lib/themes/canvas';
+import Placeholder from '../Placeholder';
 
 export default class PlannerApp extends Component {
   constructor (props) {

@@ -3,9 +3,9 @@
 echo '############################################################'
 echo '# Building fully Babelified CommonJS version of the module #'
 echo '############################################################'
-./node_modules/.bin/babel src -d lib --ignore spec.js,test.js,demo.js
+BABEL_ENV=production ./node_modules/.bin/babel src -d lib --ignore spec.js,test.js,demo.js
 
 echo '############################################################'
 echo '#    Building fully Babelified ES version of the module    #'
 echo '############################################################'
-BABEL_ENV=ES ./node_modules/.bin/babel src -d es --ignore spec.js,test.js,demo.js
+BABEL_ENV=production ES_MODULES=1 ./node_modules/.bin/babel src -d es --ignore spec.js,test.js,demo.js
