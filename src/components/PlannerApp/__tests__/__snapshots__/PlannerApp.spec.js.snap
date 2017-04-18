@@ -1,9 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
-  This is a placeholder
-  <div />
-  <Connect(Placeholder) />
-</div>
+<ol
+  style={
+    Object {
+      "listStyleType": "none",
+      "margin": 0,
+      "padding": 0,
+    }
+  }
+>
+  <PlannerItem
+    associated_item="Quiz"
+    color="#d71f85"
+    completed={true}
+    id={5}
+    points={25}
+    title="This is an assignment"
+    toggleCompletion={[Function]}
+  />
+</ol>
 `;

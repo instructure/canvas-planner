@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import formatMessage from '../../format-message';
 import 'instructure-ui/lib/themes/canvas';
-import Placeholder from '../Placeholder';
+import PlannerItem from '../PlannerItem';
 
 export default class PlannerApp extends Component {
   constructor (props) {
@@ -12,22 +10,19 @@ export default class PlannerApp extends Component {
     };
   }
 
-  componentDidMount () {
-    axios.get('/api/v1/planner')
-         .then((response) => {
-           this.setState(() => ({
-             response: response.data[0].id
-           }));
-         });
-  }
-
   render () {
     return (
-      <div>
-        {formatMessage('This is a placeholder')}
-        <div>{this.state.response}</div>
-        <Placeholder />
-      </div>
+      <ol style={{listStyleType: 'none', margin: 0, padding: 0}}>
+        <PlannerItem
+          color="#d71f85"
+          completed
+          id={5}
+          associated_item='Quiz'
+          title='This is an assignment'
+          points={25}
+          toggleCompletion={() => console.log('send me back to canvas')}
+        />
+      </ol>
     )
   }
 }

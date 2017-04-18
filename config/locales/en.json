@@ -5,7 +5,16 @@
   "click_me_d515503d": {
     "message": "Click Me!"
   },
-  "this_is_a_placeholder_19336ccb": {
-    "message": "This is a placeholder"
+  "due_date_time_short_f4d2e61c": {
+    "message": "DUE: { date, time, short }"
+  },
+  "pts_699bd9aa": {
+    "message": "pts"
+  },
+  "task_title_is_complete_5247251": {
+    "message": "Task { title } is complete"
+  },
+  "task_title_is_incomplete_e979d872": {
+    "message": "Task { title } is incomplete"
   }
 }

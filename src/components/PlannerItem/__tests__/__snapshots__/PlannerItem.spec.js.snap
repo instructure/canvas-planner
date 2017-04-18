@@ -1,0 +1,2599 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Announcement correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Announcement is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAnnouncementLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Announcement
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Announcement
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Announcement correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Announcement is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAnnouncementLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Announcement
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Announcement
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Announcement correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Announcement is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAnnouncementLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Announcement
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Announcement
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Announcement correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Announcement is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAnnouncementLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Announcement
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Announcement
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Assignment correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Assignment is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAssignmentLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Assignment
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Assignment
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Assignment correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Assignment is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAssignmentLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Assignment
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Assignment
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Assignment correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Assignment is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAssignmentLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Assignment
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Assignment
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Assignment correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Assignment is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAssignmentLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Assignment
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Assignment
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Calendar Event correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Calendar Event is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconCalendarMonthLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Calendar Event
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Calendar Event
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Calendar Event correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Calendar Event is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconCalendarMonthLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Calendar Event
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Calendar Event
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Calendar Event correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Calendar Event is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconCalendarMonthLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Calendar Event
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Calendar Event
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Calendar Event correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Calendar Event is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconCalendarMonthLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Calendar Event
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Calendar Event
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Discussion correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Discussion is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconDiscussionLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Discussion
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Discussion
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Discussion correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Discussion is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconDiscussionLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Discussion
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Discussion
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Discussion correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Discussion is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconDiscussionLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Discussion
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Discussion
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Discussion correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Discussion is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconDiscussionLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Discussion
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Discussion
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Note correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Note is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconNoteLightLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Note
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Note
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Note correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Note is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconNoteLightLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Note
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Note
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Note correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Note is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconNoteLightLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Note
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Note
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Note correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Note is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconNoteLightLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Note
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Note
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Page correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Page is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconMsWordLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Page
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Page
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Page correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Page is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconMsWordLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Page
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Page
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Page correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Page is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconMsWordLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Page
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Page
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Page correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Page is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconMsWordLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Page
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Page
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Quiz correctly with everything 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={true}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Quiz is complete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconQuizLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Quiz
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Quiz
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              4
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Quiz correctly with just date 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Quiz is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconQuizLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Quiz
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Quiz
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Quiz correctly with just points 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Quiz is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconQuizLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Quiz
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Quiz
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              2
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders Quiz correctly without right side content 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task I am a Quiz is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconQuizLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Quiz
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          I am a Quiz
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            />
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`renders correctly 1`] = `
+<li>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      isBlock={true}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Task This Assignment is about awesome stuff is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#d71f85",
+      }
+    }
+  >
+    <IconAssignmentLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Typography
+          as="span"
+          color="secondary"
+          size="x-small"
+        >
+          Assignment
+        </Typography>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="#"
+          linkRef={[Function]}
+        >
+          This Assignment is about awesome stuff
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div>
+        Pills (sep. component?)
+      </div>
+      <div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="medium"
+          >
+            <Typography
+              as="span"
+              size="large"
+            >
+              35
+            </Typography>
+            <Typography
+              as="span"
+              size="x-small"
+            >
+               
+              pts
+            </Typography>
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            as="span"
+            color="secondary"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+`;

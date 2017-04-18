@@ -1,0 +1,89 @@
+.item {
+  font-family: var(--fontFamily);
+  box-sizing: border-box;
+  padding: var(--itemPaddingSmallScreen);
+  border-bottom: var(--itemBorderWidth) solid var(--itemBorderColor);
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.itemCompleted,
+.itemIcon {
+  box-sizing: border-box;
+  margin-right: var(--iconCheckboxRightMargin);
+}
+
+.itemCompleted {
+  width: 1.375rem;
+}
+
+.itemIcon {
+  font-size: var(--iconFontSize);
+
+  > svg { /* stylelint-disable-line selector-no-type */
+    display: block;
+  }
+}
+
+.itemLayout {
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.itemDetails {
+  box-sizing: border-box;
+  margin-bottom: var(--itemDetailsBottomMargin);
+}
+
+.itemType {
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  margin-bottom: var(--itemTypeBottomMargin);
+}
+
+.itemName {
+  line-height: var(--itemNameLineHeight);
+}
+
+.itemSecondary {
+  display: flex;
+  align-items: center;
+  flex: 0.5;
+}
+
+.itemMetrics {
+  text-align: right;
+  flex: 1;
+}
+
+.itemDue,
+.itemScore {
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media screen and (--tabletMin) {
+  .item {
+    padding: var(--itemPaddingMediumScreen);
+  }
+
+  .itemLayout {
+    display: flex;
+    align-items: center;
+  }
+
+  .itemDetails {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (--desktopMin) {
+  .item {
+    padding: var(--itemPaddingLargeScreen);
+  }
+}

@@ -35,6 +35,7 @@
     "format-message": "^5.1.2",
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
+    "prop-types": "^15.5.8",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
