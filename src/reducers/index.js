@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import testReducer from './test-reducer';
+import items from './items-reducer';
+import days from './days-reducer';
 
 export default combineReducers({
-  test: testReducer
+  items,
+  days
 });

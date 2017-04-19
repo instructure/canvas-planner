@@ -1,23 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<ol
-  style={
-    Object {
-      "listStyleType": "none",
-      "margin": 0,
-      "padding": 0,
-    }
-  }
+exports[`renders base component using dayKeys 1`] = `
+<div
+  className="PlannerApp"
 >
-  <PlannerItem
-    associated_item="Quiz"
-    color="#d71f85"
-    completed={true}
-    id={5}
-    points={25}
-    title="This is an assignment"
-    toggleCompletion={[Function]}
-  />
-</ol>
+  <div>
+    This is a placeholder for 2017-04-24
+  </div>
+  <div>
+    This is a placeholder for 2017-04-25
+  </div>
+  <div>
+    This is a placeholder for 2017-04-26
+  </div>
+  <ol
+    style={
+      Object {
+        "listStyleType": "none",
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <PlannerItem
+      associated_item="Quiz"
+      color="#d71f85"
+      completed={true}
+      id={5}
+      points={25}
+      title="This is an assignment"
+      toggleCompletion={[Function]}
+    />
+  </ol>
+</div>
 `;

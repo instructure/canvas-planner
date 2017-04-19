@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import 'instructure-ui/lib/themes/canvas'
-import ApplyTheme from 'instructure-ui/lib/components/ApplyTheme'
+import 'instructure-ui/lib/themes/canvas';
+import ApplyTheme from 'instructure-ui/lib/components/ApplyTheme';
 import PlannerApp from './components/PlannerApp';
 import PlannerHeader from './components/PlannerHeader';
 import i18n from './i18n';
 import configureStore from './store/configureStore';
+import { getPlannerItems } from './actions';
 
 const defaultOptions = {
   locale: 'en',
@@ -21,6 +22,8 @@ export default {
     const opts = { ...defaultOptions, ...options };
     i18n.init(opts.locale);
     ApplyTheme.setDefaultTheme(opts.theme);
+
+    store.dispatch(getPlannerItems());
 
     ReactDOM.render(
       <Provider store={store}>
