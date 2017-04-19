@@ -12,9 +12,9 @@
     "start": "npm-run-all --parallel start:*",
     "start:json-server": "json-server --watch --port 3004 db.json",
     "start:webpack-dev": "BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --port 3005",
-    "test": "jest --no-cache",
-    "test:coverage": "jest --coverage --no-cache",
-    "test:watch": "jest --no-cache --watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
     "generate-themeable": "./scripts/generate-themeable",
     "clean": "rm -rf .babel-cache && rm -rf es && rm -rf lib && rm -rf coverage"
   },

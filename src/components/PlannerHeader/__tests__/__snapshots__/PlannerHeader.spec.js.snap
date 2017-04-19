@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component correctly with two buttons 1`] = `
+<div>
+  <Button
+    as="button"
+    buttonRef={[Function]}
+    isBlock={false}
+    margin="0"
+    size="medium"
+    type="button"
+    variant="icon"
+  >
+    <IconPlusLine
+      title="Add Note to Self"
+    />
+  </Button>
+  <Button
+    as="button"
+    buttonRef={[Function]}
+    isBlock={false}
+    margin="0"
+    size="medium"
+    type="button"
+    variant="icon"
+  >
+    <PlannerBadge
+      count={4}
+    >
+      <IconAlertLine
+        title="Opportunities"
+      />
+    </PlannerBadge>
+  </Button>
+</div>
+`;

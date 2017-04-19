@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component 1`] = `
+<span>
+  <span>
+    <span>
+      Hello
+    </span>
+  </span>
+</span>
+`;
+
+exports[`renders the count when it is provided as a prop 1`] = `
+<span>
+  <span>
+    40
+  </span>
+  <span>
+    <span>
+      Hello
+    </span>
+  </span>
+</span>
+`;

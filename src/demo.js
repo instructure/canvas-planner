@@ -6,7 +6,11 @@
  *
  ****************************************************************************/
 
+import 'instructure-ui/lib/themes/canvas';
 import CanvasPlanner from './index';
+
+const header_mount_point = document.getElementById('header_mount_point');
+CanvasPlanner.renderHeader(header_mount_point);
 
 const mount_point = document.getElementById('mount_point');
 CanvasPlanner.render(mount_point);
