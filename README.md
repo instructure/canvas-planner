@@ -42,6 +42,14 @@ instance of Canvas running to do development.
 This project uses [eslint-config-react-app](https://github.com/facebookincubator/create-react-app/tree/master/packages/eslint-config-react-app)
 for linting JS files.  Linting is enforced at the build level.  ESLint errors will cause the build to fail.
 
+### Testing
+
+We use [Jest](http://facebook.github.io/jest/) for testing the codebase.  You can run it
+by running `yarn test` for a single run or `yarn test:watch` to start up a watcher process for it.
+If you are having trouble with the watch process you may need to set up [watchman] (https://facebook.github.io/watchman/).
+It should be as simple as `brew install watchman` on a Mac, no configuration is required.  For more details about these
+issues see the discussion on the issue, [watch mode stopped working on macOS Sierra](https://github.com/facebook/jest/issues/1767).
+
 ### Testing a local Canvas Planner version
 
 If you want to test a version of the planner locally without publishing it you can
