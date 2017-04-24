@@ -37,7 +37,7 @@ class PlannerItem extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      completed: nextProps.props.completed
+      completed: nextProps.completed
     })
   }
 
