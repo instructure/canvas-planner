@@ -1,15 +1,17 @@
 export default function generator ({ borders, colors, media, spacing, typography }) {
   return {
     fontFamily: typography.fontFamily,
-    itemPaddingSmallScreen: `${spacing.small} 0`,
-    itemPaddingMediumScreen: `${spacing.small} ${spacing.xSmall}`,
-    itemPaddingLargeScreen: `${spacing.small}`,
+    itemPaddingPhoneUp: `${spacing.small} 0`,
+    itemPaddingTabletUp: `${spacing.small}`,
+    itemPaddingWideUp: `${spacing.small} ${spacing.medium}`,
     itemBorderWidth: borders.widthSmall,
     itemBorderColor: colors.tiara,
     iconFontSize: spacing.medium,
-    iconCheckboxRightMargin: spacing.small,
+    iconCheckboxRightMarginPhoneUp: spacing.small,
+    iconCheckboxRightMarginWideUp: spacing.medium,
     itemDetailsBottomMargin: spacing.xSmall,
     itemTypeBottomMargin: spacing.xxxSmall,
+    itemTypeLetterSpacing: spacing.xxxSmall,
     itemNameLineHeight: typography.lineHeightFit,
 
     ...media

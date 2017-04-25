@@ -11,6 +11,7 @@ exports[`renders base component using dayKeys 1`] = `
         Object {},
       ]
     }
+    timeZone="en"
   />
   <Day
     day="2017-04-25"
@@ -19,6 +20,7 @@ exports[`renders base component using dayKeys 1`] = `
         Object {},
       ]
     }
+    timeZone="en"
   />
   <Day
     day="2017-04-26"
@@ -27,25 +29,7 @@ exports[`renders base component using dayKeys 1`] = `
         Object {},
       ]
     }
+    timeZone="en"
   />
-  <ol
-    style={
-      Object {
-        "listStyleType": "none",
-        "margin": 0,
-        "padding": 0,
-      }
-    }
-  >
-    <PlannerItem
-      associated_item="Quiz"
-      color="#d71f85"
-      completed={true}
-      id={5}
-      points={25}
-      title="This is an assignment"
-      toggleCompletion={[Function]}
-    />
-  </ol>
 </div>
 `;

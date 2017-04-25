@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
-// import moment from 'moment';
 import { string, arrayOf, object } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import { getFriendlyDate, getFullDate, isToday } from '../../utilities/dateUtils';
 import { groupBy } from 'lodash';
+import Grouping from '../Grouping';
 
 
 class Day extends Component {
   static propTypes = {
     day: string.isRequired,
-    itemsForDay: arrayOf(object)
+    itemsForDay: arrayOf(object),
+    timeZone: string.isRequired
   }
 
   constructor (props) {
@@ -59,7 +60,10 @@ class Day extends Component {
         <div className={styles.dayContent}>
           {
             Object.keys(this.state.groupedItems).map((cid) => {
-              return (<div key={cid}>Grouping Placeholder for course id:{cid}</div>);
+              return (<Grouping
+                courseInfo={this.state.groupedItems[cid][0].context}
+                timeZone={this.props.timeZone}
+                items={this.state.groupedItems[cid]} key={cid} />);
             })
           }
         </div>

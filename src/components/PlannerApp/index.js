@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'instructure-ui/lib/themes/canvas';
-import PlannerItem from '../PlannerItem';
 import { connect } from 'react-redux';
 import 'instructure-ui/lib/themes/canvas';
 import { arrayOf, object, string } from 'prop-types';
@@ -9,7 +8,8 @@ import Day from '../Day';
 export class PlannerApp extends Component {
   static propTypes = {
     dayKeys: arrayOf(string).isRequired,
-    days: object // This is okay being generic because each key is a date
+    days: object, // This is okay being generic because each key is a date
+    timeZone: string
   };
 
   render () {
@@ -19,21 +19,10 @@ export class PlannerApp extends Component {
           this.props.dayKeys.map((day) => {
             const dayData = this.props.days[day];
             return (
-              <Day day={day} itemsForDay={dayData} key={day} />
+              <Day timeZone={this.props.timeZone} day={day} itemsForDay={dayData} key={day} />
             );
           })
         }
-        <ol style={{listStyleType: 'none', margin: 0, padding: 0}}>
-          <PlannerItem
-            color="#d71f85"
-            completed
-            id={5}
-            associated_item='Quiz'
-            title='This is an assignment'
-            points={25}
-            toggleCompletion={() => console.log('send me back to canvas')}
-          />
-        </ol>
       </div>
     );
   }

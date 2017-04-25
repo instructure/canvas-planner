@@ -152,24 +152,6 @@ exports[`renders Announcement correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -327,24 +309,6 @@ exports[`renders Announcement correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"
@@ -510,24 +474,6 @@ exports[`renders Assignment correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -685,24 +631,6 @@ exports[`renders Assignment correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"
@@ -868,24 +796,6 @@ exports[`renders Calendar Event correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -1043,24 +953,6 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"
@@ -1226,24 +1118,6 @@ exports[`renders Discussion correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -1401,24 +1275,6 @@ exports[`renders Discussion correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"
@@ -1584,24 +1440,6 @@ exports[`renders Note correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -1759,24 +1597,6 @@ exports[`renders Note correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"
@@ -1942,24 +1762,6 @@ exports[`renders Page correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -2117,24 +1919,6 @@ exports[`renders Page correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"
@@ -2300,24 +2084,6 @@ exports[`renders Quiz correctly with just date 1`] = `
           <Typography
             as="span"
             color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
             size="x-small"
           >
             DUE: 3:30 AM
@@ -2475,24 +2241,6 @@ exports[`renders Quiz correctly without right side content 1`] = `
         Pills (sep. component?)
       </div>
       <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            />
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-            </Typography>
-          </Typography>
-        </div>
         <div>
           <Typography
             as="span"

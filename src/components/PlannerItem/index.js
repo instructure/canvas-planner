@@ -81,17 +81,19 @@ class PlannerItem extends Component {
       <div className={styles.itemSecondary}>
         {this.renderBadges()}
         <div className={styles.itemMetrics}>
-          <div className={styles.itemScore}>
-            <Typography color="secondary">
-              <Typography size="large">{this.props.points}</Typography>
-              <Typography size="x-small">&nbsp;
-                { this.props.points
-                    ? formatMessage('pts')
-                    : null
-                }
+          {(this.props.points) ?
+            <div className={styles.itemScore}>
+              <Typography color="secondary">
+                <Typography size="large">{this.props.points}</Typography>
+                <Typography size="x-small">&nbsp;
+                  { this.props.points
+                      ? formatMessage('pts')
+                      : null
+                  }
+                </Typography>
               </Typography>
-            </Typography>
-          </div>
+            </div> : null
+          }
           <div className={styles.itemDue}>
             <Typography color="secondary" size="x-small">
                 { this.props.date

@@ -1,0 +1,78 @@
+/* Variables are defined in ./theme.js */
+
+.groupingList,
+.itemList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.grouping {
+  border-top: var(--borderTopWidthPhone) solid;
+  font-family: var(--fontFamily);
+  margin-top: var(--groupingTopMargin);
+}
+
+.groupingHero {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--groupingHeroMinHeight);
+  box-sizing: border-box;
+  color: var(--heroLinkColor);
+  text-decoration: var(--heroLinkTextDecoration);
+  text-transform: var(--heroLinkTextTransform);
+  font-size: var(--heroLinkFontSize);
+  letter-spacing: var(--heroLinkLetterSpacing);
+  outline: none;
+
+  &:focus,
+  &:hover {
+    text-decoration: var(--heroLinkTextDecorationHover);
+  }
+}
+
+.groupingOverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.75;
+}
+
+.groupingName {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  box-sizing: border-box;
+  text-align: center;
+  padding: var(--groupingHeroPadding);
+}
+
+@media screen and (--tabletMin) {
+  .grouping {
+    display: flex;
+    border-top: none;
+  }
+
+  .groupingHero {
+    flex: 0 0 var(--groupingHeroWidth);
+    min-height: 0;
+  }
+
+  .groupingHero,
+  .groupingOverlay {
+    border-bottom-left-radius: var(--heroBorderRadius);
+    border-top-left-radius: var(--heroBorderRadius);
+  }
+
+  .itemList {
+    flex: 1;
+    border-top: var(--borderTopWidthTabletUp) solid;
+  }
+}

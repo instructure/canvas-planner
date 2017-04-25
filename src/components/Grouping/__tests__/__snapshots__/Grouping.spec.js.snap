@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component with required props 1`] = `
+<ol>
+  <li
+    style={
+      Object {
+        "borderColor": "#5678",
+      }
+    }
+  >
+    <a
+      href="#"
+      style={
+        Object {
+          "backgroundImage": "url(undefined)",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#5678",
+          }
+        }
+      />
+      <span />
+    </a>
+    <ol
+      style={
+        Object {
+          "borderColor": "#5678",
+        }
+      }
+    >
+      <PlannerItem
+        color="#5678"
+        completed={true}
+        date={2017-04-25T06:00:00.000Z}
+        id={5}
+        title="San Juan"
+        toggleCompletion={[Function]}
+      />
+      <PlannerItem
+        color="#5678"
+        completed={true}
+        date={2017-04-25T06:00:00.000Z}
+        id={6}
+        title="Roll for the Galaxy"
+        toggleCompletion={[Function]}
+      />
+    </ol>
+  </li>
+</ol>
+`;

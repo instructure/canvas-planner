@@ -11,6 +11,7 @@ import { getPlannerItems } from './actions';
 
 const defaultOptions = {
   locale: 'en',
+  timeZone: 'America/Denver',
   theme: 'canvas'
 };
 
@@ -27,7 +28,7 @@ export default {
 
     ReactDOM.render(
       <Provider store={store}>
-          <PlannerApp />
+          <PlannerApp timeZone={opts.timeZone} />
       </Provider>
       , element);
   },

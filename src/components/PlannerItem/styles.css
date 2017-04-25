@@ -1,7 +1,7 @@
 .item {
   font-family: var(--fontFamily);
   box-sizing: border-box;
-  padding: var(--itemPaddingSmallScreen);
+  padding: var(--itemPaddingPhoneUp);
   border-bottom: var(--itemBorderWidth) solid var(--itemBorderColor);
   flex: 1;
   display: flex;
@@ -11,7 +11,7 @@
 .itemCompleted,
 .itemIcon {
   box-sizing: border-box;
-  margin-right: var(--iconCheckboxRightMargin);
+  margin-right: var(--iconCheckboxRightMarginPhoneUp);
 }
 
 .itemCompleted {
@@ -39,7 +39,7 @@
 .itemType {
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.0625rem;
+  letter-spacing: var(--itemTypeLetterSpacing);
   margin-bottom: var(--itemTypeBottomMargin);
 }
 
@@ -68,7 +68,7 @@
 
 @media screen and (--tabletMin) {
   .item {
-    padding: var(--itemPaddingMediumScreen);
+    padding: var(--itemPaddingTabletUp);
   }
 
   .itemLayout {
@@ -82,8 +82,13 @@
   }
 }
 
-@media screen and (--desktopMin) {
+@media screen and (--wideMin) {
   .item {
-    padding: var(--itemPaddingLargeScreen);
+    padding: var(--itemPaddingWideUp);
+  }
+
+  .itemCompleted,
+  .itemIcon {
+    margin-right: var(--iconCheckboxRightMarginWideUp);
   }
 }

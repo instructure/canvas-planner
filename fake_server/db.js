@@ -12,7 +12,7 @@ const contexts = {
     id: getKindaUniqueId(),
     title: "World History I",
     image_url: "https://c1.staticflickr.com/6/5473/14502036741_b3d9f4f345_n.jpg",
-    color: "#B930A0"
+    color: "#BE0EAA"
   },
   course_2: {
     type: "Course",
@@ -33,7 +33,8 @@ module.exports = () => {
         date: moment().subtract(1, 'days').format('YYYY-MM-DD'),
         type: "Assignment",
         title: "World War II Essay",
-        completed: true,
+        completed: Math.random() >= 0.5,
+        points: Math.floor(Math.random()* 100),
         context: contexts.course_1
       },
       {
@@ -41,7 +42,8 @@ module.exports = () => {
         date: moment().subtract(1, 'days').format('YYYY-MM-DD'),
         type: "Quiz",
         title: "Shakespeare",
-        completed: true,
+        completed: Math.random() >= 0.5,
+        points: Math.floor(Math.random()* 100),
         context: contexts.course_2
       },
 
@@ -52,6 +54,7 @@ module.exports = () => {
         type: "Assignment",
         title: "World War I Essay",
         completed: true,
+        points: Math.floor(Math.random()* 100),
         context: contexts.course_1
       },
       {
@@ -60,7 +63,8 @@ module.exports = () => {
         type: "Announcement",
         title: "Submit your book list today!",
         completed: true,
-        context: contexts.course_2
+        points: Math.floor(Math.random()* 100),
+        context: contexts.course_1
       },
 
       // Make sure there are always some current day items
@@ -69,7 +73,8 @@ module.exports = () => {
         date: moment().format('YYYY-MM-DD'),
         type: "Assignment",
         title: "History essay",
-        completed: false,
+        completed: Math.random() >= 0.5,
+        points: Math.floor(Math.random()* 100),
         context: contexts.course_1
       },
       {

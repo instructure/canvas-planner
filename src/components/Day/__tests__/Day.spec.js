@@ -6,7 +6,7 @@ import Day from '../index';
 
 it('renders the base component with required props', () => {
   const wrapper = shallow(
-    <Day day="2017-04-25" />
+    <Day timeZone="America/Denver" day="2017-04-25" />
   );
   expect(wrapper).toMatchSnapshot();
 });
@@ -15,14 +15,14 @@ it('renders the friendly name in large text when it is today', () => {
   const today = moment();
 
   const wrapper = shallow(
-    <Day day={today.format('YYYY-MM-DD')} />
+    <Day timeZone="America/Denver" day={today.format('YYYY-MM-DD')} />
   );
   expect(wrapper.find('Typography').first().props().size).toEqual('large');
 });
 
 it('renders the friendlyName in medium text when it is not today', () => {
   const wrapper = shallow(
-    <Day day="2017-04-25" />
+    <Day timeZone="America/Denver" day="2017-04-25" />
   );
   expect(wrapper.find('Typography').first().props().size).toEqual('medium');
 });
@@ -46,7 +46,7 @@ it('groups itemsForDay based on context id', () => {
   }];
 
   const wrapper = shallow(
-    <Day day="2017-04-25" itemsForDay={items} />
+    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} />
   );
   const groupedItems = wrapper.state('groupedItems');
   expect(groupedItems[128].length).toEqual(1);
@@ -74,7 +74,7 @@ it('groups itemsForDay that have no context into the "Notes" category', () => {
   }];
 
   const wrapper = shallow(
-    <Day day="2017-04-25" itemsForDay={items} />
+    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} />
   );
   const groupedItems = wrapper.state('groupedItems');
   expect(groupedItems.Notes.length).toEqual(1);
@@ -94,7 +94,7 @@ it('groups itemsForDay that come in on prop changes', () => {
   }];
 
   const wrapper = shallow(
-    <Day day="2017-04-25" itemsForDay={items} />
+    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} />
   );
   let groupedItems = wrapper.state('groupedItems');
   expect(Object.keys(groupedItems).length).toEqual(2);
