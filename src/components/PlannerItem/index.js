@@ -68,6 +68,59 @@ class PlannerItem extends Component {
     }
   }
 
+  renderBadges = () => {
+    //We need to replace this with the badge
+    //Component and configure how many badges to render
+    return  (
+      <div>Pills (sep. component?)</div>
+    );
+  }
+
+  renderItemMetrics = () => {
+    return (
+      <div className={styles.itemSecondary}>
+        {this.renderBadges()}
+        <div className={styles.itemMetrics}>
+          <div className={styles.itemScore}>
+            <Typography color="secondary">
+              <Typography size="large">{this.props.points}</Typography>
+              <Typography size="x-small">&nbsp;
+                { this.props.points
+                    ? formatMessage('pts')
+                    : null
+                }
+              </Typography>
+            </Typography>
+          </div>
+          <div className={styles.itemDue}>
+            <Typography color="secondary" size="x-small">
+                { this.props.date
+                    ? formatMessage(`DUE: {date, time, short}`, {date: this.props.date})
+                    : null
+                }
+            </Typography>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderItemDetails = () => {
+    return (
+      <div className={styles.itemDetails}>
+        <div className={styles.itemType}>
+          <Typography size="x-small" color="secondary">
+            {this.props.associated_item}
+          </Typography>
+        </div>
+        <div className={styles.itemName}>
+          <Link href="#">{this.props.title}</Link>
+        </div>
+      </div>
+    );
+  }
+
+
   render () {
     let checkBoxLabel = this.state.completed
       ? formatMessage('Task {title} is complete', { title: this.props.title })
@@ -85,40 +138,8 @@ class PlannerItem extends Component {
           {this.renderIcon()}
         </div>
         <div className={styles.itemLayout}>
-          <div className={styles.itemDetails}>
-            <div className={styles.itemType}>
-              <Typography size="x-small" color="secondary">
-                {this.props.associated_item}
-              </Typography>
-            </div>
-            <div className={styles.itemName}>
-              <Link href="#">{this.props.title}</Link>
-            </div>
-          </div>
-          <div className={styles.itemSecondary}>
-            <div>Pills (sep. component?)</div>
-            <div className={styles.itemMetrics}>
-              <div className={styles.itemScore}>
-                <Typography color="secondary">
-                  <Typography size="large">{this.props.points}</Typography>
-                  <Typography size="x-small">&nbsp;
-                    { this.props.points
-                        ? formatMessage('pts')
-                        : null
-                    }
-                  </Typography>
-                </Typography>
-              </div>
-              <div className={styles.itemDue}>
-                <Typography color="secondary" size="x-small">
-                    { this.props.date
-                        ? formatMessage(`DUE: {date, time, short}`, {date: this.props.date})
-                        : null
-                    }
-                </Typography>
-              </div>
-            </div>
-          </div>
+          {this.renderItemDetails()}
+          {this.renderItemMetrics()}
         </div>
       </li>
     );
