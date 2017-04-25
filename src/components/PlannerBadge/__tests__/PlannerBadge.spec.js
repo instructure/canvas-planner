@@ -8,7 +8,7 @@ it('renders the base component', () => {
     <PlannerBadge>
       <span>Hello</span>
     </PlannerBadge>
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -17,6 +17,6 @@ it('renders the count when it is provided as a prop', () => {
     <PlannerBadge count={40}>
       <span>Hello</span>
     </PlannerBadge>
-  )
+  );
   expect(wrapper).toMatchSnapshot();
-})
+});

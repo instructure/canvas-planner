@@ -13,5 +13,5 @@ export default function generator ({ borders, colors, media, spacing, typography
     itemNameLineHeight: typography.lineHeightFit,
 
     ...media
-  }
+  };
 }

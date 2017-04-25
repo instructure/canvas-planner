@@ -7,8 +7,8 @@ import IconPlusLine from 'instructure-icons/react/Line/IconPlusLine';
 import IconAlertLine from 'instructure-icons/react/Line/IconAlertLine';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css'
-import theme from './theme.js'
+import styles from './styles.css';
+import theme from './theme.js';
 import formatMessage from '../../format-message';
 
 export class PlannerHeader extends Component {
@@ -33,7 +33,7 @@ export class PlannerHeader extends Component {
           </PlannerBadge>
         </Button>
       </div>
-    )
+    );
   }
 }
 

@@ -9,5 +9,5 @@ export default function generator ({ colors, spacing, typography }) {
     countFontSize: typography.fontSizeXSmall,
     countPadding: spacing.xxSmall,
     badgeSize: '1.25rem'
-  }
+  };
 }

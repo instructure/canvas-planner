@@ -3,8 +3,8 @@ import 'instructure-ui/lib/themes/canvas';
 import PlannerItem from '../PlannerItem';
 import { connect } from 'react-redux';
 import 'instructure-ui/lib/themes/canvas';
-import { arrayOf, string } from 'prop-types';
 import formatMessage from '../../format-message';
+import { arrayOf, string } from 'prop-types';
 
 export class PlannerApp extends Component {
   static propTypes = {
@@ -33,7 +33,7 @@ export class PlannerApp extends Component {
           />
         </ol>
       </div>
-    )
+    );
   }
 }
 
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
   return {
     days: state.days,
     dayKeys: Object.keys(state.days)
-  }
+  };
 };
 
 

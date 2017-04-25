@@ -2,5 +2,10 @@
   "extends": ["react-app", "plugin:react/recommended"],
   "plugins": [
     "react"
-  ]
+  ],
+  "rules": {
+    "semi": "error",
+    "no-extra-semi": "error",
+    "semi-spacing": "error"
+  }
 }

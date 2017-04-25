@@ -13,7 +13,7 @@ export const testAsyncAction = () => {
            dispatch(testAction(response.data.value));
          });
   };
-}
+};
 
 export const getPlannerItems = () => {
   return (dispatch) => {
@@ -21,5 +21,5 @@ export const getPlannerItems = () => {
          .then(response => {
            dispatch(gotItemsSuccess(response.data));
          });
-  }
-}
+  };
+};

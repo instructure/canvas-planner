@@ -8,5 +8,5 @@ export default function generator ({ colors, typography }) {
 
     color: colors.oxford,
     background: colors.white
-  }
+  };
 }

@@ -11,5 +11,5 @@ export default function configureStore (defaultState) {
       reduxThunk,
       reduxLogger
     )
-  )
+  );
 }

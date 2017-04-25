@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css'
-import theme from './theme.js'
+import styles from './styles.css';
+import theme from './theme.js';
 
 export class PlannerBadge extends Component {
 
@@ -16,7 +16,7 @@ export class PlannerBadge extends Component {
     const {
       children,
       count
-    } = this.props
+    } = this.props;
 
     return (
       <span className={styles.root}>
@@ -29,7 +29,7 @@ export class PlannerBadge extends Component {
           {children}
         </span>
       </span>
-    )
+    );
   }
 }
 

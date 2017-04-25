@@ -1,6 +1,6 @@
-import parse from 'format-message-parse'
-import print from 'format-message-print'
-import { reverse } from 'esrever'
+import parse from 'format-message-parse';
+import print from 'format-message-print';
+import { reverse } from 'esrever';
 
 const PREFIX_EMOJI = [
   '(╯°□°）╯︵',
@@ -11,7 +11,7 @@ const PREFIX_EMOJI = [
   '(╯\'□\')╯︵',
   'ʕノ•ᴥ•ʔノ',
   '┗[© ♒ ©]┛ ︵',
-]
+];
 
 const POSTFIX_EMOJI = [
   '︵ヽ(`Д´)ﾉ',
@@ -19,7 +19,7 @@ const POSTFIX_EMOJI = [
   '︵ ~ (._.)',
   ' ( \\o°o)\\',
   ' ლ(⌒-⌒ლ)',
-]
+];
 
 const INVERTED = {
   'a': '\u0250',
@@ -80,61 +80,61 @@ const INVERTED = {
   '_': '\u203E',
   '\u2234': '\u2235',
   '\u2045': '\u2046',
-}
-Object.keys(INVERTED).forEach((key) => { INVERTED[INVERTED[key]] = key })
+};
+Object.keys(INVERTED).forEach((key) => { INVERTED[INVERTED[key]] = key; });
 
 export default function flip (pattern) {
   let elements = parse(pattern)
     .map(flipElement)
-    .reverse()
+    .reverse();
   let index = String(pattern).length % (
     (PREFIX_EMOJI.length + POSTFIX_EMOJI.length)
-  )
+  );
   if (index < PREFIX_EMOJI.length) {
-    elements.unshift(PREFIX_EMOJI[index])
+    elements.unshift(PREFIX_EMOJI[index]);
   } else {
-    index -= PREFIX_EMOJI.length
-    elements.push(POSTFIX_EMOJI[index])
+    index -= PREFIX_EMOJI.length;
+    elements.push(POSTFIX_EMOJI[index]);
   }
-  return print(elements)
+  return print(elements);
 }
 
 export function flipAll (strings) {
   if (Object.keys(strings).length === 1) {
-    strings = strings[Object.keys(strings)[0]]
+    strings = strings[Object.keys(strings)[0]];
   }
   return Object.keys(strings).reduce((flipped, id) => {
-    flipped[id] = { message: flip(strings[id].message || strings[id]) }
-    return flipped
-  }, {})
+    flipped[id] = { message: flip(strings[id].message || strings[id]) };
+    return flipped;
+  }, {});
 }
 
 function flipElement (element) {
-  if (typeof element === 'string') return flipText(element)
-  const type = element[1]
+  if (typeof element === 'string') return flipText(element);
+  const type = element[1];
   if (type === 'plural' || type === 'selectordinal') {
-    element = element.slice()
-    element[3] = flipOptions(element[3])
+    element = element.slice();
+    element[3] = flipOptions(element[3]);
   } else if (type === 'select') {
-    element = element.slice()
-    element[2] = flipOptions(element[2])
+    element = element.slice();
+    element[2] = flipOptions(element[2]);
   }
-  return element
+  return element;
 }
 
 function flipOptions (options) {
-  let flipped = {}
+  let flipped = {};
   Object.keys(options).forEach((key) => {
     flipped[key] = options[key]
       .map(flipElement)
-      .reverse()
-  })
-  return flipped
+      .reverse();
+  });
+  return flipped;
 }
 
 function flipText (text) {
   return reverse(text)
     .split('')
     .map((c) => INVERTED[c] || c)
-    .join('')
+    .join('');
 }

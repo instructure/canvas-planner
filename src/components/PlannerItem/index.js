@@ -4,17 +4,17 @@ import Typography from 'instructure-ui/lib/components/Typography';
 import Checkbox from 'instructure-ui/lib/components/Checkbox';
 import Link from 'instructure-ui/lib/components/Link';
 import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
-import Assignment from 'instructure-icons/react/Line/IconAssignmentLine'
-import Quiz from 'instructure-icons/react/Line/IconQuizLine'
-import Announcement from 'instructure-icons/react/Line/IconAnnouncementLine'
-import Discussion from 'instructure-icons/react/Line/IconDiscussionLine'
-import Note from 'instructure-icons/react/Line/IconNoteLightLine'
-import Calendar from 'instructure-icons/react/Line/IconCalendarMonthLine'
-import Page from 'instructure-icons/react/Line/IconMsWordLine'
-import styles from './styles.css'
-import theme from './theme.js'
-import {bool, instanceOf, number, string, func} from 'prop-types'
-import formatMessage from '../../format-message'
+import Assignment from 'instructure-icons/react/Line/IconAssignmentLine';
+import Quiz from 'instructure-icons/react/Line/IconQuizLine';
+import Announcement from 'instructure-icons/react/Line/IconAnnouncementLine';
+import Discussion from 'instructure-icons/react/Line/IconDiscussionLine';
+import Note from 'instructure-icons/react/Line/IconNoteLightLine';
+import Calendar from 'instructure-icons/react/Line/IconCalendarMonthLine';
+import Page from 'instructure-icons/react/Line/IconMsWordLine';
+import styles from './styles.css';
+import theme from './theme.js';
+import {bool, instanceOf, number, string, func} from 'prop-types';
+import formatMessage from '../../format-message';
 
 class PlannerItem extends Component {
   static propTypes = {
@@ -29,23 +29,23 @@ class PlannerItem extends Component {
   }
 
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       completed: props.completed,
-    }
+    };
   }
 
   componentWillReceiveProps (nextProps) {
     this.setState({
       completed: nextProps.completed
-    })
+    });
   }
 
   toggleCompletion = (e) => {
-    this.props.toggleCompletion(this.props.id)
+    this.props.toggleCompletion(this.props.id);
     this.setState({
       completed: !this.state.completed,
-    })
+    });
   }
 
   renderIcon = () => {
@@ -71,7 +71,7 @@ class PlannerItem extends Component {
   render () {
     let checkBoxLabel = this.state.completed
       ? formatMessage('Task {title} is complete', { title: this.props.title })
-      : formatMessage('Task {title} is incomplete', { title: this.props.title })
+      : formatMessage('Task {title} is incomplete', { title: this.props.title });
     return (
       <li className={styles.item}>
         <div className={styles.itemCompleted}>
@@ -121,7 +121,7 @@ class PlannerItem extends Component {
           </div>
         </div>
       </li>
-    )
+    );
   }
 }
 

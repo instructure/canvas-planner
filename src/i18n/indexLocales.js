@@ -1,5 +1,5 @@
-import en from '../../config/locales/en.json'
-import {flipAll} from './flip-message'
+import en from '../../config/locales/en.json';
+import {flipAll} from './flip-message';
 // import ar from '../../config/locales/ar.json'
 // import zh from '../../config/locales/zh.json'
 // import zhHK from '../../config/locales/zh_HK.json'
@@ -46,4 +46,4 @@ export default {
   // ru,
   // es,
   // sv,
-}
+};

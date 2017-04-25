@@ -35,7 +35,7 @@ describe('Test Actions', () => {
         }).then(() => {
           expect(fakeDispatcher).toHaveBeenCalledWith(Actions.testAction('abc'));
           done();
-        })
+        });
       });
     });
 

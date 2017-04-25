@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
 
-import styles from './styles.css'
-import theme from './theme.js'
+import styles from './styles.css';
+import theme from './theme.js';
 
 class ${COMPONENT} extends Component {
   render () {
     return (
       <div className={styles.root} />
-    )
+    );
   }
 }
 

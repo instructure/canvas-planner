@@ -13,13 +13,13 @@ function defaultProps (option) {
       title: option.title || "This Assignment is about awesome stuff",
       points: option.points,
       toggleCompletion: () => {}
-  }
+  };
 }
 
 it('renders correctly', () => {
   const wrapper = shallow(
     <PlannerItem {...defaultProps({points: 35, date: new Date('December 17, 2011 03:30:00')})} />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -35,7 +35,7 @@ it('renders Quiz correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -50,7 +50,7 @@ it('renders Quiz correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -64,7 +64,7 @@ it('renders Quiz correctly without right side content', () => {
           title: "I am a Quiz",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -79,7 +79,7 @@ it('renders Quiz correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -95,7 +95,7 @@ it('renders Assignment correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -110,7 +110,7 @@ it('renders Assignment correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -124,7 +124,7 @@ it('renders Assignment correctly without right side content', () => {
           title: "I am a Assignment",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -139,7 +139,7 @@ it('renders Assignment correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -155,7 +155,7 @@ it('renders Discussion correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -170,7 +170,7 @@ it('renders Discussion correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -184,7 +184,7 @@ it('renders Discussion correctly without right side content', () => {
           title: "I am a Discussion",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -199,7 +199,7 @@ it('renders Discussion correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -215,7 +215,7 @@ it('renders Announcement correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -230,7 +230,7 @@ it('renders Announcement correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -244,7 +244,7 @@ it('renders Announcement correctly without right side content', () => {
           title: "I am a Announcement",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -259,7 +259,7 @@ it('renders Announcement correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -275,7 +275,7 @@ it('renders Calendar Event correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -290,7 +290,7 @@ it('renders Calendar Event correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -304,7 +304,7 @@ it('renders Calendar Event correctly without right side content', () => {
           title: "I am a Calendar Event",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -319,7 +319,7 @@ it('renders Calendar Event correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -335,7 +335,7 @@ it('renders Page correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -350,7 +350,7 @@ it('renders Page correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -364,7 +364,7 @@ it('renders Page correctly without right side content', () => {
           title: "I am a Page",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -379,7 +379,7 @@ it('renders Page correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -395,7 +395,7 @@ it('renders Note correctly with everything', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -410,7 +410,7 @@ it('renders Note correctly with just points', () => {
           points: 2,
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -424,7 +424,7 @@ it('renders Note correctly without right side content', () => {
           title: "I am a Note",
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -439,7 +439,7 @@ it('renders Note correctly with just date', () => {
           date: new Date('December 17, 2011 03:30:00'),
         })
     } />
-  )
+  );
   expect(wrapper).toMatchSnapshot();
 });
 
