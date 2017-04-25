@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component with required props 1`] = `
+<div>
+  <Heading
+    border="none"
+    color="inherit"
+    ellipsis={false}
+    level="h2"
+  >
+    <Typography
+      as="div"
+      lineHeight="condensed"
+      size="medium"
+      transform="uppercase"
+    >
+      Yesterday
+    </Typography>
+    <Typography
+      as="div"
+      lineHeight="condensed"
+      size="medium"
+    >
+      Tuesday, April 25
+    </Typography>
+  </Heading>
+  <div />
+</div>
+`;

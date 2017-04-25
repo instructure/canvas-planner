@@ -4,15 +4,30 @@ exports[`renders base component using dayKeys 1`] = `
 <div
   className="PlannerApp"
 >
-  <div>
-    This is a placeholder for 2017-04-24
-  </div>
-  <div>
-    This is a placeholder for 2017-04-25
-  </div>
-  <div>
-    This is a placeholder for 2017-04-26
-  </div>
+  <Day
+    day="2017-04-24"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+  />
+  <Day
+    day="2017-04-25"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+  />
+  <Day
+    day="2017-04-26"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+  />
   <ol
     style={
       Object {

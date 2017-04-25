@@ -3,12 +3,13 @@ import 'instructure-ui/lib/themes/canvas';
 import PlannerItem from '../PlannerItem';
 import { connect } from 'react-redux';
 import 'instructure-ui/lib/themes/canvas';
-import formatMessage from '../../format-message';
-import { arrayOf, string } from 'prop-types';
+import { arrayOf, object, string } from 'prop-types';
+import Day from '../Day';
 
 export class PlannerApp extends Component {
   static propTypes = {
-    dayKeys: arrayOf(string).isRequired
+    dayKeys: arrayOf(string).isRequired,
+    days: object // This is okay being generic because each key is a date
   };
 
   render () {
@@ -16,8 +17,9 @@ export class PlannerApp extends Component {
       <div className="PlannerApp">
         {
           this.props.dayKeys.map((day) => {
+            const dayData = this.props.days[day];
             return (
-              <div key={day}>{formatMessage(`This is a placeholder for {day}`, { day })}</div>
+              <Day day={day} itemsForDay={dayData} key={day} />
             );
           })
         }
