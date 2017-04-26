@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component correctly with one buttons and four inputs 1`] = `
+<div>
+  <Container
+    as="section"
+    display="block"
+    margin="large medium"
+    textAlign="right"
+  >
+    <Container
+      display="block"
+      margin="medium 0"
+    >
+      <TextInput
+        disabled={false}
+        inputRef={[Function]}
+        isBlock={true}
+        label="Title"
+        layout="stacked"
+        messages={Array []}
+        onChange={[Function]}
+        required={true}
+        size="medium"
+        type="text"
+        value=""
+      />
+    </Container>
+    <Grid
+      colSpacing="none"
+      hAlign="start"
+      rowSpacing="medium"
+      startAt="phone"
+      vAlign="bottom"
+      visualDebug={false}
+    >
+      <GridRow>
+        <GridCol
+          textAlign="inherit"
+        >
+          <TextInput
+            disabled={false}
+            inputRef={[Function]}
+            isBlock={true}
+            label="Date"
+            layout="stacked"
+            messages={Array []}
+            onChange={[Function]}
+            size="medium"
+            type="text"
+            value=""
+          />
+        </GridCol>
+        <GridCol
+          textAlign="inherit"
+        >
+          <Button
+            as="button"
+            buttonRef={[Function]}
+            isBlock={false}
+            margin="0"
+            size="medium"
+            type="button"
+            variant="icon"
+          >
+            <IconCalendarMonthSolid />
+          </Button>
+        </GridCol>
+      </GridRow>
+    </Grid>
+    <Container
+      display="block"
+      margin="medium 0"
+    >
+      <Select
+        defaultValue="0"
+        disabled={false}
+        isBlock={true}
+        label="Course"
+        layout="stacked"
+        messages={Array []}
+        onChange={[Function]}
+        selectRef={[Function]}
+        size="medium"
+        type="text"
+      >
+        <option
+          value="0"
+        >
+          Optional: Add Course
+        </option>
+        <option
+          value="1"
+        />
+      </Select>
+    </Container>
+    <Container
+      display="block"
+      margin="medium 0"
+    >
+      <TextArea
+        autoGrow={false}
+        disabled={false}
+        height="12rem"
+        isBlock={true}
+        label="Details"
+        layout="stacked"
+        messages={Array []}
+        onChange={[Function]}
+        resize="none"
+        size="medium"
+        textareaRef={[Function]}
+        value=""
+      />
+    </Container>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      isBlock={false}
+      margin="0"
+      onClick={[Function]}
+      size="medium"
+      type="button"
+      variant="primary"
+    >
+      Save
+    </Button>
+  </Container>
+</div>
+`;
+
+exports[`renders the item to update if provided 1`] = `
+<div>
+  <Container
+    as="section"
+    display="block"
+    margin="large medium"
+    textAlign="right"
+  >
+    <Container
+      display="block"
+      margin="medium 0"
+    >
+      <TextInput
+        disabled={false}
+        inputRef={[Function]}
+        isBlock={true}
+        label="Title"
+        layout="stacked"
+        messages={Array []}
+        onChange={[Function]}
+        required={true}
+        size="medium"
+        type="text"
+        value="Planner Item"
+      />
+    </Container>
+    <Grid
+      colSpacing="none"
+      hAlign="start"
+      rowSpacing="medium"
+      startAt="phone"
+      vAlign="bottom"
+      visualDebug={false}
+    >
+      <GridRow>
+        <GridCol
+          textAlign="inherit"
+        >
+          <TextInput
+            disabled={false}
+            inputRef={[Function]}
+            isBlock={true}
+            label="Date"
+            layout="stacked"
+            messages={Array []}
+            onChange={[Function]}
+            size="medium"
+            type="text"
+            value="2017-04-25 01:49:00-0700"
+          />
+        </GridCol>
+        <GridCol
+          textAlign="inherit"
+        >
+          <Button
+            as="button"
+            buttonRef={[Function]}
+            isBlock={false}
+            margin="0"
+            size="medium"
+            type="button"
+            variant="icon"
+          >
+            <IconCalendarMonthSolid />
+          </Button>
+        </GridCol>
+      </GridRow>
+    </Grid>
+    <Container
+      display="block"
+      margin="medium 0"
+    >
+      <Select
+        defaultValue="0"
+        disabled={false}
+        isBlock={true}
+        label="Course"
+        layout="stacked"
+        messages={Array []}
+        onChange={[Function]}
+        selectRef={[Function]}
+        size="medium"
+        type="text"
+      >
+        <option
+          value="0"
+        >
+          Optional: Add Course
+        </option>
+        <option
+          value="1"
+        >
+          1
+        </option>
+      </Select>
+    </Container>
+    <Container
+      display="block"
+      margin="medium 0"
+    >
+      <TextArea
+        autoGrow={false}
+        disabled={false}
+        height="12rem"
+        isBlock={true}
+        label="Details"
+        layout="stacked"
+        messages={Array []}
+        onChange={[Function]}
+        resize="none"
+        size="medium"
+        textareaRef={[Function]}
+        value="You made this item to remind you of something, but you forgot what."
+      />
+    </Container>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      isBlock={false}
+      margin="0 xSmall 0 0"
+      size="medium"
+      type="button"
+      variant="light"
+    >
+      Delete
+    </Button>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      isBlock={false}
+      margin="0"
+      onClick={[Function]}
+      size="medium"
+      type="button"
+      variant="primary"
+    >
+      Save
+    </Button>
+  </Container>
+</div>
+`;

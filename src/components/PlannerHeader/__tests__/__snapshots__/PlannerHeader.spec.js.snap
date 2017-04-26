@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the base component correctly with two buttons 1`] = `
+exports[`renders the base component correctly with two buttons and a tray 1`] = `
 <div>
   <Button
     as="button"
     buttonRef={[Function]}
     isBlock={false}
     margin="0"
+    onClick={[Function]}
     size="medium"
     type="button"
     variant="icon"
@@ -32,5 +33,23 @@ exports[`renders the base component correctly with two buttons 1`] = `
       />
     </PlannerBadge>
   </Button>
+  <Tray
+    border={false}
+    closeButtonLabel="Close"
+    closeButtonRef={[Function]}
+    closeButtonVariant="icon"
+    contentRef={[Function]}
+    isDismissable={true}
+    isOpen={false}
+    label="Create/update planner item"
+    onExited={[Function]}
+    onExiting={[Function]}
+    onRequestClose={[Function]}
+    placement="right"
+    shadow={true}
+    trapFocus={true}
+  >
+    <UpdateItemTray />
+  </Tray>
 </div>
 `;
