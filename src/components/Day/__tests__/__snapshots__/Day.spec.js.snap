@@ -14,14 +14,14 @@ exports[`renders the base component with required props 1`] = `
       size="medium"
       transform="uppercase"
     >
-      Yesterday
+      Tuesday
     </Typography>
     <Typography
       as="div"
       lineHeight="condensed"
       size="medium"
     >
-      Tuesday, April 25
+      April 25, 2017
     </Typography>
   </Heading>
   <div />
