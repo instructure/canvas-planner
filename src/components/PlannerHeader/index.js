@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import themeable from 'instructure-ui/lib/themeable';
 import Button from 'instructure-ui/lib/components/Button';
 import PlannerBadge from '../PlannerBadge';
@@ -12,11 +13,15 @@ import Tray from 'instructure-ui/lib/components/Tray';
 import styles from './styles.css';
 import theme from './theme.js';
 import formatMessage from '../../format-message';
+import { addDay } from '../../actions';
+
+let dayCount = 1;
 
 export class PlannerHeader extends Component {
 
   static propTypes = {
     opportunityCount: PropTypes.number,
+    addDay: PropTypes.func
   };
 
   static defaultProps = {
@@ -53,6 +58,9 @@ export class PlannerHeader extends Component {
   render () {
     return (
       <div className={styles.root}>
+        <Button onClick={this.props.addDay}>
+          Add a day
+        </Button>
         <Button
           variant="icon"
           onClick={this.toggleUpdateItemTray}
@@ -86,7 +94,13 @@ export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  addDay () {
+    const fakeDay = moment().add(dayCount, 'days');
+    dispatch(addDay(fakeDay.format('YYYY-MM-DD')));
+    dayCount++;
+  }
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);

@@ -17,3 +17,21 @@ it('groups new state with old state on GOT_ITEMS_SUCCESS', () => {
     '2017-04-28': [{ date: '2017-04-28' }]
   });
 });
+
+it('adds a new day on ADD_DAY', () => {
+  const initialState = {
+    '2017-04-27': [],
+    '2017-04-26': []
+  };
+
+  const newState = daysReducer(initialState, {
+    type: 'ADD_DAY',
+    payload: '2017-04-29'
+  });
+
+  expect(newState).toMatchObject({
+    '2017-04-27': [],
+    '2017-04-26': [],
+    '2017-04-29': []
+  });
+});

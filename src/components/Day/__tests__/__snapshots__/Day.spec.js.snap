@@ -3,7 +3,7 @@
 exports[`renders the base component with required props 1`] = `
 <div>
   <Heading
-    border="none"
+    border="bottom"
     color="inherit"
     ellipsis={false}
     level="h2"
@@ -24,6 +24,19 @@ exports[`renders the base component with required props 1`] = `
       April 25, 2017
     </Typography>
   </Heading>
-  <div />
+  <div>
+    <Container
+      display="block"
+      margin="small 0 0 0"
+      textAlign="center"
+    >
+      <Typography
+        as="span"
+        size="medium"
+      >
+        Nothing planned today
+      </Typography>
+    </Container>
+  </div>
 </div>
 `;

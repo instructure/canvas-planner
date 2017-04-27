@@ -4,11 +4,13 @@ import axios from 'axios';
 export const {
   testAction,
   gotItemsSuccess,
-  startLoadingItems
+  startLoadingItems,
+  addDay
 }  = createActions(
   'TEST_ACTION',
   'GOT_ITEMS_SUCCESS',
-  'START_LOADING_ITEMS'
+  'START_LOADING_ITEMS',
+  'ADD_DAY'
 );
 
 export const testAsyncAction = () => {
