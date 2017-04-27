@@ -33,3 +33,21 @@ exports[`renders base component using dayKeys 1`] = `
   />
 </div>
 `;
+
+exports[`shows only the loading component when the isLoading prop is true 1`] = `
+<div
+  className="PlannerApp"
+>
+  <Container
+    display="block"
+    padding="xxLarge medium"
+    textAlign="center"
+  >
+    <Spinner
+      size="medium"
+      title="Loading planner items"
+      variant="default"
+    />
+  </Container>
+</div>
+`;

@@ -21,3 +21,13 @@ it('renders base component using dayKeys', () => {
   );
   expect(wrapper).toMatchSnapshot();
 });
+
+it('shows only the loading component when the isLoading prop is true', () => {
+  const wrapper = shallow(
+    <PlannerApp
+      {...getDefaultValues()}
+      isLoading={true}
+    />
+  );
+  expect(wrapper).toMatchSnapshot();
+});

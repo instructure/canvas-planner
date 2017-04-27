@@ -51,4 +51,23 @@ describe('Test Actions', () => {
     });
   });
 
+  describe('getPlannerItems', () => {
+    beforeAll(() => {
+      moxios.install();
+    });
+
+    afterAll(() => {
+      moxios.uninstall();
+    });
+
+    it('dispatches startLoadingItems() initially', () => {
+      const thunk = Actions.getPlannerItems();
+      const fakeDispatch = jest.fn();
+      thunk(fakeDispatch);
+      expect(fakeDispatch.mock.calls[0][0]).toMatchObject({
+        type: 'START_LOADING_ITEMS'
+      });
+    });
+  });
+
 });

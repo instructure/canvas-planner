@@ -11,7 +11,7 @@
     "lint:fix": "eslint src/ --fix",
     "build": "./scripts/build",
     "start": "npm-run-all --parallel start:*",
-    "start:json-server": "json-server --watch --routes ./fake_server/routes.json --port 3004 ./fake_server/db.js",
+    "start:json-server": "json-server --watch --delay 1500 --routes ./fake_server/routes.json --port 3004 ./fake_server/db.js",
     "start:webpack-dev": "BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --port 3005",
     "test": "jest",
     "test:coverage": "jest --coverage",

@@ -1,10 +1,15 @@
 import { createActions } from 'redux-actions';
 import axios from 'axios';
 
-export const { testAction, gotItemsSuccess }  = createActions({
-  TEST_ACTION: (value) => value,
-
-}, 'GOT_ITEMS_SUCCESS');
+export const {
+  testAction,
+  gotItemsSuccess,
+  startLoadingItems
+}  = createActions(
+  'TEST_ACTION',
+  'GOT_ITEMS_SUCCESS',
+  'START_LOADING_ITEMS'
+);
 
 export const testAsyncAction = () => {
   return (dispatch) => {
@@ -17,6 +22,7 @@ export const testAsyncAction = () => {
 
 export const getPlannerItems = () => {
   return (dispatch) => {
+    dispatch(startLoadingItems());
     axios.get(`/api/v1/planner/items`)
          .then(response => {
            dispatch(gotItemsSuccess(response.data));
