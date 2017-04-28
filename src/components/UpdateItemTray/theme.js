@@ -1,7 +1,7 @@
 /* Global variables (colors, typography, spacing, etc.) are defined in lib/themes */
 
 export default function generator ({ colors, typography }) {
-  return {
+  const cssVars = {
     fontSize: typography.fontSizeMedium,
     fontFamily: typography.fontFamily,
     fontWeight: typography.fontWeightNormal,
@@ -9,4 +9,5 @@ export default function generator ({ colors, typography }) {
     color: colors.oxford,
     background: colors.white
   };
+  return cssVars;
 }

@@ -11,6 +11,7 @@
   box-sizing: border-box;
   display: block;
   position: absolute;
+  border-radius: calc(0.5 * var(--badgeSize));
   top: calc(-0.5 * var(--badgeSize));
   right: calc(-0.5 * var(--badgeSize));
   z-index: 1;
@@ -19,7 +20,6 @@
   min-width: var(--badgeSize);
   white-space: nowrap;
   padding: 0 var(--countPadding);
-  border-radius: calc(var(--badgeSize) / 2);
   background-color: var(--countBackgroundColor);
   color: var(--countTextColor);
   font-size: var(--countFontSize);

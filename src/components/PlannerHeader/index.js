@@ -39,6 +39,17 @@ export class PlannerHeader extends Component {
     this.addNoteBtn.focus();
   }
 
+  opportunityTitle = () => {
+    return (
+      formatMessage(`{
+        count, plural,
+        =0 {# opportunities}
+        one {# opportunity}
+        other {# opportunities}
+      }`, { count: this.props.opportunityCount })
+    );
+  }
+
   render () {
     return (
       <div className={styles.root}>
@@ -51,7 +62,7 @@ export class PlannerHeader extends Component {
         </Button>
         <Button variant="icon">
           <PlannerBadge count={this.props.opportunityCount}>
-            <IconAlertLine title={formatMessage("Opportunities")} />
+            <IconAlertLine title={this.opportunityTitle()} />
           </PlannerBadge>
         </Button>
         <Tray

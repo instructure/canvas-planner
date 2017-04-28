@@ -13,7 +13,11 @@ exports[`renders the base component 1`] = `
 exports[`renders the count when it is provided as a prop 1`] = `
 <span>
   <span>
-    40
+    <PresentationContent
+      as="span"
+    >
+      40
+    </PresentationContent>
   </span>
   <span>
     <span>

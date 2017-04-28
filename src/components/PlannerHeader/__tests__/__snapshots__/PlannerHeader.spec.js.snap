@@ -29,7 +29,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
       count={4}
     >
       <IconAlertLine
-        title="Opportunities"
+        title="4 opportunities"
       />
     </PlannerBadge>
   </Button>

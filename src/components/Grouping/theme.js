@@ -28,7 +28,7 @@ generator['canvas-a11y'] = generator['modern-a11y'] = function ({ colors }) {
   };
 };
 
-generator.canavs = function (variables) {
+generator.canvas = function (variables) {
   return {
     defaultIconColor: variables["ic-brand-primary"],
   };
