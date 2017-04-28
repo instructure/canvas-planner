@@ -18,11 +18,12 @@ import formatMessage from '../../format-message';
 
 class PlannerItem extends Component {
   static propTypes = {
-    color: string.isRequired,
+    color: string,
     id: number.isRequired,
     title: string.isRequired,
     points: number,
     date: instanceOf(Date),
+    courseName: string,
     completed: bool,
     associated_item: string,
     toggleCompletion: func.isRequired,
@@ -64,7 +65,6 @@ class PlannerItem extends Component {
           return <Page />;
         default:
           return <Note />;
-
     }
   }
 
@@ -107,12 +107,20 @@ class PlannerItem extends Component {
     );
   }
 
+  renderTitle = () => {
+    if (!this.props.associated_item) {
+      return formatMessage('{course} NOTE TO SELF', { course: this.props.courseName || '' });
+    } else {
+      return `${this.props.courseName || ''} ${this.props.associated_item}`;
+    }
+  }
+
   renderItemDetails = () => {
     return (
       <div className={styles.itemDetails}>
         <div className={styles.itemType}>
           <Typography size="x-small" color="secondary">
-            {this.props.associated_item}
+            {this.renderTitle()}
           </Typography>
         </div>
         <div className={styles.itemName}>

@@ -24,7 +24,9 @@ exports[`renders the base component with required props 1`] = `
           }
         }
       />
-      <span />
+      <span>
+        NOTE TO SELF
+      </span>
     </a>
     <ol
       style={

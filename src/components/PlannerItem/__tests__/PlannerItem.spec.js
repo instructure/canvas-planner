@@ -9,9 +9,22 @@ function defaultProps (option) {
       id: 1,
       associated_item: option.associated_item || "Assignment",
       date: option.date,
+      courseName: 'A Course about being Diffrient',
       completed: !!option.completed,
       title: option.title || "This Assignment is about awesome stuff",
       points: option.points,
+      toggleCompletion: () => {}
+  };
+}
+
+function noteProps (option) {
+  return {
+      id: 22,
+      associated_item: null,
+      date: option.date,
+      courseName: option.courseName,
+      completed: !!option.completed,
+      title: option.title || "A note about note taking",
       toggleCompletion: () => {}
   };
 }
@@ -386,57 +399,26 @@ it('renders Page correctly with just date', () => {
 it('renders Note correctly with everything', () => {
   const wrapper = shallow(
     <PlannerItem {
-      ...defaultProps(
+      ...noteProps(
         {
-          associated_item: 'Note',
           completed: true,
           title: "I am a Note",
-          points: 4,
           date: new Date('December 17, 2011 03:30:00'),
+          courseName: 'Math 101'
         })
     } />
   );
   expect(wrapper).toMatchSnapshot();
 });
 
-it('renders Note correctly with just points', () => {
+it('renders Note correctly without Course', () => {
   const wrapper = shallow(
     <PlannerItem {
-      ...defaultProps(
+      ...noteProps(
         {
           associated_item: 'Note',
           completed: false,
           title: "I am a Note",
-          points: 2,
-        })
-    } />
-  );
-  expect(wrapper).toMatchSnapshot();
-});
-
-it('renders Note correctly without right side content', () => {
-  const wrapper = shallow(
-    <PlannerItem {
-      ...defaultProps(
-        {
-          associated_item: 'Note',
-          completed: false,
-          title: "I am a Note",
-        })
-    } />
-  );
-  expect(wrapper).toMatchSnapshot();
-});
-
-it('renders Note correctly with just date', () => {
-  const wrapper = shallow(
-    <PlannerItem {
-      ...defaultProps(
-        {
-          associated_item: 'Note',
-          completed: false,
-          title: "I am a Note",
-          date: new Date('December 17, 2011 03:30:00'),
         })
     } />
   );

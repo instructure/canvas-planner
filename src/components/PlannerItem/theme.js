@@ -13,7 +13,14 @@ export default function generator ({ borders, colors, media, spacing, typography
     itemTypeBottomMargin: spacing.xxxSmall,
     itemTypeLetterSpacing: spacing.xxxSmall,
     itemNameLineHeight: typography.lineHeightFit,
+    defaultIconColor: colors.brand,
 
     ...media
   };
 }
+
+generator.canavs = function (variables) {
+  return {
+    defaultIconColor: variables["ic-brand-primary"],
+  };
+};

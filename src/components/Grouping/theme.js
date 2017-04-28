@@ -16,6 +16,7 @@ export default function generator ({ borders, colors, media, spacing, typography
     heroLinkFontSize: typography.fontSizeSmall,
     heroLinkLetterSpacing: spacing.xxxSmall,
     heroBorderRadius: borders.radiusLarge,
+    defaultIconColor: colors.brand,
     ...media
   };
 }
@@ -24,5 +25,11 @@ generator['canvas-a11y'] = generator['modern-a11y'] = function ({ colors }) {
   return {
     heroLinkTextDecoration: 'underline',
     heroLinkTextDecorationHover: 'none',
+  };
+};
+
+generator.canavs = function (variables) {
+  return {
+    defaultIconColor: variables["ic-brand-primary"],
   };
 };

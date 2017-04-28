@@ -5,12 +5,15 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  border-color: var(--defaultIconColor);
+  color: var(--defaultIconColor);
 }
 
 .grouping {
   border-top: var(--borderTopWidthPhone) solid;
   font-family: var(--fontFamily);
   margin-top: var(--groupingTopMargin);
+  border-color: var(--defaultIconColor);
 }
 
 .groupingHero {
@@ -37,6 +40,7 @@
 }
 
 .groupingOverlay {
+  background-color: var(--defaultIconColor);
   width: 100%;
   height: 100%;
   position: absolute;

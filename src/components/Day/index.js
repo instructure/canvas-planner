@@ -61,7 +61,7 @@ class Day extends Component {
           {
             Object.keys(this.state.groupedItems).map((cid) => {
               return (<Grouping
-                courseInfo={this.state.groupedItems[cid][0].context}
+                courseInfo={this.state.groupedItems[cid][0].context || {}}
                 timeZone={this.props.timeZone}
                 items={this.state.groupedItems[cid]} key={cid} />);
             })

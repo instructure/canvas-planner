@@ -37,7 +37,7 @@ exports[`renders Announcement correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Announcement
+          A Course about being Diffrient Announcement
         </Typography>
       </div>
       <div>
@@ -129,7 +129,7 @@ exports[`renders Announcement correctly with just date 1`] = `
           color="secondary"
           size="x-small"
         >
-          Announcement
+          A Course about being Diffrient Announcement
         </Typography>
       </div>
       <div>
@@ -200,7 +200,7 @@ exports[`renders Announcement correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Announcement
+          A Course about being Diffrient Announcement
         </Typography>
       </div>
       <div>
@@ -290,7 +290,7 @@ exports[`renders Announcement correctly without right side content 1`] = `
           color="secondary"
           size="x-small"
         >
-          Announcement
+          A Course about being Diffrient Announcement
         </Typography>
       </div>
       <div>
@@ -359,7 +359,7 @@ exports[`renders Assignment correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Assignment
+          A Course about being Diffrient Assignment
         </Typography>
       </div>
       <div>
@@ -451,7 +451,7 @@ exports[`renders Assignment correctly with just date 1`] = `
           color="secondary"
           size="x-small"
         >
-          Assignment
+          A Course about being Diffrient Assignment
         </Typography>
       </div>
       <div>
@@ -522,7 +522,7 @@ exports[`renders Assignment correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Assignment
+          A Course about being Diffrient Assignment
         </Typography>
       </div>
       <div>
@@ -612,7 +612,7 @@ exports[`renders Assignment correctly without right side content 1`] = `
           color="secondary"
           size="x-small"
         >
-          Assignment
+          A Course about being Diffrient Assignment
         </Typography>
       </div>
       <div>
@@ -681,7 +681,7 @@ exports[`renders Calendar Event correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Calendar Event
+          A Course about being Diffrient Calendar Event
         </Typography>
       </div>
       <div>
@@ -773,7 +773,7 @@ exports[`renders Calendar Event correctly with just date 1`] = `
           color="secondary"
           size="x-small"
         >
-          Calendar Event
+          A Course about being Diffrient Calendar Event
         </Typography>
       </div>
       <div>
@@ -844,7 +844,7 @@ exports[`renders Calendar Event correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Calendar Event
+          A Course about being Diffrient Calendar Event
         </Typography>
       </div>
       <div>
@@ -934,7 +934,7 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
           color="secondary"
           size="x-small"
         >
-          Calendar Event
+          A Course about being Diffrient Calendar Event
         </Typography>
       </div>
       <div>
@@ -1003,7 +1003,7 @@ exports[`renders Discussion correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Discussion
+          A Course about being Diffrient Discussion
         </Typography>
       </div>
       <div>
@@ -1095,7 +1095,7 @@ exports[`renders Discussion correctly with just date 1`] = `
           color="secondary"
           size="x-small"
         >
-          Discussion
+          A Course about being Diffrient Discussion
         </Typography>
       </div>
       <div>
@@ -1166,7 +1166,7 @@ exports[`renders Discussion correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Discussion
+          A Course about being Diffrient Discussion
         </Typography>
       </div>
       <div>
@@ -1256,7 +1256,7 @@ exports[`renders Discussion correctly without right side content 1`] = `
           color="secondary"
           size="x-small"
         >
-          Discussion
+          A Course about being Diffrient Discussion
         </Typography>
       </div>
       <div>
@@ -1311,7 +1311,7 @@ exports[`renders Note correctly with everything 1`] = `
     aria-hidden="true"
     style={
       Object {
-        "color": "#d71f85",
+        "color": undefined,
       }
     }
   >
@@ -1325,99 +1325,7 @@ exports[`renders Note correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Note
-        </Typography>
-      </div>
-      <div>
-        <Link
-          as="button"
-          ellipsis={false}
-          href="#"
-          linkRef={[Function]}
-        >
-          I am a Note
-        </Link>
-      </div>
-    </div>
-    <div>
-      <div>
-        Pills (sep. component?)
-      </div>
-      <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            >
-              4
-            </Typography>
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-              pts
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="x-small"
-          >
-            DUE: 3:30 AM
-          </Typography>
-        </div>
-      </div>
-    </div>
-  </div>
-</li>
-`;
-
-exports[`renders Note correctly with just date 1`] = `
-<li>
-  <div>
-    <Checkbox
-      checked={false}
-      disabled={false}
-      isBlock={true}
-      label={
-        <ScreenReaderContent
-          as="span"
-        >
-          Task I am a Note is incomplete
-        </ScreenReaderContent>
-      }
-      onChange={[Function]}
-      size="medium"
-      variant="simple"
-    />
-  </div>
-  <div
-    aria-hidden="true"
-    style={
-      Object {
-        "color": "#d71f85",
-      }
-    }
-  >
-    <IconNoteLightLine />
-  </div>
-  <div>
-    <div>
-      <div>
-        <Typography
-          as="span"
-          color="secondary"
-          size="x-small"
-        >
-          Note
+          Math 101 NOTE TO SELF
         </Typography>
       </div>
       <div>
@@ -1451,7 +1359,7 @@ exports[`renders Note correctly with just date 1`] = `
 </li>
 `;
 
-exports[`renders Note correctly with just points 1`] = `
+exports[`renders Note correctly without Course 1`] = `
 <li>
   <div>
     <Checkbox
@@ -1474,7 +1382,7 @@ exports[`renders Note correctly with just points 1`] = `
     aria-hidden="true"
     style={
       Object {
-        "color": "#d71f85",
+        "color": undefined,
       }
     }
   >
@@ -1488,97 +1396,7 @@ exports[`renders Note correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Note
-        </Typography>
-      </div>
-      <div>
-        <Link
-          as="button"
-          ellipsis={false}
-          href="#"
-          linkRef={[Function]}
-        >
-          I am a Note
-        </Link>
-      </div>
-    </div>
-    <div>
-      <div>
-        Pills (sep. component?)
-      </div>
-      <div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="medium"
-          >
-            <Typography
-              as="span"
-              size="large"
-            >
-              2
-            </Typography>
-            <Typography
-              as="span"
-              size="x-small"
-            >
-               
-              pts
-            </Typography>
-          </Typography>
-        </div>
-        <div>
-          <Typography
-            as="span"
-            color="secondary"
-            size="x-small"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</li>
-`;
-
-exports[`renders Note correctly without right side content 1`] = `
-<li>
-  <div>
-    <Checkbox
-      checked={false}
-      disabled={false}
-      isBlock={true}
-      label={
-        <ScreenReaderContent
-          as="span"
-        >
-          Task I am a Note is incomplete
-        </ScreenReaderContent>
-      }
-      onChange={[Function]}
-      size="medium"
-      variant="simple"
-    />
-  </div>
-  <div
-    aria-hidden="true"
-    style={
-      Object {
-        "color": "#d71f85",
-      }
-    }
-  >
-    <IconNoteLightLine />
-  </div>
-  <div>
-    <div>
-      <div>
-        <Typography
-          as="span"
-          color="secondary"
-          size="x-small"
-        >
-          Note
+           NOTE TO SELF
         </Typography>
       </div>
       <div>
@@ -1647,7 +1465,7 @@ exports[`renders Page correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Page
+          A Course about being Diffrient Page
         </Typography>
       </div>
       <div>
@@ -1739,7 +1557,7 @@ exports[`renders Page correctly with just date 1`] = `
           color="secondary"
           size="x-small"
         >
-          Page
+          A Course about being Diffrient Page
         </Typography>
       </div>
       <div>
@@ -1810,7 +1628,7 @@ exports[`renders Page correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Page
+          A Course about being Diffrient Page
         </Typography>
       </div>
       <div>
@@ -1900,7 +1718,7 @@ exports[`renders Page correctly without right side content 1`] = `
           color="secondary"
           size="x-small"
         >
-          Page
+          A Course about being Diffrient Page
         </Typography>
       </div>
       <div>
@@ -1969,7 +1787,7 @@ exports[`renders Quiz correctly with everything 1`] = `
           color="secondary"
           size="x-small"
         >
-          Quiz
+          A Course about being Diffrient Quiz
         </Typography>
       </div>
       <div>
@@ -2061,7 +1879,7 @@ exports[`renders Quiz correctly with just date 1`] = `
           color="secondary"
           size="x-small"
         >
-          Quiz
+          A Course about being Diffrient Quiz
         </Typography>
       </div>
       <div>
@@ -2132,7 +1950,7 @@ exports[`renders Quiz correctly with just points 1`] = `
           color="secondary"
           size="x-small"
         >
-          Quiz
+          A Course about being Diffrient Quiz
         </Typography>
       </div>
       <div>
@@ -2222,7 +2040,7 @@ exports[`renders Quiz correctly without right side content 1`] = `
           color="secondary"
           size="x-small"
         >
-          Quiz
+          A Course about being Diffrient Quiz
         </Typography>
       </div>
       <div>
@@ -2291,7 +2109,7 @@ exports[`renders correctly 1`] = `
           color="secondary"
           size="x-small"
         >
-          Assignment
+          A Course about being Diffrient Assignment
         </Typography>
       </div>
       <div>

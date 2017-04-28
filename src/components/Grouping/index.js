@@ -5,6 +5,7 @@ import styles from './styles.css';
 import theme from './theme.js';
 import PlannerItem from '../PlannerItem';
 import moment from 'moment-timezone';
+import formatMessage from '../../format-message';
 
 class Grouping extends Component {
   static propTypes = {
@@ -25,7 +26,7 @@ class Grouping extends Component {
               className={styles.groupingOverlay}
               style={{backgroundColor: this.props.courseInfo.color}}></span>
             <span className={styles.groupingName}>
-              {this.props.items[0].context.title}
+              {this.props.courseInfo.title || formatMessage('NOTE TO SELF')}
             </span>
           </a>
           <ol
@@ -36,9 +37,10 @@ class Grouping extends Component {
                 return (
                   <PlannerItem
                     key={item.id}
-                    color={item.context.color}
+                    color={this.props.courseInfo.color}
                     completed
                     id={item.id}
+                    courseName={this.props.courseInfo.title}
                     date={moment.tz(item.date, this.props.timeZone).toDate()}
                     associated_item={item.type}
                     title={item.title}

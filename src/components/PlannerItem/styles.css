@@ -19,6 +19,7 @@
 }
 
 .itemIcon {
+  color: var(--defaultIconColor);
   font-size: var(--iconFontSize);
 
   > svg { /* stylelint-disable-line selector-no-type */

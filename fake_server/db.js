@@ -67,6 +67,23 @@ module.exports = () => {
         context: contexts.course_1
       },
 
+      // Add some Notes
+      {
+        id: getKindaUniqueId(),
+        date: moment().format('YYYY-MM-DD'),
+        type: null,
+        title: "GET MY STUFF TODAY",
+        completed: true,
+        context: contexts.course_1
+      },
+      {
+        id: getKindaUniqueId(),
+        date: moment().format('YYYY-MM-DD'),
+        type: null,
+        title: "Submit your book list today!",
+        completed: true,
+      },
+
       // Make sure there are always some current day items
       {
         id: getKindaUniqueId(),
