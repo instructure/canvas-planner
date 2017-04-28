@@ -21,7 +21,7 @@ class Grouping extends Component {
           style={{borderColor: this.props.courseInfo.color}}>
           <a href="#"
             className={styles.groupingHero}
-            style={{backgroundImage: `url(${this.props.courseInfo.image_url})`}}>
+            style={{backgroundImage: `url(${this.props.courseInfo.image_url || ''})`}}>
             <span
               className={styles.groupingOverlay}
               style={{backgroundColor: this.props.courseInfo.color}}></span>

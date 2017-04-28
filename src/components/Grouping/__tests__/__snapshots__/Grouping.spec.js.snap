@@ -13,7 +13,7 @@ exports[`renders the base component with required props 1`] = `
       href="#"
       style={
         Object {
-          "backgroundImage": "url(undefined)",
+          "backgroundImage": "url()",
         }
       }
     >
