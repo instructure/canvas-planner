@@ -1,14 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the base component with required props 1`] = `
+exports[`renders a CompletedItemsFacade when completed items are present by default 1`] = `
 <ol>
-  <li
-    style={
-      Object {
-        "borderColor": "#5678",
-      }
-    }
-  >
+  <li>
     <a
       href="#"
       style={
@@ -21,11 +15,18 @@ exports[`renders the base component with required props 1`] = `
         style={
           Object {
             "backgroundColor": "#5678",
+            "opacity": 1,
           }
         }
       />
-      <span>
-        NOTE TO SELF
+      <span
+        style={
+          Object {
+            "color": "#5678",
+          }
+        }
+      >
+        Note to self
       </span>
     </a>
     <ol
@@ -37,7 +38,58 @@ exports[`renders the base component with required props 1`] = `
     >
       <PlannerItem
         color="#5678"
-        completed={true}
+        date={2017-04-25T06:00:00.000Z}
+        id={6}
+        title="Roll for the Galaxy"
+        toggleCompletion={[Function]}
+      />
+      <CompletedItemsFacade
+        itemCount={1}
+        onClick={[Function]}
+      />
+    </ol>
+  </li>
+</ol>
+`;
+
+exports[`renders the base component with required props 1`] = `
+<ol>
+  <li>
+    <a
+      href="#"
+      style={
+        Object {
+          "backgroundImage": "url()",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#5678",
+            "opacity": 1,
+          }
+        }
+      />
+      <span
+        style={
+          Object {
+            "color": "#5678",
+          }
+        }
+      >
+        Note to self
+      </span>
+    </a>
+    <ol
+      style={
+        Object {
+          "borderColor": "#5678",
+        }
+      }
+    >
+      <PlannerItem
+        color="#5678"
         date={2017-04-25T06:00:00.000Z}
         id={5}
         title="San Juan"
@@ -45,7 +97,6 @@ exports[`renders the base component with required props 1`] = `
       />
       <PlannerItem
         color="#5678"
-        completed={true}
         date={2017-04-25T06:00:00.000Z}
         id={6}
         title="Roll for the Galaxy"

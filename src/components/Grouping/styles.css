@@ -10,7 +10,6 @@
 }
 
 .grouping {
-  border-top: var(--borderTopWidthPhone) solid;
   font-family: var(--fontFamily);
   margin-top: var(--groupingTopMargin);
   border-color: var(--defaultIconColor);
@@ -27,15 +26,24 @@
   min-height: var(--groupingHeroMinHeight);
   box-sizing: border-box;
   color: var(--heroLinkColor);
-  text-decoration: var(--heroLinkTextDecoration);
-  text-transform: var(--heroLinkTextTransform);
   font-size: var(--heroLinkFontSize);
+  font-weight: var(--heroLinkFontWeight);
   letter-spacing: var(--heroLinkLetterSpacing);
   outline: none;
+  padding: var(--heroLinkPadding);
+  text-decoration: none;
+
+  .groupingName {
+    text-decoration: var(--heroLinkTextDecoration);
+  }
 
   &:focus,
   &:hover {
-    text-decoration: var(--heroLinkTextDecorationHover);
+    text-decoration: none;
+
+    .groupingName {
+      text-decoration: var(--heroLinkTextDecorationHover);
+    }
   }
 }
 
@@ -46,7 +54,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.75;
 }
 
 .groupingName {
@@ -55,13 +62,14 @@
   flex: 1;
   box-sizing: border-box;
   text-align: center;
-  padding: var(--groupingHeroPadding);
+  padding: var(--heroLinkNamePadding);
+  background-color: var(--heroLinkNameBackground);
+  text-transform: var(--heroLinkNameTextTransform);
 }
 
 @media screen and (--tabletMin) {
   .grouping {
     display: flex;
-    border-top: none;
   }
 
   .groupingHero {

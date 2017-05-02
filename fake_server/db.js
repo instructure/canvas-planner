@@ -90,7 +90,7 @@ module.exports = () => {
         date: moment().format('YYYY-MM-DD'),
         type: "Assignment",
         title: "History essay",
-        completed: Math.random() >= 0.5,
+        completed: false,
         points: Math.floor(Math.random()* 100),
         context: contexts.course_1
       },

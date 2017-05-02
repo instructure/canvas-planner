@@ -72,7 +72,7 @@ class PlannerItem extends Component {
     //We need to replace this with the badge
     //Component and configure how many badges to render
     return  (
-      <div>Pills (sep. component?)</div>
+      <div>Pills</div>
     );
   }
 

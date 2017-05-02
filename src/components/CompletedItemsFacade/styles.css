@@ -1,0 +1,67 @@
+.item {
+  font-family: var(--fontFamily);
+  color: var(--color);
+  box-sizing: border-box;
+  padding: var(--paddingPhoneUp);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
+}
+
+.contentPrimary {
+  margin-bottom: var(--bottomMarginPhoneUp);
+}
+
+.contentSecondary {
+}
+
+.button {
+  user-select: none;
+  touch-action: manipulation;
+  box-sizing: border-box;
+  font-family: var(--fontFamily);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: var(--buttonPadding);
+  cursor: pointer;
+  outline: none;
+  font-size: var(--buttonFontSize);
+  color: var(--buttonColor);
+
+  &:focus,
+  &:hover {
+    text-decoration: var(--buttonTextDecorationHover);
+  }
+}
+
+.buttonCheckbox {
+  width: 1.375rem;
+  margin-right: var(--checkboxRightMarginPhoneUp);
+}
+
+@media screen and (--tabletMin) {
+  .item {
+    padding: var(--paddingTabletUp);
+    display: flex;
+    align-items: center;
+  }
+
+  .contentPrimary {
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  .contentSecondary {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (--wideMin) {
+  .item {
+    padding: var(--paddingWideUp);
+  }
+
+  .buttonCheckbox {
+    margin-right: var(--checkboxRightMarginWideUp);
+  }
+}

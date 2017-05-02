@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as an li with a CheckboxFacade and a string of text indicating count 1`] = `
+<li>
+  <div>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CheckboxFacade
+          checked={true}
+          focused={false}
+          hovered={false}
+          size="medium"
+        />
+      </span>
+      <span>
+        Show 3 completed items
+      </span>
+    </button>
+  </div>
+  <div>
+    Pills
+  </div>
+</li>
+`;

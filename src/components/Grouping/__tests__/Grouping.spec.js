@@ -1,15 +1,15 @@
 import React from 'react';
 import 'instructure-ui/lib/themes/canvas';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Grouping from '../index';
 
-it('renders the base component with required props', () => {
-  const items = [{
+const getDefaultProps = () => ({
+  items: [{
     id: 5,
     title: 'San Juan',
     date: "2017-04-25",
     context: {
-      url: 'claysmellsgood',
+      url: 'example.com',
       color: "#5678",
       id: 256
     }
@@ -21,10 +21,85 @@ it('renders the base component with required props', () => {
       color: "#5678",
       id: 256
     }
-  }];
+  }],
+  timeZone: "America/Denver",
+  courseInfo: {
+    url: 'example.com',
+    color: "#5678",
+    id: 256
+  }
+});
+
+it('renders the base component with required props', () => {
   const wrapper = shallow(
-    <Grouping timeZone="America/Denver" items={items} courseInfo={items[0].context} />
+    <Grouping {...getDefaultProps()} />
   );
   expect(wrapper).toMatchSnapshot();
 });
 
+it('does not render completed items by default', () => {
+  const props = getDefaultProps();
+  props.items[0].completed = true;
+
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper.find('PlannerItem').length).toBe(1);
+});
+
+it('renders a CompletedItemsFacade when completed items are present by default', () => {
+  const props = getDefaultProps();
+  props.items[0].completed = true;
+
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper).toMatchSnapshot();
+});
+
+it('renders completed items when the facade is clicked', () => {
+  const props = getDefaultProps();
+  props.items[0].completed = true;
+
+  const wrapper = mount(
+    <Grouping {...props} />
+  );
+
+  wrapper.instance().handleFacadeClick();
+  expect(wrapper.find('PlannerItem').length).toBe(2);
+});
+
+it('does not render a CompletedItemsFacade when showCompletedItems state is true', () => {
+  const props = getDefaultProps();
+  props.items[0].completed = true;
+
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  wrapper.setState({ showCompletedItems: true });
+  expect(wrapper.find('CompletedItemsFacade').length).toBe(0);
+});
+
+describe('handleFacadeClick', () => {
+  it('sets focus to the groupingLink when called', () => {
+    const wrapper = mount(
+      <Grouping {...getDefaultProps()} />
+    );
+    wrapper.instance().handleFacadeClick();
+    expect(document.activeElement).toBe(wrapper.instance().groupingLink);
+  });
+
+  it('calls preventDefault on an event if given one', () => {
+    const wrapper = mount(
+      <Grouping {...getDefaultProps()} />
+    );
+    const fakeEvent = {
+      preventDefault: jest.fn()
+    };
+    wrapper.instance().handleFacadeClick(fakeEvent);
+    expect(fakeEvent.preventDefault).toHaveBeenCalled();
+  });
+});

@@ -1,11 +1,12 @@
 .item {
   font-family: var(--fontFamily);
   box-sizing: border-box;
-  padding: var(--itemPaddingPhoneUp);
-  border-bottom: var(--itemBorderWidth) solid var(--itemBorderColor);
+  padding: var(--paddingPhoneUp);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
   flex: 1;
   display: flex;
   align-items: center;
+  color: var(--color);
 }
 
 .itemCompleted,
@@ -69,7 +70,7 @@
 
 @media screen and (--tabletMin) {
   .item {
-    padding: var(--itemPaddingTabletUp);
+    padding: var(--paddingTabletUp);
   }
 
   .itemLayout {
@@ -85,7 +86,7 @@
 
 @media screen and (--wideMin) {
   .item {
-    padding: var(--itemPaddingWideUp);
+    padding: var(--paddingWideUp);
   }
 
   .itemCompleted,

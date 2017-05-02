@@ -3,19 +3,22 @@
 export default function generator ({ borders, colors, media, spacing, typography }) {
   return {
     fontFamily: typography.fontFamily,
-    borderTopWidthPhone: borders.widthMedium,
     borderTopWidthTabletUp: borders.widthSmall,
     groupingTopMargin: spacing.medium,
     groupingHeroMinHeight: '7rem',
     groupingHeroWidth: '12rem',
-    groupingHeroPadding: spacing.small,
-    heroLinkColor: colors.white,
+    heroLinkColor: colors.brand,
     heroLinkTextDecoration: 'none',
     heroLinkTextDecorationHover: 'underline',
     heroLinkTextTransform: 'uppercase',
-    heroLinkFontSize: typography.fontSizeSmall,
-    heroLinkLetterSpacing: spacing.xxxSmall,
-    heroBorderRadius: borders.radiusLarge,
+    heroLinkFontSize: typography.fontSizeXSmall,
+    heroLinkFontWeight: typography.fontWeightBold,
+    heroLinkLetterSpacing: '0.0625rem',
+    heroLinkNameBackground: colors.white,
+    heroLinkNameTextTransform: 'uppercase',
+    heroLinkNamePadding: `${spacing.xxSmall} ${spacing.xSmall}`,
+    heroBorderRadius: borders.radiusMedium,
+    heroLinkPadding: '0 0.0625rem',
     defaultIconColor: colors.brand,
     ...media
   };
