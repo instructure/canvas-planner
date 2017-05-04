@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import themeable from 'instructure-ui/lib/themeable';
 import Container from 'instructure-ui/lib/components/Container';
 import Button from 'instructure-ui/lib/components/Button';
@@ -15,24 +16,39 @@ import theme from './theme.js';
 
 export class UpdateItemTray extends Component {
   static propTypes = {
+    courses: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      longName: PropTypes.string,
+    })).isRequired,
     noteItem: PropTypes.object,
+    onSavePlannerItem: PropTypes.func.isRequired,
+    onDeletePlannerItem: PropTypes.func.isRequired,
   };
 
   constructor (props) {
     super(props);
+    const updates = _.cloneDeep(props.noteItem) || {};
+    if (updates.context) {
+      updates.courseId = updates.context.id;
+      delete updates.context;
+    }
     this.state = {
-      updates: {
-        ...props.noteItem
-      }
+      updates,
+      titleMessages: [],
+      dateMessages: [],
     };
   }
 
-  handleSave () {
-    // TODO: make save work
-    return true;
+  handleSave = () => {
+    const updates = Object.assign({}, this.state.updates);
+    if (updates.courseId) {
+      updates.context = { id: updates.courseId };
+    }
+    delete updates.courseId;
+    this.props.onSavePlannerItem(updates);
   }
 
-  handleChange (field, value) {
+  handleChange = (field, value) => {
     this.setState({
       updates: {
         ...this.state.updates,
@@ -41,13 +57,64 @@ export class UpdateItemTray extends Component {
     });
   }
 
+  handleCourseIdChange = (e) => {
+    let value = e.target.value;
+    if (value === 'none') value = undefined;
+    this.handleChange('courseId', value);
+  }
+
+  handleTitleChange = (e) => {
+    const value = e.target.value;
+    if (value === '') {
+      this.setState({
+        titleMessages: [{type: 'error', text: formatMessage('title is required')}]
+      });
+    } else {
+        this.setState({titleMessages: []});
+    }
+    this.handleChange('title', value);
+  }
+
+  handleDateChange = (e) => {
+    const value = e.target.value;
+    if (value === '') {
+      this.setState({dateMessages: [{type: 'error', text: formatMessage('date is required')}]});
+    } else {
+      this.setState({dateMessages: []});
+    }
+    this.handleChange('date', value);
+  }
+
+  handleDeleteClick = () => {
+    this.props.onDeletePlannerItem(this.props.noteItem);
+  }
+
   findCurrentValue (field) {
     return this.state.updates[field] || '';
   }
 
+  isValid () {
+    // intentional empty string checking
+    return this.state.updates.title && this.state.updates.date;
+  }
+
   renderDeleteButton () {
-    const button = <Button variant="light" margin="0 xSmall 0 0">{formatMessage("Delete")}</Button>;
-    return this.props.noteItem ? button : null;
+    if (this.props.noteItem == null) return;
+    return <Button
+      variant="light"
+      margin="0 xSmall 0 0"
+      onClick={this.handleDeleteClick}>
+      {formatMessage("Delete")}
+    </Button>;
+  }
+
+  renderSaveButton () {
+    return <Button
+      variant="primary"
+      disabled={!this.isValid()}
+      onClick={this.handleSave}>
+        {formatMessage("Save")}
+    </Button>;
   }
 
   renderTitleInput () {
@@ -56,8 +123,8 @@ export class UpdateItemTray extends Component {
       <TextInput
         label={formatMessage("Title")}
         value={value}
-        required={true}
-        onChange={(e) => this.handleChange('title', e.target.value)}
+        messages={this.state.titleMessages}
+        onChange={this.handleTitleChange}
       />
     );
   }
@@ -68,21 +135,29 @@ export class UpdateItemTray extends Component {
       <TextInput
         label={formatMessage("Date")}
         value={value}
-        onChange={(e) => this.handleChange('date', e.target.value)}
+        messages={this.state.dateMessages}
+        onChange={this.handleDateChange}
       />
     );
   }
 
+  renderCourseSelectOptions () {
+    if (!this.props.courses) return [];
+    return this.props.courses.map(course => {
+      return <option key={course.id} value={course.id}>{course.longName}</option>;
+    });
+  }
+
   renderCourseSelect () {
-    const value = this.findCurrentValue('courseId');
-    // TODO: get list of courses to select from
+    let courseId = this.findCurrentValue('courseId');
+    if (courseId == null) courseId = 'none';
     return (
       <Select
         label={formatMessage("Course")}
-        defaultValue="0"
-        onChange={(e) => this.handleChange('courseId', e.target.value)}>
-        <option value="0">{formatMessage("Optional: Add Course")}</option>
-        <option value="1">{value}</option>
+        value={courseId}
+        onChange={this.handleCourseIdChange}>
+        <option value="none">{formatMessage("Optional: Add Course")}</option>
+        {this.renderCourseSelectOptions()}
       </Select>
     );
   }
@@ -126,7 +201,7 @@ export class UpdateItemTray extends Component {
             {this.renderDetailsInput()}
           </Container>
           {this.renderDeleteButton()}
-          <Button variant="primary" onClick={this.handleSave}>{formatMessage("Save")}</Button>
+          {this.renderSaveButton()}
         </Container>
       </div>
     );

@@ -7,12 +7,13 @@ import PlannerApp from './components/PlannerApp';
 import PlannerHeader from './components/PlannerHeader';
 import i18n from './i18n';
 import configureStore from './store/configureStore';
-import { getPlannerItems } from './actions';
+import { initializeCourses, getPlannerItems } from './actions';
 
 const defaultOptions = {
   locale: 'en',
   timeZone: 'America/Denver',
-  theme: 'canvas'
+  theme: 'canvas',
+  courses: [],
 };
 
 export const store = configureStore();
@@ -24,6 +25,7 @@ export default {
     i18n.init(opts.locale);
     ApplyTheme.setDefaultTheme(opts.theme);
 
+    store.dispatch(initializeCourses(opts.courses));
     store.dispatch(getPlannerItems());
 
     ReactDOM.render(

@@ -9,14 +9,14 @@ const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1);
 const contexts = {
   course_1: {
     type: "Course",
-    id: getKindaUniqueId(),
+    id: "1",
     title: "World History I",
     image_url: "https://c1.staticflickr.com/6/5473/14502036741_b3d9f4f345_n.jpg",
     color: "#BE0EAA"
   },
   course_2: {
     type: "Course",
-    id: getKindaUniqueId(),
+    id: "2",
     title: "English Literature",
     image_url: "https://c1.staticflickr.com/7/6238/6363562459_7399ee3c3e_n.jpg",
     color: "#19C3B4"

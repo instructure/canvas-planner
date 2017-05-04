@@ -49,7 +49,11 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     shadow={true}
     trapFocus={true}
   >
-    <UpdateItemTray />
+    <UpdateItemTray
+      courses={Array []}
+      onDeletePlannerItem={[Function]}
+      onSavePlannerItem={[Function]}
+    />
   </Tray>
 </div>
 `;

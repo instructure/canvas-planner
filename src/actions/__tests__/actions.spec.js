@@ -1,65 +1,18 @@
 import * as Actions from '../index';
 import moxios from 'moxios';
 
-describe('Test Actions', () => {
-  describe('testAction', () => {
-    it('returns the proper action', () => {
-      const actual = Actions.testAction('abc');
-      const expected = {
-        type: 'TEST_ACTION',
-        payload: 'abc'
-      };
+import {isPromise, moxiosWait} from '../../test-utils';
 
-      expect(actual).toEqual(expected);
-    });
+describe('api actions', () => {
+  beforeEach(() => {
+    moxios.install();
   });
 
-  describe('testAsyncAction', () => {
-    beforeAll(() => {
-      moxios.install();
-    });
-
-    afterAll(() => {
-      moxios.uninstall();
-    });
-
-    it('dispatches the proper action on success', (done) => {
-      const fakeDispatcher = jest.fn();
-      const thunk = Actions.testAsyncAction();
-      thunk(fakeDispatcher);
-      moxios.wait(() => {
-        const request = moxios.requests.mostRecent();
-        request.respondWith({
-          status: 200,
-          response: { value: 'abc' }
-        }).then(() => {
-          expect(fakeDispatcher).toHaveBeenCalledWith(Actions.testAction('abc'));
-          done();
-        });
-      });
-    });
-
-    it('makes a request to the proper url', (done) => {
-      const fakeDispatcher = jest.fn();
-      const thunk = Actions.testAsyncAction();
-      thunk(fakeDispatcher);
-      moxios.wait(() => {
-        const request = moxios.requests.mostRecent();
-        expect(request.url).toBe('/api/v1/items/1');
-        done();
-      });
-    });
+  afterEach(() => {
+    moxios.uninstall();
   });
 
   describe('getPlannerItems', () => {
-    beforeAll(() => {
-      moxios.install();
-    });
-
-    afterAll(() => {
-      moxios.uninstall();
-    });
-
     it('dispatches startLoadingItems() initially', () => {
       const thunk = Actions.getPlannerItems();
       const fakeDispatch = jest.fn();
@@ -70,4 +23,55 @@ describe('Test Actions', () => {
     });
   });
 
+  describe('savePlannerItem', () => {
+    it('dispatches saving and saved actions', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {some: 'data'};
+      const savePromise = Actions.savePlannerItem(plannerItem)(mockDispatch);
+      expect(isPromise(savePromise)).toBe(true);
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: plannerItem});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
+    });
+
+    it('does a post if the planner item is new (no id)', () => {
+      const plannerItem = {some: 'data'};
+      Actions.savePlannerItem(plannerItem)(() => {});
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('post');
+        expect(request.url).toBe('api/v1/planner/items');
+        expect(JSON.parse(request.config.data)).toEqual(plannerItem);
+      });
+    });
+
+    it('does a put if the planner item exists (has id)', () => {
+      const plannerItem = {id: '42', some: 'data'};
+      Actions.savePlannerItem(plannerItem, )(() => {});
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('put');
+        expect(request.url).toBe('api/v1/planner/items/42');
+        expect(JSON.parse(request.config.data)).toEqual(plannerItem);
+      });
+    });
+  });
+
+  describe('deletePlannerItem', () => {
+    it('dispatches deleting and deleted actions', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {some: 'data'};
+      const savePromise = Actions.savePlannerItem(plannerItem)(mockDispatch);
+      expect(isPromise(savePromise)).toBe(true);
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: plannerItem});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
+    });
+
+    it('sends a delete request for the item id', () => {
+      const plannerItem = {id: '42', some: 'data'};
+      Actions.deletePlannerItem(plannerItem, )(() => {});
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('delete');
+        expect(request.url).toBe('api/v1/planner/items/42');
+      });
+
+    });
+  });
 });

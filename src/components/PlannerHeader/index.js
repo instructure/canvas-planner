@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
 
+import {addDay, savePlannerItem, deletePlannerItem} from '../../actions';
+
 import styles from './styles.css';
 import theme from './theme.js';
 import formatMessage from '../../format-message';
@@ -16,7 +18,14 @@ import formatMessage from '../../format-message';
 export class PlannerHeader extends Component {
 
   static propTypes = {
-    opportunityCount: PropTypes.number
+    courses: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      longName: PropTypes.string,
+    })).isRequired,
+    opportunityCount: PropTypes.number,
+    addDay: PropTypes.func,
+    savePlannerItem: PropTypes.func.isRequired,
+    deletePlannerItem: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -28,6 +37,16 @@ export class PlannerHeader extends Component {
     this.state = {
       trayOpen: false,
     };
+  }
+
+  handleSavePlannerItem = (plannerItem) => {
+    this.toggleUpdateItemTray();
+    this.props.savePlannerItem(plannerItem);
+  }
+
+  handleDeletePlannerItem = (plannerItem) => {
+    this.toggleUpdateItemTray();
+    this.props.deletePlannerItem(plannerItem);
   }
 
   toggleUpdateItemTray = () => {
@@ -75,7 +94,10 @@ export class PlannerHeader extends Component {
           onExiting={this.noteBtnOnClose}
           onRequestClose={this.toggleUpdateItemTray}
         >
-          <UpdateItemTray />
+          <UpdateItemTray
+            onSavePlannerItem={this.handleSavePlannerItem}
+            onDeletePlannerItem={this.handleDeletePlannerItem}
+            courses={this.props.courses} />
         </Tray>
       </div>
     );
@@ -84,9 +106,7 @@ export class PlannerHeader extends Component {
 
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = () => ({});
-
+const mapStateToProps = ({courses}) => ({courses});
+const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);

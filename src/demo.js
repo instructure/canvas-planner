@@ -23,7 +23,15 @@ const header_mount_point = document.getElementById('header_mount_point');
 CanvasPlanner.renderHeader(header_mount_point);
 
 const mount_point = document.getElementById('mount_point');
-CanvasPlanner.render(mount_point);
+CanvasPlanner.render(mount_point, {
+  courses: [{
+    id: "1",
+    longName: "World History I",
+  }, {
+    id: "2",
+    longName: "English Literature",
+  }],
+});
 
 /***************
 * Things below this point deal with the demo area setting bar only

@@ -3,16 +3,22 @@ import { shallow, mount } from 'enzyme';
 import 'instructure-ui/lib/themes/canvas';
 import { PlannerHeader } from '../index';
 
+const defaultProps = {
+  courses: [],
+  savePlannerItem: () => {},
+  deletePlannerItem: () => {},
+};
+
 it('renders the base component correctly with two buttons and a tray', () => {
   const wrapper = shallow(
-    <PlannerHeader />
+    <PlannerHeader {...defaultProps} />
   );
   expect(wrapper).toMatchSnapshot();
 });
 
 it('toggles the new item tray', () => {
   const wrapper = mount(
-    <PlannerHeader />
+    <PlannerHeader {...defaultProps} />
   );
   const button = wrapper.find('[children="Add Note to Self"]');
   button.simulate('click');
@@ -23,7 +29,7 @@ it('toggles the new item tray', () => {
 
 it('sends focus back to the add new item button', () => {
   const wrapper = mount(
-    <PlannerHeader />
+    <PlannerHeader {...defaultProps} />
   );
   wrapper.setState({trayOpen: true});
   const btn = wrapper.instance().addNoteBtn;

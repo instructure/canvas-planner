@@ -50,3 +50,7 @@ export function getFullDate (date) {
     return moment(date).format('MMMM D, YYYY');
   }
 }
+
+export function formatDayKey (date) {
+  return moment(date, moment.ISO_8601).format('YYYY-MM-DD');
+}

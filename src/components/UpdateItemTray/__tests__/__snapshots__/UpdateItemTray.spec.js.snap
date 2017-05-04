@@ -20,7 +20,6 @@ exports[`renders the base component correctly with one buttons and four inputs 1
         layout="stacked"
         messages={Array []}
         onChange={[Function]}
-        required={true}
         size="medium"
         type="text"
         value=""
@@ -73,7 +72,6 @@ exports[`renders the base component correctly with one buttons and four inputs 1
       margin="medium 0"
     >
       <Select
-        defaultValue="0"
         disabled={false}
         isBlock={true}
         label="Course"
@@ -83,15 +81,13 @@ exports[`renders the base component correctly with one buttons and four inputs 1
         selectRef={[Function]}
         size="medium"
         type="text"
+        value=""
       >
         <option
-          value="0"
+          value="none"
         >
           Optional: Add Course
         </option>
-        <option
-          value="1"
-        />
       </Select>
     </Container>
     <Container
@@ -116,6 +112,7 @@ exports[`renders the base component correctly with one buttons and four inputs 1
     <Button
       as="button"
       buttonRef={[Function]}
+      disabled={true}
       isBlock={false}
       margin="0"
       onClick={[Function]}
@@ -149,7 +146,6 @@ exports[`renders the item to update if provided 1`] = `
         layout="stacked"
         messages={Array []}
         onChange={[Function]}
-        required={true}
         size="medium"
         type="text"
         value="Planner Item"
@@ -202,7 +198,6 @@ exports[`renders the item to update if provided 1`] = `
       margin="medium 0"
     >
       <Select
-        defaultValue="0"
         disabled={false}
         isBlock={true}
         label="Course"
@@ -212,16 +207,17 @@ exports[`renders the item to update if provided 1`] = `
         selectRef={[Function]}
         size="medium"
         type="text"
+        value=""
       >
         <option
-          value="0"
+          value="none"
         >
           Optional: Add Course
         </option>
         <option
           value="1"
         >
-          1
+          a course
         </option>
       </Select>
     </Container>
@@ -249,6 +245,7 @@ exports[`renders the item to update if provided 1`] = `
       buttonRef={[Function]}
       isBlock={false}
       margin="0 xSmall 0 0"
+      onClick={[Function]}
       size="medium"
       type="button"
       variant="light"
@@ -258,6 +255,7 @@ exports[`renders the item to update if provided 1`] = `
     <Button
       as="button"
       buttonRef={[Function]}
+      disabled={false}
       isBlock={false}
       margin="0"
       onClick={[Function]}
