@@ -859,6 +859,10 @@ babel-plugin-transform-format-message@^5.1.4:
     lookup-closest-locale "^5.1.0"
     source-map "^0.5.3"
 
+babel-plugin-transform-node-env-inline@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-node-env-inline/-/babel-plugin-transform-node-env-inline-0.0.2.tgz#f39308e40027b4e399845a12f82fafda9fd3a91d"
+
 babel-plugin-transform-object-rest-spread@^6.22.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.23.0.tgz#875d6bc9be761c58a2ae3feee5dc4895d8c7f921"

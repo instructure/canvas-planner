@@ -11,7 +11,13 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 
 import 'instructure-ui/lib/themes/canvas';
-import CanvasPlanner from './index';
+import CanvasPlanner, { store as PlannerStore } from './index';
+import { addDay } from '../src/actions';
+
+import Button from 'instructure-ui/lib/components/Button';
+import Select from 'instructure-ui/lib/components/Select';
+import Grid, { GridCol, GridRow } from 'instructure-ui/lib/components/Grid';
+import Typography from 'instructure-ui/lib/components/Typography';
 
 const header_mount_point = document.getElementById('header_mount_point');
 CanvasPlanner.renderHeader(header_mount_point);
@@ -29,19 +35,6 @@ const locales = ["en", "ar", "da", "de", "en-AU", "en-GB", "es", "fa", "fr-CA",
                  "fr", "he", "ht", "hy", "ja", "ko", "mi", "nl", "nb", "nn", "pl",
                  "pt", "pt-BR", "ru", "sv", "tr", "zh-Hans", "zh-Hant"];
 
-
-// const handleTzChange = (e) => {
-//   e.preventDefault();
-//   const timeZone = e.target.value;
-//   CanvasPlanner.render(mount_point, { timeZone });
-// };
-//
-// const handleLocaleChange = (e) => {
-//   e.preventDefault();
-//   const locale = e.target.value;
-//   CanvasPlanner.render(mount_point, { locale });
-// };
-
 class DemoArea extends Component {
   constructor (props) {
     super(props);
@@ -49,6 +42,7 @@ class DemoArea extends Component {
       timeZone: 'America/Denver',
       locale: 'en'
     };
+    this.dayCount = 3;
   }
 
   handleChange = (e) => {
@@ -56,6 +50,13 @@ class DemoArea extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  handleAddDay = (e) => {
+    e.preventDefault();
+    const fakeDay = moment().add(this.dayCount, 'days');
+    PlannerStore.dispatch(addDay(fakeDay.format('YYYY-MM-DD')));
+    this.dayCount++;
   }
 
   componentWillUpdate (nextProps, nextState) {
@@ -66,33 +67,52 @@ class DemoArea extends Component {
   render () {
       return (
         <div style={{ backgroundColor: 'papayawhip', padding: '10px'}}>
-          <span style={{ fontWeight: 'bold', color: 'red' }}>
+          <Typography weight="bold" color="error">
             This area is only shown here, not in production
-          </span>
-          <div>
-            <label htmlFor="localeSelect">Locale</label>
-            <select
-              id="localeSelect"
-              name="locale"
-              value={this.state.locale}
-              onChange={this.handleChange}
-            >
-              {
-                locales.map(l => <option key={l} value={l}>{l}</option>)
-              }
-            </select>
-            <label htmlFor="tzSelect">Timezone</label>
-            <select
-              id="tzSelect"
-              name="timeZone"
-              value={this.state.timeZone}
-              onChange={this.handleChange}
-            >
-              {
-                moment.tz.names().map(tz => <option key={tz} value={tz}>{tz}</option>)
-              }
-            </select>
-          </div>
+          </Typography>
+          <Grid vAlign="middle">
+            <GridRow>
+              <GridCol>
+                <Select
+                  id="localeSelect"
+                  label="Locale"
+                  layout="inline"
+                  value={this.state.locale}
+                  onChange={this.handleChange}
+                  name="locale"
+                  size="small"
+                  width="100px"
+                >
+                  {
+                    locales.map(l => <option key={l} value={l}>{l}</option>)
+                  }
+                </Select>
+              </GridCol>
+              <GridCol>
+                <Select
+                  id="tzSelect"
+                  name="timeZone"
+                  value={this.state.timeZone}
+                  onChange={this.handleChange}
+                  size="small"
+                  width="200px"
+                  layout="inline"
+                  label="Timezone"
+                >
+                  {
+                    moment.tz.names().map(tz => <option key={tz} value={tz}>{tz}</option>)
+                  }
+                </Select>
+              </GridCol>
+              <GridCol>
+                <Button
+                  onClick={this.handleAddDay}
+                >
+                  Add a day
+                </Button>
+              </GridCol>
+            </GridRow>
+          </Grid>
 
         </div>
 

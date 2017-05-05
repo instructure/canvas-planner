@@ -29,7 +29,8 @@ module.exports = function (context, opts = {}) {
   ])
 
   let plugins = [
-    require.resolve('babel-plugin-transform-class-display-name')
+    require.resolve('babel-plugin-transform-class-display-name'),
+    require.resolve('babel-plugin-transform-node-env-inline')
   ]
 
   if (env === 'production') {

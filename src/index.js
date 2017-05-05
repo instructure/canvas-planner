@@ -15,7 +15,7 @@ const defaultOptions = {
   theme: 'canvas'
 };
 
-const store = configureStore();
+export const store = configureStore();
 
 export default {
   render (element, options) {

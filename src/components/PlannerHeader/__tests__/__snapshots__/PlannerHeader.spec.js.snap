@@ -7,17 +7,6 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     buttonRef={[Function]}
     isBlock={false}
     margin="0"
-    size="medium"
-    type="button"
-    variant="default"
-  >
-    Add a day
-  </Button>
-  <Button
-    as="button"
-    buttonRef={[Function]}
-    isBlock={false}
-    margin="0"
     onClick={[Function]}
     size="medium"
     type="button"
