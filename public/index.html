@@ -4,21 +4,26 @@
   <meta charset="UTF-8">
   <title>Canvas Planner</title>
   <style>
-    #header_mount_point {
-      display: block;
-      position: absolute;
-      right: 300px;
-      top: 10px;
+    #header {
+      display: flex;
     }
 
-    #mount_point {
-      margin-top: 50px;
+    #demo_only_mount {
+      flex: .8;
+      margin-right: 20px;
+    }
+
+    #header_mount_point {
+      flex: .2;
     }
   </style>
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-  <div id="header_mount_point"></div>
+  <div id="header">
+    <div id="demo_only_mount"></div>
+    <div id="header_mount_point"></div>
+  </div>
   <div id="mount_point"></div>
   <script src="ie11-polyfill.js"></script>
   <script src="canvas-planner.js"></script>
