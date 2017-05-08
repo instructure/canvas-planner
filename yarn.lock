@@ -4615,7 +4615,7 @@ moment-timezone@^0.5.13:
   dependencies:
     moment ">= 2.9.0"
 
-moment@2.10.6, "moment@>= 2.9.0":
+moment@2.10.6, "moment@>= 2.9.0", moment@>=1.6.0:
   version "2.10.6"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.10.6.tgz#6cb21967c79cba7b0ca5e66644f173662b3efa77"
 
@@ -5713,6 +5713,12 @@ react-dom@15.4.2:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-moment-proptypes@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-moment-proptypes/-/react-moment-proptypes-1.4.0.tgz#831e329ebcec6cf794e75852d82d54a03817023f"
+  dependencies:
+    moment ">=1.6.0"
 
 react-redux@^5.0.3:
   version "5.0.4"

@@ -13,7 +13,8 @@ import Calendar from 'instructure-icons/react/Line/IconCalendarMonthLine';
 import Page from 'instructure-icons/react/Line/IconMsWordLine';
 import styles from './styles.css';
 import theme from './theme.js';
-import {bool, instanceOf, number, string, func} from 'prop-types';
+import {bool, number, string, func} from 'prop-types';
+import { momentObj } from 'react-moment-proptypes';
 import formatMessage from '../../format-message';
 
 class PlannerItem extends Component {
@@ -22,7 +23,7 @@ class PlannerItem extends Component {
     id: number.isRequired,
     title: string.isRequired,
     points: number,
-    date: instanceOf(Date),
+    date: momentObj,
     courseName: string,
     completed: bool,
     associated_item: string,
@@ -97,7 +98,7 @@ class PlannerItem extends Component {
           <div className={styles.itemDue}>
             <Typography color="secondary" size="x-small">
                 { this.props.date
-                    ? formatMessage(`DUE: {date, time, short}`, {date: this.props.date})
+                    ? formatMessage(`DUE: {date}`, {date: this.props.date.format("LT")})
                     : null
                 }
             </Typography>

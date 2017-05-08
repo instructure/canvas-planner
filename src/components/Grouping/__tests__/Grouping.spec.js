@@ -7,7 +7,7 @@ const getDefaultProps = () => ({
   items: [{
     id: 5,
     title: 'San Juan',
-    date: "2017-04-25",
+    date: '2017-04-25T05:06:07-08:00',
     context: {
       url: 'example.com',
       color: "#5678",
@@ -15,7 +15,7 @@ const getDefaultProps = () => ({
     }
   }, {
     id: 6,
-    date: "2017-04-25",
+    date: '2017-04-25T05:06:07-08:00',
     title: 'Roll for the Galaxy',
     context: {
       color: "#5678",

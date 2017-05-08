@@ -45,7 +45,7 @@ class Grouping extends Component {
         completed={item.completed}
         id={item.id}
         courseName={this.props.courseInfo.title}
-        date={moment.tz(item.date, this.props.timeZone).toDate()}
+        date={moment(item.date).tz(this.props.timeZone)}
         associated_item={item.type}
         title={item.title}
         points={item.points}

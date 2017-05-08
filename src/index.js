@@ -8,6 +8,7 @@ import PlannerHeader from './components/PlannerHeader';
 import i18n from './i18n';
 import configureStore from './store/configureStore';
 import { initializeCourses, getPlannerItems } from './actions';
+import moment from 'moment-timezone';
 
 const defaultOptions = {
   locale: 'en',
@@ -23,6 +24,7 @@ export default {
     // Using this pattern because default params don't merge objects
     const opts = { ...defaultOptions, ...options };
     i18n.init(opts.locale);
+    moment.locale(opts.locale);
     ApplyTheme.setDefaultTheme(opts.theme);
 
     store.dispatch(initializeCourses(opts.courses));

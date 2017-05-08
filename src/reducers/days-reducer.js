@@ -44,8 +44,10 @@ function deletedPlannerItem (state, action) {
 
 export default handleActions({
   GOT_ITEMS_SUCCESS: (state, action) => {
-    const dayGrouping = groupBy(action.payload, 'date');
-    return merge(state, dayGrouping);
+    const dayGrouping = groupBy(action.payload, (item) => {
+      return formatDayKey(item.date);
+    });
+    return dayGrouping;
   },
   ADD_DAY: addDay,
   SAVED_PLANNER_ITEM: savedPlannerItem,

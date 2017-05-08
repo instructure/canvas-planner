@@ -38,7 +38,7 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
     >
       <PlannerItem
         color="#5678"
-        date={2017-04-25T06:00:00.000Z}
+        date={"2017-04-25T13:06:07.000Z"}
         id={6}
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
@@ -90,14 +90,14 @@ exports[`renders the base component with required props 1`] = `
     >
       <PlannerItem
         color="#5678"
-        date={2017-04-25T06:00:00.000Z}
+        date={"2017-04-25T13:06:07.000Z"}
         id={5}
         title="San Juan"
         toggleCompletion={[Function]}
       />
       <PlannerItem
         color="#5678"
-        date={2017-04-25T06:00:00.000Z}
+        date={"2017-04-25T13:06:07.000Z"}
         id={6}
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}

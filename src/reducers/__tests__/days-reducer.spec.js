@@ -1,20 +1,20 @@
 import daysReducer from '../days-reducer';
+import moment from 'moment';
 
-it('groups new state with old state on GOT_ITEMS_SUCCESS', () => {
-  const initialState = {
-    '2017-04-27': [],
-    '2017-04-26': []
-  };
+it('groups items by day on GOT_ITEMS_SUCCESS', () => {
+  const initialState = {};
+
+  const dayOne = moment('2017-04-27').format();
+  const dayTwo = moment('2017-04-28').format();
 
   const newState = daysReducer(initialState, {
     type: 'GOT_ITEMS_SUCCESS',
-    payload: [{ date: '2017-04-28' }]
+    payload: [{ date: dayOne }, { date: dayTwo }]
   });
 
   expect(newState).toMatchObject({
-    '2017-04-27': [],
-    '2017-04-26': [],
-    '2017-04-28': [{ date: '2017-04-28' }]
+    '2017-04-27': [{ date: dayOne }],
+    '2017-04-28': [{ date: dayTwo }]
   });
 });
 

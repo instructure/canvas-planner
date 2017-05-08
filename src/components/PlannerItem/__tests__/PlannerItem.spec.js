@@ -2,6 +2,9 @@ import React from 'react';
 import 'instructure-ui/lib/themes/canvas';
 import { shallow } from 'enzyme';
 import PlannerItem from '../index';
+import moment from 'moment-timezone';
+
+const DEFAULT_DATE = moment.tz('2011-12-17T03:30:00', "America/Los_Angeles");
 
 function defaultProps (option) {
   return {
@@ -31,7 +34,7 @@ function noteProps (option) {
 
 it('renders correctly', () => {
   const wrapper = shallow(
-    <PlannerItem {...defaultProps({points: 35, date: new Date('December 17, 2011 03:30:00')})} />
+    <PlannerItem {...defaultProps({points: 35, date: DEFAULT_DATE})} />
   );
   expect(wrapper).toMatchSnapshot();
 });
@@ -45,7 +48,7 @@ it('renders Quiz correctly with everything', () => {
           completed: true,
           title: "I am a Quiz",
           points: 4,
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -89,7 +92,7 @@ it('renders Quiz correctly with just date', () => {
           associated_item: 'Quiz',
           completed: false,
           title: "I am a Quiz",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -105,7 +108,7 @@ it('renders Assignment correctly with everything', () => {
           completed: true,
           title: "I am a Assignment",
           points: 4,
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -149,7 +152,7 @@ it('renders Assignment correctly with just date', () => {
           associated_item: 'Assignment',
           completed: false,
           title: "I am a Assignment",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -165,7 +168,7 @@ it('renders Discussion correctly with everything', () => {
           completed: true,
           title: "I am a Discussion",
           points: 4,
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -209,7 +212,7 @@ it('renders Discussion correctly with just date', () => {
           associated_item: 'Discussion',
           completed: false,
           title: "I am a Discussion",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -225,7 +228,7 @@ it('renders Announcement correctly with everything', () => {
           completed: true,
           title: "I am a Announcement",
           points: 4,
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -269,7 +272,7 @@ it('renders Announcement correctly with just date', () => {
           associated_item: 'Announcement',
           completed: false,
           title: "I am a Announcement",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -285,7 +288,7 @@ it('renders Calendar Event correctly with everything', () => {
           completed: true,
           title: "I am a Calendar Event",
           points: 4,
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -329,7 +332,7 @@ it('renders Calendar Event correctly with just date', () => {
           associated_item: 'Calendar Event',
           completed: false,
           title: "I am a Calendar Event",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -345,7 +348,7 @@ it('renders Page correctly with everything', () => {
           completed: true,
           title: "I am a Page",
           points: 4,
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -389,7 +392,7 @@ it('renders Page correctly with just date', () => {
           associated_item: 'Page',
           completed: false,
           title: "I am a Page",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
         })
     } />
   );
@@ -403,7 +406,7 @@ it('renders Note correctly with everything', () => {
         {
           completed: true,
           title: "I am a Note",
-          date: new Date('December 17, 2011 03:30:00'),
+          date: DEFAULT_DATE,
           courseName: 'Math 101'
         })
     } />
@@ -424,4 +427,3 @@ it('renders Note correctly without Course', () => {
   );
   expect(wrapper).toMatchSnapshot();
 });
-

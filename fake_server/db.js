@@ -30,7 +30,7 @@ module.exports = () => {
       // Add some past items
       {
         id: getKindaUniqueId(),
-        date: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+        date: moment().subtract(1, 'days').endOf('day').format(),
         type: "Assignment",
         title: "World War II Essay",
         completed: Math.random() >= 0.5,
@@ -39,7 +39,7 @@ module.exports = () => {
       },
       {
         id: getKindaUniqueId(),
-        date: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+        date: moment().subtract(1, 'days').endOf('day').format(),
         type: "Quiz",
         title: "Shakespeare",
         completed: Math.random() >= 0.5,
@@ -50,7 +50,7 @@ module.exports = () => {
       // Add some completed items
       {
         id: getKindaUniqueId(),
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().endOf('day').format(),
         type: "Assignment",
         title: "World War I Essay",
         completed: true,
@@ -59,7 +59,7 @@ module.exports = () => {
       },
       {
         id: getKindaUniqueId(),
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().endOf('day').format(),
         type: "Announcement",
         title: "Submit your book list today!",
         completed: true,
@@ -70,7 +70,7 @@ module.exports = () => {
       // Add some Notes
       {
         id: getKindaUniqueId(),
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().startOf('day').add(8, 'hours').format(), // 8am
         type: null,
         title: "GET MY STUFF TODAY",
         completed: true,
@@ -78,7 +78,7 @@ module.exports = () => {
       },
       {
         id: getKindaUniqueId(),
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().startOf('day').add(8, 'hours').format(), // 8am
         type: null,
         title: "Submit your book list today!",
         completed: true,
@@ -87,7 +87,7 @@ module.exports = () => {
       // Make sure there are always some current day items
       {
         id: getKindaUniqueId(),
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().startOf('day').add(17, 'hours').format(), // 5pm
         type: "Assignment",
         title: "History essay",
         completed: false,
@@ -96,7 +96,7 @@ module.exports = () => {
       },
       {
         id: getKindaUniqueId(),
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().startOf('day').add(15, 'hours').format(), // 3pm
         type: "Announcement",
         title: "You must pick your literary hero today!",
         completed: false,
@@ -105,7 +105,7 @@ module.exports = () => {
       // Put in some items that are for the next two days
       {
         id: getKindaUniqueId(),
-        date: moment().add(1, 'days').format('YYYY-MM-DD'),
+        date: moment().add(1, 'days').endOf('day').format(),
         type: "Quiz",
         title: "Middle East Quiz",
         completed: false,
@@ -113,7 +113,7 @@ module.exports = () => {
       },
       {
         id: getKindaUniqueId(),
-        date: moment().add(2, 'days').format('YYYY-MM-DD'),
+        date: moment().add(2, 'days').endOf('day').format(),
         type: "Assignment",
         title: "Pencil or Pen Essay",
         completed: false,
