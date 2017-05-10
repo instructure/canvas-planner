@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "UI portion of planner application for canvas-lms.",
   "main": "lib/index.js",
-  "module": "es/index.js",
   "scripts": {
     "check-transifex": "BABEL_ENV=test babel-node ./scripts/check-transifex.js",
     "extract": "format-message extract src/**/**/*.js -o config/locales/en.json",
@@ -20,6 +19,12 @@
     "generate-themeable": "./scripts/generate-themeable",
     "clean": "rm -rf .babel-cache && rm -rf es && rm -rf lib && rm -rf coverage"
   },
+  "files": [
+    "config/",
+    "lib/",
+    "es/",
+    "README.md"
+  ],
   "keywords": [
     "planner",
     "canvas"

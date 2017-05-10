@@ -1,7 +1,0 @@
-src/
-README.md
-.babelrc
-.eslintrc
-db.json
-webpack.config.js
-yarn.lock
