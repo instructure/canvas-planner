@@ -3,6 +3,9 @@ services:
   test:
     build:
       context: .
+    environment:
+      - NODE_ENV=test
+      - BABEL_ENV=test
     volumes:
       - "coverage:/usr/src/app/coverage"
 volumes:
