@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
+    "check-transifex": "BABEL_ENV=test babel-node ./scripts/check-transifex.js",
     "extract": "format-message extract src/**/**/*.js -o config/locales/en.json",
     "lint-staged": "lint-staged",
     "lint": "eslint src/",
@@ -48,7 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "6.7.7",
-    "babel-cli": "^6.24.0",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.0.0",
     "babel-jest": "^19.0.0",
