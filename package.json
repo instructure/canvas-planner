@@ -12,7 +12,7 @@
     "build": "./scripts/build",
     "start": "npm-run-all --parallel start:*",
     "start:json-server": "json-server --watch --delay 1500 --routes ./fake_server/routes.json --port 3004 ./fake_server/db.js",
-    "start:webpack-dev": "BABEL_ENV=development webpack-dev-server --host 0.0.0.0 --port 3005",
+    "start:webpack-dev": "BABEL_ENV=development webpack-dev-server --port 3005",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
@@ -99,7 +99,7 @@
     "tinycolor2": "^1.4.1",
     "uglify-js": "^2.8.22",
     "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.5"
   },
   "lint-staged": {
     "*.js": "eslint"

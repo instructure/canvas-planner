@@ -57,6 +57,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
 
   devServer: {
+    disableHostCheck: true,
     proxy: {
       '**': {
         target: 'http://localhost:3004',
