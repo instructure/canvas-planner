@@ -26,6 +26,9 @@
   "date_ee500367": {
     "message": "Date"
   },
+  "date_is_required_915f975f": {
+    "message": "date is required"
+  },
   "delete_a6efa79d": {
     "message": "Delete"
   },
@@ -61,5 +64,8 @@
   },
   "title_ee03d132": {
     "message": "Title"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "title is required"
   }
 }
