@@ -37,6 +37,22 @@ also start a json-server instance at http://localhost:3004 which api requests
 will be proxied from webpack-dev-server to eliminating the need to have an
 instance of Canvas running to do development.
 
+#### Running without a delay
+
+By default, all requests to the json-server have a 1.5 second delay introduced
+to help us develop for proper loading states.  If you want to run without the
+delay you'll need to instead run:
+
+```bash
+yarn run start:json-server:no-delay
+```
+
+And then in a separate terminal tab/session/window/etc.
+
+```bash
+yarn run start:webpack-dev
+```
+
 ### Linting
 
 This project uses [eslint-config-react-app](https://github.com/facebookincubator/create-react-app/tree/master/packages/eslint-config-react-app)

@@ -2,6 +2,7 @@ import { createAction, createActions } from 'redux-actions';
 import axios from 'axios';
 import moment from 'moment';
 import {formatDayKey} from '../utilities/dateUtils';
+import { translateAPIData } from '../utilities/apiUtils';
 
 export const {
   initializeCourses,
@@ -27,11 +28,12 @@ export const addDay = createAction('ADD_DAY', () => {
 });
 
 export const getPlannerItems = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(startLoadingItems());
     axios.get(`/api/v1/planner/items`)
          .then(response => {
-           dispatch(gotItemsSuccess(response.data));
+           const translatedData = response.data.map((item) => translateAPIData(item, getState().courses));
+           dispatch(gotItemsSuccess(translatedData));
          });
   };
 };

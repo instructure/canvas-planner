@@ -23,16 +23,22 @@ canvas.use();
 const header_mount_point = document.getElementById('header_mount_point');
 CanvasPlanner.renderHeader(header_mount_point);
 
+const COURSES = [{
+  id: "1",
+  longName: "World History I",
+  shortName: "World History I",
+  image: "https://c1.staticflickr.com/6/5473/14502036741_b3d9f4f345_n.jpg",
+  color: "#BE0EAA"
+}, {
+  id: "2",
+  longName: "English Literature",
+  shortName: "English Literature",
+  image: "https://c1.staticflickr.com/7/6238/6363562459_7399ee3c3e_n.jpg",
+  color: "#19C3B4"
+}];
+
 const mount_point = document.getElementById('mount_point');
-CanvasPlanner.render(mount_point, {
-  courses: [{
-    id: "1",
-    longName: "World History I",
-  }, {
-    id: "2",
-    longName: "English Literature",
-  }],
-});
+CanvasPlanner.render(mount_point, { courses: COURSES });
 
 /***************
 * Things below this point deal with the demo area setting bar only
@@ -49,7 +55,8 @@ class DemoArea extends Component {
     super(props);
     this.state = {
       timeZone: 'America/Denver',
-      locale: 'en'
+      locale: 'en',
+      courses: COURSES
     };
     this.dayCount = 3;
   }

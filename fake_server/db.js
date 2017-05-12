@@ -4,121 +4,30 @@
 
 const moment = require('moment');
 
-const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1);
+const {
+  createFakeAssignment,
+  createFakeDiscussion,
+  createFakeQuiz
+} = require('./utils');
 
-const contexts = {
-  course_1: {
-    type: "Course",
-    id: "1",
-    title: "World History I",
-    image_url: "https://c1.staticflickr.com/6/5473/14502036741_b3d9f4f345_n.jpg",
-    color: "#BE0EAA"
-  },
-  course_2: {
-    type: "Course",
-    id: "2",
-    title: "English Literature",
-    image_url: "https://c1.staticflickr.com/7/6238/6363562459_7399ee3c3e_n.jpg",
-    color: "#19C3B4"
-  }
-};
 
 module.exports = () => {
   const data = {
     planner: {},
     items: [
-      // Add some past items
-      {
-        id: getKindaUniqueId(),
-        date: moment().subtract(1, 'days').endOf('day').format(),
-        type: "Assignment",
-        title: "World War II Essay",
-        completed: Math.random() >= 0.5,
-        points: Math.floor(Math.random()* 100),
-        context: contexts.course_1
-      },
-      {
-        id: getKindaUniqueId(),
-        date: moment().subtract(1, 'days').endOf('day').format(),
-        type: "Quiz",
-        title: "Shakespeare",
-        completed: Math.random() >= 0.5,
-        points: Math.floor(Math.random()* 100),
-        context: contexts.course_2
-      },
+      createFakeQuiz("History Prequiz", "1", moment().subtract(1, 'days').startOf('day').add(17, 'hours').format()),
+      createFakeAssignment("English Civil Wars", "1", moment().endOf('day').format()),
+      createFakeAssignment("War of Jenkins Ear", "1", moment().endOf('day').format()),
+      createFakeAssignment("Great Turkish War", "1", moment().endOf('day').add(1, 'days').format()),
+      createFakeAssignment("Seven Years War", "1", moment().endOf('day').add(1, 'days').format(), true),
+      createFakeAssignment("American Revolution", "1", moment().endOf('day').add(1, 'days').format(), true),
+      createFakeDiscussion("Which revolution is your favorite?", "1", moment().endOf('day').add(2, 'days').format()),
 
-      // Add some completed items
-      {
-        id: getKindaUniqueId(),
-        date: moment().endOf('day').format(),
-        type: "Assignment",
-        title: "World War I Essay",
-        completed: true,
-        points: Math.floor(Math.random()* 100),
-        context: contexts.course_1
-      },
-      {
-        id: getKindaUniqueId(),
-        date: moment().endOf('day').format(),
-        type: "Announcement",
-        title: "Submit your book list today!",
-        completed: true,
-        points: Math.floor(Math.random()* 100),
-        context: contexts.course_1
-      },
-
-      // Add some Notes
-      {
-        id: getKindaUniqueId(),
-        date: moment().startOf('day').add(8, 'hours').format(), // 8am
-        type: null,
-        title: "GET MY STUFF TODAY",
-        completed: true,
-        context: contexts.course_1
-      },
-      {
-        id: getKindaUniqueId(),
-        date: moment().startOf('day').add(8, 'hours').format(), // 8am
-        type: null,
-        title: "Submit your book list today!",
-        completed: true,
-      },
-
-      // Make sure there are always some current day items
-      {
-        id: getKindaUniqueId(),
-        date: moment().startOf('day').add(17, 'hours').format(), // 5pm
-        type: "Assignment",
-        title: "History essay",
-        completed: false,
-        points: Math.floor(Math.random()* 100),
-        context: contexts.course_1
-      },
-      {
-        id: getKindaUniqueId(),
-        date: moment().startOf('day').add(15, 'hours').format(), // 3pm
-        type: "Announcement",
-        title: "You must pick your literary hero today!",
-        completed: false,
-        context: contexts.course_2
-      },
-      // Put in some items that are for the next two days
-      {
-        id: getKindaUniqueId(),
-        date: moment().add(1, 'days').endOf('day').format(),
-        type: "Quiz",
-        title: "Middle East Quiz",
-        completed: false,
-        context: contexts.course_1
-      },
-      {
-        id: getKindaUniqueId(),
-        date: moment().add(2, 'days').endOf('day').format(),
-        type: "Assignment",
-        title: "Pencil or Pen Essay",
-        completed: false,
-        context: contexts.course_2
-      },
+      createFakeQuiz("Shakespeare", "2", moment().startOf('day').add(1, 'days').add(8, 'hours').format()),
+      createFakeAssignment("English Poetry and Prose", "2", moment().endOf('day').format()),
+      createFakeAssignment("English Drama", "2", moment().endOf('day').format()),
+      createFakeAssignment("English Fiction", "2", moment().endOf('day').format()),
+      createFakeDiscussion("English Short Stories", "2", moment().endOf('day').add(1, 'days').format()),
     ]
   };
 
