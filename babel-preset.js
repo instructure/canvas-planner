@@ -1,37 +1,37 @@
-const env = process.env.BABEL_ENV || process.env.NODE_ENV
-const esModules = process.env.ES_MODULES
+const env = process.env.BABEL_ENV || process.env.NODE_ENV;
+const esModules = process.env.ES_MODULES;
 
 if (env !== 'development' && env !== 'test' && env !== 'production') {
   throw new Error(
     'Invalid or undefined `NODE_ENV` or ' +
     '`BABEL_ENV` environment variables. Valid values are "development", ' +
     '"test", and "production". Instead, received: ' + JSON.stringify(env) + '.'
-  )
+  );
 }
 
 module.exports = function (context, opts = {}) {
-  let presets = []
+  let presets = [];
 
   const envOpts = {
     'targets': {
       'browsers': ['last 2 versions', 'not ie <= 10']
     }
-  }
+  };
 
   if (esModules) {
-    envOpts['modules'] = false
+    envOpts['modules'] = false;
   }
 
   presets = presets.concat([
     [require.resolve('babel-preset-env'), envOpts],
     require.resolve('babel-preset-stage-1'),
     require.resolve('babel-preset-react')
-  ])
+  ]);
 
   let plugins = [
     require.resolve('babel-plugin-transform-class-display-name'),
     require.resolve('babel-plugin-transform-node-env-inline')
-  ]
+  ];
 
   if (env === 'production') {
     // The css-modules-require-hook that the themeable babel plugin uses doesn't work
@@ -48,11 +48,11 @@ module.exports = function (context, opts = {}) {
           'themeablerc': './themeable.config.js'
         }
       ]]
-    )
+    );
   }
 
   return {
     presets,
     plugins
-  }
-}
+  };
+};

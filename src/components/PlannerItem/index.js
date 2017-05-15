@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
+import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Checkbox from 'instructure-ui/lib/components/Checkbox';
 import Link from 'instructure-ui/lib/components/Link';
@@ -161,4 +162,10 @@ class PlannerItem extends Component {
   }
 }
 
-export default themeable(theme, styles)(PlannerItem);
+export default themeable(theme, styles)(
+  // we can update this to be whatever works for this component and its content
+  containerQuery({
+    'media-x-large': { minWidth: '68rem' },
+    'media-medium': { minWidth: '36rem' }
+  })(PlannerItem)
+);

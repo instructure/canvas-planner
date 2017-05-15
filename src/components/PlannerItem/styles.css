@@ -68,10 +68,8 @@
   white-space: nowrap;
 }
 
-@media screen and (--mediumMin) {
-  .item {
-    padding: var(--paddingTabletUp);
-  }
+[data-media-medium].item {
+  padding: var(--paddingTabletUp);
 
   .itemLayout {
     display: flex;
@@ -84,10 +82,8 @@
   }
 }
 
-@media screen and (--xLargeMin) {
-  .item {
-    padding: var(--paddingWideUp);
-  }
+[data-media-x-large].item {
+  padding: var(--paddingWideUp);
 
   .itemCompleted,
   .itemIcon {

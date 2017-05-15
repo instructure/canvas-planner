@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
+import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import CheckboxFacade from 'instructure-ui/lib/components/Checkbox/CheckboxFacade';
 import { func, number } from 'prop-types';
 
@@ -46,4 +47,10 @@ class CompletedItemsFacade extends Component {
   }
 }
 
-export default themeable(theme, styles)(CompletedItemsFacade);
+export default themeable(theme, styles)(
+  // we can update this to be whatever works for this component and its content
+  containerQuery({
+    'media-x-large': { minWidth: '75rem' },
+    'media-medium': { minWidth: '48rem' }
+  })(CompletedItemsFacade)
+);

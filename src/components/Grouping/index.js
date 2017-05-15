@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
+import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import { partition } from 'lodash';
 import { arrayOf, string, object } from 'prop-types';
 import styles from './styles.css';
@@ -105,4 +106,9 @@ class Grouping extends Component {
   }
 }
 
-export default themeable(theme, styles)(Grouping);
+export default themeable(theme, styles)(
+  // we can update this to be whatever works for this component and its content
+  containerQuery({
+    'media-medium': { minWidth: '48rem' }
+  })(Grouping)
+);

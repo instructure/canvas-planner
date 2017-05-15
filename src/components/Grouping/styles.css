@@ -67,7 +67,7 @@
   text-transform: var(--heroLinkNameTextTransform);
 }
 
-@media screen and (--mediumMin) {
+[data-media-medium] {
   .grouping {
     display: flex;
   }
