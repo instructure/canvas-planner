@@ -4,6 +4,21 @@ exports[`renders base component using dayKeys 1`] = `
 <div
   className="PlannerApp"
 >
+  <ScreenReaderContent
+    as="span"
+  >
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      size="medium"
+      type="button"
+      variant="default"
+    >
+      Load prior dates
+    </Button>
+  </ScreenReaderContent>
   <Day
     day="2017-04-24"
     itemsForDay={
@@ -38,6 +53,21 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
 <div
   className="PlannerApp"
 >
+  <ScreenReaderContent
+    as="span"
+  >
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      size="medium"
+      type="button"
+      variant="default"
+    >
+      Load prior dates
+    </Button>
+  </ScreenReaderContent>
   <Container
     display="block"
     padding="xx-large medium"
@@ -49,5 +79,55 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
       variant="default"
     />
   </Container>
+</div>
+`;
+
+exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
+<div
+  className="PlannerApp"
+>
+  <ScreenReaderContent
+    as="span"
+  >
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      size="medium"
+      type="button"
+      variant="default"
+    >
+      Load prior dates
+    </Button>
+  </ScreenReaderContent>
+  <LoadingPastIndicator />
+  <Day
+    day="2017-04-24"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-25"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-26"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
 </div>
 `;

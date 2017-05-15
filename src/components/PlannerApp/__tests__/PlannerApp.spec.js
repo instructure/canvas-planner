@@ -29,3 +29,13 @@ it('shows only the loading component when the isLoading prop is true', () => {
   );
   expect(wrapper).toMatchSnapshot();
 });
+
+it('shows the loading past indicator when loadingPast prop is true', () => {
+  const wrapper = shallow(
+    <PlannerApp
+      {...getDefaultValues()}
+      loadingPast={true}
+    />
+  );
+  expect(wrapper).toMatchSnapshot();
+});

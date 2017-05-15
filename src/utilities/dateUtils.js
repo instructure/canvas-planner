@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 import formatMessage from '../format-message';
 
 function getTodaysDetails () {
@@ -58,4 +58,11 @@ export function getFullDate (date) {
 
 export function formatDayKey (date) {
   return moment(date, moment.ISO_8601).format('YYYY-MM-DD');
+}
+
+export function getFirstLoadedMoment (state) {
+  if (!state.days.length) return moment().tz(state.timeZone).startOf('day');
+  const firstLoadedDay = state.days[0];
+  const firstLoadedItem = firstLoadedDay[1][0];
+  return firstLoadedItem.dateBucketMoment;
 }

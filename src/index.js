@@ -6,7 +6,8 @@ import PlannerHeader from './components/PlannerHeader';
 import ApplyTheme from 'instructure-ui/lib/components/ApplyTheme';
 import i18n from './i18n';
 import configureStore from './store/configureStore';
-import { initialOptions, getPlannerItems } from './actions';
+import { initialOptions, getPlannerItems, scrollIntoPast } from './actions';
+import { registerScrollEvents } from './utilities/scrollUtils';
 import moment from 'moment-timezone';
 
 const defaultOptions = {
@@ -18,6 +19,10 @@ const defaultOptions = {
 
 export const store = configureStore();
 
+function handleScrollIntoPastAttempt () {
+  store.dispatch(scrollIntoPast());
+}
+
 export default {
   render (element, options) {
     // Using this pattern because default params don't merge objects
@@ -25,8 +30,9 @@ export default {
     i18n.init(opts.locale);
     moment.locale(opts.locale);
     moment.tz.setDefault(opts.timeZone);
-    store.dispatch(initialOptions(opts));
+    registerScrollEvents(handleScrollIntoPastAttempt);
 
+    store.dispatch(initialOptions(opts));
     store.dispatch(getPlannerItems(moment.tz(opts.timeZone).startOf('day')));
 
     ReactDOM.render(applyTheme(

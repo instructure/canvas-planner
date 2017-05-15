@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders stuff 1`] = `
+<div>
+  <Spinner
+    size="small"
+    title="Loading past items..."
+    variant="default"
+  />
+  Loading Past Items...
+</div>
+`;

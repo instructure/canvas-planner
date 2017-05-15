@@ -5,6 +5,9 @@ export default handleActions({
     return { isLoading: true };
   },
   GOT_ITEMS_SUCCESS: (state, action) => {
-    return { isLoading: false };
-  }
-}, { isLoading: false });
+    return { isLoading: false, loadingPast: false };
+  },
+  GETTING_PAST_ITEMS: (state, action) => {
+    return { loadingPast: true };
+  },
+}, { isLoading: false, loadingPast: false });

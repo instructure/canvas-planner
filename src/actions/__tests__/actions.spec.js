@@ -1,6 +1,6 @@
 import * as Actions from '../index';
 import moxios from 'moxios';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import {isPromise, moxiosWait, moxiosRespond} from '../../test-utils';
 
 jest.mock('../../utilities/apiUtils', () => ({
@@ -11,6 +11,9 @@ jest.mock('../../utilities/apiUtils', () => ({
 const getBasicState = () => ({
   courses: [],
   timeZone: 'UTC',
+  days: [
+    ['2017-05-24', [{id: '42', dateBucketMoment: moment.tz('2017-05-24', 'UTC')}]],
+  ],
 });
 
 describe('api actions', () => {
@@ -115,6 +118,33 @@ describe('api actions', () => {
         deletePromise
       ).then((result) => {
         expect(result).toMatchObject({some: 'response data', transformedToInternal: true});
+      });
+    });
+  });
+
+  describe('scrollIntoPast', () => {
+    it('dispatches scrolling and got items actions', () => {
+      const mockDispatch = jest.fn();
+      const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
+      expect(isPromise(scrollPromise));
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS'});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'GOT_ITEMS_SUCCESS', payload: scrollPromise});
+    });
+
+    it('sends due_before parameter', () => {
+      const mockDispatch = jest.fn();
+      const beforeMoment = getBasicState().days[0][1][0].dateBucketMoment;
+      Actions.scrollIntoPast()(mockDispatch, getBasicState);
+      return moxiosWait((request) => {
+        expect(moment(request.config.params.due_before).isSame(beforeMoment)).toBeTruthy();
+      });
+    });
+
+    it('resolves the promise with transformed response data', () => {
+      const mockDispatch = jest.fn();
+      const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
+      return moxiosRespond([{some: 'response'}], scrollPromise).then(result => {
+        expect(result).toMatchObject([{some: 'response', transformedToInternal: true}]);
       });
     });
   });

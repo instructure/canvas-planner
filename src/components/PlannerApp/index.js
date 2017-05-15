@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from 'instructure-ui/lib/components/Button';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
-import { arrayOf, oneOfType, bool, object, string } from 'prop-types';
+import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
+import { arrayOf, oneOfType, bool, object, string, func } from 'prop-types';
 import Day from '../Day';
+import LoadingPastIndicator from '../LoadingPastIndicator';
 import formatMessage from '../../format-message';
+import {scrollIntoPast} from '../../actions';
 
 export class PlannerApp extends Component {
   static propTypes = {
@@ -14,43 +18,59 @@ export class PlannerApp extends Component {
       )
     ),
     timeZone: string,
-    isLoading: bool
+    isLoading: bool,
+    loadingPast: bool,
+    scrollIntoPast: func,
   };
 
   static defaultProps = {
     isLoading: false
   };
 
+  renderLoading () {
+    return <Container
+      display="block"
+      padding="xx-large medium"
+      textAlign="center"
+    >
+      <Spinner
+        title={formatMessage('Loading planner items')}
+        size="medium"
+      />
+    </Container>;
+  }
+
+  renderLoadingPast () {
+    if (this.props.loadingPast) return <LoadingPastIndicator />;
+  }
+
+  renderBody (children) {
+    return <div className="PlannerApp">
+      <ScreenReaderContent>
+        <Button onClick={this.props.scrollIntoPast}>
+          {formatMessage('Load prior dates')}
+        </Button>
+      </ScreenReaderContent>
+      {this.renderLoadingPast()}
+      {children}
+    </div>;
+  }
+
   render () {
-    return (
-      <div className="PlannerApp">
-        {
-          this.props.isLoading ? (
-            <Container
-              display="block"
-              padding="xx-large medium"
-              textAlign="center"
-            >
-              <Spinner
-                title={formatMessage('Loading planner items')}
-                size="medium"
-              />
-            </Container>
-          ) : (
-            this.props.days.map(([dayKey, dayItems]) => {
-              return (
-                <Day
-                  timeZone={this.props.timeZone}
-                  day={dayKey}
-                  itemsForDay={dayItems}
-                  key={dayKey}
-                />
-              );
-            })
-          )
-        }
-      </div>
-    );
+    if (this.props.isLoading) {
+      return this.renderBody(this.renderLoading());
+    }
+
+    const children = this.props.days.map(([dayKey, dayItems]) => {
+      return <Day
+        timeZone={this.props.timeZone}
+        day={dayKey}
+        itemsForDay={dayItems}
+        key={dayKey}
+      />;
+    });
+
+    return this.renderBody(children);
   }
 }
 
@@ -58,9 +78,10 @@ const mapStateToProps = (state) => {
   return {
     days: state.days,
     isLoading: state.loading.isLoading,
+    loadingPast: state.loading.loadingPast,
     timeZone: state.timeZone,
   };
 };
 
-
-export default connect(mapStateToProps)(PlannerApp);
+const mapDispatchToProps = {scrollIntoPast};
+export default connect(mapStateToProps, mapDispatchToProps)(PlannerApp);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import {formatDayKey} from '../utilities/dateUtils';
 import { transformApiToInternalItem, transformInternalToApiItem } from '../utilities/apiUtils';
+import { getFirstLoadedMoment } from '../utilities/dateUtils';
 
 export const {
   initialOptions,
@@ -12,6 +13,7 @@ export const {
   savedPlannerItem,
   deletingPlannerItem,
   deletedPlannerItem,
+  gettingPastItems,
 }  = createActions(
   'INITIAL_OPTIONS',
   'GOT_ITEMS_SUCCESS',
@@ -20,6 +22,7 @@ export const {
   'SAVED_PLANNER_ITEM',
   'DELETING_PLANNER_ITEM',
   'DELETED_PLANNER_ITEM',
+  'GETTING_PAST_ITEMS',
 );
 
 let dayCount = 1;
@@ -77,6 +80,23 @@ export const deletePlannerItem = (plannerItem) => {
       url: `api/v1/planner/items/${plannerItem.id}`,
     }).then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone));
     dispatch(deletedPlannerItem(promise));
+    return promise;
+  };
+};
+
+export const scrollIntoPast = () => {
+  return (dispatch, getState) => {
+    const beforeMoment = getFirstLoadedMoment(getState());
+    dispatch(gettingPastItems());
+    const promise =
+      axios.get('api/v1/planner/items', {
+        params: {
+          due_before: beforeMoment.format(),
+        }
+      }).then((response) => {
+        return response.data.map(item => transformApiToInternalItem(item, getState().courses, getState().timeZone));
+      });
+    dispatch(gotItemsSuccess(promise));
     return promise;
   };
 };

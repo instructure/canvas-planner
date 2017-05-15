@@ -1,6 +1,5 @@
-import moment from 'moment';
-import { isToday, getFriendlyDate, getFullDate, isInPast } from '../dateUtils';
-
+import moment from 'moment-timezone';
+import { isToday, getFriendlyDate, getFullDate, isInPast, getFirstLoadedMoment } from '../dateUtils';
 
 describe('isToday', () => {
   it('returns true when the date passed in is the current date', () => {
@@ -68,5 +67,21 @@ describe('isInPast', () => {
   it('returns false when the date is after today', () => {
     const date = moment().add(1, 'days');
     expect(isInPast(date)).toBeFalsy();
+  });
+});
+
+describe('getFirstLoadedMoment', () => {
+  it('returns today when there are no days loaded', () => {
+    const today = moment.tz('Asia/Tokyo').startOf('day');
+    const result = getFirstLoadedMoment({timeZone: 'Asia/Tokyo', days: []});
+    expect(result.isSame(today)).toBeTruthy();
+  });
+
+  it('returns the dateBucketMoment of the first time of the first day', () => {
+    const expected = moment().tz('Asia/Tokyo').startOf('day');
+    const result = getFirstLoadedMoment({days: [
+      ['some date', [{dateBucketMoment: expected}]],
+    ]});
+    expect(result.isSame(expected)).toBeTruthy();
   });
 });
