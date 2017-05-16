@@ -1,5 +1,4 @@
 import React from 'react';
-import 'instructure-ui/lib/themes/canvas';
 import { shallow } from 'enzyme';
 import PlannerItem from '../index';
 import moment from 'moment-timezone';

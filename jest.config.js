@@ -6,6 +6,9 @@ module.exports = {
   snapshotSerializers: [
     'enzyme-to-json/serializer'
   ],
+  setupFiles: [
+    './jest-env.js'
+  ],
   coverageReporters: [
     'html',
     'text'

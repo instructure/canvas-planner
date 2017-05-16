@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import 'instructure-ui/lib/themes/canvas';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import { arrayOf, oneOfType, bool, object, string } from 'prop-types';

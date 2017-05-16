@@ -1,5 +1,4 @@
 import React from 'react';
-import 'instructure-ui/lib/themes/canvas';
 import { shallow, mount } from 'enzyme';
 import Grouping from '../index';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'instructure-ui/lib/themes/canvas';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 import Day from '../index';

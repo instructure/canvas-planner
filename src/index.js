@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import PlannerApp from './components/PlannerApp';
 import PlannerHeader from './components/PlannerHeader';
+import ApplyTheme from 'instructure-ui/lib/components/ApplyTheme';
 import i18n from './i18n';
 import configureStore from './store/configureStore';
 import { initialOptions, getPlannerItems } from './actions';
@@ -28,19 +29,30 @@ export default {
 
     store.dispatch(getPlannerItems(moment.tz(opts.timeZone).startOf('day')));
 
-    ReactDOM.render(
+    ReactDOM.render(applyTheme(
       <Provider store={store}>
           <PlannerApp />
       </Provider>
-      , element);
+    , opts.theme), element);
   },
 
   // This method allows you to render the header items into a separate DOM node
-  renderHeader (element) {
-    ReactDOM.render(
+  renderHeader (element, options) {
+    // Using this pattern because default params don't merge objects
+    const opts = { ...defaultOptions, ...options };
+
+    ReactDOM.render(applyTheme(
       <Provider store={store}>
         <PlannerHeader />
       </Provider>
-    , element);
+    , opts.theme), element);
   }
 };
+
+function applyTheme (el, theme) {
+  return theme ? (
+    <ApplyTheme theme={ApplyTheme.generateTheme(theme)}>
+      {el}
+    </ApplyTheme>
+  ): el;
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import 'instructure-ui/lib/themes/canvas';
 import CompletedItemsFacade from '../index';
 
 it('renders as an li with a CheckboxFacade and a string of text indicating count', () => {

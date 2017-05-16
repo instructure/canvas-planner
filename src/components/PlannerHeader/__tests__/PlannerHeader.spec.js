@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import 'instructure-ui/lib/themes/canvas';
 import { PlannerHeader } from '../index';
 
 const defaultProps = {
