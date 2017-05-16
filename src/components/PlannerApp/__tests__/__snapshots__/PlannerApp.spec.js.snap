@@ -40,7 +40,7 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
 >
   <Container
     display="block"
-    padding="xxLarge medium"
+    padding="xx-large medium"
     textAlign="center"
   >
     <Spinner

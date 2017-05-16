@@ -9,8 +9,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-
-import 'instructure-ui/lib/themes/canvas';
 import CanvasPlanner, { store as PlannerStore } from './index';
 import { addDay } from '../src/actions';
 
@@ -18,6 +16,9 @@ import Button from 'instructure-ui/lib/components/Button';
 import Select from 'instructure-ui/lib/components/Select';
 import Grid, { GridCol, GridRow } from 'instructure-ui/lib/components/Grid';
 import Typography from 'instructure-ui/lib/components/Typography';
+import { canvas } from 'instructure-ui/lib/themes';
+
+canvas.use();
 
 const header_mount_point = document.getElementById('header_mount_point');
 CanvasPlanner.renderHeader(header_mount_point);

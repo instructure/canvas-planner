@@ -26,8 +26,9 @@ export class PlannerApp extends Component {
           this.props.isLoading ? (
             <Container
               display="block"
-              padding="xxLarge medium"
-              textAlign="center">
+              padding="xx-large medium"
+              textAlign="center"
+            >
               <Spinner
                 title={formatMessage('Loading planner items')}
                 size="medium"

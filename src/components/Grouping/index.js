@@ -95,7 +95,8 @@ class Grouping extends Component {
           </a>
           <ol
             className={styles.itemList}
-            style={{borderColor: this.props.courseInfo.color}}>
+            style={{borderColor: this.props.courseInfo.color}}
+          >
             { this.renderItemsAndFacade(this.props.items)}
           </ol>
         </li>

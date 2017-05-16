@@ -88,7 +88,7 @@ export class PlannerHeader extends Component {
           closeButtonLabel={formatMessage("Close")}
           isOpen={this.state.trayOpen}
           label={formatMessage("Create/update planner item")}
-          placement="right"
+          placement="end"
           trapFocus={true}
           onExited={this.noteBtnOnClose}
           onExiting={this.noteBtnOnClose}
@@ -97,7 +97,8 @@ export class PlannerHeader extends Component {
           <UpdateItemTray
             onSavePlannerItem={this.handleSavePlannerItem}
             onDeletePlannerItem={this.handleDeletePlannerItem}
-            courses={this.props.courses} />
+            courses={this.props.courses}
+          />
         </Tray>
       </div>
     );

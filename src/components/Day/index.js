@@ -46,7 +46,8 @@ class Day extends Component {
     return (
       <div className={styles.root}>
           <Heading
-            border={(hasGroupedItems) ? null : 'bottom'}>
+            border={(hasGroupedItems) ? 'none' : 'bottom'}
+          >
             <Typography
               as="div"
               transform="uppercase"
@@ -63,7 +64,7 @@ class Day extends Component {
             </Typography>
           </Heading>
 
-        <div className={styles.dayContent}>
+        <div>
           {
             (hasGroupedItems) ? (
               Object.keys(this.state.groupedItems).map((cid) => {
@@ -76,8 +77,12 @@ class Day extends Component {
                 );
               })
             ) : (
-              <Container textAlign="center" margin="small 0 0 0">
-                <Typography>{formatMessage('Nothing planned today')}</Typography>
+              <Container
+                textAlign="center"
+                display="block"
+                margin="small 0 0 0"
+              >
+                {formatMessage('Nothing planned today')}
               </Container>
             )
           }

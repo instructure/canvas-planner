@@ -5,7 +5,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
   <Button
     as="button"
     buttonRef={[Function]}
-    isBlock={false}
+    fluidWidth={false}
     margin="0"
     onClick={[Function]}
     size="medium"
@@ -19,7 +19,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
   <Button
     as="button"
     buttonRef={[Function]}
-    isBlock={false}
+    fluidWidth={false}
     margin="0"
     size="medium"
     type="button"
@@ -45,7 +45,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     onExited={[Function]}
     onExiting={[Function]}
     onRequestClose={[Function]}
-    placement="right"
+    placement="end"
     shadow={true}
     trapFocus={true}
   >

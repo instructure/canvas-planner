@@ -30,12 +30,7 @@ exports[`renders the base component with required props 1`] = `
       margin="small 0 0 0"
       textAlign="center"
     >
-      <Typography
-        as="span"
-        size="medium"
-      >
-        Nothing planned today
-      </Typography>
+      Nothing planned today
     </Container>
   </div>
 </div>

@@ -102,7 +102,7 @@ export class UpdateItemTray extends Component {
     if (this.props.noteItem == null) return;
     return <Button
       variant="light"
-      margin="0 xSmall 0 0"
+      margin="0 x-small 0 0"
       onClick={this.handleDeleteClick}>
       {formatMessage("Delete")}
     </Button>;
@@ -155,7 +155,8 @@ export class UpdateItemTray extends Component {
       <Select
         label={formatMessage("Course")}
         value={courseId}
-        onChange={this.handleCourseIdChange}>
+        onChange={this.handleCourseIdChange}
+      >
         <option value="none">{formatMessage("Optional: Add Course")}</option>
         {this.renderCourseSelectOptions()}
       </Select>
@@ -178,8 +179,16 @@ export class UpdateItemTray extends Component {
   render () {
     return (
       <div className={styles.root}>
-        <Container as="section" margin="large medium" textAlign="right">
-          <Container margin="medium 0">
+        <Container
+          display="block"
+          as="section"
+          margin="large medium"
+          textAlign="end"
+        >
+          <Container
+            display="block"
+            margin="medium 0"
+          >
             {this.renderTitleInput()}
           </Container>
           <Grid vAlign="bottom" colSpacing="none">
@@ -194,10 +203,16 @@ export class UpdateItemTray extends Component {
               </GridCol>
             </GridRow>
           </Grid>
-          <Container margin="medium 0">
+          <Container
+            display="block"
+            margin="medium 0"
+          >
             {this.renderCourseSelect()}
           </Container>
-          <Container margin="medium 0">
+          <Container
+            display="block"
+            margin="medium 0"
+          >
             {this.renderDetailsInput()}
           </Container>
           {this.renderDeleteButton()}

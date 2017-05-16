@@ -39,7 +39,7 @@
   margin-right: var(--checkboxRightMarginPhoneUp);
 }
 
-@media screen and (--tabletMin) {
+@media screen and (--mediumMin) {
   .item {
     padding: var(--paddingTabletUp);
     display: flex;
@@ -56,7 +56,7 @@
   }
 }
 
-@media screen and (--wideMin) {
+@media screen and (--xLargeMin) {
   .item {
     padding: var(--paddingWideUp);
   }
