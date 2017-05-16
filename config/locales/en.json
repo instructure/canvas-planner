@@ -35,8 +35,8 @@
   "details_98a31b68": {
     "message": "Details"
   },
-  "due_date_time_short_f4d2e61c": {
-    "message": "DUE: { date, time, short }"
+  "due_date_8ce289b6": {
+    "message": "DUE: { date }"
   },
   "loading_planner_items_947a813d": {
     "message": "Loading planner items"
