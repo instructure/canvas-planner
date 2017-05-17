@@ -1,5 +1,6 @@
 import * as Actions from '../index';
 import moxios from 'moxios';
+import moment from 'moment';
 
 import {isPromise, moxiosWait} from '../../test-utils';
 
@@ -14,7 +15,7 @@ describe('api actions', () => {
 
   describe('getPlannerItems', () => {
     it('dispatches startLoadingItems() initially', () => {
-      const thunk = Actions.getPlannerItems();
+      const thunk = Actions.getPlannerItems(moment());
       const fakeDispatch = jest.fn();
       thunk(fakeDispatch);
       expect(fakeDispatch.mock.calls[0][0]).toMatchObject({

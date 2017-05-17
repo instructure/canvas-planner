@@ -25,7 +25,7 @@ export default {
     moment.locale(opts.locale);
 
     store.dispatch(initializeCourses(opts.courses));
-    store.dispatch(getPlannerItems());
+    store.dispatch(getPlannerItems(moment.tz(opts.timeZone).startOf('day')));
 
     ReactDOM.render(
       <Provider store={store}>

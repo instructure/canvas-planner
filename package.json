@@ -12,7 +12,7 @@
     "build": "./scripts/build",
     "start": "npm-run-all --parallel start:*",
     "start:json-server": "yarn run start:json-server:no-delay -- --delay 1500",
-    "start:json-server:no-delay": "json-server --watch --routes ./fake_server/routes.json --port 3004 ./fake_server/db.js",
+    "start:json-server:no-delay": "json-server --watch --routes ./fake_server/routes.json --port 3004 ./fake_server/db.js --middlewares ./fake_server/dateRewriter.js",
     "start:webpack-dev": "BABEL_ENV=development webpack-dev-server --port 3005 --host 0.0.0.0",
     "test": "jest",
     "test:coverage": "jest --coverage",
