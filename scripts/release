@@ -55,5 +55,13 @@ echo '############################################################'
 npm publish
 
 echo '############################################################'
+echo '#                  Pushing release tag                     #'
+echo '############################################################'
+release_tag="v$next_version"
+git tag -am "Version $next_version" $release_tag
+git push origin $release_tag
+
+
+echo '############################################################'
 echo '            SUCCESSFULLY PUBLISHED   '$next_version
 echo '############################################################'
