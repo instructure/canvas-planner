@@ -1,6 +1,6 @@
 {
   "name": "canvas-planner",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "UI portion of planner application for canvas-lms.",
   "main": "lib/index.js",
   "scripts": {
@@ -52,6 +52,7 @@
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
     "redux-logger": "^3.0.1",
+    "react-moment-proptypes": "^1.4.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
   },
@@ -99,7 +100,6 @@
     "react": "15.4.2",
     "react-addons-test-utils": "15.4.2",
     "react-dom": "15.4.2",
-    "react-moment-proptypes": "^1.4.0",
     "stylelint": "^7.10.1",
     "tinycolor2": "^1.4.1",
     "uglify-js": "^2.8.22",
