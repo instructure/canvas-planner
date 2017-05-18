@@ -20,6 +20,8 @@ export default function generator ({ borders, colors, media, spacing, typography
     heroBorderRadius: borders.radiusMedium,
     heroLinkPadding: '0 0.0625rem',
     defaultIconColor: colors.brand,
+    activityIndicatorPadding: spacing.small,
+    activityIndicatorWidth: spacing.small,
     ...media
   };
 }

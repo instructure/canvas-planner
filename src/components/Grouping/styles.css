@@ -68,6 +68,13 @@
   text-transform: var(--heroLinkNameTextTransform);
 }
 
+.activityIndicator {
+  display: flex;
+  align-items: center;
+  width: var(--activityIndicatorWidth);
+  padding: var(--activityIndicatorPadding);
+}
+
 [data-media-medium] {
   .grouping {
     display: flex;

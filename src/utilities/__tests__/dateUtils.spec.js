@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { isToday, getFriendlyDate, getFullDate } from '../dateUtils';
+import { isToday, getFriendlyDate, getFullDate, isInPast } from '../dateUtils';
 
 
 describe('isToday', () => {
@@ -51,5 +51,22 @@ describe('getFullDate', () => {
   it('returns the format month day year when not a special day', () => {
     const date = moment().add(3, 'days');
     expect(getFullDate(date)).toEqual(date.format('MMMM D, YYYY'));
+  });
+});
+
+describe('isInPast', () => {
+  it('returns true when the date is before today', () => {
+    const date = moment().subtract(1, 'days');
+    expect(isInPast(date)).toBeTruthy();
+  });
+
+  it('returns false when the date is today', () => {
+    const date = moment();
+    expect(isInPast(date)).toBeFalsy();
+  });
+
+  it('returns false when the date is after today', () => {
+    const date = moment().add(1, 'days');
+    expect(isInPast(date)).toBeFalsy();
   });
 });

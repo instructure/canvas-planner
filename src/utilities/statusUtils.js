@@ -1,13 +1,13 @@
 import formatMessage from '../format-message';
 const PILL_MAPPING = {
-  'missing': { text: formatMessage('Missing'), variant: 'danger' },
-  'late': { text: formatMessage('Late'), variant: 'danger' },
-  'graded': { text: formatMessage('Graded') },
-  'excused': { text: formatMessage('Excused') },
-  'submitted': { text: formatMessage('Submitted') },
-  'new_grades': { text: formatMessage('New Grades') },
-  'new_feedback': { text: formatMessage('New Feedback') },
-  'new_replies': { text: formatMessage('New Replies') },
+  'missing': { id: 'missing', text: formatMessage('Missing'), variant: 'danger' },
+  'late': { id: 'late', text: formatMessage('Late'), variant: 'danger' },
+  'graded': { id: 'graded', text: formatMessage('Graded') },
+  'excused': { id: 'excused', text: formatMessage('Excused') },
+  'submitted': { id: 'submitted', text: formatMessage('Submitted') },
+  'new_grades': { id: 'new_grades', text: formatMessage('New Grades') },
+  'new_feedback': { id: 'new_feedback', text: formatMessage('New Feedback') },
+  'new_replies': { id: 'new_replies', text: formatMessage('New Replies') },
 };
 
 /**

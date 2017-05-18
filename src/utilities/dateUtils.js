@@ -22,6 +22,11 @@ export function isToday (date, today = moment()) {
   return today.isSame(momentizedDate, 'day');
 }
 
+export function isInPast (date, today = moment()) {
+  const momentizedDate = new moment(date);
+  return momentizedDate.isBefore(today, 'day');
+}
+
 /**
 * Given a date (in any format that moment will digest)
 * it will return a string indicating Today, Tomorrow, Yesterday

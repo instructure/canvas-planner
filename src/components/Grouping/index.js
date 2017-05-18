@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
 import containerQuery from 'instructure-ui/lib/util/containerQuery';
+import Badge from 'instructure-ui/lib/components/Badge';
+import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
 import { partition } from 'lodash';
-import { arrayOf, string, object } from 'prop-types';
+import { arrayOf, string, object, bool } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import PlannerItem from '../PlannerItem';
@@ -15,14 +17,28 @@ class Grouping extends Component {
   static propTypes = {
     items: arrayOf(object).isRequired,
     courseInfo: object.isRequired,
-    timeZone: string.isRequired
+    timeZone: string.isRequired,
+    isInPast: bool
+  }
+
+  static defaultProps = {
+    isInPast: false
   }
 
   constructor (props) {
     super(props);
     this.state = {
-      showCompletedItems: false
+      showCompletedItems: false,
+      badgeMap: this.setupItemBadgeMap(props.items)
     };
+  }
+
+  setupItemBadgeMap (items) {
+    const mapping = {};
+    items.forEach((item) => {
+      mapping[item.id] = getBadgesForItem(item);
+    });
+    return mapping;
   }
 
   handleFacadeClick = (e) => {
@@ -40,6 +56,7 @@ class Grouping extends Component {
     if (this.state.showCompletedItems) {
       itemsToRender = items;
     }
+
     const componentsToRender = itemsToRender.map(item => (
       <PlannerItem
         key={item.id}
@@ -53,7 +70,7 @@ class Grouping extends Component {
         points={item.points}
         html_url={item.html_url}
         toggleCompletion={() => console.log('send me back to canvas')}
-        badges={getBadgesForItem(item)}
+        badges={this.state.badgeMap[item.id]}
       />
     ));
 
@@ -73,10 +90,30 @@ class Grouping extends Component {
     return componentsToRender;
   }
 
+  renderNotificationBadge () {
+    if (this.props.isInPast && Object.keys(this.state.badgeMap).length) {
+
+      const hasMissingBadge = badgeObj => badgeObj.id === 'missing';
+      const hasItemWithMissingBadge = itemId => this.state.badgeMap[itemId].some(hasMissingBadge);
+      const variant = Object.keys(this.state.badgeMap).some(hasItemWithMissingBadge) ? 'danger' : 'primary';
+
+      return (
+        <PresentationContent>
+          <Badge standalone type="notification" variant={variant} />
+        </PresentationContent>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render () {
     return (
       <ol className={styles.groupingList}>
         <li className={styles.grouping}>
+          <div className={styles.activityIndicator}>
+            {this.renderNotificationBadge()}
+          </div>
           <a href={this.props.courseInfo.url || "#"}
             ref={(c) => { this.groupingLink = c; }}
             className={styles.groupingHero}

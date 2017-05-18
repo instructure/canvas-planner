@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment-timezone';
 import CanvasPlanner, { store as PlannerStore } from './index';
-import { addDay } from '../src/actions';
+import { addDay, getPlannerItems } from '../src/actions';
 
 import Button from 'instructure-ui/lib/components/Button';
 import Select from 'instructure-ui/lib/components/Select';
@@ -79,79 +79,94 @@ class DemoArea extends Component {
     this.dayCount++;
   }
 
+  handleFetchBeforeToday  = (e) => {
+    e.preventDefault();
+    const fakeDay = moment.tz(this.state.timeZone).startOf('day').subtract(2, 'weeks');
+    PlannerStore.dispatch(getPlannerItems(fakeDay));
+  }
+
   componentWillUpdate (nextProps, nextState) {
     CanvasPlanner.render(mount_point, { ...nextState });
     CanvasPlanner.renderHeader(header_mount_point, { ...nextState });
   }
 
   render () {
-    return (
-      <div style={{ backgroundColor: 'papayawhip', padding: '10px'}}>
-        <Typography weight="bold" color="error">
-          This area is only shown here, not in production
-        </Typography>
-        <Grid vAlign="middle">
-          <GridRow>
-            <GridCol>
-              <Select
-                id="localeSelect"
-                label="Locale"
-                layout="inline"
-                value={this.state.locale}
-                onChange={this.handleChange}
-                name="locale"
-                size="small"
-                width="100px"
-              >
-                {
-                  locales.map(l => <option key={l} value={l}>{l}</option>)
-                }
-              </Select>
-            </GridCol>
-            <GridCol>
-              <Select
-                id="tzSelect"
-                name="timeZone"
-                value={this.state.timeZone}
-                onChange={this.handleChange}
-                size="small"
-                width="200px"
-                layout="inline"
-                label="Timezone"
-              >
-                {
-                  moment.tz.names().map(tz => <option key={tz} value={tz}>{tz}</option>)
-                }
-              </Select>
-            </GridCol>
-            <GridCol width="auto">
-              <Button
-                onClick={this.handleAddDay}
-              >
-                Add a day
-              </Button>
-            </GridCol>
-          </GridRow>
-          <GridRow hAlign="end">
-            <GridCol width="auto">
-              <Select
-                name="theme"
-                label="Theme"
-                layout="inline"
-                onChange={this.handleChange}
-                value={this.state.theme}
-              >
-                {
-                  themes.map((key) => {
-                    return <option key={key} value={key}>{key}</option>;
-                  })
-                }
-              </Select>
-            </GridCol>
-          </GridRow>
-        </Grid>
-      </div>
-    );
+      return (
+        <div style={{ backgroundColor: 'papayawhip', padding: '10px'}}>
+          <Typography weight="bold" color="error">
+            This area is only shown here, not in production
+          </Typography>
+          <Grid vAlign="middle">
+            <GridRow>
+              <GridCol>
+                <Select
+                  id="localeSelect"
+                  label="Locale"
+                  layout="inline"
+                  value={this.state.locale}
+                  onChange={this.handleChange}
+                  name="locale"
+                  size="small"
+                  width="100px"
+                >
+                  {
+                    locales.map(l => <option key={l} value={l}>{l}</option>)
+                  }
+                </Select>
+              </GridCol>
+              <GridCol>
+                <Select
+                  id="tzSelect"
+                  name="timeZone"
+                  value={this.state.timeZone}
+                  onChange={this.handleChange}
+                  size="small"
+                  width="200px"
+                  layout="inline"
+                  label="Timezone"
+                >
+                  {
+                    moment.tz.names().map(tz => <option key={tz} value={tz}>{tz}</option>)
+                  }
+                </Select>
+              </GridCol>
+              <GridCol>
+                <Button
+                  onClick={this.handleAddDay}
+                >
+                  Add a day
+                </Button>
+              </GridCol>
+              <GridCol>
+                <Button
+                  onClick={this.handleFetchBeforeToday}
+                >
+                  Fetch previous days
+                </Button>
+              </GridCol>
+            </GridRow>
+            <GridRow hAlign="end">
+              <GridCol width="auto">
+                <Select
+                  name="theme"
+                  label="Theme"
+                  layout="inline"
+                  onChange={this.handleChange}
+                  value={this.state.theme}
+                >
+                  {
+                    themes.map((key) => {
+                      return <option key={key} value={key}>{key}</option>;
+                    })
+                  }
+                </Select>
+              </GridCol>
+            </GridRow>
+          </Grid>
+
+        </div>
+
+      );
   }
 }
 

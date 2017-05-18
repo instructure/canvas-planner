@@ -90,6 +90,30 @@ it('does not render a CompletedItemsFacade when showCompletedItems state is true
   expect(wrapper.find('CompletedItemsFacade').length).toBe(0);
 });
 
+it('renders an activity notification when there are things in the past with status badges', () => {
+  const props = getDefaultProps();
+  props.items[0].status = ["graded"];
+  props.isInPast = true;
+
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper.find('Badge').length).toBe(1);
+});
+
+it('renders an activity notification with the "danger" color if it has a missing badge', () => {
+  const props = getDefaultProps();
+  props.items[0].status = ["missing"];
+  props.isInPast = true;
+
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper.find('Badge').props().variant).toBe('danger');
+});
+
 describe('handleFacadeClick', () => {
   it('sets focus to the groupingLink when called', () => {
     const wrapper = mount(
