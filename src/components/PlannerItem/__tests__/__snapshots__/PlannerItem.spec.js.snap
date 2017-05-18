@@ -11,7 +11,7 @@ exports[`renders Announcement correctly with everything 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Announcement is complete
+          Announcement I am a Announcement is complete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -108,7 +108,7 @@ exports[`renders Announcement correctly with just date 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Announcement is incomplete
+          Announcement I am a Announcement is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -181,7 +181,7 @@ exports[`renders Announcement correctly with just points 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Announcement is incomplete
+          Announcement I am a Announcement is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -276,7 +276,7 @@ exports[`renders Announcement correctly without right side content 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Announcement is incomplete
+          Announcement I am a Announcement is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -347,7 +347,7 @@ exports[`renders Assignment correctly with everything 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Assignment is complete
+          Assignment I am a Assignment is complete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -444,7 +444,7 @@ exports[`renders Assignment correctly with just date 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Assignment is incomplete
+          Assignment I am a Assignment is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -517,7 +517,7 @@ exports[`renders Assignment correctly with just points 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Assignment is incomplete
+          Assignment I am a Assignment is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -612,7 +612,7 @@ exports[`renders Assignment correctly without right side content 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Assignment is incomplete
+          Assignment I am a Assignment is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -683,7 +683,7 @@ exports[`renders Calendar Event correctly with everything 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Calendar Event is complete
+          Calendar Event I am a Calendar Event is complete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -780,7 +780,7 @@ exports[`renders Calendar Event correctly with just date 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Calendar Event is incomplete
+          Calendar Event I am a Calendar Event is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -853,7 +853,7 @@ exports[`renders Calendar Event correctly with just points 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Calendar Event is incomplete
+          Calendar Event I am a Calendar Event is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -948,7 +948,7 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Calendar Event is incomplete
+          Calendar Event I am a Calendar Event is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1019,7 +1019,7 @@ exports[`renders Discussion correctly with everything 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Discussion is complete
+          Discussion I am a Discussion is complete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1116,7 +1116,7 @@ exports[`renders Discussion correctly with just date 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Discussion is incomplete
+          Discussion I am a Discussion is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1189,7 +1189,7 @@ exports[`renders Discussion correctly with just points 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Discussion is incomplete
+          Discussion I am a Discussion is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1284,7 +1284,7 @@ exports[`renders Discussion correctly without right side content 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Discussion is incomplete
+          Discussion I am a Discussion is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1499,7 +1499,7 @@ exports[`renders Page correctly with everything 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Page is complete
+          Page I am a Page is complete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1596,7 +1596,7 @@ exports[`renders Page correctly with just date 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Page is incomplete
+          Page I am a Page is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1669,7 +1669,7 @@ exports[`renders Page correctly with just points 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Page is incomplete
+          Page I am a Page is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1764,7 +1764,7 @@ exports[`renders Page correctly without right side content 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Page is incomplete
+          Page I am a Page is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1835,7 +1835,7 @@ exports[`renders Quiz correctly with everything 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Quiz is complete
+          Quiz I am a Quiz is complete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -1932,7 +1932,7 @@ exports[`renders Quiz correctly with just date 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Quiz is incomplete
+          Quiz I am a Quiz is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -2005,7 +2005,7 @@ exports[`renders Quiz correctly with just points 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Quiz is incomplete
+          Quiz I am a Quiz is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -2100,7 +2100,7 @@ exports[`renders Quiz correctly without right side content 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task I am a Quiz is incomplete
+          Quiz I am a Quiz is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}
@@ -2171,7 +2171,7 @@ exports[`renders correctly 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Task This Assignment is about awesome stuff is incomplete
+          Assignment This Assignment is about awesome stuff is incomplete
         </ScreenReaderContent>
       }
       onChange={[Function]}

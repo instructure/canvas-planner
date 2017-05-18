@@ -133,14 +133,18 @@ class PlannerItem extends Component {
 
 
   render () {
-    let checkBoxLabel = this.state.completed
-      ? formatMessage('Task {title} is complete', { title: this.props.title })
-      : formatMessage('Task {title} is incomplete', { title: this.props.title });
+    let assignmentType = this.props.associated_item ?
+      this.props.associated_item : formatMessage('Task');
+    let checkboxLabel = this.state.completed ?
+      formatMessage('{assignmentType} {title} is complete',
+        { assignmentType: assignmentType, title: this.props.title }) :
+      formatMessage('{assignmentType} {title} is incomplete',
+        { assignmentType: assignmentType, title: this.props.title });
     return (
       <li className={styles.item}>
         <div className={styles.itemCompleted}>
           <Checkbox
-            label={<ScreenReaderContent>{checkBoxLabel}</ScreenReaderContent>}
+            label={<ScreenReaderContent>{checkboxLabel}</ScreenReaderContent>}
             checked={this.state.completed}
             onChange={this.toggleCompletion}
           />
