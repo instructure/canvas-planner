@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import CanvasPlanner, { store as PlannerStore } from './index';
 import { addDay } from '../src/actions';
 

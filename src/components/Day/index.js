@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import themeable from 'instructure-ui/lib/themeable';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';

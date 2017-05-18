@@ -10,6 +10,7 @@ exports[`renders the base component with required props 1`] = `
   >
     <Typography
       as="div"
+      letterSpacing="normal"
       lineHeight="condensed"
       size="medium"
       transform="uppercase"
@@ -18,6 +19,7 @@ exports[`renders the base component with required props 1`] = `
     </Typography>
     <Typography
       as="div"
+      letterSpacing="normal"
       lineHeight="condensed"
       size="medium"
     >
