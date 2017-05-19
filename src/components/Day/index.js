@@ -44,6 +44,7 @@ class Day extends Component {
 
   render () {
     const hasGroupedItems = !!Object.keys(this.state.groupedItems).length;
+
     return (
       <div className={styles.root}>
           <Heading
@@ -69,12 +70,19 @@ class Day extends Component {
           {
             (hasGroupedItems) ? (
               Object.keys(this.state.groupedItems).map((cid) => {
+                const courseInfo = this.state.groupedItems[cid][0].context || {};
                 return (
                   <Grouping
                     isInPast={this.isInPast}
-                    courseInfo={this.state.groupedItems[cid][0].context || {}}
+                    title={courseInfo.title}
+                    image_url={courseInfo.image_url}
+                    color={courseInfo.color}
                     timeZone={this.props.timeZone}
-                    items={this.state.groupedItems[cid]} key={cid}
+                    items={this.state.groupedItems[cid]}
+                    key={cid}
+                    theme={{
+                      titleColor: courseInfo.color
+                    }}
                   />
                 );
               })

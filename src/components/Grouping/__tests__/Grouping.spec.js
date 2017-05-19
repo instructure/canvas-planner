@@ -22,10 +22,10 @@ const getDefaultProps = () => ({
     }
   }],
   timeZone: "America/Denver",
-  courseInfo: {
-    color: "#5678",
-    id: 256
-  }
+  color: "#5678",
+  id: 256,
+  url: 'example.com',
+  title: 'Board Games'
 });
 
 it('renders the base component with required props', () => {
@@ -37,7 +37,6 @@ it('renders the base component with required props', () => {
 
 it('grouping contains link pointing to course url', () => {
   const props = getDefaultProps();
-  props.courseInfo.url = "example.com";
   const wrapper = shallow(
     <Grouping {...props} />
   );

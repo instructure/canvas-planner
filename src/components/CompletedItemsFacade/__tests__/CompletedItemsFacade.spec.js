@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CompletedItemsFacade from '../index';
 
-it('renders as an li with a CheckboxFacade and a string of text indicating count', () => {
+it('renders as a div with a CheckboxFacade and a string of text indicating count', () => {
   const wrapper = shallow(
     <CompletedItemsFacade
       onClick={() => {}}

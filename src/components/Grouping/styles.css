@@ -1,38 +1,43 @@
 /* Variables are defined in ./theme.js */
 
-.groupingList,
-.itemList {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  border-color: var(--defaultIconColor);
-  color: var(--defaultIconColor);
-}
-
-.grouping {
+.root {
   font-family: var(--fontFamily);
-  margin-top: var(--groupingTopMargin);
-  border-color: var(--defaultIconColor);
+  margin: var(--margin);
+  border-color: var(--groupColor);
+  color: var(--groupColor);
 }
 
-.groupingHero {
+.title {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  box-sizing: border-box;
+  text-align: center;
+  padding: var(--titlePadding);
+  background-color: var(--titleBackground);
+  text-transform: var(--titleTextTransform);
+  text-decoration: var(--titleTextDecoration);
+  font-size: var(--titleFontSize);
+  font-weight: var(--titleFontWeight);
+  letter-spacing: var(--titleLetterSpacing);
+  color: var(--titleColor);
+}
+
+.hero {
   position: relative;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  color: var(--heroLinkColor);
-  font-size: var(--heroLinkFontSize);
-  font-weight: var(--heroLinkFontWeight);
-  letter-spacing: var(--heroLinkLetterSpacing);
   outline: none;
-  padding: var(--heroLinkPadding);
+  padding: var(--heroPadding);
   text-decoration: none;
 
   /* this can become min-height once we drop IE11 support */
-  height: var(--groupingHeroMinHeight);
+  height: var(--heroMinHeight);
 
   .groupingName {
     text-decoration: var(--heroLinkTextDecoration);
@@ -42,30 +47,32 @@
   &:hover {
     text-decoration: none;
 
-    .groupingName {
-      text-decoration: var(--heroLinkTextDecorationHover);
+    .title {
+      text-decoration: var(--titleTextDecorationHover);
     }
   }
 }
 
-.groupingOverlay {
-  background-color: var(--defaultIconColor);
+.overlay {
+  background-color: var(--groupColor);
+  opacity: 1;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+
+  &.withImage {
+    opacity: var(--overlayOpacity);
+  }
 }
 
-.groupingName {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  box-sizing: border-box;
-  text-align: center;
-  padding: var(--heroLinkNamePadding);
-  background-color: var(--heroLinkNameBackground);
-  text-transform: var(--heroLinkNameTextTransform);
+.items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-color: var(--groupColor);
+  color: var(--groupColor);
 }
 
 .activityIndicator {
@@ -76,23 +83,30 @@
 }
 
 [data-media-medium] {
-  .grouping {
+  &.root {
     display: flex;
   }
 
-  .groupingHero {
-    flex: 0 0 var(--groupingHeroWidth);
+  .hero {
+    flex: 0 0 var(--heroWidth);
     height: auto;
   }
 
-  .groupingHero,
-  .groupingOverlay {
+  .hero,
+  .overlay {
     border-bottom-left-radius: var(--heroBorderRadius);
     border-top-left-radius: var(--heroBorderRadius);
   }
 
-  .itemList {
+  .items {
     flex: 1;
     border-top: var(--borderTopWidthTabletUp) solid;
+  }
+}
+
+[data-media-x-large] {
+  .hero {
+    flex: 0 0 var(--heroWidthLarge);
+    height: auto;
   }
 }

@@ -1,172 +1,190 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`grouping contains link pointing to course url 1`] = `
-<ol>
-  <li>
-    <div />
-    <a
-      href="example.com"
+<div>
+  <div />
+  <a
+    href="example.com"
+    style={
+      Object {
+        "backgroundImage": "url()",
+      }
+    }
+  >
+    <span
+      className=""
       style={
         Object {
-          "backgroundImage": "url()",
+          "backgroundColor": "#5678",
         }
       }
-    >
-      <span
-        style={
-          Object {
-            "backgroundColor": "#5678",
-            "opacity": 1,
-          }
-        }
-      />
-      <span
-        style={
-          Object {
-            "color": "#5678",
-          }
-        }
-      >
-        To Do
-      </span>
-    </a>
-    <ol
-      style={
-        Object {
-          "borderColor": "#5678",
-        }
+    />
+    <span>
+      Board Games
+    </span>
+  </a>
+  <ol
+    style={
+      Object {
+        "borderColor": "#5678",
       }
-    >
+    }
+  >
+    <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="5"
+        theme={
+          Object {
+            "iconColor": "#5678",
+          }
+        }
         title="San Juan"
         toggleCompletion={[Function]}
       />
+    </li>
+    <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="6"
+        theme={
+          Object {
+            "iconColor": "#5678",
+          }
+        }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
       />
-    </ol>
-  </li>
-</ol>
+    </li>
+  </ol>
+</div>
 `;
 
 exports[`renders a CompletedItemsFacade when completed items are present by default 1`] = `
-<ol>
-  <li>
-    <div />
-    <a
-      href="#"
+<div>
+  <div />
+  <a
+    href="example.com"
+    style={
+      Object {
+        "backgroundImage": "url()",
+      }
+    }
+  >
+    <span
+      className=""
       style={
         Object {
-          "backgroundImage": "url()",
+          "backgroundColor": "#5678",
         }
       }
-    >
-      <span
-        style={
-          Object {
-            "backgroundColor": "#5678",
-            "opacity": 1,
-          }
-        }
-      />
-      <span
-        style={
-          Object {
-            "color": "#5678",
-          }
-        }
-      >
-        To Do
-      </span>
-    </a>
-    <ol
-      style={
-        Object {
-          "borderColor": "#5678",
-        }
+    />
+    <span>
+      Board Games
+    </span>
+  </a>
+  <ol
+    style={
+      Object {
+        "borderColor": "#5678",
       }
-    >
+    }
+  >
+    <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="6"
+        theme={
+          Object {
+            "iconColor": "#5678",
+          }
+        }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
       />
+    </li>
+    <li>
       <CompletedItemsFacade
         badges={Array []}
         itemCount={1}
         onClick={[Function]}
       />
-    </ol>
-  </li>
-</ol>
+    </li>
+  </ol>
+</div>
 `;
 
 exports[`renders the base component with required props 1`] = `
-<ol>
-  <li>
-    <div />
-    <a
-      href="#"
+<div>
+  <div />
+  <a
+    href="example.com"
+    style={
+      Object {
+        "backgroundImage": "url()",
+      }
+    }
+  >
+    <span
+      className=""
       style={
         Object {
-          "backgroundImage": "url()",
+          "backgroundColor": "#5678",
         }
       }
-    >
-      <span
-        style={
-          Object {
-            "backgroundColor": "#5678",
-            "opacity": 1,
-          }
-        }
-      />
-      <span
-        style={
-          Object {
-            "color": "#5678",
-          }
-        }
-      >
-        To Do
-      </span>
-    </a>
-    <ol
-      style={
-        Object {
-          "borderColor": "#5678",
-        }
+    />
+    <span>
+      Board Games
+    </span>
+  </a>
+  <ol
+    style={
+      Object {
+        "borderColor": "#5678",
       }
-    >
+    }
+  >
+    <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="5"
+        theme={
+          Object {
+            "iconColor": "#5678",
+          }
+        }
         title="San Juan"
         toggleCompletion={[Function]}
       />
+    </li>
+    <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="6"
+        theme={
+          Object {
+            "iconColor": "#5678",
+          }
+        }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
       />
-    </ol>
-  </li>
-</ol>
+    </li>
+  </ol>
+</div>
 `;

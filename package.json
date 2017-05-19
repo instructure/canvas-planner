@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "axios": "^0.16.0",
+    "classnames": "^2.2.5",
     "esrever": "^0.2.0",
     "format-message": "^5.1.2",
     "format-message-parse": "^5.1.2",

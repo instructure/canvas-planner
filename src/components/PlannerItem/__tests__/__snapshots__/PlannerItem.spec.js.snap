@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders Announcement correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -91,11 +91,11 @@ exports[`renders Announcement correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Announcement correctly with just date 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -161,11 +161,11 @@ exports[`renders Announcement correctly with just date 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Announcement correctly with just points 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -253,11 +253,11 @@ exports[`renders Announcement correctly with just points 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Announcement correctly without right side content 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -321,11 +321,11 @@ exports[`renders Announcement correctly without right side content 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Assignment correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -415,11 +415,11 @@ exports[`renders Assignment correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Assignment correctly with just date 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -485,11 +485,11 @@ exports[`renders Assignment correctly with just date 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Assignment correctly with just points 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -577,11 +577,11 @@ exports[`renders Assignment correctly with just points 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Assignment correctly without right side content 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -645,11 +645,11 @@ exports[`renders Assignment correctly without right side content 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Calendar Event correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -739,11 +739,11 @@ exports[`renders Calendar Event correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Calendar Event correctly with just date 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -809,11 +809,11 @@ exports[`renders Calendar Event correctly with just date 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Calendar Event correctly with just points 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -901,11 +901,11 @@ exports[`renders Calendar Event correctly with just points 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Calendar Event correctly without right side content 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -969,11 +969,11 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Discussion correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -1063,11 +1063,11 @@ exports[`renders Discussion correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Discussion correctly with just date 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1133,11 +1133,11 @@ exports[`renders Discussion correctly with just date 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Discussion correctly with just points 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1225,11 +1225,11 @@ exports[`renders Discussion correctly with just points 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Discussion correctly without right side content 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1293,11 +1293,11 @@ exports[`renders Discussion correctly without right side content 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Note correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -1363,11 +1363,11 @@ exports[`renders Note correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Note correctly without Course 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1431,11 +1431,11 @@ exports[`renders Note correctly without Course 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Page correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -1525,11 +1525,11 @@ exports[`renders Page correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Page correctly with just date 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1595,11 +1595,11 @@ exports[`renders Page correctly with just date 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Page correctly with just points 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1687,11 +1687,11 @@ exports[`renders Page correctly with just points 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Page correctly without right side content 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1755,11 +1755,11 @@ exports[`renders Page correctly without right side content 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Quiz correctly with everything 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={true}
@@ -1849,11 +1849,11 @@ exports[`renders Quiz correctly with everything 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Quiz correctly with just date 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -1919,11 +1919,11 @@ exports[`renders Quiz correctly with just date 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Quiz correctly with just points 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -2011,11 +2011,11 @@ exports[`renders Quiz correctly with just points 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders Quiz correctly without right side content 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -2079,11 +2079,11 @@ exports[`renders Quiz correctly without right side content 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders correctly 1`] = `
-<li>
+<div>
   <div>
     <Checkbox
       checked={false}
@@ -2173,5 +2173,5 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
   </div>
-</li>
+</div>
 `;

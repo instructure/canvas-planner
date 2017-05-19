@@ -1,29 +1,30 @@
-export default function generator ({ borders, colors, media, spacing, typography }) {
+export default function generator ({ borders, colors, spacing, typography }) {
   return {
     fontFamily: typography.fontFamily,
     color: colors.licorice,
-    paddingPhoneUp: `${spacing.small} 0`,
-    paddingTabletUp: `${spacing.small}`,
-    paddingWideUp: `${spacing.small} ${spacing.medium}`,
+
+    padding: `${spacing.small} ${spacing.xSmall}`,
+    paddingMedium: `${spacing.small}`,
+    paddingLarge: `${spacing.small} ${spacing.medium}`,
+
+    gutterWidth: spacing.small,
+    gutterWidthXLarge: spacing.medium,
+
+    bottomMargin: spacing.xSmall,
+
     borderWidth: borders.widthSmall,
     borderColor: colors.tiara,
+
     iconFontSize: spacing.medium,
-    iconCheckboxRightMarginPhoneUp: spacing.small,
-    iconCheckboxRightMarginWideUp: spacing.medium,
-    itemDetailsBottomMargin: spacing.xSmall,
-    itemTypeBottomMargin: spacing.xxxSmall,
-    itemTypeLetterSpacing: '0.0625rem',
-    itemNameLineHeight: typography.lineHeightFit,
-    defaultIconColor: colors.brand,
+    iconColor: colors.brand,
+    badgeMargin: '0.0625rem',
 
-    badgeMargin: spacing.xxxSmall,
-
-    ...media
+    metricsPadding: spacing.xxSmall
   };
 }
 
 generator.canavs = function (variables) {
   return {
-    defaultIconColor: variables["ic-brand-primary"],
+    iconColor: variables["ic-brand-primary"],
   };
 };

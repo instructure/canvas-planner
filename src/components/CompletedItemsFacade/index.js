@@ -32,7 +32,9 @@ class CompletedItemsFacade extends Component {
           {
             this.props.badges.map((b) => (
               <li key={b.text}>
-                <Pill text={b.text} variant={b.variant} />
+                <Pill
+                  text={b.text}
+                  variant={b.variant} />
               </li>
             ))
           }
@@ -44,7 +46,7 @@ class CompletedItemsFacade extends Component {
 
   render () {
     return (
-      <li className={styles.item}>
+      <div className={styles.root}>
         <div className={styles.contentPrimary}>
           <button
             type="button"
@@ -68,7 +70,7 @@ class CompletedItemsFacade extends Component {
         <div className={styles.contentSecondary}>
           {this.renderBadges()}
         </div>
-      </li>
+      </div>
     );
   }
 }
@@ -76,7 +78,8 @@ class CompletedItemsFacade extends Component {
 export default themeable(theme, styles)(
   // we can update this to be whatever works for this component and its content
   containerQuery({
-    'media-x-large': { minWidth: '75rem' },
-    'media-medium': { minWidth: '48rem' }
+    'media-x-large': { minWidth: '68rem' },
+    'media-large': { minWidth: '58rem' },
+    'media-medium': { minWidth: '34rem' }
   })(CompletedItemsFacade)
 );

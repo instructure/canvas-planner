@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders as an li with a CheckboxFacade and a string of text indicating count 1`] = `
-<li>
+exports[`renders as a div with a CheckboxFacade and a string of text indicating count 1`] = `
+<div>
   <div>
     <button
       onClick={[Function]}
@@ -23,5 +23,5 @@ exports[`renders as an li with a CheckboxFacade and a string of text indicating 
     </button>
   </div>
   <div />
-</li>
+</div>
 `;

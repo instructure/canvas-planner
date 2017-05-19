@@ -86,7 +86,9 @@ class PlannerItem extends Component {
         <ul className={styles.badgeContainer}>
           {this.props.badges.map((b) => (
             <li key={b.text}>
-              <Pill text={b.text} variant={b.variant} />
+              <Pill
+                text={b.text}
+                variant={b.variant} />
             </li>
           ))}
         </ul>
@@ -97,11 +99,11 @@ class PlannerItem extends Component {
 
   renderItemMetrics = () => {
     return (
-      <div className={styles.itemSecondary}>
+      <div className={styles.secondary}>
         {this.renderBadges()}
-        <div className={styles.itemMetrics}>
+        <div className={styles.metrics}>
           {(this.props.points) ?
-            <div className={styles.itemScore}>
+            <div className={styles.score}>
               <Typography color="secondary">
                 <Typography size="large">{this.props.points}</Typography>
                 <Typography size="x-small">&nbsp;
@@ -113,7 +115,7 @@ class PlannerItem extends Component {
               </Typography>
             </div> : null
           }
-          <div className={styles.itemDue}>
+          <div className={styles.due}>
             <Typography color="secondary" size="x-small">
                 { this.props.date
                     ? formatMessage(`DUE: {date}`, {date: this.props.date.format("LT")})
@@ -126,7 +128,7 @@ class PlannerItem extends Component {
     );
   }
 
-  renderTitle = () => {
+  renderType = () => {
     if (!this.props.associated_item) {
       return formatMessage('{course} TO DO', { course: this.props.courseName || '' });
     } else {
@@ -136,13 +138,13 @@ class PlannerItem extends Component {
 
   renderItemDetails = () => {
     return (
-      <div className={styles.itemDetails}>
-        <div className={styles.itemType}>
+      <div className={styles.details}>
+        <div className={styles.type}>
           <Typography size="x-small" color="secondary">
-            {this.renderTitle()}
+            {this.renderType()}
           </Typography>
         </div>
-        <div className={styles.itemName}>
+        <div className={styles.title}>
           <Link href={this.props.html_url || "#" }>{this.props.title}</Link>
         </div>
       </div>
@@ -159,22 +161,26 @@ class PlannerItem extends Component {
       formatMessage('{assignmentType} {title} is incomplete',
         { assignmentType: assignmentType, title: this.props.title });
     return (
-      <li className={styles.item}>
-        <div className={styles.itemCompleted}>
+      <div className={styles.root}>
+        <div className={styles.completed}>
           <Checkbox
             label={<ScreenReaderContent>{checkboxLabel}</ScreenReaderContent>}
             checked={this.state.completed}
             onChange={this.toggleCompletion}
           />
         </div>
-        <div className={styles.itemIcon} style={{color: this.props.color}} aria-hidden="true">
+        <div
+          className={styles.icon}
+          style={{ color: this.props.color }}
+          aria-hidden="true"
+        >
           {this.renderIcon()}
         </div>
-        <div className={styles.itemLayout}>
+        <div className={styles.layout}>
           {this.renderItemDetails()}
           {this.renderItemMetrics()}
         </div>
-      </li>
+      </div>
     );
   }
 }
@@ -183,6 +189,7 @@ export default themeable(theme, styles)(
   // we can update this to be whatever works for this component and its content
   containerQuery({
     'media-x-large': { minWidth: '68rem' },
-    'media-medium': { minWidth: '36rem' }
+    'media-large': { minWidth: '58rem' },
+    'media-medium': { minWidth: '48rem' }
   })(PlannerItem)
 );

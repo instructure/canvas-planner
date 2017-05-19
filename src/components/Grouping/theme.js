@@ -3,23 +3,30 @@
 export default function generator ({ borders, colors, media, spacing, typography }) {
   return {
     fontFamily: typography.fontFamily,
+    margin: `${spacing.medium} 0 0 0`,
+
+    groupColor: colors.brand,
+
     borderTopWidthTabletUp: borders.widthSmall,
-    groupingTopMargin: spacing.medium,
-    groupingHeroMinHeight: '7rem',
-    groupingHeroWidth: '12rem',
-    heroLinkColor: colors.brand,
-    heroLinkTextDecoration: 'none',
-    heroLinkTextDecorationHover: 'underline',
-    heroLinkTextTransform: 'uppercase',
-    heroLinkFontSize: typography.fontSizeXSmall,
-    heroLinkFontWeight: typography.fontWeightBold,
-    heroLinkLetterSpacing: '0.0625rem',
-    heroLinkNameBackground: colors.white,
-    heroLinkNameTextTransform: 'uppercase',
-    heroLinkNamePadding: `${spacing.xxSmall} ${spacing.xSmall}`,
+
+    heroMinHeight: '7rem',
+    heroWidth: '12rem',
+    heroWidthLarge: '14rem',
+    heroPadding: '0 0.0625rem',
+    heroColor: colors.brand,
     heroBorderRadius: borders.radiusMedium,
-    heroLinkPadding: '0 0.0625rem',
-    defaultIconColor: colors.brand,
+
+    overlayOpacity: 0.75,
+
+    titleFontSize: typography.fontSizeXSmall,
+    titleFontWeight: typography.fontWeightBold,
+    titleLetterSpacing: '0.0625rem',
+    titleBackground: colors.white,
+    titleTextTransform: 'uppercase',
+    titlePadding: `${spacing.xxSmall} ${spacing.xSmall}`,
+    titleTextDecoration: 'none',
+    titleTextDecorationHover: 'underline',
+    titleColor: colors.licorice,
     activityIndicatorPadding: spacing.small,
     activityIndicatorWidth: spacing.small,
     ...media
@@ -28,13 +35,14 @@ export default function generator ({ borders, colors, media, spacing, typography
 
 generator['canvas-a11y'] = generator['modern-a11y'] = function ({ colors }) {
   return {
-    heroLinkTextDecoration: 'underline',
-    heroLinkTextDecorationHover: 'none',
+    heroTextDecoration: 'underline',
+    heroTextDecorationHover: 'none',
+    titleColor: colors.licorice,
   };
 };
 
 generator.canvas = function (variables) {
   return {
-    defaultIconColor: variables["ic-brand-primary"],
+    groupColor: variables["ic-brand-primary"],
   };
 };

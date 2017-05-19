@@ -51,7 +51,10 @@ export default {
 
 function applyTheme (el, theme) {
   return theme ? (
-    <ApplyTheme theme={ApplyTheme.generateTheme(theme)}>
+    <ApplyTheme
+      theme={ApplyTheme.generateTheme(theme.key)}
+      immutable={theme.accessible}
+    >
       {el}
     </ApplyTheme>
   ): el;
