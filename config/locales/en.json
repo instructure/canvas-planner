@@ -2,6 +2,12 @@
   "add_note_to_self_f0178ecb": {
     "message": "Add Note to Self"
   },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } is complete"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } is incomplete"
+  },
   "canvas_planner_98ed106": {
     "message": "Canvas Planner"
   },
@@ -56,11 +62,8 @@
   "save_11a80ec3": {
     "message": "Save"
   },
-  "task_title_is_complete_5247251": {
-    "message": "Task { title } is complete"
-  },
-  "task_title_is_incomplete_e979d872": {
-    "message": "Task { title } is incomplete"
+  "task_16b0ef38": {
+    "message": "Task"
   },
   "title_ee03d132": {
     "message": "Title"
