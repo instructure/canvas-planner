@@ -1,5 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`grouping contains link pointing to course url 1`] = `
+<ol>
+  <li>
+    <a
+      href="example.com"
+      style={
+        Object {
+          "backgroundImage": "url()",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#5678",
+            "opacity": 1,
+          }
+        }
+      />
+      <span
+        style={
+          Object {
+            "color": "#5678",
+          }
+        }
+      >
+        Note to self
+      </span>
+    </a>
+    <ol
+      style={
+        Object {
+          "borderColor": "#5678",
+        }
+      }
+    >
+      <PlannerItem
+        color="#5678"
+        date={"2017-04-25T13:06:07.000Z"}
+        id="5"
+        title="San Juan"
+        toggleCompletion={[Function]}
+      />
+      <PlannerItem
+        color="#5678"
+        date={"2017-04-25T13:06:07.000Z"}
+        id="6"
+        title="Roll for the Galaxy"
+        toggleCompletion={[Function]}
+      />
+    </ol>
+  </li>
+</ol>
+`;
+
 exports[`renders a CompletedItemsFacade when completed items are present by default 1`] = `
 <ol>
   <li>
@@ -39,7 +94,7 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
       <PlannerItem
         color="#5678"
         date={"2017-04-25T13:06:07.000Z"}
-        id={6}
+        id="6"
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
       />
@@ -91,14 +146,14 @@ exports[`renders the base component with required props 1`] = `
       <PlannerItem
         color="#5678"
         date={"2017-04-25T13:06:07.000Z"}
-        id={5}
+        id="5"
         title="San Juan"
         toggleCompletion={[Function]}
       />
       <PlannerItem
         color="#5678"
         date={"2017-04-25T13:06:07.000Z"}
-        id={6}
+        id="6"
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
       />

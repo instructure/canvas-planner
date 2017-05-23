@@ -21,13 +21,14 @@ import formatMessage from '../../format-message';
 class PlannerItem extends Component {
   static propTypes = {
     color: string,
-    id: number.isRequired,
+    id: string.isRequired,
     title: string.isRequired,
     points: number,
     date: momentObj,
     courseName: string,
     completed: bool,
     associated_item: string,
+    html_url: string,
     toggleCompletion: func.isRequired,
   }
 
@@ -126,7 +127,7 @@ class PlannerItem extends Component {
           </Typography>
         </div>
         <div className={styles.itemName}>
-          <Link href="#">{this.props.title}</Link>
+          <Link href={this.props.html_url || "#" }>{this.props.title}</Link>
         </div>
       </div>
     );

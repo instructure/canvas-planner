@@ -5,7 +5,7 @@ import Grouping from '../index';
 
 const getDefaultProps = () => ({
   items: [{
-    id: 5,
+    id: "5",
     title: 'San Juan',
     date: '2017-04-25T05:06:07-08:00',
     context: {
@@ -14,7 +14,7 @@ const getDefaultProps = () => ({
       id: 256
     }
   }, {
-    id: 6,
+    id: "6",
     date: '2017-04-25T05:06:07-08:00',
     title: 'Roll for the Galaxy',
     context: {
@@ -24,7 +24,6 @@ const getDefaultProps = () => ({
   }],
   timeZone: "America/Denver",
   courseInfo: {
-    url: 'example.com',
     color: "#5678",
     id: 256
   }
@@ -37,10 +36,19 @@ it('renders the base component with required props', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+it('grouping contains link pointing to course url', () => {
+  const props = getDefaultProps();
+  props.courseInfo.url = "example.com";
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper).toMatchSnapshot();
+});
+
 it('does not render completed items by default', () => {
   const props = getDefaultProps();
   props.items[0].completed = true;
-
   const wrapper = shallow(
     <Grouping {...props} />
   );

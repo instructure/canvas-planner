@@ -381,7 +381,7 @@ exports[`renders Assignment correctly with everything 1`] = `
         <Link
           as="button"
           ellipsis={false}
-          href="#"
+          href="http://www.non_default_url.com"
           linkRef={[Function]}
         >
           I am a Assignment

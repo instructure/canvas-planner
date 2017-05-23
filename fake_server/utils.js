@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1);
+const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1).toString();
 
 const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), completed = false) => {
   const id = getKindaUniqueId();

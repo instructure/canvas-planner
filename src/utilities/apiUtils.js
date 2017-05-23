@@ -19,19 +19,20 @@ export function translateAPIData (apiResponse, courses) {
   const item = getItemFromResponse(apiResponse);
   const contextId = apiResponse[`${apiResponse.context_type.toLowerCase()}_id`];
   const course = courses.find(c => c.id === contextId);
-
   return {
     context: {
       type: apiResponse.context_type,
       id: contextId,
       title: course.shortName,
       image_url: course.image,
-      color: course.color
+      color: course.color,
+      url: course.href
     },
     id: item.id,
     date: item.due_at,
     type: getItemType(apiResponse),
     title: item.name,
+    html_url: item.html_url,
     completed: item.has_submitted_submissions,
     points: item.points_possible
   };

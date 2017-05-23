@@ -50,6 +50,7 @@ class Grouping extends Component {
         associated_item={item.type}
         title={item.title}
         points={item.points}
+        html_url={item.html_url}
         toggleCompletion={() => console.log('send me back to canvas')}
       />
     ));
@@ -73,7 +74,7 @@ class Grouping extends Component {
     return (
       <ol className={styles.groupingList}>
         <li className={styles.grouping}>
-          <a href="#"
+          <a href={this.props.courseInfo.url || "#"}
             ref={(c) => { this.groupingLink = c; }}
             className={styles.groupingHero}
             style={{backgroundImage: `url(${this.props.courseInfo.image_url || ''})`}}

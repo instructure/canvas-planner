@@ -9,20 +9,21 @@ const DEFAULT_DATE = moment.tz('2011-12-17T03:30:00', "America/Los_Angeles");
 function defaultProps (option) {
   return {
       color: '#d71f85',
-      id: 1,
+      id: "1",
       associated_item: option.associated_item || "Assignment",
       date: option.date,
       courseName: 'A Course about being Diffrient',
       completed: !!option.completed,
       title: option.title || "This Assignment is about awesome stuff",
       points: option.points,
+      html_url: option.html_url,
       toggleCompletion: () => {}
   };
 }
 
 function noteProps (option) {
   return {
-      id: 22,
+      id: "22",
       associated_item: null,
       date: option.date,
       courseName: option.courseName,
@@ -108,6 +109,7 @@ it('renders Assignment correctly with everything', () => {
           completed: true,
           title: "I am a Assignment",
           points: 4,
+          html_url: "http://www.non_default_url.com",
           date: DEFAULT_DATE,
         })
     } />
