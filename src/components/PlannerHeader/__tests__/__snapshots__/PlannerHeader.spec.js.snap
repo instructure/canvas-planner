@@ -25,13 +25,19 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     type="button"
     variant="icon"
   >
-    <PlannerBadge
+    <Badge
       count={4}
+      formatOverflowText={[Function]}
+      placement="top end"
+      pulse={false}
+      standalone={false}
+      type="count"
+      variant="primary"
     >
       <IconAlertLine
         title="4 opportunities"
       />
-    </PlannerBadge>
+    </Badge>
   </Button>
   <Tray
     border={false}

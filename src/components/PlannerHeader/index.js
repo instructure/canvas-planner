@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import themeable from 'instructure-ui/lib/themeable';
 import Button from 'instructure-ui/lib/components/Button';
-import PlannerBadge from '../PlannerBadge';
 import IconPlusLine from 'instructure-icons/react/Line/IconPlusLine';
 import IconAlertLine from 'instructure-icons/react/Line/IconAlertLine';
 import PropTypes from 'prop-types';
 import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
+import Badge from 'instructure-ui/lib/components/Badge';
 
 import {addDay, savePlannerItem, deletePlannerItem} from '../../actions';
 
@@ -80,9 +80,9 @@ export class PlannerHeader extends Component {
           <IconPlusLine title={formatMessage("Add Note to Self")} />
         </Button>
         <Button variant="icon">
-          <PlannerBadge count={this.props.opportunityCount}>
+          <Badge count={this.props.opportunityCount}>
             <IconAlertLine title={this.opportunityTitle()} />
-          </PlannerBadge>
+          </Badge>
         </Button>
         <Tray
           closeButtonLabel={formatMessage("Close")}
