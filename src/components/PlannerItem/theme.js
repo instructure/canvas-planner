@@ -16,6 +16,8 @@ export default function generator ({ borders, colors, media, spacing, typography
     itemNameLineHeight: typography.lineHeightFit,
     defaultIconColor: colors.brand,
 
+    badgeMargin: spacing.xxxSmall,
+
     ...media
   };
 }

@@ -2,11 +2,67 @@ const moment = require('moment-timezone');
 
 const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1).toString();
 
-const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), completed = false) => {
+const generateStatus = (overrides) => {
+  if (overrides) { return overrides; }
+  const statusArray = [];
+  const baseStatusDecider = Math.floor(Math.random() * (10000 - 1)) % 4;
+  let isLate = false;
+  switch (baseStatusDecider) {
+    case 0:
+      statusArray.push('graded');
+      isLate = Math.random() > 0.5;
+      if (isLate) {
+        statusArray.push('late');
+      }
+      break;
+    case 1:
+      statusArray.push('excused');
+      break;
+    case 2:
+      statusArray.push('submitted');
+      isLate = Math.random() > 0.5;
+      if (isLate) {
+        statusArray.push('late');
+      }
+      break;
+    default:
+      const isMissing = Math.random() > 0.5;
+      if (isMissing) {
+        statusArray.push('missing');
+      }
+      break;
+  }
+
+  return statusArray;
+};
+
+const generateActivity = (isDiscussion = false, overrides) => {
+  if (overrides) { return overrides; }
+  const activityArray = [];
+  const activityDecider = Math.floor(Math.random() * (10000 - 1)) % 3;
+  switch (activityDecider) {
+    case 0:
+      activityArray.push('new_grades');
+      break;
+    case 1:
+      activityArray.push('new_feedback');
+      break;
+    default:
+      break;
+  }
+
+  if (isDiscussion && (Math.random() > 0.5)) {
+    activityArray.push('new_replies');
+  }
+};
+
+const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
   const id = getKindaUniqueId();
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
+    status: status,
+    activity: activity,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -59,11 +115,13 @@ const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), com
   };
 };
 
-const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), completed = false) => {
+const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
   const id = getKindaUniqueId();
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
+    status: status,
+    activity: activity,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -163,11 +221,13 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
   };
 };
 
-const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed = false) => {
+const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
   const id = getKindaUniqueId();
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
+    status: status,
+    activity: activity,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -225,4 +285,6 @@ module.exports = {
   createFakeDiscussion,
   createFakeQuiz,
   getKindaUniqueId,
+  generateStatus,
+  generateActivity
 };

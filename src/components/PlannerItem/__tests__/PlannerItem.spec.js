@@ -428,3 +428,16 @@ it('renders Note correctly without Course', () => {
   );
   expect(wrapper).toMatchSnapshot();
 });
+
+it('displays Pills when given them', () => {
+  const wrapper = shallow(
+    <PlannerItem
+      {...defaultProps({points: 35, date: DEFAULT_DATE})}
+      onClick={() => {}}
+      itemCount={3}
+      badges={[{ text: 'New Grades' }]}
+    />
+  );
+
+  expect(wrapper.find('Pill')).toHaveLength(1);
+});

@@ -39,6 +39,15 @@
   margin-right: var(--checkboxRightMarginPhoneUp);
 }
 
+.badgeContainer {
+  list-style-type: none;
+
+  > li { /* stylelint-disable-line selector-no-type */
+    display: inline-block;
+    margin: var(--badgeMargin);
+  }
+}
+
 [data-media-medium].item {
   padding: var(--paddingTabletUp);
   display: flex;

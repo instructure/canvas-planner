@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
 import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import CheckboxFacade from 'instructure-ui/lib/components/Checkbox/CheckboxFacade';
-import { func, number } from 'prop-types';
+import Pill from 'instructure-ui/lib/components/Pill';
+import { func, number, string, arrayOf, shape } from 'prop-types';
 
 import styles from './styles.css';
 import theme from './theme.js';
@@ -13,7 +14,32 @@ class CompletedItemsFacade extends Component {
 
   static propTypes = {
     onClick: func.isRequired,
-    itemCount: number.isRequired
+    itemCount: number.isRequired,
+    badges: arrayOf(shape({
+      text: string,
+      variant: string
+    }))
+  }
+
+  static defaultProps = {
+    badges: []
+  }
+
+  renderBadges () {
+    if (this.props.badges.length) {
+      return (
+        <ul className={styles.badgeContainer}>
+          {
+            this.props.badges.map((b) => (
+              <li key={b.text}>
+                <Pill text={b.text} variant={b.variant} />
+              </li>
+            ))
+          }
+        </ul>
+      );
+    }
+    return null;
   }
 
   render () {
@@ -40,7 +66,7 @@ class CompletedItemsFacade extends Component {
           </button>
         </div>
         <div className={styles.contentSecondary}>
-          Pills
+          {this.renderBadges()}
         </div>
       </li>
     );

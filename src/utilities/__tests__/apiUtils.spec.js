@@ -126,6 +126,18 @@ function makeDiscussionTopic (overrides = {}) {
 }
 
 describe('transformApiToInternalItem', () => {
+  it('extracts and transforms the proper data for responses containing a status and activity', () => {
+    const apiResponse = makeApiResponse({
+      status: ['graded'],
+      activity: ['new_feedback'],
+    });
+
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+
+    expect(result.status).toEqual(['graded']);
+    expect(result.activity).toEqual(['new_feedback']);
+  });
+
   it('extracts and transforms the proper data for a quiz response', () => {
     const apiResponse = makeApiResponse({
       assignment: makeAssignment({
@@ -135,21 +147,7 @@ describe('transformApiToInternalItem', () => {
       })
     });
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
-    expect(result).toMatchObject({
-      context: {
-        type: 'Course',
-        id: '1',
-        title: 'blah',
-        image_url: 'blah_url',
-        color: '#abffaa'
-      },
-      id: '10',
-      date: '2017-05-19T05:59:59Z',
-      type: 'Quiz',
-      title: 'How to make friends',
-      completed: false,
-      points: 100
-    });
+    expect(result).toMatchSnapshot();
   });
 
   it('extracts and transforms the proper data for a discussion response', () => {
@@ -164,21 +162,7 @@ describe('transformApiToInternalItem', () => {
       })
     });
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
-    expect(result).toMatchObject({
-      context: {
-        type: 'Course',
-        id: '1',
-        title: 'blah',
-        image_url: 'blah_url',
-        color: '#abffaa'
-      },
-      id: '10',
-      date: '2017-05-19T05:59:59Z',
-      type: 'Discussion',
-      title: 'How to make enemies',
-      completed: true,
-      points: 40
-    });
+    expect(result).toMatchSnapshot();
   });
 
   it('extracts and transforms the proper data for a assignment response', () => {
@@ -189,21 +173,7 @@ describe('transformApiToInternalItem', () => {
       }),
     });
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
-    expect(result).toMatchObject({
-      context: {
-        type: 'Course',
-        id: '1',
-        title: 'blah',
-        image_url: 'blah_url',
-        color: '#abffaa'
-      },
-      id: '10',
-      date: '2017-05-19T05:59:59Z',
-      type: 'Assignment',
-      title: 'How to be neutral',
-      completed: false,
-      points: 50
-    });
+    expect(result).toMatchSnapshot();
   });
 
   it('adds the dateBucketMoment field', () => {

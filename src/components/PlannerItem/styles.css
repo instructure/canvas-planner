@@ -68,6 +68,16 @@
   white-space: nowrap;
 }
 
+.badgeContainer {
+  list-style-type: none;
+  padding: 0 0 0 1rem;
+
+  > li { /* stylelint-disable-line selector-no-type */
+    display: inline-block;
+    margin: var(--badgeMargin);
+  }
+}
+
 [data-media-medium].item {
   padding: var(--paddingTabletUp);
 

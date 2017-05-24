@@ -9,6 +9,7 @@ import PlannerItem from '../PlannerItem';
 import CompletedItemsFacade from '../CompletedItemsFacade';
 import moment from 'moment-timezone';
 import formatMessage from '../../format-message';
+import { getBadgesForItem, getBadgesForItems } from '../../utilities/statusUtils';
 
 class Grouping extends Component {
   static propTypes = {
@@ -52,6 +53,7 @@ class Grouping extends Component {
         points={item.points}
         html_url={item.html_url}
         toggleCompletion={() => console.log('send me back to canvas')}
+        badges={getBadgesForItem(item)}
       />
     ));
 
@@ -63,6 +65,7 @@ class Grouping extends Component {
           key={completedItems.length}
           onClick={this.handleFacadeClick}
           itemCount={completedItems.length}
+          badges={getBadgesForItems(completedItems)}
         />
       );
     }

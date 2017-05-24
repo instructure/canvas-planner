@@ -6,10 +6,11 @@ const getItemFromResponse = (apiResponse) => {
 };
 
 const getItemType = (apiResponse) => {
+  const item = getItemFromResponse(apiResponse);
   // TODO: Add remaining types here
-  if (apiResponse.assignment.is_quiz_assignment) return "Quiz";
-  else if (apiResponse.assignment.discussion_topic) return "Discussion";
-  else if (apiResponse.assignment.grading_type) return "Assignment";
+  if (item.is_quiz_assignment) return "Quiz";
+  else if (item.discussion_topic) return "Discussion";
+  else if (item.grading_type) return "Assignment";
   else return null;
 };
 
@@ -43,7 +44,9 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
     title: item.name,
     html_url: item.html_url,
     completed: item.has_submitted_submissions,
-    points: item.points_possible
+    points: item.points_possible,
+    status: apiResponse.status,
+    activity: apiResponse.activity
   };
 }
 

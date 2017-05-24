@@ -24,3 +24,15 @@ it('calls the onClick prop when clicked', () => {
   wrapper.find('button').simulate('click');
   expect(fakeOnClick).toHaveBeenCalled();
 });
+
+it('displays Pills when given them', () => {
+  const wrapper = shallow(
+    <CompletedItemsFacade
+      onClick={() => {}}
+      itemCount={3}
+      badges={[{ text: 'New Grades' }]}
+    />
+  );
+
+  expect(wrapper.find('Pill')).toHaveLength(1);
+});

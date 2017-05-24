@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transformApiToInternalItem extracts and transforms the proper data for a assignment response 1`] = `
+Object {
+  "activity": undefined,
+  "completed": false,
+  "context": Object {
+    "color": "#abffaa",
+    "id": "1",
+    "image_url": "blah_url",
+    "title": "blah",
+    "type": "Course",
+    "url": undefined,
+  },
+  "date": "2017-05-19T05:59:59Z",
+  "dateBucketMoment": "2017-05-19T00:00:00.000Z",
+  "html_url": "/courses/1/assignments/10",
+  "id": "10",
+  "points": 50,
+  "status": undefined,
+  "title": "How to be neutral",
+  "type": "Assignment",
+}
+`;
+
+exports[`transformApiToInternalItem extracts and transforms the proper data for a discussion response 1`] = `
+Object {
+  "activity": undefined,
+  "completed": true,
+  "context": Object {
+    "color": "#abffaa",
+    "id": "1",
+    "image_url": "blah_url",
+    "title": "blah",
+    "type": "Course",
+    "url": undefined,
+  },
+  "date": "2017-05-19T05:59:59Z",
+  "dateBucketMoment": "2017-05-19T00:00:00.000Z",
+  "html_url": "/courses/1/assignments/10",
+  "id": "10",
+  "points": 40,
+  "status": undefined,
+  "title": "How to make enemies",
+  "type": "Discussion",
+}
+`;
+
+exports[`transformApiToInternalItem extracts and transforms the proper data for a quiz response 1`] = `
+Object {
+  "activity": undefined,
+  "completed": false,
+  "context": Object {
+    "color": "#abffaa",
+    "id": "1",
+    "image_url": "blah_url",
+    "title": "blah",
+    "type": "Course",
+    "url": undefined,
+  },
+  "date": "2017-05-19T05:59:59Z",
+  "dateBucketMoment": "2017-05-19T00:00:00.000Z",
+  "html_url": "/courses/1/assignments/10",
+  "id": "10",
+  "points": 100,
+  "status": undefined,
+  "title": "How to make friends",
+  "type": "Quiz",
+}
+`;

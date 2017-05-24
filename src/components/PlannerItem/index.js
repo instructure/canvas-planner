@@ -5,6 +5,7 @@ import Typography from 'instructure-ui/lib/components/Typography';
 import Checkbox from 'instructure-ui/lib/components/Checkbox';
 import Link from 'instructure-ui/lib/components/Link';
 import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
+import Pill from 'instructure-ui/lib/components/Pill';
 import Assignment from 'instructure-icons/react/Line/IconAssignmentLine';
 import Quiz from 'instructure-icons/react/Line/IconQuizLine';
 import Announcement from 'instructure-icons/react/Line/IconAnnouncementLine';
@@ -14,7 +15,7 @@ import Calendar from 'instructure-icons/react/Line/IconCalendarMonthLine';
 import Page from 'instructure-icons/react/Line/IconMsWordLine';
 import styles from './styles.css';
 import theme from './theme.js';
-import {bool, number, string, func} from 'prop-types';
+import { arrayOf, bool, number, string, func, shape } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import formatMessage from '../../format-message';
 
@@ -30,7 +31,15 @@ class PlannerItem extends Component {
     associated_item: string,
     html_url: string,
     toggleCompletion: func.isRequired,
-  }
+    badges: arrayOf(shape({
+      text: string,
+      variant: string
+    }))
+  };
+
+  static defaultProps = {
+    badges: []
+  };
 
   constructor (props) {
     super(props);
@@ -72,11 +81,18 @@ class PlannerItem extends Component {
   }
 
   renderBadges = () => {
-    //We need to replace this with the badge
-    //Component and configure how many badges to render
-    return  (
-      <div>Pills</div>
-    );
+    if (this.props.badges.length) {
+      return (
+        <ul className={styles.badgeContainer}>
+          {this.props.badges.map((b) => (
+            <li key={b.text}>
+              <Pill text={b.text} variant={b.variant} />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
   }
 
   renderItemMetrics = () => {

@@ -22,8 +22,6 @@ exports[`renders as an li with a CheckboxFacade and a string of text indicating 
       </span>
     </button>
   </div>
-  <div>
-    Pills
-  </div>
+  <div />
 </li>
 `;
