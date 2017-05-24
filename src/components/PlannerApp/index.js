@@ -3,14 +3,17 @@ import { connect } from 'react-redux';
 import 'instructure-ui/lib/themes/canvas';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
-import { arrayOf, bool, object, string } from 'prop-types';
+import { arrayOf, oneOfType, bool, object, string } from 'prop-types';
 import Day from '../Day';
 import formatMessage from '../../format-message';
 
 export class PlannerApp extends Component {
   static propTypes = {
-    dayKeys: arrayOf(string).isRequired,
-    days: object, // This is okay being generic because each key is a date
+    days: arrayOf(
+      arrayOf(
+        oneOfType([/* date */ string, arrayOf(/* items */ object)])
+      )
+    ),
     timeZone: string,
     isLoading: bool
   };
@@ -35,14 +38,13 @@ export class PlannerApp extends Component {
               />
             </Container>
           ) : (
-            this.props.dayKeys.map((day) => {
-              const dayData = this.props.days[day];
+            this.props.days.map(([dayKey, dayItems]) => {
               return (
                 <Day
                   timeZone={this.props.timeZone}
-                  day={day}
-                  itemsForDay={dayData}
-                  key={day}
+                  day={dayKey}
+                  itemsForDay={dayItems}
+                  key={dayKey}
                 />
               );
             })
@@ -56,8 +58,8 @@ export class PlannerApp extends Component {
 const mapStateToProps = (state) => {
   return {
     days: state.days,
-    dayKeys: Object.keys(state.days),
-    isLoading: state.loading.isLoading
+    isLoading: state.loading.isLoading,
+    timeZone: state.timeZone,
   };
 };
 

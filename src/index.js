@@ -5,12 +5,12 @@ import PlannerApp from './components/PlannerApp';
 import PlannerHeader from './components/PlannerHeader';
 import i18n from './i18n';
 import configureStore from './store/configureStore';
-import { initializeCourses, getPlannerItems } from './actions';
+import { initialOptions, getPlannerItems } from './actions';
 import moment from 'moment-timezone';
 
 const defaultOptions = {
   locale: 'en',
-  timeZone: 'America/Denver',
+  timeZone: moment.tz.guess(),
   theme: 'canvas',
   courses: [],
 };
@@ -23,13 +23,14 @@ export default {
     const opts = { ...defaultOptions, ...options };
     i18n.init(opts.locale);
     moment.locale(opts.locale);
+    moment.tz.setDefault(opts.timeZone);
+    store.dispatch(initialOptions(opts));
 
-    store.dispatch(initializeCourses(opts.courses));
     store.dispatch(getPlannerItems(moment.tz(opts.timeZone).startOf('day')));
 
     ReactDOM.render(
       <Provider store={store}>
-          <PlannerApp timeZone={opts.timeZone} />
+          <PlannerApp />
       </Provider>
       , element);
   },

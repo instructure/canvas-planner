@@ -1,55 +1,67 @@
-import { groupBy, merge, cloneDeep } from 'lodash';
+import _ from 'lodash';
 import { handleActions } from 'redux-actions';
 import { formatDayKey } from '../utilities/dateUtils';
 
 function addDay (state, action) {
-  const dateKey = formatDayKey(action.payload);
-  return {...state, [dateKey]: []};
-}
-
-function addNewPlannerItemToDate(state, plannerItem, plannerDateString) {
-  return {...state,
-    [plannerDateString]: state[plannerDateString].concat(plannerItem)};
+  const newState = state.concat([[action.payload, []]]);
+  return _.sortBy(newState, _.head);
 }
 
 function savedPlannerItem (state, action) {
   if (action.error) return state;
-
-  const plannerItem = action.payload.data;
-  const plannerDateString = formatDayKey(plannerItem.date);
-  const plannerDay = state[plannerDateString];
-  // that date isn't loaded, so do nothing
+  const plannerItem = action.payload;
+  const plannerDateString = formatDayKey(plannerItem.dateBucketMoment);
+  const plannerDay = state.find(day => day[0] === plannerDateString);
   if (!plannerDay) return state;
-
-  const newDay = cloneDeep(plannerDay);
-  const existingItem = newDay.find((item) => item.id === plannerItem.id);
-  if (!existingItem) {
-    return addNewPlannerItemToDate(state, plannerItem, plannerDateString);
-  } else {
-    merge(existingItem, plannerItem); // existingItem is a clone, so this is ok
-    return {...state, [plannerDateString]: newDay};
-  }
+  return gotItemsSuccess(state, {...action, payload: [plannerItem]});
 }
 
 function deletedPlannerItem (state, action) {
   if (action.error) return state;
 
-  const plannerItem = action.payload.data;
-  const plannerDateString = formatDayKey(plannerItem.date);
-  const dayInState = state[plannerDateString];
-  if (!dayInState) return state;
-  const newDay = dayInState.filter((item) => item.id !== plannerItem.id);
-  return {...state, [plannerDateString]: newDay};
+  const doomedPlannerItem = action.payload;
+  const plannerDateString = formatDayKey(doomedPlannerItem.dateBucketMoment);
+  const keyedState = new Map(state);
+  const existingDay = keyedState.get(plannerDateString);
+  if (existingDay == null) return state;
+
+  const newDay = existingDay.filter(item => item.id !== doomedPlannerItem.id);
+  keyedState.set(plannerDateString, newDay);
+  return [...keyedState.entries()];
+}
+
+function mergeDays(firstDay, secondDay) {
+  const secondDayMap = new Map(secondDay.map(item => [item.id, item]));
+  const firstDayMerged = firstDay.map(firstDayItem => {
+    const secondDayItem = secondDayMap.get(firstDayItem.id);
+    if (secondDayItem) {
+      secondDayMap.delete(secondDayItem.id);
+      return secondDayItem;
+    } else {
+      return firstDayItem;
+    }
+  });
+  return firstDayMerged.concat([...secondDayMap.values()]);
+}
+
+function gotItemsSuccess (state, action) {
+  const newGroups = _.groupBy(action.payload, (item) => {
+    return formatDayKey(item.dateBucketMoment);
+  });
+  const mergedGroups = _.fromPairs(state);
+  _.mergeWith(mergedGroups, newGroups, (firstDay, secondDay) => {
+    if (firstDay == null) firstDay = [];
+    return mergeDays(firstDay, secondDay);
+  });
+  return _.chain(mergedGroups)
+    .toPairs()
+    .sortBy(_.head)
+    .value();
 }
 
 export default handleActions({
-  GOT_ITEMS_SUCCESS: (state, action) => {
-    const dayGrouping = groupBy(action.payload, (item) => {
-      return formatDayKey(item.date);
-    });
-    return dayGrouping;
-  },
+  GOT_ITEMS_SUCCESS: gotItemsSuccess,
   ADD_DAY: addDay,
   SAVED_PLANNER_ITEM: savedPlannerItem,
   DELETED_PLANNER_ITEM: deletedPlannerItem,
-}, {});
+}, []);

@@ -17,3 +17,15 @@ export function moxiosWait (fn) {
     });
   });
 }
+
+export function moxiosRespond (response, requestPromise) {
+  if (!isPromise(requestPromise)) throw new Error('moxiosResult requires a promise for the request');
+  const waitPromise = moxiosWait((request) => {
+    request.respondWith({status: 200, response});
+  });
+  return Promise.all([waitPromise, requestPromise])
+    .then(([waitResult, requestResult]) => {
+      return requestResult;
+    })
+  ;
+}

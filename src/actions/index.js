@@ -2,10 +2,10 @@ import { createAction, createActions } from 'redux-actions';
 import axios from 'axios';
 import moment from 'moment';
 import {formatDayKey} from '../utilities/dateUtils';
-import { translateAPIData } from '../utilities/apiUtils';
+import { transformApiToInternalItem, transformInternalToApiItem } from '../utilities/apiUtils';
 
 export const {
-  initializeCourses,
+  initialOptions,
   gotItemsSuccess,
   startLoadingItems,
   savingPlannerItem,
@@ -13,7 +13,7 @@ export const {
   deletingPlannerItem,
   deletedPlannerItem,
 }  = createActions(
-  'INITIALIZE_COURSES',
+  'INITIAL_OPTIONS',
   'GOT_ITEMS_SUCCESS',
   'START_LOADING_ITEMS',
   'SAVING_PLANNER_ITEM',
@@ -31,46 +31,52 @@ export const getPlannerItems = (fromDate) => {
   return (dispatch, getState) => {
     dispatch(startLoadingItems());
     axios.get(`/api/v1/planner/items?due_after=${fromDate.format()}`)
-         .then(response => {
-           const translatedData = response.data.map((item) => translateAPIData(item, getState().courses));
-           dispatch(gotItemsSuccess(translatedData));
-         });
+      .then(response => {
+        const translatedData = response.data.map((item) =>
+          transformApiToInternalItem(item, getState().courses, getState().timeZone));
+        dispatch(gotItemsSuccess(translatedData));
+      })
+    ;
   };
 };
 
-function saveExistingPlannerItem (plannerItem) {
+function saveExistingPlannerItem (apiItem) {
   return axios({
     method: 'put',
-    url: `api/v1/planner/items/${plannerItem.id}`,
-    data: plannerItem,
+    url: `api/v1/planner/items/${apiItem.id}`,
+    data: apiItem,
   });
 }
 
-function saveNewPlannerItem (plannerItem) {
+function saveNewPlannerItem (apiItem) {
   return axios({
     method: 'post',
     url: 'api/v1/planner/items',
-    data: plannerItem,
+    data: apiItem,
   });
 }
 
 export const savePlannerItem = (plannerItem) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(savingPlannerItem(plannerItem));
-    const promise = plannerItem.id ?
-      saveExistingPlannerItem(plannerItem) :
-      saveNewPlannerItem(plannerItem);
+    const apiItem = transformInternalToApiItem(plannerItem);
+    let promise = plannerItem.id ?
+      saveExistingPlannerItem(apiItem) :
+      saveNewPlannerItem(apiItem);
+    promise = promise.then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone));
     dispatch(savedPlannerItem(promise));
     return promise;
   };
 };
 
 export const deletePlannerItem = (plannerItem) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(deletingPlannerItem(plannerItem));
-    dispatch(deletedPlannerItem(axios({
+    const promise = axios({
       method: 'delete',
       url: `api/v1/planner/items/${plannerItem.id}`,
-    })));
+    }).then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone));
+    dispatch(deletedPlannerItem(promise));
+    return promise;
   };
 };

@@ -11,7 +11,7 @@ exports[`renders base component using dayKeys 1`] = `
         Object {},
       ]
     }
-    timeZone="en"
+    timeZone="UTC"
   />
   <Day
     day="2017-04-25"
@@ -20,7 +20,7 @@ exports[`renders base component using dayKeys 1`] = `
         Object {},
       ]
     }
-    timeZone="en"
+    timeZone="UTC"
   />
   <Day
     day="2017-04-26"
@@ -29,7 +29,7 @@ exports[`renders base component using dayKeys 1`] = `
         Object {},
       ]
     }
-    timeZone="en"
+    timeZone="UTC"
   />
 </div>
 `;
