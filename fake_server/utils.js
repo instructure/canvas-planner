@@ -17,7 +17,7 @@ const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), com
     assignment: {
       id: id,
       description: "<p>Lorem ipsum etc.</p>",
-      due_at: dueDateTime,
+      due_at: dueDateTime.tz('UTC').format(),
       unlock_at: null,
       lock_at: null,
       points_possible: 50,
@@ -74,7 +74,7 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
     assignment: {
       id: id,
       description: "<p>Lorem ipsum etc.</p>",
-      due_at: dueDateTime,
+      due_at: dueDateTime.tz('UTC').format(),
       unlock_at: null,
       lock_at: null,
       points_possible: 40,
@@ -178,7 +178,7 @@ const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed 
     assignment: {
       id: id,
       description: "<p>Lorem ipsum etc.</p>",
-      due_at: dueDateTime,
+      due_at: dueDateTime.tz('UTC').format(),
       unlock_at: null,
       lock_at: null,
       points_possible: 100,

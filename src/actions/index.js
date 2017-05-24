@@ -30,7 +30,7 @@ export const addDay = createAction('ADD_DAY', () => {
 export const getPlannerItems = (fromDate) => {
   return (dispatch, getState) => {
     dispatch(startLoadingItems());
-    axios.get(`/api/v1/planner/items?date=${fromDate.format()}`)
+    axios.get(`/api/v1/planner/items?due_after=${fromDate.format()}`)
          .then(response => {
            const translatedData = response.data.map((item) => translateAPIData(item, getState().courses));
            dispatch(gotItemsSuccess(translatedData));

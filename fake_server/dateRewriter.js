@@ -1,9 +1,13 @@
+const moment = require('moment-timezone');
+
 module.exports = (req, res, next) => {
-  if (req.query.date) {
-    let direction = 'gte';
-    if (req.query['a_link_to_the_past']) direction = 'lte';
-    req.query[`assignment.due_at_${direction}`] = req.query.date;
-    delete req.query.date;
+  if (req.query.due_after) {
+    req.query['assignment.due_at_gte'] = moment(req.query.due_after).tz('UTC').format();
+    delete req.query.due_after;
+  }
+  if (req.query.due_before) {
+    req.query['assignment.due_at_lte'] = moment(req.query.due_before).tz('UTC').format();
+    delete req.query.due_before;
   }
   next();
 };
