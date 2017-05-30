@@ -22,8 +22,6 @@
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: var(--groupingHeroMinHeight);
   box-sizing: border-box;
   color: var(--heroLinkColor);
   font-size: var(--heroLinkFontSize);
@@ -32,6 +30,9 @@
   outline: none;
   padding: var(--heroLinkPadding);
   text-decoration: none;
+
+  /* this can become min-height once we drop IE11 support */
+  height: var(--groupingHeroMinHeight);
 
   .groupingName {
     text-decoration: var(--heroLinkTextDecoration);
@@ -74,7 +75,7 @@
 
   .groupingHero {
     flex: 0 0 var(--groupingHeroWidth);
-    min-height: 0;
+    height: auto;
   }
 
   .groupingHero,
