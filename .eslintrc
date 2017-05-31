@@ -4,8 +4,9 @@
     "react"
   ],
   "rules": {
-    "semi": "error",
     "no-extra-semi": "error",
+    "no-trailing-spaces": "error",
+    "semi": "error",
     "semi-spacing": "error"
   }
 }
