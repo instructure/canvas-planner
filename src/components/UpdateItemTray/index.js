@@ -8,8 +8,9 @@ import PropTypes from 'prop-types';
 import TextInput from 'instructure-ui/lib/components/TextInput';
 import Select from 'instructure-ui/lib/components/Select';
 import TextArea from 'instructure-ui/lib/components/TextArea';
-import IconCalendarMonthSolid from 'instructure-icons/react/Solid/IconCalendarMonthSolid';
 import Grid, {GridRow, GridCol} from 'instructure-ui/lib/components/Grid';
+import DateInput from 'instructure-ui/lib/components/DateInput';
+import moment from 'moment-timezone';
 
 import styles from './styles.css';
 import theme from './theme.js';
@@ -23,6 +24,8 @@ export class UpdateItemTray extends Component {
     noteItem: PropTypes.object,
     onSavePlannerItem: PropTypes.func.isRequired,
     onDeletePlannerItem: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired,
+    timeZone: PropTypes.string.isRequired,
   };
 
   constructor (props) {
@@ -31,6 +34,9 @@ export class UpdateItemTray extends Component {
     if (updates.context) {
       updates.courseId = updates.context.id;
       delete updates.context;
+    }
+    if (!updates.date) {
+      updates.date = moment.tz(props.timeZone).format();
     }
     this.state = {
       updates,
@@ -75,14 +81,14 @@ export class UpdateItemTray extends Component {
     this.handleChange('title', value);
   }
 
-  handleDateChange = (e) => {
-    const value = e.target.value;
+  handleDateChange = (date) => {
+    const value = date;
+    this.handleChange('date', value);
     if (value === '') {
       this.setState({dateMessages: [{type: 'error', text: formatMessage('date is required')}]});
     } else {
       this.setState({dateMessages: []});
     }
-    this.handleChange('date', value);
   }
 
   handleDeleteClick = () => {
@@ -94,8 +100,10 @@ export class UpdateItemTray extends Component {
   }
 
   isValid () {
-    // intentional empty string checking
-    return this.state.updates.title && this.state.updates.date;
+    if (this.state.updates.title && this.state.updates.date) {
+      return this.state.updates.title.replace(/\s/g, '').length > 0;
+    }
+    return false;
   }
 
   renderDeleteButton () {
@@ -130,13 +138,19 @@ export class UpdateItemTray extends Component {
   }
 
   renderDateInput () {
-    const value = this.findCurrentValue('date');
+    let startingDate = this.findCurrentValue('date');
+    if (!startingDate) {
+      startingDate = moment.tz(this.props.timeZone).format();
+    }
     return (
-      <TextInput
+      <DateInput
         label={formatMessage("Date")}
-        value={value}
-        messages={this.state.dateMessages}
-        onChange={this.handleDateChange}
+        nextLabel={formatMessage("Next Month")}
+        previousLabel={formatMessage("Previous Month")}
+        locale={this.props.locale}
+        timeZone={this.props.timeZone}
+        defaultDateValue={startingDate}
+        onDateChange={this.handleDateChange}
       />
     );
   }
@@ -195,11 +209,6 @@ export class UpdateItemTray extends Component {
             <GridRow>
               <GridCol>
                 {this.renderDateInput()}
-              </GridCol>
-              <GridCol>
-                <Button variant="icon">
-                  <IconCalendarMonthSolid />
-                </Button>
               </GridCol>
             </GridRow>
           </Grid>

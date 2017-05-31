@@ -5,6 +5,8 @@ import { PlannerHeader } from '../index';
 const defaultProps = {
   courses: [],
   savePlannerItem: () => {},
+  locale: 'en',
+  timeZone: 'America/Denver',
   deletePlannerItem: () => {},
 };
 

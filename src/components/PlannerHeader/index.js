@@ -26,6 +26,8 @@ export class PlannerHeader extends Component {
     addDay: PropTypes.func,
     savePlannerItem: PropTypes.func.isRequired,
     deletePlannerItem: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired,
+    timeZone: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -95,6 +97,8 @@ export class PlannerHeader extends Component {
           onRequestClose={this.toggleUpdateItemTray}
         >
           <UpdateItemTray
+            locale={this.props.locale}
+            timeZone={this.props.timeZone}
             onSavePlannerItem={this.handleSavePlannerItem}
             onDeletePlannerItem={this.handleDeletePlannerItem}
             courses={this.props.courses}

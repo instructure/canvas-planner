@@ -1,131 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the base component correctly with one buttons and four inputs 1`] = `
-<div>
-  <Container
-    as="section"
-    display="block"
-    margin="large medium"
-    textAlign="end"
-  >
-    <Container
-      display="block"
-      margin="medium 0"
-    >
-      <TextInput
-        disabled={false}
-        inline={false}
-        inputRef={[Function]}
-        label="Title"
-        layout="stacked"
-        messages={Array []}
-        onChange={[Function]}
-        size="medium"
-        type="text"
-        value=""
-      />
-    </Container>
-    <Grid
-      colSpacing="none"
-      hAlign="start"
-      rowSpacing="medium"
-      startAt="small"
-      vAlign="bottom"
-      visualDebug={false}
-    >
-      <GridRow>
-        <GridCol
-          textAlign="inherit"
-        >
-          <TextInput
-            disabled={false}
-            inline={false}
-            inputRef={[Function]}
-            label="Date"
-            layout="stacked"
-            messages={Array []}
-            onChange={[Function]}
-            size="medium"
-            type="text"
-            value=""
-          />
-        </GridCol>
-        <GridCol
-          textAlign="inherit"
-        >
-          <Button
-            as="button"
-            buttonRef={[Function]}
-            fluidWidth={false}
-            margin="0"
-            size="medium"
-            type="button"
-            variant="icon"
-          >
-            <IconCalendarMonthSolid />
-          </Button>
-        </GridCol>
-      </GridRow>
-    </Grid>
-    <Container
-      display="block"
-      margin="medium 0"
-    >
-      <Select
-        disabled={false}
-        inline={false}
-        label="Course"
-        layout="stacked"
-        messages={Array []}
-        onChange={[Function]}
-        selectRef={[Function]}
-        size="medium"
-        type="text"
-        value=""
-      >
-        <option
-          value="none"
-        >
-          Optional: Add Course
-        </option>
-      </Select>
-    </Container>
-    <Container
-      display="block"
-      margin="medium 0"
-    >
-      <TextArea
-        autoGrow={false}
-        disabled={false}
-        height="12rem"
-        inline={false}
-        label="Details"
-        layout="stacked"
-        messages={Array []}
-        onChange={[Function]}
-        resize="none"
-        size="medium"
-        textareaRef={[Function]}
-        value=""
-      />
-    </Container>
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      disabled={true}
-      fluidWidth={false}
-      margin="0"
-      onClick={[Function]}
-      size="medium"
-      type="button"
-      variant="primary"
-    >
-      Save
-    </Button>
-  </Container>
-</div>
-`;
-
 exports[`renders the item to update if provided 1`] = `
 <div>
   <Container
@@ -163,33 +37,17 @@ exports[`renders the item to update if provided 1`] = `
         <GridCol
           textAlign="inherit"
         >
-          <TextInput
-            disabled={false}
-            inline={false}
-            inputRef={[Function]}
+          <DateInput
+            defaultDateValue="2017-04-25 01:49:00-0700"
+            format="LL"
             label="Date"
-            layout="stacked"
-            messages={Array []}
-            onChange={[Function]}
-            size="medium"
-            type="text"
-            value="2017-04-25 01:49:00-0700"
+            locale="en"
+            nextLabel="Next Month"
+            onDateChange={[Function]}
+            previousLabel="Previous Month"
+            timeZone="America/Denver"
+            validationFeedback={true}
           />
-        </GridCol>
-        <GridCol
-          textAlign="inherit"
-        >
-          <Button
-            as="button"
-            buttonRef={[Function]}
-            fluidWidth={false}
-            margin="0"
-            size="medium"
-            type="button"
-            variant="icon"
-          >
-            <IconCalendarMonthSolid />
-          </Button>
         </GridCol>
       </GridRow>
     </Grid>

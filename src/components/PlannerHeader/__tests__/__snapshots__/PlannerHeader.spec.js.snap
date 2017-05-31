@@ -57,8 +57,10 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
   >
     <UpdateItemTray
       courses={Array []}
+      locale="en"
       onDeletePlannerItem={[Function]}
       onSavePlannerItem={[Function]}
+      timeZone="America/Denver"
     />
   </Tray>
 </div>

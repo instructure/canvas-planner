@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1).toString();
 
