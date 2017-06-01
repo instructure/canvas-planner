@@ -111,3 +111,24 @@ it('groups itemsForDay that come in on prop changes', () => {
   groupedItems = wrapper.state('groupedItems');
   expect(Object.keys(groupedItems).length).toEqual(3);
 });
+
+it('forwards takeFocusRef to its first grouping', () => {
+  const mockTakeFocusRef = jest.fn();
+  const items = [{
+    title: 'Black Friday',
+    context: {
+      id: 128
+    }
+  }, {
+    title: 'San Juan',
+    context: {
+      id: 256
+    }
+  }];
+
+  const wrapper = shallow(
+    <Day takeFocusRef={mockTakeFocusRef} timeZone="Asia/Tokyo" day="2017-04-25" itemsForDay={items} />
+  );
+  expect(wrapper.find('Grouping').at(0).props().takeFocusRef).toBe(mockTakeFocusRef);
+  expect(wrapper.find('Grouping').at(1).props().takeFocusRef).not.toBeDefined();
+});

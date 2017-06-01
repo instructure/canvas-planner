@@ -113,6 +113,12 @@ it('renders an activity notification with the "danger" color if it has a missing
   expect(wrapper.find('Badge').props().variant).toBe('danger');
 });
 
+it('invokes the takeFocusRef (if passed) on a focusable element', () => {
+  const mockTakeFocus = jest.fn();
+  mount(<Grouping {...getDefaultProps()} takeFocusRef={mockTakeFocus} />);
+  expect(mockTakeFocus).toHaveBeenCalledWith(expect.anything());
+});
+
 describe('handleFacadeClick', () => {
   it('sets focus to the groupingLink when called', () => {
     const wrapper = mount(

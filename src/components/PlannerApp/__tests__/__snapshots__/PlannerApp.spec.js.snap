@@ -1,5 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if not setFocusAfterLoad 1`] = `
+<div
+  className="PlannerApp"
+>
+  <ScreenReaderContent
+    as="span"
+  >
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      size="medium"
+      type="button"
+      variant="default"
+    >
+      Load prior dates
+    </Button>
+  </ScreenReaderContent>
+  <Day
+    day="2017-04-24"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-25"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-26"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <LoadingFutureIndicator />
+</div>
+`;
+
+exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocusAfterLoad 1`] = `
+<div
+  className="PlannerApp"
+>
+  <ScreenReaderContent
+    as="span"
+  >
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      size="medium"
+      type="button"
+      variant="default"
+    >
+      Load prior dates
+    </Button>
+  </ScreenReaderContent>
+  <Day
+    day="2017-04-24"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-25"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    takeFocusRef={[Function]}
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-26"
+    itemsForDay={
+      Array [
+        Object {},
+      ]
+    }
+    timeZone="UTC"
+  />
+  <LoadingFutureIndicator />
+</div>
+`;
+
 exports[`renders base component using dayKeys 1`] = `
 <div
   className="PlannerApp"
@@ -46,6 +147,7 @@ exports[`renders base component using dayKeys 1`] = `
     }
     timeZone="UTC"
   />
+  <LoadingFutureIndicator />
 </div>
 `;
 
@@ -129,5 +231,6 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
     }
     timeZone="UTC"
   />
+  <LoadingFutureIndicator />
 </div>
 `;

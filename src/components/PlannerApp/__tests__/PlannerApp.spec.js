@@ -39,3 +39,22 @@ it('shows the loading past indicator when loadingPast prop is true', () => {
   );
   expect(wrapper).toMatchSnapshot();
 });
+
+it('passes takeFocusRef to first day that matches firstNewDayKey if setFocusAfterLoad', () => {
+  const wrapper = shallow(<PlannerApp {...getDefaultValues()}
+    firstNewDayKey="2017-04-25" setFocusAfterLoad />);
+  expect(wrapper).toMatchSnapshot();
+});
+
+it('does not pass takeFocusRef to first day that matches firstNewDayKey if not setFocusAfterLoad', () => {
+  const wrapper = shallow(<PlannerApp {...getDefaultValues()}
+    firstNewDayKey="2017-04-25" />);
+  expect(wrapper).toMatchSnapshot();
+});
+
+it('calls focus() on takeFocusRef', () => {
+  const mockFocusElement = { focus: jest.fn() };
+  const wrapper = shallow(<PlannerApp {...getDefaultValues()} />);
+  wrapper.instance().takeFocusRef(mockFocusElement);
+  expect(mockFocusElement.focus).toHaveBeenCalled();
+});

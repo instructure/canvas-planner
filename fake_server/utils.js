@@ -180,7 +180,9 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
       can_group: true,
       locked_for_user: false,
       message: "<p>Some prompt</p>",
-      todo_date: dueDateTime.tz('UTC').format()
+      todo_date: dueDateTime.tz('UTC').format(),
+      // have to add this because json server doesn't have the capability to do both due_at and todo_date
+      due_at: dueDateTime.tz('UTC').format(),
     },
     html_url: `/courses/${courseId}/assignments/${id}#submit`
   };

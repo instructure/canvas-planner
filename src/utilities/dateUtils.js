@@ -64,5 +64,12 @@ export function getFirstLoadedMoment (state) {
   if (!state.days.length) return moment().tz(state.timeZone).startOf('day');
   const firstLoadedDay = state.days[0];
   const firstLoadedItem = firstLoadedDay[1][0];
-  return firstLoadedItem.dateBucketMoment;
+  return firstLoadedItem.dateBucketMoment.clone();
+}
+
+export function getLastLoadedMoment (state) {
+  if (!state.days.length) return moment().tz(state.timeZone).startOf('day');
+  const lastLoadedDay = state.days[state.days.length-1];
+  const loadedItem = lastLoadedDay[1][0];
+  return loadedItem.dateBucketMoment.clone();
 }

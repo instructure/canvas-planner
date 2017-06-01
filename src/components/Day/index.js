@@ -4,7 +4,7 @@ import themeable from 'instructure-ui/lib/themeable';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Container from 'instructure-ui/lib/components/Container';
-import { string, arrayOf, object } from 'prop-types';
+import { string, arrayOf, object, func } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import { getFriendlyDate, getFullDate, isToday, isInPast } from '../../utilities/dateUtils';
@@ -17,7 +17,8 @@ class Day extends Component {
   static propTypes = {
     day: string.isRequired,
     itemsForDay: arrayOf(object),
-    timeZone: string.isRequired
+    timeZone: string.isRequired,
+    takeFocusRef: func,
   }
 
   constructor (props) {
@@ -69,10 +70,13 @@ class Day extends Component {
         <div>
           {
             (hasGroupedItems) ? (
-              Object.keys(this.state.groupedItems).map((cid) => {
+              Object.keys(this.state.groupedItems).map((cid, index) => {
                 const courseInfo = this.state.groupedItems[cid][0].context || {};
+                let takeFocusRef;
+                if (index === 0) takeFocusRef = this.props.takeFocusRef;
                 return (
                   <Grouping
+                    takeFocusRef={takeFocusRef}
                     isInPast={this.isInPast}
                     title={courseInfo.title}
                     image_url={courseInfo.image_url}

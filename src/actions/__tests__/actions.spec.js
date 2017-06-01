@@ -34,6 +34,15 @@ describe('api actions', () => {
         type: 'START_LOADING_ITEMS'
       });
     });
+
+    it('dispatches all items loaded if no items loaded', () => {
+      const fakeDispatch = jest.fn();
+      const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
+      return moxiosRespond([], loadingPromise).then((result) => {
+        expect(fakeDispatch).toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
+        expect(fakeDispatch).toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
+      });
+    });
   });
 
   describe('savePlannerItem', () => {
@@ -122,6 +131,45 @@ describe('api actions', () => {
     });
   });
 
+  describe('loadFutureItems', () => {
+    it('dispatches loading actions', () => {
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
+      expect(isPromise(fetchPromise));
+      expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({type: 'GETTING_FUTURE_ITEMS'}));
+      // GOT_ITEMS_SUCCESS is dispatched by the action when internal promise is fulfulled
+    });
+
+    it('sends the due_after parameter as one day after the last day', () => {
+      const mockDispatch = jest.fn();
+      const numDays = getBasicState().days.length;
+      const afterMoment = getBasicState().days[numDays-1][1][0].dateBucketMoment
+        .clone().add(1, 'days');
+      Actions.loadFutureItems()(mockDispatch, getBasicState);
+      return moxiosWait((request) => {
+        expect(moment(request.config.params.due_after).isSame(afterMoment)).toBeTruthy();
+      });
+    });
+
+    it('resolves the promise with transformed response data', () => {
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
+      return moxiosRespond([{some: 'response'}], fetchPromise).then(result => {
+        expect(result).toMatchObject([{some: 'response', transformedToInternal: true}]);
+        expect(mockDispatch).toHaveBeenCalledWith({type: 'GOT_ITEMS_SUCCESS',
+          payload: [{some: 'response', transformedToInternal: true}]});
+      });
+    });
+
+    it('dispatches all future items loaded if no items loaded', () => {
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
+      return moxiosRespond([], fetchPromise).then(result => {
+        expect(mockDispatch).toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
+      });
+    });
+  });
+
   describe('scrollIntoPast', () => {
     it('dispatches scrolling and got items actions', () => {
       const mockDispatch = jest.fn();
@@ -145,6 +193,14 @@ describe('api actions', () => {
       const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
       return moxiosRespond([{some: 'response'}], scrollPromise).then(result => {
         expect(result).toMatchObject([{some: 'response', transformedToInternal: true}]);
+      });
+    });
+
+    it('dispatches all past items loaded if no past items were loaded', () => {
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
+      return moxiosRespond([], fetchPromise).then(result => {
+        expect(mockDispatch).toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
       });
     });
   });

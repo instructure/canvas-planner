@@ -1,5 +1,9 @@
 import moment from 'moment-timezone';
-import { isToday, getFriendlyDate, getFullDate, isInPast, getFirstLoadedMoment } from '../dateUtils';
+import {
+  isToday, isInPast,
+  getFriendlyDate, getFullDate,
+  getFirstLoadedMoment, getLastLoadedMoment
+} from '../dateUtils';
 
 describe('isToday', () => {
   it('returns true when the date passed in is the current date', () => {
@@ -83,5 +87,37 @@ describe('getFirstLoadedMoment', () => {
       ['some date', [{dateBucketMoment: expected}]],
     ]});
     expect(result.isSame(expected)).toBeTruthy();
+  });
+
+  it('returns a clone', () => {
+    const expected = moment.tz('Asia/Tokyo').startOf('day');
+    const result = getFirstLoadedMoment({days: [
+      ['some date', [{dateBucketMoment: expected}]],
+    ]});
+    expect(result === expected).toBeFalsy();
+  });
+});
+
+describe('getLastLoadedMoment', () => {
+  it('returns today when there are no days loaded', () => {
+    const today = moment.tz('Asia/Tokyo').startOf('day');
+    const result = getLastLoadedMoment({timeZone: 'Asia/Tokyo', days: []});
+    expect(result.isSame(today)).toBeTruthy();
+  });
+
+  it('returns the dateBucketMoment of the first time of the last day', () => {
+    const expected = moment().tz('Asia/Tokyo').startOf('day');
+    const result = getLastLoadedMoment({days: [
+      ['some date', [{dateBucketMoment: expected}]],
+    ]});
+    expect(result.isSame(expected)).toBeTruthy();
+  });
+
+  it('returns a clone', () => {
+    const expected = moment.tz('Asia/Tokyo').startOf('day');
+    const result = getLastLoadedMoment({days: [
+      ['some date', [{dateBucketMoment: expected}]],
+    ]});
+    expect(result === expected).toBeFalsy();
   });
 });

@@ -5,7 +5,7 @@ import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import Badge from 'instructure-ui/lib/components/Badge';
 import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
 import { partition } from 'lodash';
-import { arrayOf, string, object, bool } from 'prop-types';
+import { arrayOf, string, object, bool, func } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import PlannerItem from '../PlannerItem';
@@ -22,7 +22,8 @@ class Grouping extends Component {
     image_url: string,
     timeZone: string.isRequired,
     url: string,
-    isInPast: bool
+    isInPast: bool,
+    takeFocusRef: func,
   }
 
   static defaultProps = {
@@ -43,6 +44,13 @@ class Grouping extends Component {
       mapping[item.id] = getBadgesForItem(item);
     });
     return mapping;
+  }
+
+  groupingLinkRef = (link) => {
+    this.groupingLink = link;
+    if (this.props.takeFocusRef) {
+      this.props.takeFocusRef(link);
+    }
   }
 
   handleFacadeClick = (e) => {
@@ -130,7 +138,7 @@ class Grouping extends Component {
         </div>
         <a
           href={this.props.url || "#"}
-          ref={(c) => { this.groupingLink = c; }}
+          ref={this.groupingLinkRef}
           className={styles.hero}
           style={{backgroundImage: `url(${this.props.image_url || ''})`}}
         >

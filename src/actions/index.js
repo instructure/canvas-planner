@@ -3,7 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import {formatDayKey} from '../utilities/dateUtils';
 import { transformApiToInternalItem, transformInternalToApiItem } from '../utilities/apiUtils';
-import { getFirstLoadedMoment } from '../utilities/dateUtils';
+import { getFirstLoadedMoment, getLastLoadedMoment } from '../utilities/dateUtils';
 
 export const {
   initialOptions,
@@ -14,6 +14,9 @@ export const {
   deletingPlannerItem,
   deletedPlannerItem,
   gettingPastItems,
+  gettingFutureItems,
+  allFutureItemsLoaded,
+  allPastItemsLoaded,
 }  = createActions(
   'INITIAL_OPTIONS',
   'GOT_ITEMS_SUCCESS',
@@ -23,6 +26,9 @@ export const {
   'DELETING_PLANNER_ITEM',
   'DELETED_PLANNER_ITEM',
   'GETTING_PAST_ITEMS',
+  'GETTING_FUTURE_ITEMS',
+  'ALL_FUTURE_ITEMS_LOADED',
+  'ALL_PAST_ITEMS_LOADED',
 );
 
 let dayCount = 1;
@@ -30,16 +36,41 @@ export const addDay = createAction('ADD_DAY', () => {
   return formatDayKey(moment().add(dayCount++, 'days'));
 });
 
-export const getPlannerItems = (fromDate) => {
+function loadPlannerItems (fromMoment, onNothing, dispatch, getState) {
+  return axios.get(`/api/v1/planner/items`, {
+    params: {
+      due_after: fromMoment.format(),
+    }
+  }).then(response => {
+    if (response.data.length === 0) {
+      onNothing(dispatch, getState);
+      return [];
+    } else {
+      const translatedData = response.data.map((item) =>
+        transformApiToInternalItem(item, getState().courses, getState().timeZone));
+      dispatch(gotItemsSuccess(translatedData));
+      return translatedData;
+    }
+  });
+}
+
+function everythingLoaded(dispatch, getState) {
+  everythingFuture(dispatch, getState);
+  everythingPast(dispatch, getState);
+}
+
+function everythingFuture(dispatch) {
+  dispatch(allFutureItemsLoaded());
+}
+
+function everythingPast(dispatch) {
+  dispatch(allPastItemsLoaded());
+}
+
+export const getPlannerItems = (fromMoment) => {
   return (dispatch, getState) => {
     dispatch(startLoadingItems());
-    axios.get(`/api/v1/planner/items?due_after=${fromDate.format()}`)
-      .then(response => {
-        const translatedData = response.data.map((item) =>
-          transformApiToInternalItem(item, getState().courses, getState().timeZone));
-        dispatch(gotItemsSuccess(translatedData));
-      })
-    ;
+    return loadPlannerItems(fromMoment, everythingLoaded, dispatch, getState);
   };
 };
 
@@ -84,6 +115,14 @@ export const deletePlannerItem = (plannerItem) => {
   };
 };
 
+export const loadFutureItems = (options = {setFocusAfterLoad: false}) => {
+  return (dispatch, getState) => {
+    dispatch(gettingFutureItems(options));
+    const fromMoment = getLastLoadedMoment(getState()).add(1, 'days');
+    return loadPlannerItems(fromMoment, everythingFuture, dispatch, getState);
+  };
+};
+
 export const scrollIntoPast = () => {
   return (dispatch, getState) => {
     const beforeMoment = getFirstLoadedMoment(getState());
@@ -94,7 +133,12 @@ export const scrollIntoPast = () => {
           due_before: beforeMoment.format(),
         }
       }).then((response) => {
-        return response.data.map(item => transformApiToInternalItem(item, getState().courses, getState().timeZone));
+        if (response.data.length === 0) {
+          everythingPast(dispatch, getState);
+          return [];
+        } else {
+          return response.data.map(item => transformApiToInternalItem(item, getState().courses, getState().timeZone));
+        }
       });
     dispatch(gotItemsSuccess(promise));
     return promise;

@@ -6,9 +6,10 @@ import Spinner from 'instructure-ui/lib/components/Spinner';
 import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import { arrayOf, oneOfType, bool, object, string, func } from 'prop-types';
 import Day from '../Day';
+import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
 import formatMessage from '../../format-message';
-import {scrollIntoPast} from '../../actions';
+import {loadFutureItems, scrollIntoPast} from '../../actions';
 
 export class PlannerApp extends Component {
   static propTypes = {
@@ -20,12 +21,22 @@ export class PlannerApp extends Component {
     timeZone: string,
     isLoading: bool,
     loadingPast: bool,
+    allPastItemsLoaded: bool,
+    loadingFuture: bool,
+    allFutureItemsLoaded: bool,
+    setFocusAfterLoad: bool,
+    firstNewDayKey: string,
     scrollIntoPast: func,
+    loadFutureItems: func,
   };
 
   static defaultProps = {
     isLoading: false
   };
+
+  takeFocusRef = (focusableElement) => {
+    if (focusableElement) focusableElement.focus();
+  }
 
   renderLoading () {
     return <Container
@@ -44,6 +55,14 @@ export class PlannerApp extends Component {
     if (this.props.loadingPast) return <LoadingPastIndicator />;
   }
 
+  renderLoadMore () {
+    if (this.props.isLoading) return;
+    return <LoadingFutureIndicator
+      loadingFuture={this.props.loadingFuture}
+      allFutureItemsLoaded={this.props.allFutureItemsLoaded}
+      onLoadMore={this.props.loadFutureItems} />;
+  }
+
   renderBody (children) {
     return <div className="PlannerApp">
       <ScreenReaderContent>
@@ -53,6 +72,7 @@ export class PlannerApp extends Component {
       </ScreenReaderContent>
       {this.renderLoadingPast()}
       {children}
+      {this.renderLoadMore()}
     </div>;
   }
 
@@ -62,7 +82,12 @@ export class PlannerApp extends Component {
     }
 
     const children = this.props.days.map(([dayKey, dayItems]) => {
+      let takeFocusRef;
+      if (this.props.setFocusAfterLoad && this.props.firstNewDayKey === dayKey) {
+        takeFocusRef = this.takeFocusRef;
+      }
       return <Day
+        takeFocusRef={takeFocusRef}
         timeZone={this.props.timeZone}
         day={dayKey}
         itemsForDay={dayItems}
@@ -79,9 +104,14 @@ const mapStateToProps = (state) => {
     days: state.days,
     isLoading: state.loading.isLoading,
     loadingPast: state.loading.loadingPast,
+    allPastItemsLoaded: state.loading.allPastItemsLoaded,
+    loadingFuture: state.loading.loadingFuture,
+    allFutureItemsLoaded: state.loading.allFutureItemsLoaded,
+    setFocusAfterLoad: state.loading.setFocusAfterLoad,
+    firstNewDayKey: state.loading.firstNewDayKey,
     timeZone: state.timeZone,
   };
 };
 
-const mapDispatchToProps = {scrollIntoPast};
+const mapDispatchToProps = {loadFutureItems, scrollIntoPast};
 export default connect(mapStateToProps, mapDispatchToProps)(PlannerApp);
