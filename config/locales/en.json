@@ -47,6 +47,9 @@
   "loading_planner_items_947a813d": {
     "message": "Loading planner items"
   },
+  "next_month_749b1778": {
+    "message": "Next Month"
+  },
   "note_to_self_a504774d": {
     "message": "Note to self"
   },
@@ -55,6 +58,9 @@
   },
   "optional_add_course_ef0d70fc": {
     "message": "Optional: Add Course"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Previous Month"
   },
   "pts_699bd9aa": {
     "message": "pts"
