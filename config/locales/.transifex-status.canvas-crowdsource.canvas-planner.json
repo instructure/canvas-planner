@@ -1,0 +1,178 @@
+{
+  "el": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "he": {
+    "reviewed_percentage": "30%",
+    "completed": "65%",
+    "untranslated_words": 54,
+    "last_commiter": "canvastransifex",
+    "reviewed": 8,
+    "translated_entities": 17,
+    "translated_words": 39,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 9
+  },
+  "hy": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "fa_IR": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "nn": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "sr": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "sq": {
+    "reviewed_percentage": "0%",
+    "completed": "26%",
+    "untranslated_words": 86,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 7,
+    "translated_words": 7,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 19
+  },
+  "tr": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "ko": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "hu": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "uk_UA": {
+    "reviewed_percentage": "0%",
+    "completed": "30%",
+    "untranslated_words": 85,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 8,
+    "translated_words": 8,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 18
+  },
+  "bg": {
+    "reviewed_percentage": "0%",
+    "completed": "26%",
+    "untranslated_words": 86,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 7,
+    "translated_words": 7,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 19
+  },
+  "vi": {
+    "reviewed_percentage": "0%",
+    "completed": "26%",
+    "untranslated_words": 86,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 7,
+    "translated_words": 7,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 19
+  },
+  "cs": {
+    "reviewed_percentage": "0%",
+    "completed": "26%",
+    "untranslated_words": 86,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 7,
+    "translated_words": 7,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 19
+  },
+  "ro": {
+    "reviewed_percentage": "0%",
+    "completed": "26%",
+    "untranslated_words": 86,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 7,
+    "translated_words": 7,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 19
+  },
+  "tk_TM": {
+    "reviewed_percentage": "0%",
+    "completed": "19%",
+    "untranslated_words": 88,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 5,
+    "translated_words": 5,
+    "last_update": "2017-06-01 16:28:22",
+    "untranslated_entities": 21
+  }
+}
