@@ -79,7 +79,7 @@ export class PlannerHeader extends Component {
           onClick={this.toggleUpdateItemTray}
           ref={(b) => { this.addNoteBtn = b; }}
         >
-          <IconPlusLine title={formatMessage("Add Note to Self")} />
+          <IconPlusLine title={formatMessage("Add To Do")} />
         </Button>
         <Button variant="icon">
           <Badge count={this.props.opportunityCount}>

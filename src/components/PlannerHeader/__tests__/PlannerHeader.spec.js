@@ -21,7 +21,7 @@ it('toggles the new item tray', () => {
   const wrapper = mount(
     <PlannerHeader {...defaultProps} />
   );
-  const button = wrapper.find('[children="Add Note to Self"]');
+  const button = wrapper.find('[children="Add To Do"]');
   button.simulate('click');
   expect(wrapper.find('Tray').props().isOpen).toEqual(true);
   button.simulate('click');

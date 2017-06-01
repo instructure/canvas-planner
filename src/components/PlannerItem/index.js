@@ -112,7 +112,7 @@ class PlannerItem extends Component {
 
   renderTitle = () => {
     if (!this.props.associated_item) {
-      return formatMessage('{course} NOTE TO SELF', { course: this.props.courseName || '' });
+      return formatMessage('{course} TO DO', { course: this.props.courseName || '' });
     } else {
       return `${this.props.courseName || ''} ${this.props.associated_item}`;
     }

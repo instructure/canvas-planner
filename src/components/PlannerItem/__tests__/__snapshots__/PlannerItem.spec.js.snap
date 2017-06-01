@@ -1382,7 +1382,7 @@ exports[`renders Note correctly with everything 1`] = `
           letterSpacing="normal"
           size="x-small"
         >
-          Math 101 NOTE TO SELF
+          Math 101 TO DO
         </Typography>
       </div>
       <div>
@@ -1455,7 +1455,7 @@ exports[`renders Note correctly without Course 1`] = `
           letterSpacing="normal"
           size="x-small"
         >
-           NOTE TO SELF
+           TO DO
         </Typography>
       </div>
       <div>

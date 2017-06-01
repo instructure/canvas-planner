@@ -26,7 +26,7 @@ exports[`grouping contains link pointing to course url 1`] = `
           }
         }
       >
-        Note to self
+        To Do
       </span>
     </a>
     <ol
@@ -81,7 +81,7 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
           }
         }
       >
-        Note to self
+        To Do
       </span>
     </a>
     <ol
@@ -133,7 +133,7 @@ exports[`renders the base component with required props 1`] = `
           }
         }
       >
-        Note to self
+        To Do
       </span>
     </a>
     <ol

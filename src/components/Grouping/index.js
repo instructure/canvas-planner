@@ -92,7 +92,7 @@ class Grouping extends Component {
                 color: (this.props.courseInfo.color) ? this.props.courseInfo.color : null
               }}
             >
-              {this.props.courseInfo.title || formatMessage('Note to self')}
+              {this.props.courseInfo.title || formatMessage('To Do')}
             </span>
           </a>
           <ol

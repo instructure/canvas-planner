@@ -13,7 +13,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     variant="icon"
   >
     <IconPlusLine
-      title="Add Note to Self"
+      title="Add To Do"
     />
   </Button>
   <Button
