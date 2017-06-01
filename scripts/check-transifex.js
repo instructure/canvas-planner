@@ -93,6 +93,10 @@ function getJSON (path) {
   })
 }
 
+function getSourceLastUpdatedDate (resource) {
+  return getJSON(`/project/${resource.projectSlug}/resource/${resource.slug}?details=1`)
+}
+
 function checkStatusOfResource (resource) {
   return getJSON(`/project/${resource.projectSlug}/resource/${resource.slug}/stats/`)
 }
@@ -242,11 +246,11 @@ async function run () {
   for (let resource of config.resources) {
     let prevStatus = await loadPreviousStatusOfResource(resource)
     let status = await checkStatusOfResource(resource)
+    let sourceLastUpdated = Date.parse(await getSourceLastUpdatedDate(resource));
 
     let newStrings = []
     let newTranslations = []
     let sourcePreviouslyUpdated = Date.parse((prevStatus[resource.sourceLanguage] || {}).last_update) || 0
-    let sourceLastUpdated = Date.parse(status[resource.sourceLanguage].last_update)
     let sourceWasUpdated = sourceLastUpdated > sourcePreviouslyUpdated
 
     for (let language of Object.keys(status).sort()) {
