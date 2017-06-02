@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import themeable from 'instructure-ui/lib/themeable';
 import Container from 'instructure-ui/lib/components/Container';
+import FormFieldGroup from 'instructure-ui/lib/components/FormFieldGroup';
+import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import Button from 'instructure-ui/lib/components/Button';
 import formatMessage from '../../format-message';
 import PropTypes from 'prop-types';
 import TextInput from 'instructure-ui/lib/components/TextInput';
 import Select from 'instructure-ui/lib/components/Select';
 import TextArea from 'instructure-ui/lib/components/TextArea';
-import Grid, {GridRow, GridCol} from 'instructure-ui/lib/components/Grid';
 import DateInput from 'instructure-ui/lib/components/DateInput';
 import moment from 'moment-timezone';
 
@@ -119,6 +120,7 @@ export class UpdateItemTray extends Component {
   renderSaveButton () {
     return <Button
       variant="primary"
+      margin="0 0 0 x-small"
       disabled={!this.isValid()}
       onClick={this.handleSave}>
         {formatMessage("Save")}
@@ -182,7 +184,7 @@ export class UpdateItemTray extends Component {
     return (
       <TextArea
         label={formatMessage("Details")}
-        height="12rem"
+        height="10rem"
         autoGrow={false}
         value={value}
         onChange={(e) => this.handleChange('details', e.target.value)}
@@ -194,38 +196,26 @@ export class UpdateItemTray extends Component {
     return (
       <div className={styles.root}>
         <Container
-          display="block"
-          as="section"
-          margin="large medium"
-          textAlign="end"
+          as="div"
+          padding="large medium medium"
         >
-          <Container
-            display="block"
-            margin="medium 0"
+          <FormFieldGroup
+            rowSpacing="small"
+            description={
+              <ScreenReaderContent>
+                {formatMessage("Add planner item")}
+              </ScreenReaderContent>
+            }
           >
             {this.renderTitleInput()}
-          </Container>
-          <Grid vAlign="bottom" colSpacing="none">
-            <GridRow>
-              <GridCol>
-                {this.renderDateInput()}
-              </GridCol>
-            </GridRow>
-          </Grid>
-          <Container
-            display="block"
-            margin="medium 0"
-          >
+            {this.renderDateInput()}
             {this.renderCourseSelect()}
-          </Container>
-          <Container
-            display="block"
-            margin="medium 0"
-          >
             {this.renderDetailsInput()}
+          </FormFieldGroup>
+          <Container as="div" margin="small 0 0" textAlign="end">
+            {this.renderDeleteButton()}
+            {this.renderSaveButton()}
           </Container>
-          {this.renderDeleteButton()}
-          {this.renderSaveButton()}
         </Container>
       </div>
     );

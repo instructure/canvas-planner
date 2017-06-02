@@ -2,11 +2,6 @@
 
 export default function generator ({ colors, typography }) {
   const cssVars = {
-    fontSize: typography.fontSizeMedium,
-    fontFamily: typography.fontFamily,
-    fontWeight: typography.fontWeightNormal,
-
-    color: colors.oxford,
     background: colors.white
   };
   return cssVars;

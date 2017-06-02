@@ -3,14 +3,23 @@
 exports[`renders the item to update if provided 1`] = `
 <div>
   <Container
-    as="section"
-    display="block"
-    margin="large medium"
-    textAlign="end"
+    as="div"
+    display={null}
+    padding="large medium medium"
   >
-    <Container
-      display="block"
-      margin="medium 0"
+    <FormFieldGroup
+      as="fieldset"
+      colSpacing="small"
+      description={
+        <ScreenReaderContent
+          as="span"
+        >
+          Add planner item
+        </ScreenReaderContent>
+      }
+      disabled={false}
+      rowSpacing="small"
+      vAlign="middle"
     >
       <TextInput
         disabled={false}
@@ -24,37 +33,17 @@ exports[`renders the item to update if provided 1`] = `
         type="text"
         value="Planner Item"
       />
-    </Container>
-    <Grid
-      colSpacing="none"
-      hAlign="start"
-      rowSpacing="medium"
-      startAt="small"
-      vAlign="bottom"
-      visualDebug={false}
-    >
-      <GridRow>
-        <GridCol
-          textAlign="inherit"
-        >
-          <DateInput
-            defaultDateValue="2017-04-25 01:49:00-0700"
-            format="LL"
-            label="Date"
-            locale="en"
-            nextLabel="Next Month"
-            onDateChange={[Function]}
-            previousLabel="Previous Month"
-            timeZone="America/Denver"
-            validationFeedback={true}
-          />
-        </GridCol>
-      </GridRow>
-    </Grid>
-    <Container
-      display="block"
-      margin="medium 0"
-    >
+      <DateInput
+        defaultDateValue="2017-04-25 01:49:00-0700"
+        format="LL"
+        label="Date"
+        locale="en"
+        nextLabel="Next Month"
+        onDateChange={[Function]}
+        previousLabel="Previous Month"
+        timeZone="America/Denver"
+        validationFeedback={true}
+      />
       <Select
         disabled={false}
         inline={false}
@@ -78,15 +67,10 @@ exports[`renders the item to update if provided 1`] = `
           a course
         </option>
       </Select>
-    </Container>
-    <Container
-      display="block"
-      margin="medium 0"
-    >
       <TextArea
         autoGrow={false}
         disabled={false}
-        height="12rem"
+        height="10rem"
         inline={false}
         label="Details"
         layout="stacked"
@@ -97,32 +81,39 @@ exports[`renders the item to update if provided 1`] = `
         textareaRef={[Function]}
         value="You made this item to remind you of something, but you forgot what."
       />
+    </FormFieldGroup>
+    <Container
+      as="div"
+      display={null}
+      margin="small 0 0"
+      textAlign="end"
+    >
+      <Button
+        as="button"
+        buttonRef={[Function]}
+        fluidWidth={false}
+        margin="0 x-small 0 0"
+        onClick={[Function]}
+        size="medium"
+        type="button"
+        variant="light"
+      >
+        Delete
+      </Button>
+      <Button
+        as="button"
+        buttonRef={[Function]}
+        disabled={false}
+        fluidWidth={false}
+        margin="0 0 0 x-small"
+        onClick={[Function]}
+        size="medium"
+        type="button"
+        variant="primary"
+      >
+        Save
+      </Button>
     </Container>
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0 x-small 0 0"
-      onClick={[Function]}
-      size="medium"
-      type="button"
-      variant="light"
-    >
-      Delete
-    </Button>
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      disabled={false}
-      fluidWidth={false}
-      margin="0"
-      onClick={[Function]}
-      size="medium"
-      type="button"
-      variant="primary"
-    >
-      Save
-    </Button>
   </Container>
 </div>
 `;
