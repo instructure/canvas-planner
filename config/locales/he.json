@@ -1,15 +1,9 @@
 {
-  "add_note_to_self_f0178ecb": {
-    "message": "הוספת הערה עצמית"
-  },
   "close_d634289d": {
     "message": "סגירה"
   },
   "course_8a63b4a3": {
     "message": "קורס"
-  },
-  "course_note_to_self_260ddb24": {
-    "message": " הערה של { course } לעצמי"
   },
   "create_update_planner_item_701fa795": {
     "message": "יצירת / עדכון פריט תכנון"
@@ -29,9 +23,6 @@
   "loading_planner_items_947a813d": {
     "message": "טעינת פריטי המתכנן"
   },
-  "note_to_self_a504774d": {
-    "message": "הוספת הערה עצמית"
-  },
   "nothing_planned_today_174ba986": {
     "message": "לא תונכן כלום להיום"
   },
@@ -49,5 +40,8 @@
   },
   "title_is_required_6ddcab69": {
     "message": "נדרשת כותרת"
+  },
+  "to_do_1d554f36": {
+    "message": "לביצוע"
   }
 }
