@@ -8,13 +8,21 @@ const {
   createFakeAssignment,
   createFakeDiscussion,
   createFakeQuiz,
-  generateStatus
+  generateStatus,
+  generateActivity,
+  createFakeOpportunity
 } = require('./utils');
 
 
 
 module.exports = () => {
   const data = {
+    users: [
+      {
+        id: 1,
+      }
+    ],
+    missing_submissions: [createFakeOpportunity(), createFakeOpportunity(), createFakeOpportunity()],
     planner: {},
     items: [
       // 2 days ago

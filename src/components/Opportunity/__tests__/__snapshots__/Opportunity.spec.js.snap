@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component correctly 1`] = `
+<div>
+  <header>
+    <div>
+      course about stuff
+    </div>
+    <div>
+      <Button
+        as="button"
+        buttonRef={[Function]}
+        fluidWidth={false}
+        margin="0"
+        size="small"
+        type="button"
+        variant="icon"
+      >
+        <IconXLine
+          title="Close"
+        />
+      </Button>
+    </div>
+  </header>
+  <Container
+    as="div"
+    display={null}
+    margin="0 0 small"
+  >
+    <Link
+      as="button"
+      ellipsis={false}
+      href="http://www.non_default_url.com"
+      linkRef={[Function]}
+    >
+      this is a description about the opportunity
+    </Link>
+  </Container>
+  <footer>
+    <div>
+      <Pill
+        text="Badge list..."
+        variant="default"
+      />
+      <div>
+        <span>
+          Due:
+        </span>
+         
+        March 9, 2017 at 1:40 PM
+      </div>
+    </div>
+    <div>
+      <span>
+        20
+      </span>
+      points
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`renders the base component correctly without points 1`] = `
+<div>
+  <header>
+    <div>
+      course about stuff
+    </div>
+    <div>
+      <Button
+        as="button"
+        buttonRef={[Function]}
+        fluidWidth={false}
+        margin="0"
+        size="small"
+        type="button"
+        variant="icon"
+      >
+        <IconXLine
+          title="Close"
+        />
+      </Button>
+    </div>
+  </header>
+  <Container
+    as="div"
+    display={null}
+    margin="0 0 small"
+  >
+    <Link
+      as="button"
+      ellipsis={false}
+      href="http://www.non_default_url.com"
+      linkRef={[Function]}
+    >
+      this is a description about the opportunity
+    </Link>
+  </Container>
+  <footer>
+    <div>
+      <Pill
+        text="Badge list..."
+        variant="default"
+      />
+      <div>
+        <span>
+          Due:
+        </span>
+         
+        March 9, 2017 at 1:40 PM
+      </div>
+    </div>
+    <div>
+      <span />
+      points
+    </div>
+  </footer>
+</div>
+`;

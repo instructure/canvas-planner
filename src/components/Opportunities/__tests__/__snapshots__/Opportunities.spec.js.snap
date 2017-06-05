@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the base component correctly with one opportunity 1`] = `
+<ol>
+  <li>
+    <Opportunity
+      courseName="Course Short Name"
+      dueAt="2017-03-09T20:40:35Z"
+      opportunityTitle="learning object title"
+      timeZone="America/Denver"
+      url="http://www.non_default_url.com"
+    />
+  </li>
+</ol>
+`;
+
+exports[`renders the right course with the right opportunity 1`] = `
+<ol>
+  <li>
+    <Opportunity
+      courseName="Course Short Name"
+      dueAt="2017-03-09T20:40:35Z"
+      opportunityTitle="learning object title"
+      timeZone="America/Denver"
+      url="http://www.non_default_url.com"
+    />
+  </li>
+  <li>
+    <Opportunity
+      courseName="A different Course Name"
+      dueAt="2017-03-09T20:40:35Z"
+      opportunityTitle="other learning object"
+      timeZone="America/Denver"
+      url="http://www.non_default_url.com"
+    />
+  </li>
+</ol>
+`;

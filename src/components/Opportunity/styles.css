@@ -1,0 +1,67 @@
+
+.root {
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  font-weight: var(--fontWeight);
+  color: var(--color);
+  background: var(--background);
+  padding: var(--padding);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.oppName {
+  box-sizing: border-box;
+  min-width: 1px;
+  flex: 1;
+  padding-right: var(--namePaddingRight);
+  padding-top: var(--namePaddingTop);
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  color: var(--secondaryColor);
+  font-size: var(--nameFontSize);
+}
+
+.footer {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  padding-right: var(--footerPadding);
+}
+
+.status {
+  box-sizing: border-box;
+  min-width: 1px;
+  flex: 1;
+  padding-right: var(--statusPadding);
+}
+
+.points {
+  box-sizing: border-box;
+  min-width: 1px;
+  flex: 0 0 30%;
+  text-align: right;
+  color: var(--secondaryColor);
+  text-transform: uppercase;
+  font-size: var(--pointsFontSize);
+  line-height: var(--pointsLineHeight);
+}
+
+.pointsNumber {
+  display: block;
+  font-size: var(--pointsNumberFontSize);
+}
+
+.due {
+  margin-top: var(--dueMargin);
+  font-size: var(--dueFontSize);
+  color: var(--secondaryColor);
+}
+
+.dueText {
+  font-weight: var(--dueTextFontWeight);
+}

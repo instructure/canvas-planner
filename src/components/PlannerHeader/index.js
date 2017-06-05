@@ -4,17 +4,17 @@ import themeable from 'instructure-ui/lib/themeable';
 import Button from 'instructure-ui/lib/components/Button';
 import IconPlusLine from 'instructure-icons/lib/Line/IconPlusLine';
 import IconAlertLine from 'instructure-icons/lib/Line/IconAlertLine';
+import Popover, {PopoverTrigger, PopoverContent} from 'instructure-ui/lib/components/Popover';
 import PropTypes from 'prop-types';
 import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
 import Badge from 'instructure-ui/lib/components/Badge';
-
-import {addDay, savePlannerItem, deletePlannerItem} from '../../actions';
+import Opportunities from '../Opportunities';
+import {addDay, savePlannerItem, deletePlannerItem, getOpportunities} from '../../actions';
 
 import styles from './styles.css';
 import theme from './theme.js';
 import formatMessage from '../../format-message';
-
 export class PlannerHeader extends Component {
 
   static propTypes = {
@@ -22,23 +22,24 @@ export class PlannerHeader extends Component {
       id: PropTypes.string,
       longName: PropTypes.string,
     })).isRequired,
-    opportunityCount: PropTypes.number,
     addDay: PropTypes.func,
     savePlannerItem: PropTypes.func.isRequired,
     deletePlannerItem: PropTypes.func.isRequired,
     locale: PropTypes.string.isRequired,
     timeZone: PropTypes.string.isRequired,
+    opportunities: PropTypes.array.isRequired,
+    getOpportunities: PropTypes.func.isRequired,
   };
-
-  static defaultProps = {
-    opportunityCount: 4 // TODO: Remove this once real wiring up happens
-  }
 
   constructor (props) {
     super(props);
     this.state = {
       trayOpen: false,
     };
+  }
+
+  componentDidMount() {
+    this.props.getOpportunities();
   }
 
   handleSavePlannerItem = (plannerItem) => {
@@ -67,7 +68,7 @@ export class PlannerHeader extends Component {
         =0 {# opportunities}
         one {# opportunity}
         other {# opportunities}
-      }`, { count: this.props.opportunityCount })
+      }`, { count: this.props.opportunities.length})
     );
   }
 
@@ -81,11 +82,21 @@ export class PlannerHeader extends Component {
         >
           <IconPlusLine title={formatMessage("Add To Do")} />
         </Button>
-        <Button variant="icon">
-          <Badge count={this.props.opportunityCount}>
-            <IconAlertLine title={this.opportunityTitle()} />
-          </Badge>
-        </Button>
+        <Popover on="click">
+          <PopoverTrigger>
+            <Button variant="icon">
+              <Badge {...this.props.opportunities.length ? {count :this.props.opportunities.length} : {}}>
+                <IconAlertLine title={this.opportunityTitle()} />
+              </Badge>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <Opportunities
+              opportunities={this.props.opportunities}
+              courses={this.props.courses}
+              timeZone={this.props.timeZone} />
+          </PopoverContent>
+        </Popover>
         <Tray
           closeButtonLabel={formatMessage("Close")}
           isOpen={this.state.trayOpen}
@@ -111,7 +122,7 @@ export class PlannerHeader extends Component {
 
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
-const mapStateToProps = ({courses}) => ({courses});
-const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem};
+const mapStateToProps = ({opportunities, loading, courses}) => ({opportunities, loading, courses});
+const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);

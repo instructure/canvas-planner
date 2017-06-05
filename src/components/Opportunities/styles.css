@@ -1,0 +1,24 @@
+.root {
+  list-style-type: none;
+  color: var(--color);
+  margin: 0;
+  padding: var(--padding);
+  width: 20rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.item {
+  &:not(:last-of-type) {
+    margin-bottom: var(--itemMargin);
+  }
+
+  &:not(:first-of-type) {
+    border-top: var(--itemBorderWidth) var(--itemBorderStyle) var(--itemBorderColor);
+  }
+}
+
+
+.loading {
+  text-align: center;
+}

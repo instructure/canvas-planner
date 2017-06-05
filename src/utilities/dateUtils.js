@@ -56,6 +56,21 @@ export function getFullDate (date) {
   }
 }
 
+export function getFullDateAndTime (date) {
+  const { today, yesterday, tomorrow } = getTodaysDetails();
+  const momentizedDate = new moment(date);
+
+  if (isToday(date, today)) {
+    return formatMessage('Today at {date}', {date: momentizedDate.format('LT')});
+  } else if (yesterday.isSame(momentizedDate, 'day')) {
+    return formatMessage('Yesterday at {date}', {date: momentizedDate.format('LT')});
+  } else if (tomorrow.isSame(momentizedDate, 'day')) {
+    return formatMessage('Tomorrow at {date}', {date: momentizedDate.format('LT')});
+  } else {
+    return formatMessage('{date} at {time}', {date: momentizedDate.format('LL'), time: momentizedDate.format('LT')});
+  }
+}
+
 export function formatDayKey (date) {
   return moment(date, moment.ISO_8601).format('YYYY-MM-DD');
 }

@@ -59,6 +59,9 @@ function gotItemsSuccess (state, action) {
 
 export default handleActions({
   GOT_ITEMS_SUCCESS: gotItemsSuccess,
+  START_LOADING_OPPORTUNITIES: (state, action) => {
+    return {...state, loadingOpportunities: true};
+  },
   START_LOADING_ITEMS: (state, action) => {
     return loadingState(state, {isLoading: true});
   },
@@ -73,7 +76,10 @@ export default handleActions({
   },
   ALL_PAST_ITEMS_LOADED: (state, action) => {
     return loadingState(state, {allPastItemsLoaded: true});
-  }
+  },
+  ADD_OPPORTUNITIES: (state, action) => {
+    return {...state, loadingOpportunities: false};
+  },
 }, loadingState({}, {
   allPastItemsLoaded: false,
   allFutureItemsLoaded: false,

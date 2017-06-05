@@ -8,9 +8,11 @@ import parseLinkHeader from 'parse-link-header';
 
 export const {
   initialOptions,
+  addOpportunities,
   gotItemsSuccess,
   foundFirstNewActivityDate,
   startLoadingItems,
+  startLoadingOpportunities,
   savingPlannerItem,
   savedPlannerItem,
   deletingPlannerItem,
@@ -21,9 +23,11 @@ export const {
   allPastItemsLoaded,
 }  = createActions(
   'INITIAL_OPTIONS',
+  'ADD_OPPORTUNITIES',
   'GOT_ITEMS_SUCCESS',
   'FOUND_FIRST_NEW_ACTIVITY_DATE',
   'START_LOADING_ITEMS',
+  'START_LOADING_OPPORTUNITIES',
   'SAVING_PLANNER_ITEM',
   'SAVED_PLANNER_ITEM',
   'DELETING_PLANNER_ITEM',
@@ -131,6 +135,18 @@ function saveNewPlannerItem (apiItem) {
     data: apiItem,
   });
 }
+
+export const getOpportunities = () => {
+  return (dispatch, getState) => {
+    dispatch(startLoadingOpportunities());
+    axios({
+      method: 'get',
+      url: '/api/v1/users/1/missing_submissions',
+    }).then(response => {
+      dispatch(addOpportunities(response.data));
+    });
+  };
+};
 
 export const savePlannerItem = (plannerItem) => {
   return (dispatch, getState) => {

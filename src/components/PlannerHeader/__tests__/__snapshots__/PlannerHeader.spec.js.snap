@@ -16,29 +16,65 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
       title="Add To Do"
     />
   </Button>
-  <Button
-    as="button"
-    buttonRef={[Function]}
-    fluidWidth={false}
-    margin="0"
-    size="medium"
-    type="button"
-    variant="icon"
+  <Popover
+    contentRef={[Function]}
+    defaultShow={false}
+    on="click"
+    placement="bottom center"
+    rootClose={true}
+    variant="default"
+    withArrow={true}
   >
-    <Badge
-      count={4}
-      formatOverflowText={[Function]}
-      placement="top end"
-      pulse={false}
-      standalone={false}
-      type="count"
-      variant="primary"
-    >
-      <IconAlertLine
-        title="4 opportunities"
+    <PopoverTrigger>
+      <Button
+        as="button"
+        buttonRef={[Function]}
+        fluidWidth={false}
+        margin="0"
+        size="medium"
+        type="button"
+        variant="icon"
+      >
+        <Badge
+          count={1}
+          formatOverflowText={[Function]}
+          placement="top end"
+          pulse={false}
+          standalone={false}
+          type="count"
+          variant="primary"
+        >
+          <IconAlertLine
+            title="1 opportunity"
+          />
+        </Badge>
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent>
+      <Opportunities
+        courses={
+          Array [
+            Object {
+              "id": "1",
+              "shortName": "Course Short Name",
+            },
+          ]
+        }
+        opportunities={
+          Array [
+            Object {
+              "course_id": "1",
+              "due_at": "2017-03-09T20:40:35Z",
+              "html_url": "http://www.non_default_url.com",
+              "id": "1",
+              "name": "learning object title",
+            },
+          ]
+        }
+        timeZone="America/Denver"
       />
-    </Badge>
-  </Button>
+    </PopoverContent>
+  </Popover>
   <Tray
     border={false}
     closeButtonLabel="Close"
@@ -56,7 +92,14 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     trapFocus={true}
   >
     <UpdateItemTray
-      courses={Array []}
+      courses={
+        Array [
+          Object {
+            "id": "1",
+            "shortName": "Course Short Name",
+          },
+        ]
+      }
       locale="en"
       onDeletePlannerItem={[Function]}
       onSavePlannerItem={[Function]}

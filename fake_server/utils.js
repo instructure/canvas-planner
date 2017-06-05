@@ -305,6 +305,52 @@ const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed 
 
 
 
+const createFakeOpportunity = (description = "Random Description", courseId = "1", dueDateTime = moment()) => {
+  const id = getKindaUniqueId();
+
+  return {
+    id: id,
+    description: description,
+    due_at: "2017-05-12T15:05:48Z",
+    unlock_at: null,
+    lock_at: null,
+    points_possible: 0,
+    grading_type: "points",
+    assignment_group_id: 1,
+    grading_standard_id: null,
+    created_at: "2017-03-09T20:40:35Z",
+    updated_at: "2017-04-20T04:02:18Z",
+    peer_reviews: false,
+    automatic_peer_reviews: false,
+    position: 3,
+    grade_group_students_individually: false,
+    anonymous_peer_reviews: false,
+    group_category_id: null,
+    post_to_sis: false,
+    moderated_grading: false,
+    omit_from_final_grade: false,
+    intra_group_peer_reviews: false,
+    secure_params: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsdGlfYXNzaWdubWVudF9pZCI6ImM3MDA1NzAyLTNhZTItNGFiOC05ZTkzLWJhNGY2ZmE1OTA0ZSJ9.3CTWn4eMV8jhXsnGc0u0WndwFtzSls9V8Ge2h8wdUc8",
+    course_id: courseId,
+    name: "Quiz 2",
+    submission_types: [
+      "online_quiz"
+    ],
+    has_submitted_submissions: false,
+    due_date_required: false,
+    max_name_length: 255, in_closed_grading_period: false,
+    is_quiz_assignment: true,
+    muted: false,
+    html_url: "http://localhost:3000/courses/1/assignments/8",
+    quiz_id: 4,
+    anonymous_submissions: false,
+    published: true,
+    only_visible_to_overrides: false,
+    locked_for_user: false,
+    submissions_download_url: "http://localhost:3000/courses/1/quizzes/4/submissions?zip=1"
+  };
+};
+
 module.exports = {
   createFakeAssignment,
   createFakeDiscussion,
@@ -312,4 +358,5 @@ module.exports = {
   createFakeWiki,
   getKindaUniqueId,
   generateStatus,
+  createFakeOpportunity,
 };

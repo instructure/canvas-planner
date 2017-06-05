@@ -1,3 +1,4 @@
 {
-  "/planner/": "/"
+  "/planner/": "/",
+  "/users/:id/missing_submissions": "/missing_submissions?userId=:id"
 }

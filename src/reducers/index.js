@@ -4,6 +4,7 @@ import items from './items-reducer';
 import days from './days-reducer';
 import loading from './loading-reducer';
 import courses from './courses-reducer';
+import opportunities from './opportunities-reducer';
 
 const locale = handleAction('INITIAL_OPTIONS', (state, action) => {
   return action.payload.locale;
@@ -25,4 +26,5 @@ export default combineReducers({
   days,
   loading,
   firstNewActivityDate,
+  opportunities,
 });
