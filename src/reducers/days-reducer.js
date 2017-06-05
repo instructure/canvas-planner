@@ -13,7 +13,7 @@ function savedPlannerItem (state, action) {
   const plannerDateString = formatDayKey(plannerItem.dateBucketMoment);
   const plannerDay = state.find(day => day[0] === plannerDateString);
   if (!plannerDay) return state;
-  return gotItemsSuccess(state, {...action, payload: [plannerItem]});
+  return gotItemsSuccess(state, [plannerItem]);
 }
 
 function deletedPlannerItem (state, action) {
@@ -44,8 +44,8 @@ function mergeDays(firstDay, secondDay) {
   return firstDayMerged.concat([...secondDayMap.values()]);
 }
 
-function gotItemsSuccess (state, action) {
-  const newGroups = _.groupBy(action.payload, (item) => {
+function gotItemsSuccess (state, items) {
+  const newGroups = _.groupBy(items, (item) => {
     return formatDayKey(item.dateBucketMoment);
   });
   const mergedGroups = _.fromPairs(state);
@@ -60,7 +60,7 @@ function gotItemsSuccess (state, action) {
 }
 
 export default handleActions({
-  GOT_ITEMS_SUCCESS: gotItemsSuccess,
+  GOT_ITEMS_SUCCESS: (state, action) => gotItemsSuccess(state, action.payload.internalItems),
   ADD_DAY: addDay,
   SAVED_PLANNER_ITEM: savedPlannerItem,
   DELETED_PLANNER_ITEM: deletedPlannerItem,

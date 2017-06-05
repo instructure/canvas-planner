@@ -4,6 +4,7 @@ import moment from 'moment';
 import {formatDayKey} from '../utilities/dateUtils';
 import { transformApiToInternalItem, transformInternalToApiItem } from '../utilities/apiUtils';
 import { getFirstLoadedMoment, getLastLoadedMoment } from '../utilities/dateUtils';
+import parseLinkHeader from 'parse-link-header';
 
 export const {
   initialOptions,
@@ -36,22 +37,45 @@ export const addDay = createAction('ADD_DAY', () => {
   return formatDayKey(moment().add(dayCount++, 'days'));
 });
 
-function loadPlannerItems (fromMoment, onNothing, dispatch, getState) {
-  return axios.get(`/api/v1/planner/items`, {
-    params: {
-      due_after: fromMoment.format(),
-    }
-  }).then(response => {
-    if (response.data.length === 0) {
-      onNothing(dispatch, getState);
-      return [];
-    } else {
-      const translatedData = response.data.map((item) =>
-        transformApiToInternalItem(item, getState().courses, getState().timeZone));
-      dispatch(gotItemsSuccess(translatedData));
-      return translatedData;
-    }
-  });
+function handleLoadPlannerItemsResponse (response, onNothing, dispatch, getState) {
+  const parsedLinkHeader = parseLinkHeader(response.headers.link);
+  if (response.data.length === 0 && (!parsedLinkHeader || !parsedLinkHeader.next)) {
+    onNothing(dispatch, getState);
+    return [];
+  } else {
+    const translatedData = response.data.map((item) =>
+      transformApiToInternalItem(item, getState().courses, getState().timeZone));
+    dispatch(gotItemsSuccess({
+      internalItems: translatedData,
+      response: response,
+    }));
+    return translatedData;
+  }
+}
+
+function loadPlannerItems (fromMoment, onNothing, dispatch, getState, intoThePast = false) {
+  let timeParam = 'due_after';
+  let linkField = 'futureNextUrl';
+  if (intoThePast) {
+    timeParam = 'due_before';
+    linkField = 'pastNextUrl';
+  }
+
+  const nextPageUrl = getState().loading[linkField];
+  let getPromise = null;
+  if (nextPageUrl) {
+    getPromise = axios.get(nextPageUrl);
+  } else {
+    getPromise = axios.get(`/api/v1/planner/items`, {
+      params: {
+        [timeParam]: fromMoment.format(),
+      }
+    });
+  }
+
+  return getPromise.then(
+    response => handleLoadPlannerItemsResponse(response, onNothing, dispatch, getState)
+  );
 }
 
 function everythingLoaded(dispatch, getState) {
@@ -127,20 +151,6 @@ export const scrollIntoPast = () => {
   return (dispatch, getState) => {
     const beforeMoment = getFirstLoadedMoment(getState());
     dispatch(gettingPastItems());
-    const promise =
-      axios.get('api/v1/planner/items', {
-        params: {
-          due_before: beforeMoment.format(),
-        }
-      }).then((response) => {
-        if (response.data.length === 0) {
-          everythingPast(dispatch, getState);
-          return [];
-        } else {
-          return response.data.map(item => transformApiToInternalItem(item, getState().courses, getState().timeZone));
-        }
-      });
-    dispatch(gotItemsSuccess(promise));
-    return promise;
+    return loadPlannerItems(beforeMoment, everythingPast, dispatch, getState, true);
   };
 };

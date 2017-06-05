@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import parseLinkHeader from 'parse-link-header';
 import { formatDayKey } from '../utilities/dateUtils';
 
 function loadingState (currentState, loadingState) {
@@ -7,13 +8,37 @@ function loadingState (currentState, loadingState) {
     isLoading: false,
     loadingPast: false,
     loadingFuture: false,
-    // the "all loaded" properties should retain their current values unless loadingState sets them
+    // all other properties should retain their current values unless loadingState sets them
     ...loadingState,
   };
 }
 
-function gotItemsSuccess (state, action) {
-  const newItems = action.payload;
+function findNextLink (state, action) {
+  const response = action.payload.response;
+  if (response == null) return null;
+
+  const linkHeader = response.headers.link;
+  if (linkHeader == null) return null;
+
+  const parsedLinks = parseLinkHeader(linkHeader);
+  if (parsedLinks == null) return null;
+
+  if (parsedLinks.next == null) return null;
+  return parsedLinks.next.url;
+}
+
+function getNextUrls (state, action) {
+  const linkState = {};
+  const nextLink = findNextLink(state, action);
+
+  if (state.isLoading || state.loadingFuture) linkState.futureNextUrl = nextLink;
+  if (state.loadingPast) linkState.pastNextUrl = nextLink;
+
+  return linkState;
+}
+
+function determineFocusAfterLoad (state, action) {
+  const newItems = action.payload.internalItems;
   let firstNewDayKey = null;
   let setFocusAfterLoad = false;
   if (state.loadingFuture && state.setFocusAfterLoad) {
@@ -22,7 +47,14 @@ function gotItemsSuccess (state, action) {
       firstNewDayKey = formatDayKey(newItems[0].dateBucketMoment);
     }
   }
-  return loadingState(state, {firstNewDayKey, setFocusAfterLoad});
+  return {firstNewDayKey, setFocusAfterLoad};
+}
+
+function gotItemsSuccess (state, action) {
+  const focusState = determineFocusAfterLoad(state, action);
+  const linkState = getNextUrls(state, action);
+  const newState = {...focusState, ...linkState};
+  return loadingState(state, newState);
 }
 
 export default handleActions({

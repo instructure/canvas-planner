@@ -4,12 +4,12 @@ import moment from 'moment-timezone';
 it('adds and replaces items on GOT_ITEMS_SUCCESS', () => {
   const initialState = [];
 
-  const payload = [
+  const payload = {internalItems: [
     { id: 'fourth', dateBucketMoment: moment.tz('2017-04-29', 'UTC') },
     { id: 'second', dateBucketMoment: moment.tz('2017-04-28', 'UTC') },
     { id: 'first', dateBucketMoment: moment.tz('2017-04-27', 'UTC') },
     { id: 'third', dateBucketMoment: moment.tz('2017-04-28', 'UTC') },
-  ];
+  ]};
 
   const newState = daysReducer(initialState, {type: 'GOT_ITEMS_SUCCESS', payload});
   expect(newState).toMatchObject([
@@ -18,11 +18,12 @@ it('adds and replaces items on GOT_ITEMS_SUCCESS', () => {
     ['2017-04-29', [{id: 'fourth'}]],
   ]);
 
-  const mergedState = daysReducer(newState, {type: 'GOT_ITEMS_SUCCESS', payload: [
+  const newPayload = {internalItems: [
     {id: 'fifth', dateBucketMoment: moment.tz('2017-04-29', 'UTC')},
     {id: 'zeroth', dateBucketMoment: moment.tz('2017-04-26', 'UTC')},
     {id: 'second', with: 'new data', dateBucketMoment: moment.tz('2017-04-28', 'UTC')}
-  ]});
+  ]};
+  const mergedState = daysReducer(newState, {type: 'GOT_ITEMS_SUCCESS', payload: newPayload});
   expect(mergedState).toMatchObject([
     ['2017-04-26', [{id: 'zeroth'}]],
     ['2017-04-27',  [{id: 'first'}]],

@@ -18,10 +18,10 @@ export function moxiosWait (fn) {
   });
 }
 
-export function moxiosRespond (response, requestPromise) {
+export function moxiosRespond (response, requestPromise, opts = {}) {
   if (!isPromise(requestPromise)) throw new Error('moxiosResult requires a promise for the request');
   const waitPromise = moxiosWait((request) => {
-    request.respondWith({status: 200, response});
+    request.respondWith({status: 200, headers: {}, response, ...opts});
   });
   return Promise.all([waitPromise, requestPromise])
     .then(([waitResult, requestResult]) => {

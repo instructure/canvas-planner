@@ -12,13 +12,19 @@ const getBasicState = () => ({
   courses: [],
   timeZone: 'UTC',
   days: [
+    ['2017-05-22', [{id: '42', dateBucketMoment: moment.tz('2017-05-22', 'UTC')}]],
     ['2017-05-24', [{id: '42', dateBucketMoment: moment.tz('2017-05-24', 'UTC')}]],
   ],
+  loading: {
+    futureNextUrl: null,
+    pastNextUrl: null,
+  },
 });
 
 describe('api actions', () => {
   beforeEach(() => {
     moxios.install();
+    expect.hasAssertions();
   });
 
   afterEach(() => {
@@ -32,6 +38,21 @@ describe('api actions', () => {
       thunk(fakeDispatch, getBasicState);
       expect(fakeDispatch.mock.calls[0][0]).toMatchObject({
         type: 'START_LOADING_ITEMS'
+      });
+    });
+
+    it('dispatches GOT_ITEMS_SUCCESS after items are loaded', () => {
+      const fakeDispatch = jest.fn();
+      const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
+      return moxiosRespond([{some: 'data'}], loadingPromise).then((result) => {
+        const callParams = fakeDispatch.mock.calls[1][0];
+        expect(callParams).toMatchObject({
+          type: 'GOT_ITEMS_SUCCESS',
+          payload: {
+            internalItems: [{some: 'data', transformedToInternal: true}],
+          },
+        });
+        expect(callParams.payload).toHaveProperty('response');
       });
     });
 
@@ -140,7 +161,7 @@ describe('api actions', () => {
       // GOT_ITEMS_SUCCESS is dispatched by the action when internal promise is fulfulled
     });
 
-    it('sends the due_after parameter as one day after the last day', () => {
+    it('sends the due_after parameter as one day after the last day if no futureNextUrl', () => {
       const mockDispatch = jest.fn();
       const numDays = getBasicState().days.length;
       const afterMoment = getBasicState().days[numDays-1][1][0].dateBucketMoment
@@ -151,21 +172,45 @@ describe('api actions', () => {
       });
     });
 
+    it('sends the next url if there is a futureNextUrl', () => {
+      const mockDispatch = jest.fn();
+      const modifiedState = getBasicState();
+      modifiedState.loading.futureNextUrl = 'some next url';
+      Actions.loadFutureItems()(mockDispatch, () => modifiedState);
+      return moxiosWait((request) => {
+        expect(request.url).toBe('some next url');
+      });
+    });
+
     it('resolves the promise with transformed response data', () => {
       const mockDispatch = jest.fn();
       const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
       return moxiosRespond([{some: 'response'}], fetchPromise).then(result => {
         expect(result).toMatchObject([{some: 'response', transformedToInternal: true}]);
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'GOT_ITEMS_SUCCESS',
-          payload: [{some: 'response', transformedToInternal: true}]});
+        const gotItemsParams = mockDispatch.mock.calls[1][0];
+        expect(gotItemsParams).toMatchObject({
+          type: 'GOT_ITEMS_SUCCESS',
+          payload: {
+            internalItems: [{some: 'response', transformedToInternal: true}],
+          },
+        });
+        expect(gotItemsParams.payload).toHaveProperty('response');
       });
     });
 
-    it('dispatches all future items loaded if no items loaded', () => {
+    it('dispatches all future items loaded if no items loaded and there is no next link', () => {
       const mockDispatch = jest.fn();
       const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
       return moxiosRespond([], fetchPromise).then(result => {
         expect(mockDispatch).toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
+      });
+    });
+
+    it('does not dispatch all future items loaded if no items loaded and there is a next link', () => {
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
+      return moxiosRespond([], fetchPromise, {headers: {link: '<futureNextUrl>; rel="next"'}}).then(result => {
+        expect(mockDispatch).not.toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
       });
     });
   });
@@ -176,10 +221,19 @@ describe('api actions', () => {
       const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
       expect(isPromise(scrollPromise));
       expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS'});
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'GOT_ITEMS_SUCCESS', payload: scrollPromise});
+      return moxiosRespond([{some: 'response'}], scrollPromise).then((result) => {
+        const gotItemsParams = mockDispatch.mock.calls[1][0];
+        expect(gotItemsParams).toMatchObject({
+          type: 'GOT_ITEMS_SUCCESS',
+          payload: {
+            internalItems: [{some: 'response', transformedToInternal: true}],
+          },
+        });
+        expect(gotItemsParams.payload).toHaveProperty('response');
+      });
     });
 
-    it('sends due_before parameter', () => {
+    it('sends due_before parameter as the first loaded day', () => {
       const mockDispatch = jest.fn();
       const beforeMoment = getBasicState().days[0][1][0].dateBucketMoment;
       Actions.scrollIntoPast()(mockDispatch, getBasicState);
@@ -188,20 +242,32 @@ describe('api actions', () => {
       });
     });
 
-    it('resolves the promise with transformed response data', () => {
+    it('sends the pastNextUrl if there is one', () => {
       const mockDispatch = jest.fn();
-      const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
-      return moxiosRespond([{some: 'response'}], scrollPromise).then(result => {
-        expect(result).toMatchObject([{some: 'response', transformedToInternal: true}]);
+      const modifiedState = getBasicState();
+      modifiedState.loading.pastNextUrl = 'some past url';
+      Actions.scrollIntoPast()(mockDispatch, () => modifiedState);
+      return moxiosWait((request) => {
+        expect(request.url).toBe('some past url');
       });
     });
 
-    it('dispatches all past items loaded if no past items were loaded', () => {
+    it('dispatches all past items loaded if nothing was loaded and there is no next link', () => {
       const mockDispatch = jest.fn();
       const fetchPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
       return moxiosRespond([], fetchPromise).then(result => {
         expect(mockDispatch).toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
       });
     });
+
+    it('does not dispatch all past items loaded if there is a next link', () => {
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
+      return moxiosRespond([], fetchPromise, {headers: {link: '<futureNextUrl>; rel="next"'}}).then(result => {
+        expect(mockDispatch).not.toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
+      });
+    });
+
+
   });
 });
