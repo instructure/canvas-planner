@@ -19,7 +19,8 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
     visible_in_planner: true,
     planner_override: null,
     html_url: `/courses/1/assignments/10#submit`,
-    assignment: makeAssignment(),
+    plannable_type: 'assignment',
+    plannable: makeAssignment(),
     ...overrides,
   };
 }
@@ -140,9 +141,9 @@ describe('transformApiToInternalItem', () => {
 
   it('extracts and transforms the proper data for a quiz response', () => {
     const apiResponse = makeApiResponse({
-      assignment: makeAssignment({
+      plannable_type: 'quiz',
+      plannable: makeAssignment({
         name: 'How to make friends',
-        is_quiz_assignment: true,
         submission_types: [ 'online_quiz' ],
       })
     });
@@ -152,13 +153,11 @@ describe('transformApiToInternalItem', () => {
 
   it('extracts and transforms the proper data for a discussion response', () => {
     const apiResponse = makeApiResponse({
-      assignment: makeAssignment({
+      plannable_type: 'discussion_topic',
+      plannable: makeDiscussionTopic({
+        title: "How to make enemies",
         points_possible: 40,
-        position: 3,
-        name: "How to make enemies",
-        submission_types: [ "discussion_topic" ],
-        has_submitted_submissions: true,
-        discussion_topic: makeDiscussionTopic(),
+        todo_date: "2017-05-19T05:59:59Z",
       })
     });
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
@@ -167,7 +166,8 @@ describe('transformApiToInternalItem', () => {
 
   it('extracts and transforms the proper data for a assignment response', () => {
     const apiResponse = makeApiResponse({
-      assignment: makeAssignment({
+      plannable_type: 'assignment',
+      plannable: makeAssignment({
         points_possible: 50,
         name: "How to be neutral",
       }),
@@ -178,7 +178,8 @@ describe('transformApiToInternalItem', () => {
 
   it('adds the dateBucketMoment field', () => {
     const apiResponse = makeApiResponse({
-      assignment: makeAssignment({
+      plannable_type: 'assignment',
+      plannable: makeAssignment({
         due_at: moment.tz('2017-05-24', 'Asia/Tokyo'),
       })
     });

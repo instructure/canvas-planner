@@ -1,17 +1,24 @@
 import moment from 'moment-timezone';
 
-const getItemFromResponse = (apiResponse) => {
-  if (apiResponse.assignment) { return apiResponse.assignment; }
-  return {};
+const getItemDetailsFromPlannable = (apiResponse) => {
+  const { plannable, html_url} = apiResponse;
+  return {
+    title: plannable.name || plannable.title,
+    date: plannable.due_at || plannable.todo_date,
+    completed: plannable.has_submitted_submissions, // TODO: Fix this to use the status field
+    points: plannable.points_possible,
+    html_url,
+  };
 };
 
 const getItemType = (apiResponse) => {
-  const item = getItemFromResponse(apiResponse);
-  // TODO: Add remaining types here
-  if (item.is_quiz_assignment) return "Quiz";
-  else if (item.discussion_topic) return "Discussion";
-  else if (item.grading_type) return "Assignment";
-  else return null;
+  const TYPE_MAPPING = {
+    quiz: "Quiz",
+    discussion_topic: "Discussion",
+    assignment: "Assignment",
+  };
+
+  return TYPE_MAPPING[apiResponse.plannable_type];
 };
 
 
@@ -20,7 +27,7 @@ const getItemType = (apiResponse) => {
 **/
 export function transformApiToInternalItem (apiResponse, courses, timeZone) {
   if (timeZone == null) throw new Error('timezone is required when interpreting api data in transformApiToInternalItem');
-  const item = getItemFromResponse(apiResponse);
+
   const contextInfo = {};
   if (apiResponse.context_type) {
     const contextId = apiResponse[`${apiResponse.context_type.toLowerCase()}_id`];
@@ -35,18 +42,16 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
     };
   }
 
+  const details = getItemDetailsFromPlannable(apiResponse);
+
   return {
     ...contextInfo,
     id: apiResponse.id,
-    date: item.due_at,
-    dateBucketMoment: moment.tz(item.due_at, timeZone).startOf('day'),
+    dateBucketMoment: moment.tz(details.date, timeZone).startOf('day'),
     type: getItemType(apiResponse),
-    title: item.name,
-    html_url: item.html_url,
-    completed: item.has_submitted_submissions,
-    points: item.points_possible,
     status: apiResponse.status,
-    activity: apiResponse.activity
+    activity: apiResponse.activity,
+    ...details
   };
 }
 

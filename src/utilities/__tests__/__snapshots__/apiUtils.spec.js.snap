@@ -14,7 +14,7 @@ Object {
   },
   "date": "2017-05-19T05:59:59Z",
   "dateBucketMoment": "2017-05-19T00:00:00.000Z",
-  "html_url": "/courses/1/assignments/10",
+  "html_url": "/courses/1/assignments/10#submit",
   "id": "10",
   "points": 50,
   "status": undefined,
@@ -26,7 +26,7 @@ Object {
 exports[`transformApiToInternalItem extracts and transforms the proper data for a discussion response 1`] = `
 Object {
   "activity": undefined,
-  "completed": true,
+  "completed": undefined,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
@@ -37,7 +37,7 @@ Object {
   },
   "date": "2017-05-19T05:59:59Z",
   "dateBucketMoment": "2017-05-19T00:00:00.000Z",
-  "html_url": "/courses/1/assignments/10",
+  "html_url": "/courses/1/assignments/10#submit",
   "id": "10",
   "points": 40,
   "status": undefined,
@@ -60,7 +60,7 @@ Object {
   },
   "date": "2017-05-19T05:59:59Z",
   "dateBucketMoment": "2017-05-19T00:00:00.000Z",
-  "html_url": "/courses/1/assignments/10",
+  "html_url": "/courses/1/assignments/10#submit",
   "id": "10",
   "points": 100,
   "status": undefined,
