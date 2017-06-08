@@ -9,5 +9,10 @@ module.exports = (req, res, next) => {
     req.query['assignment.due_at_lte'] = moment(req.query.due_before).tz('UTC').format();
     delete req.query.due_before;
   }
+
+  if (req.query.filter && req.query.filter === 'new_activity') {
+    req.query['activity_like'] = 'new_.*';
+    delete req.query.filter;
+  }
   next();
 };
