@@ -44,6 +44,15 @@
   "due_date_8ce289b6": {
     "message": "DUE: { date }"
   },
+  "load_prior_dates_f2b0f6f0": {
+    "message": "Load prior dates"
+  },
+  "loading_past_items_21676bb3": {
+    "message": "Loading Past Items..."
+  },
+  "loading_past_items_6b6f4210": {
+    "message": "Loading past items..."
+  },
   "loading_planner_items_947a813d": {
     "message": "Loading planner items"
   },
