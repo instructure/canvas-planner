@@ -40,6 +40,7 @@ exports[`renders the item to update if provided 1`] = `
         locale="en"
         nextLabel="Next Month"
         onDateChange={[Function]}
+        placement="start"
         previousLabel="Previous Month"
         timeZone="America/Denver"
         validationFeedback={true}
