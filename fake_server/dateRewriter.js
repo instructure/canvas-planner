@@ -8,21 +8,24 @@ module.exports = (req, res, next) => {
     const due_at_gte = moment(req.query.due_after).tz('UTC');
     req.query['plannable.due_at_gte'] = due_at_gte.format();
     delete req.query.due_after;
-    if (!req.query.due_before) {
-      const due_at_lte = due_at_gte.clone().add(1, 'days');
-      req.query['plannable.due_at_lte'] = due_at_lte.format();
-    }
+    // If you only want to return one day at a time, uncomment this clause
+    // putting this in will break new activity because it queries for new activity in the deep past
+    // if (!req.query.due_before) {
+    //   const due_at_lte = due_at_gte.clone().add(1, 'days');
+    //   req.query['plannable.due_at_lte'] = due_at_lte.format();
+    // }
   }
 
   if (req.query.due_before) {
     const due_at_lte = moment(req.query.due_before).tz('UTC');
     req.query['plannable.due_at_lte'] = due_at_lte.format();
     delete req.query.due_before;
+    // If you only want to return one day at a time, uncomment this clause
+    // keeping this in for now because _sort doesn't work on nested data, like 'plannable.due_at'
     if (!req.query.due_after) {
       const due_at_gte = due_at_lte.clone().add(-1, 'days');
       req.query['plannable.due_at_gte'] = due_at_gte.format();
     }
-
   }
 
   // this should probably be in separate pagination middleware. meh.

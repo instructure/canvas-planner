@@ -9,6 +9,7 @@ import parseLinkHeader from 'parse-link-header';
 export const {
   initialOptions,
   gotItemsSuccess,
+  foundFirstNewActivityDate,
   startLoadingItems,
   savingPlannerItem,
   savedPlannerItem,
@@ -21,6 +22,7 @@ export const {
 }  = createActions(
   'INITIAL_OPTIONS',
   'GOT_ITEMS_SUCCESS',
+  'FOUND_FIRST_NEW_ACTIVITY_DATE',
   'START_LOADING_ITEMS',
   'SAVING_PLANNER_ITEM',
   'SAVED_PLANNER_ITEM',
@@ -94,9 +96,25 @@ function everythingPast(dispatch) {
 export const getPlannerItems = (fromMoment) => {
   return (dispatch, getState) => {
     dispatch(startLoadingItems());
+    dispatch(getNewActivity(fromMoment));
     return loadPlannerItems(fromMoment, everythingLoaded, dispatch, getState);
   };
 };
+
+export function getNewActivity (fromMoment) {
+  return (dispatch, getState) => {
+    fromMoment = fromMoment.clone().subtract(6, 'months');
+    return axios.get('api/v1/planner/items', { params: {
+      due_after: fromMoment.format(),
+      filter: 'new_activity',
+    }}).then(response => {
+      if (response.data.length) {
+        const first = transformApiToInternalItem(response.data[0], getState().courses, getState().timeZone);
+        dispatch(foundFirstNewActivityDate(first.dateBucketMoment));
+      }
+    });
+  };
+}
 
 function saveExistingPlannerItem (apiItem) {
   return axios({
@@ -142,14 +160,14 @@ export const deletePlannerItem = (plannerItem) => {
 export const loadFutureItems = (options = {setFocusAfterLoad: false}) => {
   return (dispatch, getState) => {
     dispatch(gettingFutureItems(options));
-    const fromMoment = getLastLoadedMoment(getState()).add(1, 'days');
+    const fromMoment = getLastLoadedMoment(getState().days, getState().timeZone).add(1, 'days');
     return loadPlannerItems(fromMoment, everythingFuture, dispatch, getState);
   };
 };
 
 export const scrollIntoPast = () => {
   return (dispatch, getState) => {
-    const beforeMoment = getFirstLoadedMoment(getState());
+    const beforeMoment = getFirstLoadedMoment(getState().days, getState.timeZone);
     dispatch(gettingPastItems());
     return loadPlannerItems(beforeMoment, everythingPast, dispatch, getState, true);
   };

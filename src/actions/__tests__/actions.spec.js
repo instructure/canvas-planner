@@ -32,12 +32,22 @@ describe('api actions', () => {
   });
 
   describe('getPlannerItems', () => {
-    it('dispatches startLoadingItems() initially', () => {
-      const thunk = Actions.getPlannerItems(moment());
+    it('dispatches startLoadingItems and getNewActivity initially', () => {
       const fakeDispatch = jest.fn();
-      thunk(fakeDispatch, getBasicState);
-      expect(fakeDispatch.mock.calls[0][0]).toMatchObject({
+      Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
+      expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
         type: 'START_LOADING_ITEMS'
+      }));
+
+      // also dispatches getNewActivity thunk
+      expect(typeof fakeDispatch.mock.calls[1][0]).toBe('function');
+      const getNewActivityThunk = fakeDispatch.mock.calls[1][0];
+      const mockMoment = moment();
+      const newActivityPromise = getNewActivityThunk(fakeDispatch, getBasicState);
+      return moxiosRespond([{dateBucketMoment: mockMoment}], newActivityPromise).then((result) => {
+        expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
+          type: 'FOUND_FIRST_NEW_ACTIVITY_DATE',
+        }));
       });
     });
 
@@ -45,7 +55,7 @@ describe('api actions', () => {
       const fakeDispatch = jest.fn();
       const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
       return moxiosRespond([{some: 'data'}], loadingPromise).then((result) => {
-        const callParams = fakeDispatch.mock.calls[1][0];
+        const callParams = fakeDispatch.mock.calls[2][0];
         expect(callParams).toMatchObject({
           type: 'GOT_ITEMS_SUCCESS',
           payload: {
@@ -64,6 +74,20 @@ describe('api actions', () => {
         expect(fakeDispatch).toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
       });
     });
+
+  });
+
+  describe('getNewActivity', () => {
+    it('sends deep past and filter parameters', () => {
+      const mockDispatch = jest.fn();
+      const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
+      Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
+      return moxiosWait(request => {
+        expect(request.config.params.filter).toBe('new_activity');
+        expect(request.config.params.due_after).toBe(mockMoment.subtract(6, 'months').format());
+      });
+    });
+
   });
 
   describe('savePlannerItem', () => {
@@ -267,7 +291,5 @@ describe('api actions', () => {
         expect(mockDispatch).not.toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
       });
     });
-
-
   });
 });

@@ -1,13 +1,14 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import { shallow } from 'enzyme';
 import { PlannerApp } from '../index';
 
 const getDefaultValues = (overrides) => (
   Object.assign({}, {
     days: [
-      ["2017-04-24", [{}]],
-      ["2017-04-25", [{}]],
-      ["2017-04-26", [{}]],
+      ["2017-04-24", [{dateBucketMoment: moment.tz('2017-04-24', 'Asia/Tokyo')}]],
+      ["2017-04-25", [{dateBucketMoment: moment.tz('2017-04-25', 'Asia/Tokyo')}]],
+      ["2017-04-26", [{dateBucketMoment: moment.tz('2017-04-26', 'Asia/Tokyo')}]],
     ],
     timeZone: "UTC"
   }, overrides)
@@ -57,4 +58,9 @@ it('calls focus() on takeFocusRef', () => {
   const wrapper = shallow(<PlannerApp {...getDefaultValues()} />);
   wrapper.instance().takeFocusRef(mockFocusElement);
   expect(mockFocusElement.focus).toHaveBeenCalled();
+});
+
+it('shows new activity button when new activity is indicated', () => {
+  const wrapper = shallow(<PlannerApp {...getDefaultValues()} firstNewActivityDate={moment('2017-03-30')} />);
+  expect(wrapper).toMatchSnapshot();
 });

@@ -123,7 +123,5 @@ module.exports = () => {
     ]
   };
 
-
-
   return data;
 };

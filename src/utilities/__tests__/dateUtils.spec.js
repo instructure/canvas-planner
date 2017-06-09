@@ -77,23 +77,23 @@ describe('isInPast', () => {
 describe('getFirstLoadedMoment', () => {
   it('returns today when there are no days loaded', () => {
     const today = moment.tz('Asia/Tokyo').startOf('day');
-    const result = getFirstLoadedMoment({timeZone: 'Asia/Tokyo', days: []});
+    const result = getFirstLoadedMoment([], 'Asia/Tokyo');
     expect(result.isSame(today)).toBeTruthy();
   });
 
   it('returns the dateBucketMoment of the first time of the first day', () => {
     const expected = moment().tz('Asia/Tokyo').startOf('day');
-    const result = getFirstLoadedMoment({days: [
+    const result = getFirstLoadedMoment([
       ['some date', [{dateBucketMoment: expected}]],
-    ]});
+    ], 'Asia/Tokyo');
     expect(result.isSame(expected)).toBeTruthy();
   });
 
   it('returns a clone', () => {
     const expected = moment.tz('Asia/Tokyo').startOf('day');
-    const result = getFirstLoadedMoment({days: [
-      ['some date', [{dateBucketMoment: expected}]],
-    ]});
+    const result = getFirstLoadedMoment(
+      [['some date', [{dateBucketMoment: expected}]]],
+      'Asia/Tokyo');
     expect(result === expected).toBeFalsy();
   });
 });
@@ -101,23 +101,23 @@ describe('getFirstLoadedMoment', () => {
 describe('getLastLoadedMoment', () => {
   it('returns today when there are no days loaded', () => {
     const today = moment.tz('Asia/Tokyo').startOf('day');
-    const result = getLastLoadedMoment({timeZone: 'Asia/Tokyo', days: []});
+    const result = getLastLoadedMoment([], 'Asia/Tokyo');
     expect(result.isSame(today)).toBeTruthy();
   });
 
   it('returns the dateBucketMoment of the first time of the last day', () => {
     const expected = moment().tz('Asia/Tokyo').startOf('day');
-    const result = getLastLoadedMoment({days: [
+    const result = getLastLoadedMoment([
       ['some date', [{dateBucketMoment: expected}]],
-    ]});
+    ], 'Asia/Tokyo');
     expect(result.isSame(expected)).toBeTruthy();
   });
 
   it('returns a clone', () => {
     const expected = moment.tz('Asia/Tokyo').startOf('day');
-    const result = getLastLoadedMoment({days: [
+    const result = getLastLoadedMoment([
       ['some date', [{dateBucketMoment: expected}]],
-    ]});
+    ], 'Asia/Tokyo');
     expect(result === expected).toBeFalsy();
   });
 });

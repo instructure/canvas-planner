@@ -23,7 +23,9 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
     day="2017-04-24"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -32,7 +34,9 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
     day="2017-04-25"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -41,7 +45,9 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
     day="2017-04-26"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -73,7 +79,9 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
     day="2017-04-24"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -82,7 +90,9 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
     day="2017-04-25"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
+        },
       ]
     }
     takeFocusRef={[Function]}
@@ -92,7 +102,9 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
     day="2017-04-26"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -124,7 +136,9 @@ exports[`renders base component using dayKeys 1`] = `
     day="2017-04-24"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -133,7 +147,9 @@ exports[`renders base component using dayKeys 1`] = `
     day="2017-04-25"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -142,7 +158,76 @@ exports[`renders base component using dayKeys 1`] = `
     day="2017-04-26"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
+        },
+      ]
+    }
+    timeZone="UTC"
+  />
+  <LoadingFutureIndicator />
+</div>
+`;
+
+exports[`shows new activity button when new activity is indicated 1`] = `
+<div
+  className="PlannerApp"
+>
+  <Button
+    as="button"
+    buttonRef={[Function]}
+    fluidWidth={false}
+    margin="0"
+    size="medium"
+    type="button"
+    variant="primary"
+  >
+    New Activity
+  </Button>
+  <ScreenReaderContent
+    as="span"
+  >
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      size="medium"
+      type="button"
+      variant="default"
+    >
+      Load prior dates
+    </Button>
+  </ScreenReaderContent>
+  <Day
+    day="2017-04-24"
+    itemsForDay={
+      Array [
+        Object {
+          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
+        },
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-25"
+    itemsForDay={
+      Array [
+        Object {
+          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
+        },
+      ]
+    }
+    timeZone="UTC"
+  />
+  <Day
+    day="2017-04-26"
+    itemsForDay={
+      Array [
+        Object {
+          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -208,7 +293,9 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
     day="2017-04-24"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -217,7 +304,9 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
     day="2017-04-25"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"
@@ -226,7 +315,9 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
     day="2017-04-26"
     itemsForDay={
       Array [
-        Object {},
+        Object {
+          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
+        },
       ]
     }
     timeZone="UTC"

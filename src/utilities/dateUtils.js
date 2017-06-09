@@ -60,16 +60,16 @@ export function formatDayKey (date) {
   return moment(date, moment.ISO_8601).format('YYYY-MM-DD');
 }
 
-export function getFirstLoadedMoment (state) {
-  if (!state.days.length) return moment().tz(state.timeZone).startOf('day');
-  const firstLoadedDay = state.days[0];
+export function getFirstLoadedMoment (days, timeZone) {
+  if (!days.length) return moment().tz(timeZone).startOf('day');
+  const firstLoadedDay = days[0];
   const firstLoadedItem = firstLoadedDay[1][0];
   return firstLoadedItem.dateBucketMoment.clone();
 }
 
-export function getLastLoadedMoment (state) {
-  if (!state.days.length) return moment().tz(state.timeZone).startOf('day');
-  const lastLoadedDay = state.days[state.days.length-1];
+export function getLastLoadedMoment (days, timeZone) {
+  if (!days.length) return moment().tz(timeZone).startOf('day');
+  const lastLoadedDay = days[days.length-1];
   const loadedItem = lastLoadedDay[1][0];
   return loadedItem.dateBucketMoment.clone();
 }

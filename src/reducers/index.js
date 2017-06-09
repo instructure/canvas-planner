@@ -13,11 +13,16 @@ const timeZone = handleAction('INITIAL_OPTIONS', (state, action) => {
   return action.payload.timeZone;
 }, 'UTC');
 
+const firstNewActivityDate = handleAction('FOUND_FIRST_NEW_ACTIVITY_DATE', (state, action) => {
+  return action.payload.clone();
+}, null);
+
 export default combineReducers({
   courses,
   locale,
   timeZone,
   items,
   days,
-  loading
+  loading,
+  firstNewActivityDate,
 });
