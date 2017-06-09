@@ -13,6 +13,7 @@ import Discussion from 'instructure-icons/react/Line/IconDiscussionLine';
 import Note from 'instructure-icons/react/Line/IconNoteLightLine';
 import Calendar from 'instructure-icons/react/Line/IconCalendarMonthLine';
 import Page from 'instructure-icons/react/Line/IconMsWordLine';
+import BadgeList from '../BadgeList';
 import styles from './styles.css';
 import theme from './theme.js';
 import { arrayOf, bool, number, string, func, shape } from 'prop-types';
@@ -83,15 +84,15 @@ class PlannerItem extends Component {
   renderBadges = () => {
     if (this.props.badges.length) {
       return (
-        <ul className={styles.badgeContainer}>
+        <BadgeList>
           {this.props.badges.map((b) => (
-            <li key={b.text}>
-              <Pill
-                text={b.text}
-                variant={b.variant} />
-            </li>
+            <Pill
+              key={b.text}
+              text={b.text}
+              variant={b.variant}
+            />
           ))}
-        </ul>
+        </BadgeList>
       );
     }
     return null;
@@ -100,7 +101,9 @@ class PlannerItem extends Component {
   renderItemMetrics = () => {
     return (
       <div className={styles.secondary}>
-        {this.renderBadges()}
+        <div className={styles.badges}>
+          {this.renderBadges()}
+        </div>
         <div className={styles.metrics}>
           {(this.props.points) ?
             <div className={styles.score}>

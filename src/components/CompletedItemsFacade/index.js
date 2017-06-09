@@ -3,6 +3,7 @@ import themeable from 'instructure-ui/lib/themeable';
 import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import CheckboxFacade from 'instructure-ui/lib/components/Checkbox/CheckboxFacade';
 import Pill from 'instructure-ui/lib/components/Pill';
+import BadgeList from '../BadgeList';
 import { func, number, string, arrayOf, shape } from 'prop-types';
 
 import styles from './styles.css';
@@ -28,17 +29,16 @@ class CompletedItemsFacade extends Component {
   renderBadges () {
     if (this.props.badges.length) {
       return (
-        <ul className={styles.badgeContainer}>
+        <BadgeList>
           {
             this.props.badges.map((b) => (
-              <li key={b.text}>
-                <Pill
-                  text={b.text}
-                  variant={b.variant} />
-              </li>
+              <Pill
+                key={b.text}
+                text={b.text}
+                variant={b.variant} />
             ))
           }
-        </ul>
+        </BadgeList>
       );
     }
     return null;

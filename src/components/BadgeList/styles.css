@@ -1,0 +1,12 @@
+.root {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+}
+
+.item {
+  display: inline-block;
+  vertical-align: middle;
+  margin: var(--itemMargin);
+}

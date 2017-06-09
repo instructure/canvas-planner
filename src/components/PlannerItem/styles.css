@@ -78,15 +78,9 @@
   white-space: nowrap;
 }
 
-.badgeContainer {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
-  > li { /* stylelint-disable-line selector-no-type */
-    display: inline-block;
-    margin: var(--badgeMargin);
-  }
+.badges {
+  flex: 1;
+  min-width: 1px;
 }
 
 [data-media-medium] {
@@ -100,30 +94,20 @@
   }
 
   .details {
-    flex: 0 0 60%;
+    flex: 0 0 50%;
     margin-bottom: 0;
   }
 
   .secondary {
-    flex: 0 0 40%;
+    flex: 0 0 50%;
+  }
+
+  .badges {
+    text-align: end;
   }
 
   .metrics {
-    flex: 0 0 8rem;
-  }
-
-  .badgeContainer {
-    text-align: right;
-  }
-}
-
-[data-media-large] {
-  .details {
-    flex: 0 0 50%;
-  }
-
-  .secondary {
-    flex: 0 0 50%;
+    flex: 0 0 7rem;
   }
 }
 

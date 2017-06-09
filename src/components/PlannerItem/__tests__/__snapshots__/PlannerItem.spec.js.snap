@@ -53,6 +53,7 @@ exports[`renders Announcement correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -147,6 +148,7 @@ exports[`renders Announcement correctly with just date 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -217,6 +219,7 @@ exports[`renders Announcement correctly with just points 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -309,6 +312,7 @@ exports[`renders Announcement correctly without right side content 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -377,6 +381,7 @@ exports[`renders Assignment correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -471,6 +476,7 @@ exports[`renders Assignment correctly with just date 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -541,6 +547,7 @@ exports[`renders Assignment correctly with just points 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -633,6 +640,7 @@ exports[`renders Assignment correctly without right side content 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -701,6 +709,7 @@ exports[`renders Calendar Event correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -795,6 +804,7 @@ exports[`renders Calendar Event correctly with just date 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -865,6 +875,7 @@ exports[`renders Calendar Event correctly with just points 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -957,6 +968,7 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1025,6 +1037,7 @@ exports[`renders Discussion correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1119,6 +1132,7 @@ exports[`renders Discussion correctly with just date 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1189,6 +1203,7 @@ exports[`renders Discussion correctly with just points 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1281,6 +1296,7 @@ exports[`renders Discussion correctly without right side content 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1349,6 +1365,7 @@ exports[`renders Note correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1419,6 +1436,7 @@ exports[`renders Note correctly without Course 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1487,6 +1505,7 @@ exports[`renders Page correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1581,6 +1600,7 @@ exports[`renders Page correctly with just date 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1651,6 +1671,7 @@ exports[`renders Page correctly with just points 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1743,6 +1764,7 @@ exports[`renders Page correctly without right side content 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1811,6 +1833,7 @@ exports[`renders Quiz correctly with everything 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1905,6 +1928,7 @@ exports[`renders Quiz correctly with just date 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -1975,6 +1999,7 @@ exports[`renders Quiz correctly with just points 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -2067,6 +2092,7 @@ exports[`renders Quiz correctly without right side content 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
@@ -2135,6 +2161,7 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div>
+      <div />
       <div>
         <div>
           <Typography
