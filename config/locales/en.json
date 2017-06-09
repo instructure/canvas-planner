@@ -5,6 +5,9 @@
   "add_to_do_7def3c37": {
     "message": "Add To Do"
   },
+  "all_items_loaded_aa256183": {
+    "message": "All items loaded"
+  },
   "assignmenttype_title_is_complete_813e54f8": {
     "message": "{ assignmentType } { title } is complete"
   },
@@ -47,8 +50,14 @@
   "due_date_8ce289b6": {
     "message": "DUE: { date }"
   },
+  "load_more_219e1e5a": {
+    "message": "load more"
+  },
   "load_prior_dates_f2b0f6f0": {
     "message": "Load prior dates"
+  },
+  "loading_6ac402e1": {
+    "message": "loading..."
   },
   "loading_past_items_21676bb3": {
     "message": "Loading Past Items..."
