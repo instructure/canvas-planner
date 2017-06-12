@@ -101,6 +101,16 @@ it('renders an activity notification when there are things in the past with stat
   expect(wrapper.find('Badge').length).toBe(1);
 });
 
+it('does not render an activity badge when things in the past have no status', () => {
+  const props = getDefaultProps();
+  props.items[0].status = [];
+  props.isInPast = true;
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+  expect(wrapper.find('Badge').length).toBe(0);
+});
+
 it('invokes the takeFocusRef (if passed) on a focusable element', () => {
   const mockTakeFocus = jest.fn();
   mount(<Grouping {...getDefaultProps()} takeFocusRef={mockTakeFocus} />);

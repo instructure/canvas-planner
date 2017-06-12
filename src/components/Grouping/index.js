@@ -41,7 +41,8 @@ class Grouping extends Component {
   setupItemBadgeMap (items) {
     const mapping = {};
     items.forEach((item) => {
-      mapping[item.id] = getBadgesForItem(item);
+      const badges = getBadgesForItem(item);
+      if (badges.length) mapping[item.id] = getBadgesForItem(item);
     });
     return mapping;
   }

@@ -1,4 +1,4 @@
-import { getBadgesForItem, getBadgesForItems } from '../statusUtils';
+import { getBadgesForItem, getBadgesForItems, isNewActivityItem, anyNewActivity } from '../statusUtils';
 
 describe('getBadgesForItem', () => {
   it('returns an empty array when there is not activity or status', () => {
@@ -51,5 +51,27 @@ describe('getBadgesForItems', () => {
       id: 'new_replies',
       text: 'New Replies'
     });
+  });
+});
+
+describe('new activity', () => {
+  it('can determine if an item has any new activity status', () => {
+    const item = { status: { has_feedback: true }};
+    expect(isNewActivityItem(item)).toBeTruthy();
+  });
+
+  it('excludes items with a status that is not new activity', () => {
+    const item = { status: { late: true }};
+    expect(isNewActivityItem(item)).toBeFalsy();
+  });
+
+  it('detects items for new activity', () => {
+    const items = [ {status: {}}, {status: {new_grades: true}} ];
+    expect(anyNewActivity(items)).toBeTruthy();
+  });
+
+  it('does not detect items when no new activity', () => {
+    const items = [ {status: {late: true}}, {status: {graded: true}} ];
+    expect(anyNewActivity(items)).toBeFalsy();
   });
 });

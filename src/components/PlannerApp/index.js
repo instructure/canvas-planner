@@ -10,7 +10,7 @@ import Day from '../Day';
 import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
 import formatMessage from '../../format-message';
-import {loadFutureItems, scrollIntoPast} from '../../actions';
+import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity} from '../../actions';
 import {getFirstLoadedMoment} from '../../utilities/dateUtils';
 
 export class PlannerApp extends Component {
@@ -30,6 +30,7 @@ export class PlannerApp extends Component {
     firstNewDayKey: string,
     firstNewActivityDate: momentObj,
     scrollIntoPast: func,
+    loadPastUntilNewActivity: func,
     loadFutureItems: func,
   };
 
@@ -61,7 +62,7 @@ export class PlannerApp extends Component {
     const firstLoadedMoment = getFirstLoadedMoment(this.props.days, this.props.timeZone);
     if (firstLoadedMoment.isSameOrBefore(this.props.firstNewActivityDate)) return;
 
-    return <Button variant="primary" onClick={this.props.scrollIntoPast}>
+    return <Button variant="primary" onClick={this.props.loadPastUntilNewActivity}>
       {formatMessage("New Activity")}
     </Button>;
   }
@@ -130,5 +131,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {loadFutureItems, scrollIntoPast};
+const mapDispatchToProps = {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity};
 export default connect(mapStateToProps, mapDispatchToProps)(PlannerApp);

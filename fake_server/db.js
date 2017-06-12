@@ -48,27 +48,27 @@ module.exports = () => {
         generateStatus({ missing: true, has_feedback: true })
       ),
 
-      // yestreday
+      // yesterday
       createFakeQuiz(
         "History Prequiz",
         "1",
         moment().subtract(1, 'days').startOf('day').add(17, 'hours'),
         false,
-        generateStatus({ graded: true })
+        generateStatus({})
       ),
       createFakeAssignment(
         "The Role of Pokémon in Ancient Rome",
         "1",
         moment().subtract(1, 'days').startOf('day').add(17, 'hours'),
         false,
-        generateStatus({ graded: true })
+        generateStatus({})
       ),
       createFakeAssignment(
         "The Great Migration",
         "1",
         moment().subtract(1, 'days').startOf('day').add(17, 'hours'),
         false,
-        generateStatus({ graded: true })
+        generateStatus({})
       ),
 
       // today

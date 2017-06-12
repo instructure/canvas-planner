@@ -211,11 +211,44 @@ it('clears firstNewDayKey and setFocusAfterLoad when not loading future', () => 
     loadingFuture: false,
     firstNewDayKey: '2017-06-08',
   };
-  const newState = loadingReducer(initialState, {type: 'GOT_ITEMS_SUCCESS', payload: [
-    {dateBucketMoment: moment.tz('2017-06-08', 'Asia/Tokyo')},
-  ]});
+  const newState = loadingReducer(initialState, {type: 'GOT_ITEMS_SUCCESS', payload: {
+    internalItems: [{dateBucketMoment: moment.tz('2017-06-08', 'Asia/Tokyo')}],
+  }});
+
   expect(newState).toMatchObject({
     setFocusAfterLoad: false,
     firstNewDayKey: null,
+  });
+});
+
+describe('ADD_PENDING_PAST_ITEMS', () => {
+  it('updates only urls if no new activity', () => {
+    const initialState = {
+      loadingPast: true,
+      pastNextUrl: null,
+    };
+    const newState = loadingReducer(initialState, {type: 'ADD_PENDING_PAST_ITEMS', payload: {
+      internalItems: [],
+      response: { headers: { link: '<someurl>; rel="next"'}},
+    }});
+    expect(newState).toMatchObject({
+      loadingPast: true,
+      pastNextUrl: 'someurl',
+    });
+  });
+
+  it('does update loading state if there is new activity', () => {
+    const initialState = {
+      loadingPast: true,
+      pastNextUrl: null,
+    };
+    const newState = loadingReducer(initialState, {type: 'ADD_PENDING_PAST_ITEMS', payload: {
+      internalItems: [{status: {new_grades: true}}],
+      response: { headers: { link: '<someurl>; rel="next"'}},
+    }});
+    expect(newState).toMatchObject({
+      loadingPast: false,
+      pastNextUrl: 'someurl',
+    });
   });
 });

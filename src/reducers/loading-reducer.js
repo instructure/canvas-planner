@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import parseLinkHeader from 'parse-link-header';
 import { formatDayKey } from '../utilities/dateUtils';
+import { anyNewActivity } from '../utilities/statusUtils';
 
 function loadingState (currentState, loadingState) {
   return {
@@ -57,8 +58,17 @@ function gotItemsSuccess (state, action) {
   return loadingState(state, newState);
 }
 
+function addPendingPastItems (state, action) {
+  if (anyNewActivity(action.payload.internalItems)) {
+    return gotItemsSuccess(state, action);
+  } else {
+    return {...state, ...getNextUrls(state, action)};
+  }
+}
+
 export default handleActions({
   GOT_ITEMS_SUCCESS: gotItemsSuccess,
+  ADD_PENDING_PAST_ITEMS: addPendingPastItems,
   START_LOADING_OPPORTUNITIES: (state, action) => {
     return {...state, loadingOpportunities: true};
   },
@@ -85,4 +95,6 @@ export default handleActions({
   allFutureItemsLoaded: false,
   setFocusAfterLoad: false,
   firstNewDayKey: null,
+  futureNextUrl: null,
+  pastNextUrl: null,
 }));

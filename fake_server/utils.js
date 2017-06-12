@@ -55,6 +55,7 @@ const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), com
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
+    fake_date_dont_use_me_only_for_sorting: dueDateTime.tz('UTC').format(),
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -114,6 +115,7 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
+    fake_date_dont_use_me_only_for_sorting: dueDateTime.tz('UTC').format(),
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -185,6 +187,7 @@ const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed 
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
+    fake_date_dont_use_me_only_for_sorting: dueDateTime.tz('UTC').format(),
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -265,6 +268,7 @@ const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed 
   const id = getKindaUniqueId();
 
   return {
+    fake_date_dont_use_me_only_for_sorting: dueDateTime.tz('UTC').format(),
     context_type: 'Course',
     course_id: courseId,
     type: 'viewing',
@@ -291,6 +295,8 @@ const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed 
       front_page: false,
       html_url: '/courses/1/pages/bgg-wiki',
       todo_date: dueDateTime.tz('UTC').format(),
+      // have to add this because json server doesn't have the capability to do both due_at and todo_date
+      due_at: dueDateTime.tz('UTC').format(),
       updated_at: '2017-06-05T14:48:47Z',
       locked_for_user: false,
       body: ''

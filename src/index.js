@@ -54,7 +54,7 @@ export default {
 
     ReactDOM.render(applyTheme(
       <Provider store={store}>
-        <PlannerHeader timeZone={opts.timeZone} locale={opts.locale}/>
+        <PlannerHeader timeZone={opts.timeZone} locale={opts.locale} />
       </Provider>
     , opts.theme), element);
   }

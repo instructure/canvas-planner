@@ -1,4 +1,6 @@
 import formatMessage from '../format-message';
+import _ from 'lodash';
+
 const PILL_MAPPING = {
   'missing': { id: 'missing', text: formatMessage('Missing'), variant: 'danger' },
   'late': { id: 'late', text: formatMessage('Late'), variant: 'danger' },
@@ -9,6 +11,21 @@ const PILL_MAPPING = {
   'has_feedback': { id: 'new_feedback', text: formatMessage('New Feedback') },
   'new_replies': { id: 'new_replies', text: formatMessage('New Replies') },
 };
+
+const newActivityKeys = {
+  missing: true,
+  new_grades: true,
+  has_feedback: true,
+  new_replies: true,
+};
+
+export function isNewActivityItem (item) {
+  return _.entries(item.status).some(([status, value]) => value && newActivityKeys[status]);
+}
+
+export function anyNewActivity (items) {
+  return items && items.some((item => isNewActivityItem(item)));
+}
 
 /**
 * Returns an array of pill objects that the particular item
