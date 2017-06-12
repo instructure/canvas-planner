@@ -7,7 +7,6 @@ it('sets the default state for all properties empty initial state', () => {
     courses: [],
     locale: 'en',
     timeZone: 'UTC',
-    items: [],
     days: [],
     loading: {
       isLoading: false

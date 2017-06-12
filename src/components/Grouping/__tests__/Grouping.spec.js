@@ -44,6 +44,26 @@ it('grouping contains link pointing to course url', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+it('renders to do items correctly', () => {
+  const props = {
+    items: [{
+      id: "700",
+      title: 'To Do 700',
+      date: '2017-06-16T05:06:07-06:00',
+      context: null,
+    }],
+    timeZone: "America/Denver",
+    color: null,
+    id: null,
+    url: null,
+    title: null
+  };
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+  expect(wrapper).toMatchSnapshot();
+});
+
 it('does not render completed items by default', () => {
   const props = getDefaultProps();
   props.items[0].completed = true;
@@ -51,7 +71,7 @@ it('does not render completed items by default', () => {
     <Grouping {...props} />
   );
 
-  expect(wrapper.find('PlannerItem').length).toBe(1);
+  expect(wrapper.find('PlannerItem')).toHaveLength(1);
 });
 
 it('renders a CompletedItemsFacade when completed items are present by default', () => {
@@ -74,7 +94,19 @@ it('renders completed items when the facade is clicked', () => {
   );
 
   wrapper.instance().handleFacadeClick();
-  expect(wrapper.find('PlannerItem').length).toBe(2);
+  expect(wrapper.find('PlannerItem')).toHaveLength(2);
+});
+
+it('renders completed items when they have the show property', () => {
+  const props = getDefaultProps();
+  props.items[0].show = true;
+  props.items[0].completed = true;
+
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper.find('PlannerItem')).toHaveLength(2);
 });
 
 it('does not render a CompletedItemsFacade when showCompletedItems state is true', () => {
@@ -86,7 +118,7 @@ it('does not render a CompletedItemsFacade when showCompletedItems state is true
   );
 
   wrapper.setState({ showCompletedItems: true });
-  expect(wrapper.find('CompletedItemsFacade').length).toBe(0);
+  expect(wrapper.find('CompletedItemsFacade')).toHaveLength(0);
 });
 
 it('renders an activity notification when there are things in the past with status badges', () => {
@@ -98,7 +130,7 @@ it('renders an activity notification when there are things in the past with stat
     <Grouping {...props} />
   );
 
-  expect(wrapper.find('Badge').length).toBe(1);
+  expect(wrapper.find('Badge')).toHaveLength(1);
 });
 
 it('does not render an activity badge when things in the past have no status', () => {
@@ -108,7 +140,7 @@ it('does not render an activity badge when things in the past have no status', (
   const wrapper = shallow(
     <Grouping {...props} />
   );
-  expect(wrapper.find('Badge').length).toBe(0);
+  expect(wrapper.find('Badge')).toHaveLength(0);
 });
 
 it('invokes the takeFocusRef (if passed) on a focusable element', () => {
@@ -116,6 +148,7 @@ it('invokes the takeFocusRef (if passed) on a focusable element', () => {
   mount(<Grouping {...getDefaultProps()} takeFocusRef={mockTakeFocus} />);
   expect(mockTakeFocus).toHaveBeenCalledWith(expect.anything());
 });
+
 describe('handleFacadeClick', () => {
   it('sets focus to the groupingLink when called', () => {
     const wrapper = mount(
@@ -134,5 +167,20 @@ describe('handleFacadeClick', () => {
     };
     wrapper.instance().handleFacadeClick(fakeEvent);
     expect(fakeEvent.preventDefault).toHaveBeenCalled();
+  });
+});
+
+describe('toggleCompletion', () => {
+  it('binds the toggleCompletion method to item', () => {
+    const mock = jest.fn();
+    const props = getDefaultProps();
+    const wrapper = mount(
+      <Grouping
+        {...props}
+        toggleCompletion={mock}
+      />
+    );
+    wrapper.find('input').first().simulate('change');
+    expect(mock).toHaveBeenCalledWith(props.items[0]);
   });
 });

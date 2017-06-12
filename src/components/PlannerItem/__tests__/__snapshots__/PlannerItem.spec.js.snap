@@ -1585,7 +1585,7 @@ exports[`renders Page correctly with just date 1`] = `
           letterSpacing="normal"
           size="x-small"
         >
-          A Course about being Diffrient Page
+           Page
         </Typography>
       </div>
       <div>

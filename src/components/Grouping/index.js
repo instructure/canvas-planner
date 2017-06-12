@@ -24,6 +24,7 @@ class Grouping extends Component {
     url: string,
     isInPast: bool,
     takeFocusRef: func,
+    toggleCompletion: func,
   }
 
   static defaultProps = {
@@ -64,18 +65,17 @@ class Grouping extends Component {
   }
 
   renderItemsAndFacade (items) {
-    const [completedItems, otherItems ] = partition(items, item => item.completed);
+    const [completedItems, otherItems ] = partition(items, item => (item.completed && !item.show));
     let itemsToRender = otherItems;
     if (this.state.showCompletedItems) {
       itemsToRender = items;
     }
 
-    const componentsToRender = itemsToRender.map(item => {
-      return (
-        <li
-          className={styles.item}
-          key={item.id}
-        >
+    const componentsToRender = itemsToRender.map(item => (
+      <li
+        className={styles.item}
+        key={`${item.type}-${item.id}`}
+      >
         <PlannerItem
           theme={{
             iconColor: this.props.color
@@ -89,12 +89,11 @@ class Grouping extends Component {
           title={item.title}
           points={item.points}
           html_url={item.html_url}
-          toggleCompletion={() => console.log('send me back to canvas')}
+          toggleCompletion={() => this.props.toggleCompletion(item)}
           badges={this.state.badgeMap[item.id]}
         />
       </li>
-      );
-    });
+    ));
 
     if (!this.state.showCompletedItems && completedItems.length > 0) {
       // Super odd that this is keyed on length?  Sure it is.  But there should

@@ -63,6 +63,7 @@ class DemoArea extends Component {
       stickyOffset: 0,
       stickyZIndex: 10,
       flashAlertFunctions,
+      userId: '1'
     };
     this.dayCount = 3;
   }

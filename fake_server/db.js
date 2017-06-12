@@ -10,7 +10,8 @@ const {
   createFakeQuiz,
   generateStatus,
   generateActivity,
-  createFakeOpportunity
+  createFakeOpportunity,
+  createFakeOverride
 } = require('./utils');
 
 
@@ -86,6 +87,22 @@ module.exports = () => {
         moment().endOf('day'),
         false,
         generateStatus({ submitted: true, needs_grading: true })
+      ),
+      createFakeDiscussion(
+        "Marked Complete when missing",
+        "1",
+        moment().endOf('day'),
+        false,
+        generateStatus({missing: true, has_feedback: true}),
+        createFakeOverride("1", "discussion_topic", "1", "true")
+      ),
+      createFakeQuiz(
+        "Marked incomplete when submitted",
+        "1",
+        moment().endOf('day'),
+        true,
+        generateStatus({has_feedback: true}),
+        createFakeOverride(2, "quiz", "1", "false")
       ),
       createFakeAssignment("English Poetry and Prose", "2", moment().endOf('day')),
       createFakeAssignment("English Drama", "2", moment().endOf('day')),

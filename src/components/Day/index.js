@@ -20,6 +20,7 @@ class Day extends Component {
     timeZone: string.isRequired,
     takeFocusRef: func,
     rootElementRef: func,
+    toggleCompletion: func,
   }
 
   constructor (props) {
@@ -89,6 +90,7 @@ class Day extends Component {
                     theme={{
                       titleColor: courseInfo.color
                     }}
+                    toggleCompletion={this.props.toggleCompletion}
                   />
                 );
               })

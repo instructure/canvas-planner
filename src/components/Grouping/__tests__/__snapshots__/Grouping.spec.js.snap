@@ -188,3 +188,53 @@ exports[`renders the base component with required props 1`] = `
   </ol>
 </div>
 `;
+
+exports[`renders to do items correctly 1`] = `
+<div>
+  <div />
+  <a
+    href="#"
+    style={
+      Object {
+        "backgroundImage": "url()",
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "backgroundColor": null,
+        }
+      }
+    />
+    <span>
+      To Do
+    </span>
+  </a>
+  <ol
+    style={
+      Object {
+        "borderColor": null,
+      }
+    }
+  >
+    <li>
+      <PlannerItem
+        badges={Array []}
+        color={null}
+        courseName={null}
+        date={"2017-06-16T11:06:07.000Z"}
+        id="700"
+        theme={
+          Object {
+            "iconColor": null,
+          }
+        }
+        title="To Do 700"
+        toggleCompletion={[Function]}
+      />
+    </li>
+  </ol>
+</div>
+`;

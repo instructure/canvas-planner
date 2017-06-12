@@ -57,6 +57,7 @@ yarn run start:webpack-dev
 
 This project uses [eslint-config-react-app](https://github.com/facebookincubator/create-react-app/tree/master/packages/eslint-config-react-app)
 for linting JS files.  Linting is enforced at the build level.  ESLint errors will cause the build to fail.
+You can run the linter by running `yarn run lint`
 
 ### Testing
 
@@ -65,6 +66,7 @@ by running `yarn test` for a single run or `yarn test:watch` to start up a watch
 If you are having trouble with the watch process you may need to set up [watchman] (https://facebook.github.io/watchman/).
 It should be as simple as `brew install watchman` on a Mac, no configuration is required.  For more details about these
 issues see the discussion on the issue, [watch mode stopped working on macOS Sierra](https://github.com/facebook/jest/issues/1767).
+We require test coverage percentages to be maintained.  Run the test coverage by running `yarn run test:coverage`
 
 ### Testing a local Canvas Planner version
 

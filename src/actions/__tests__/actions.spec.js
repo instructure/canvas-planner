@@ -6,6 +6,7 @@ import {isPromise, moxiosWait, moxiosRespond} from '../../test-utils';
 jest.mock('../../utilities/apiUtils', () => ({
   transformApiToInternalItem: jest.fn(response => ({...response, transformedToInternal: true})),
   transformInternalToApiItem: jest.fn(internal => ({...internal, transformedToApi: true})),
+  transformInternalToApiOverride: jest.fn(internal => ({...internal.planner_override, marked_complete: null, transformedToApiOverride: true})),
 }));
 
 const getBasicState = () => ({
@@ -19,6 +20,7 @@ const getBasicState = () => ({
     futureNextUrl: null,
     pastNextUrl: null,
   },
+  userId: '1',
 });
 
 describe('api actions', () => {
@@ -181,6 +183,65 @@ describe('getOpportunities', () => {
         deletePromise
       ).then((result) => {
         expect(result).toMatchObject({some: 'response data', transformedToInternal: true});
+      });
+    });
+  });
+
+  describe('togglePlannerItemCompletion', () => {
+    it('dispatches saving and saved actions', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {some: 'data'};
+      const savePromise = Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
+      expect(isPromise(savePromise)).toBe(true);
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: plannerItem});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
+    });
+
+    it ('updates marked_complete and sends override data in the request', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {some: 'data', marked_complete: null};
+      Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
+      return moxiosWait(request => {
+        expect(JSON.parse(request.config.data)).toMatchObject({marked_complete: true, transformedToApiOverride: true});
+      });
+    });
+
+    it('does a post if the planner override is new (no id)', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {id: '42', some: 'data'};
+      Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('post');
+        expect(request.url).toBe('api/v1/planner/overrides');
+        expect(JSON.parse(request.config.data)).toMatchObject({marked_complete: true, transformedToApiOverride: true});
+      });
+    });
+
+    it('does a put if the planner override exists (has id)', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {id: '42', some: 'data', planner_override: {id: '5', marked_complete: true}};
+      Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('put');
+        expect(request.url).toBe('api/v1/planner/overrides/5');
+        expect(JSON.parse(request.config.data)).toMatchObject({id: '5', marked_complete: true, transformedToApiOverride: true});
+      });
+    });
+
+    it ('resolves the promise with override response data in the item', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {some: 'data', planner_override: {id: 'override_id', marked_complete: true}};
+      const togglePromise = Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
+      return moxiosRespond(
+        {some: 'response data', id: 'override_id', marked_complete: false },
+        togglePromise
+      ).then((result) => {
+        expect(result).toMatchObject({
+          ...plannerItem,
+          completed: false,
+          overrideId: 'override_id',
+          show: true,
+        });
       });
     });
   });

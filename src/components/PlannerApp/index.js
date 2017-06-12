@@ -11,7 +11,7 @@ import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
 import PlannerEmptyState from '../PlannerEmptyState';
 import formatMessage from '../../format-message';
-import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity} from '../../actions';
+import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity, togglePlannerItemCompletion} from '../../actions';
 import {getFirstLoadedMoment} from '../../utilities/dateUtils';
 import {maintainViewportPosition} from '../../utilities/scrollUtils';
 
@@ -36,7 +36,8 @@ export class PlannerApp extends Component {
     loadFutureItems: func,
     stickyOffset: number, // in pixels
     stickyZIndex: number,
-    changeToDashboardCardView: func
+    changeToDashboardCardView: func,
+    togglePlannerItemCompletion: func,
   };
 
   static defaultProps = {
@@ -155,6 +156,7 @@ export class PlannerApp extends Component {
         day={dayKey}
         itemsForDay={dayItems}
         key={dayKey}
+        toggleCompletion={this.props.togglePlannerItemCompletion}
       />;
     });
 
@@ -177,5 +179,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity};
+const mapDispatchToProps = {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity, togglePlannerItemCompletion};
 export default connect(mapStateToProps, mapDispatchToProps)(PlannerApp);

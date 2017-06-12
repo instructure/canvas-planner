@@ -3,7 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import configureAxios from '../utilities/configureAxios';
 import {formatDayKey} from '../utilities/dateUtils';
-import { transformApiToInternalItem, transformInternalToApiItem } from '../utilities/apiUtils';
+import { transformApiToInternalItem, transformInternalToApiItem, transformInternalToApiOverride } from '../utilities/apiUtils';
 
 configureAxios(axios);
 
@@ -83,7 +83,7 @@ export const dismissOpportunity = (id, plannerOverride) => {
         method: 'post',
         params: {
           plannable_id: id,
-          plannable_type: 'Assignment',
+          plannable_type: 'assignment',
           marked_complete: true,
         },
         url: '/api/v1/planner/overrides',
@@ -118,3 +118,41 @@ export const deletePlannerItem = (plannerItem) => {
     return promise;
   };
 };
+
+function saveExistingPlannerOverride (apiOverride) {
+  return axios({
+    method: 'put',
+    url: `api/v1/planner/overrides/${apiOverride.id}`,
+    data: apiOverride,
+  });
+}
+
+function saveNewPlannerOverride (apiOverride) {
+  return axios({
+    method: 'post',
+    url: 'api/v1/planner/overrides',
+    data: apiOverride,
+  });
+}
+
+export const togglePlannerItemCompletion = (plannerItem) => {
+  return (dispatch, getState) => {
+    dispatch(savingPlannerItem(plannerItem));
+    const apiOverride = transformInternalToApiOverride(plannerItem, getState().userId);
+    apiOverride.marked_complete = !apiOverride.marked_complete;
+    let promise = apiOverride.id ?
+      saveExistingPlannerOverride(apiOverride) :
+      saveNewPlannerOverride(apiOverride);
+    promise = promise.then(response => updateOverrideDataOnItem(plannerItem, response.data));
+    dispatch(savedPlannerItem(promise));
+    return promise;
+  };
+};
+
+function updateOverrideDataOnItem (plannerItem, apiOverride) {
+  let updatedItem = {...plannerItem};
+  updatedItem.overrideId = apiOverride.id;
+  updatedItem.completed = apiOverride.marked_complete;
+  updatedItem.show = true;
+  return updatedItem;
+}

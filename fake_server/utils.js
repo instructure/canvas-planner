@@ -198,7 +198,7 @@ const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed 
     plannable_type: 'quiz',
     submissions: status,
     plannable: {
-      id: 2,
+      id: "2",
       title: name,
       html_url: `/courses/${courseId}/quizzes/${id}`,
       mobile_url: `/courses/${courseId}/quizzes/${id}?force_user=1\u0026persist_headless=1`,
@@ -279,6 +279,7 @@ const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed 
     plannable_type: 'wiki_page',
     submissions: status,
     plannable: {
+      id: "1",
       title: name,
       created_at: '2017-06-05T14:48:47Z',
       url: 'bgg-wiki',
@@ -304,8 +305,6 @@ const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed 
     html_url: 'bgg-wiki'
   };
 };
-
-
 
 const createFakeOpportunity = (description = "Random Description", courseId = "1", dueDateTime = moment()) => {
   const id = getKindaUniqueId();
@@ -353,6 +352,20 @@ const createFakeOpportunity = (description = "Random Description", courseId = "1
   };
 };
 
+const createFakeOverride = (plannableId = "1", plannableType = "assignment", userId = "1", completed = "false") => {
+  return {
+    id: getKindaUniqueId(),
+    plannable_type: plannableType,
+    plannable_id: plannableId,
+    user_id: userId,
+    workflow_state: "active",
+    deleted_at: null,
+    created_at: "2017-03-09T20:40:35Z",
+    updated_at: "2017-04-20T04:02:18Z",
+    marked_complete: completed,
+  };
+};
+
 module.exports = {
   createFakeAssignment,
   createFakeDiscussion,
@@ -361,4 +374,5 @@ module.exports = {
   getKindaUniqueId,
   generateStatus,
   createFakeOpportunity,
+  createFakeOverride,
 };

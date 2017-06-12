@@ -31,7 +31,7 @@ class PlannerItem extends Component {
     completed: bool,
     associated_item: string,
     html_url: string,
-    toggleCompletion: func.isRequired,
+    toggleCompletion: func,
     badges: arrayOf(shape({
       text: string,
       variant: string
@@ -55,20 +55,13 @@ class PlannerItem extends Component {
     });
   }
 
-  toggleCompletion = (e) => {
-    this.props.toggleCompletion(this.props.id);
-    this.setState({
-      completed: !this.state.completed,
-    });
-  }
-
-
   renderDateField = () => {
     if (this.props.associated_item === "Announcement") {
       return this.props.date.format("LT");
     }
     return formatMessage(`DUE: {date}`, {date: this.props.date.format("LT")});
   }
+
   renderIcon = () => {
     switch(this.props.associated_item) {
         case "Assignment":
@@ -176,7 +169,7 @@ class PlannerItem extends Component {
           <Checkbox
             label={<ScreenReaderContent>{checkboxLabel}</ScreenReaderContent>}
             checked={this.state.completed}
-            onChange={this.toggleCompletion}
+            onChange={this.props.toggleCompletion}
           />
         </div>
         <div

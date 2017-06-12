@@ -386,15 +386,18 @@ it('renders Page correctly without right side content', () => {
 });
 
 it('renders Page correctly with just date', () => {
+  let props = defaultProps(
+    {
+      associated_item: 'Page',
+      completed: false,
+      title: "I am a Page",
+      date: DEFAULT_DATE,
+    }
+  );
+  props.courseName = null;
   const wrapper = shallow(
     <PlannerItem {
-      ...defaultProps(
-        {
-          associated_item: 'Page',
-          completed: false,
-          title: "I am a Page",
-          date: DEFAULT_DATE,
-        })
+      ...props
     } />
   );
   expect(wrapper).toMatchSnapshot();
@@ -440,4 +443,16 @@ it('displays Pills when given them', () => {
   );
 
   expect(wrapper.find('Pill')).toHaveLength(1);
+});
+
+it('calls toggleCompletion when the checkbox is clicked', () => {
+  const mock = jest.fn();
+  const wrapper = shallow(
+    <PlannerItem
+      {...defaultProps({points: 35, date: DEFAULT_DATE})}
+      toggleCompletion={mock}
+    />
+  );
+  wrapper.find('Checkbox').simulate('change');
+  expect(mock).toBeCalled();
 });

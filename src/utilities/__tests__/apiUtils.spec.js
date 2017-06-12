@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { transformApiToInternalItem, transformInternalToApiItem } from '../apiUtils';
+import { transformApiToInternalItem, transformInternalToApiItem, transformInternalToApiOverride } from '../apiUtils';
 
 const courses = [{
   id: '1',
@@ -20,7 +20,7 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
     planner_override: null,
     html_url: `/courses/1/assignments/10#submit`,
     plannable_type: 'assignment',
-    plannable: makeAssignment(),
+    plannable: makeAssignment(assignmentOverrides),
     submissions: false,
     ...overrides,
   };
@@ -93,7 +93,7 @@ function makeDiscussionTopic (overrides = {}) {
     last_reply_at: "2017-05-15T16:32:34Z",
     delayed_post_at: null,
     posted_at: "2017-05-15T16:32:34Z",
-    assignment_id: 10,
+    assignment_id: 9,
     root_topic_id: null,
     position: null,
     podcast_has_student_posts: false,
@@ -191,6 +191,31 @@ function makeGradedDiscussionTopic (overrides = {}) {
     can_group: true,
     locked_for_user: false,
     message: "<p>Some prompt</p>",
+    ...overrides,
+  };
+}
+
+function makeWikiPage(overrides = {}) {
+  return {
+    title: 'wiki_page title',
+    created_at: "2017-06-16 10:08:00Z",
+    url: 'wiki-page-title',
+    editing_roles: 'teachers',
+    page_id: '1',
+    last_edited_by: {
+      id: '1',
+      display_name: 'Carl Chudyk',
+      avatar_image_url: "http://canvas.instructure.com/images/messages/avatar-50.png",
+      html_url: `/courses/1/users/1`,
+    },
+    published: true,
+    hide_from_students: false,
+    front_page: false,
+    html_url: `/courses/1/pages/wiki-page-title`,
+    todo_date: "2017-06-16 10:08:00Z",
+    updated_at: "2017-06-16 10:08:00Z",
+    locked_for_user: false,
+    body: 'body of wiki page',
     ...overrides,
   };
 }
@@ -315,6 +340,15 @@ describe('transformApiToInternalItem', () => {
     expect(result).toMatchSnapshot();
   });
 
+  it('extracts and transforms the ID for a wiki page repsonse', () => {
+    const apiResponse = makeApiResponse({
+      plannable_type: 'wiki_page',
+      plannable: makeWikiPage({}),
+    });
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result.id).toEqual('1');
+  });
+
   it('adds the dateBucketMoment field', () => {
     const apiResponse = makeApiResponse({
       plannable_type: 'assignment',
@@ -367,6 +401,61 @@ describe('transformInternalToApiItem', () => {
     expect(transformInternalToApiItem(internalItem)).toMatchObject({
       context_type: 'Course',
       course_id: '42',
+    });
+  });
+});
+
+describe('transformInternalToApiOverride', () => {
+  it('gets override data from an internal item', () => {
+    const internalItem = {
+      id: '42',
+      overrideId: '52',
+      type: 'Assignment',
+      completed: false
+    };
+    const result = transformInternalToApiOverride(internalItem, '1');
+    expect(result).toMatchObject({
+      id: '52',
+      plannable_id: '42',
+      plannable_type: 'assignment',
+      user_id: '1',
+      marked_complete: false
+    });
+  });
+
+  it('graded items should give plannable_id as assignment ID and plannable_type as assignment', () => {
+    const internalItem = {
+      id: '42',
+      overrideId: null,
+      type: 'DiscussionTopic',
+      overrideAssignId: '10',
+      completed: false
+    };
+    const result = transformInternalToApiOverride(internalItem, '1');
+    expect(result).toMatchObject({
+      id: null,
+      plannable_id: '10',
+      plannable_type: 'assignment',
+      user_id: '1',
+      marked_complete: false
+    });
+  });
+
+  it('non-graded non-assignment items should give their own ids and types', () => {
+    const internalItem = {
+      id: '42',
+      overrideId: null,
+      type: 'Discussion',
+      overrideAssignId: null,
+      completed: false
+    };
+    const result = transformInternalToApiOverride(internalItem, '1');
+    expect(result).toMatchObject({
+      id: null,
+      plannable_id: '42',
+      plannable_type: 'discussion_topic',
+      user_id: '1',
+      marked_complete: false
     });
   });
 });

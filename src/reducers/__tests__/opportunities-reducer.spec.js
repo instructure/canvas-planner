@@ -11,7 +11,7 @@ function basicOpportunity (option) {
       plannable_id:"6",
       user_id:"3",
       workflow_state:"active",
-      visible: true,
+      marked_complete: false,
       deleted_at:null,
       created_at:"2017-06-15T02:33:28Z",
       updated_at:"2017-06-15T20:47:24Z"
@@ -35,10 +35,10 @@ it('updates state correctly on DISMISSED_OPPORTUNITY with opportunity that has o
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
-    payload: {planner_override: {id: "6", marked_completed: true, plannable_id: "6"}}
+    payload: {id: "6", marked_complete: true, plannable_id: "6"}
   });
 
-  expect(newState[0].planner_override.visible).toBe(true);
+  expect(newState[0].planner_override.marked_complete).toBe(true);
 });
 
 it('adds to opportunity object if no planner override DISMISSED_OPPORTUNITY', () => {
@@ -48,8 +48,8 @@ it('adds to opportunity object if no planner override DISMISSED_OPPORTUNITY', ()
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
-    payload: {planner_override: {id: "6", visible: false, plannable_id: "6"}}
+    payload: {id: "6", marked_complete: true, plannable_id: "6"}
   });
 
-  expect(newState[0].planner_override.visible).toBe(false);
+  expect(newState[0].planner_override.marked_complete).toBe(true);
 });
