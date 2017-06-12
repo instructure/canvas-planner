@@ -46,7 +46,7 @@
     "format-message": "^5.1.2",
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
-    "instructure-icons": "^2.3.0",
+    "instructure-icons": "^3.0.1",
     "instructure-ui": "^2.3.0",
     "moment-timezone": "^0.5.13",
     "prop-types": "^15.5.8",
