@@ -1,14 +1,20 @@
 import moment from 'moment-timezone';
 
 const getItemDetailsFromPlannable = (apiResponse) => {
-  const { plannable, html_url} = apiResponse;
-  return {
+  const { plannable, plannable_type, html_url} = apiResponse;
+  const details = {
     title: plannable.name || plannable.title,
     date: plannable.due_at || plannable.todo_date,
     completed: plannable.has_submitted_submissions, // TODO: Fix this to use the status field
     points: plannable.points_possible,
     html_url,
   };
+
+  if (plannable_type === 'discussion_topic') {
+    details.unread_count = plannable.unread_count;
+  }
+
+  return details;
 };
 
 const getItemType = (apiResponse) => {
@@ -44,13 +50,16 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
 
   const details = getItemDetailsFromPlannable(apiResponse);
 
+  if (details.unread_count && apiResponse.submissions) {
+    apiResponse.submissions.unread_count = details.unread_count;
+  }
+
   return {
     ...contextInfo,
     id: apiResponse.id,
     dateBucketMoment: moment.tz(details.date, timeZone).startOf('day'),
     type: getItemType(apiResponse),
-    status: apiResponse.status,
-    activity: apiResponse.activity,
+    status: apiResponse.submissions,
     ...details
   };
 }

@@ -6,7 +6,7 @@ const PILL_MAPPING = {
   'excused': { id: 'excused', text: formatMessage('Excused') },
   'submitted': { id: 'submitted', text: formatMessage('Submitted') },
   'new_grades': { id: 'new_grades', text: formatMessage('New Grades') },
-  'new_feedback': { id: 'new_feedback', text: formatMessage('New Feedback') },
+  'has_feedback': { id: 'new_feedback', text: formatMessage('New Feedback') },
   'new_replies': { id: 'new_replies', text: formatMessage('New Replies') },
 };
 
@@ -16,11 +16,8 @@ const PILL_MAPPING = {
 */
 export function getBadgesForItem (item) {
   let badges = [];
-  if (item.activity) {
-    badges = badges.concat(item.activity.map(a => PILL_MAPPING[a]));
-  }
   if (item.status) {
-    badges = badges.concat(item.status.map(a => PILL_MAPPING[a]));
+    badges = Object.keys(item.status).filter(key => item.status[key] && key !== 'needs_grading').map(a => PILL_MAPPING[a]);
   }
   return badges;
 }
@@ -30,13 +27,13 @@ export function getBadgesForItem (item) {
 */
 export function getBadgesForItems (items) {
   const badges = [];
-  if (items.some(i => i.status && i.status.includes('graded'))) {
+  if (items.some(i => i.status && i.status.graded)) {
     badges.push(PILL_MAPPING.new_grades);
   }
-  if (items.some(i => i.activity && i.activity.includes('new_feedback'))) {
-    badges.push(PILL_MAPPING.new_feedback);
+  if (items.some(i => i.status && i.status.has_feedback)) {
+    badges.push(PILL_MAPPING.has_feedback);
   }
-  if (items.some(i => i.activity && i.activity.includes('new_replies'))) {
+  if (items.some(i => i.status && i.status.unread_count)) {
     badges.push(PILL_MAPPING.new_replies);
   }
   return badges;

@@ -21,6 +21,7 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
     html_url: `/courses/1/assignments/10#submit`,
     plannable_type: 'assignment',
     plannable: makeAssignment(),
+    submissions: false,
     ...overrides,
   };
 }
@@ -127,16 +128,20 @@ function makeDiscussionTopic (overrides = {}) {
 }
 
 describe('transformApiToInternalItem', () => {
-  it('extracts and transforms the proper data for responses containing a status and activity', () => {
+  it('extracts and transforms the proper data for responses containing a status', () => {
     const apiResponse = makeApiResponse({
-      status: ['graded'],
-      activity: ['new_feedback'],
+      submissions: {
+        graded: true,
+        has_feedback: true
+      }
     });
 
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
 
-    expect(result.status).toEqual(['graded']);
-    expect(result.activity).toEqual(['new_feedback']);
+    expect(result.status).toEqual({
+      graded: true,
+      has_feedback: true
+    });
   });
 
   it('extracts and transforms the proper data for a quiz response', () => {

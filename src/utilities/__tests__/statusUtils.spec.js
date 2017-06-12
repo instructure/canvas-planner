@@ -6,7 +6,7 @@ describe('getBadgesForItem', () => {
   });
 
   it('returns missing status with a danger variant and "Missing" text', () => {
-    const item = { status: ['missing'] };
+    const item = { status: { missing: true } };
     expect(getBadgesForItem(item)).toEqual([{
       id: 'missing',
       text: 'Missing',
@@ -15,28 +15,12 @@ describe('getBadgesForItem', () => {
   });
 
   it('returns late status with a danger variant and "Late" text', () => {
-    const item = { status: ['late'] };
+    const item = { status: { late: true } };
     expect(getBadgesForItem(item)).toEqual([{
       id: 'late',
       text: 'Late',
       variant: 'danger'
     }]);
-  });
-
-  it('returns activity when given an activity to translate', () => {
-    const item = { activity: ['new_replies'] };
-    expect(getBadgesForItem(item)).toEqual([{
-      id: 'new_replies',
-      text: 'New Replies'
-    }]);
-  });
-
-  it('returns a list of both activity and status with activity first and then status', () => {
-    const item = { status: ['excused'], activity: ['new_replies'] };
-    expect(getBadgesForItem(item)).toEqual([
-      { id: 'new_replies', text: 'New Replies' },
-      { id: 'excused', text: 'Excused' }
-    ]);
   });
 });
 
@@ -46,23 +30,23 @@ describe('getBadgesForItems', () => {
   });
 
   it('returns New Grades object when at least one item has a graded status', () => {
-    const items = [{ status: ['graded'] }, { status: ['excused'] }];
+    const items = [{ status: { graded: true } }, { status: { excused: true } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_grades',
       text: 'New Grades'
     });
   });
 
-  it('returns New Feedback object when at least one item has a new_feedback activity', () => {
-    const items = [{ activity: ['fake'] }, { activity: ['new_feedback'] }];
+  it('returns New Feedback object when at least one item has a has_feedback status', () => {
+    const items = [{ status: { fake: true } }, { status: { has_feedback: true } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_feedback',
       text: 'New Feedback'
     });
   });
 
-  it('returns New Replies object when at least one item has a new_replies activity', () => {
-    const items = [{ activity: ['fake'] }, { activity: ['new_replies'] }];
+  it('returns New Replies object when at least one item has a non-zero unread count', () => {
+    const items = [{ status: { unread_count: 0 } }, { status: { unread_count: 3 } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_replies',
       text: 'New Replies'

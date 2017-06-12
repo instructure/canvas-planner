@@ -115,14 +115,9 @@ class Grouping extends Component {
 
   renderNotificationBadge () {
     if (this.props.isInPast && Object.keys(this.state.badgeMap).length) {
-
-      const hasMissingBadge = badgeObj => badgeObj.id === 'missing';
-      const hasItemWithMissingBadge = itemId => this.state.badgeMap[itemId].some(hasMissingBadge);
-      const variant = Object.keys(this.state.badgeMap).some(hasItemWithMissingBadge) ? 'danger' : 'primary';
-
       return (
         <PresentationContent>
-          <Badge standalone type="notification" variant={variant} />
+          <Badge standalone type="notification" />
         </PresentationContent>
       );
     } else {

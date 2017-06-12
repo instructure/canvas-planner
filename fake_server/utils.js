@@ -3,66 +3,59 @@ const moment = require('moment-timezone');
 const getKindaUniqueId = () => Math.floor(Math.random() * (100000 - 1) + 1).toString();
 
 const generateStatus = (overrides) => {
-  if (overrides) { return overrides; }
-  const statusArray = [];
+  const statusObject = {
+      excused: false,
+      graded: false,
+      late: false,
+      submitted: false,
+      missing: false,
+      needs_grading: false,
+      has_feedback: false
+  };
+
+  if (overrides) {
+    return Object.assign({}, statusObject, overrides);
+  }
+
   const baseStatusDecider = Math.floor(Math.random() * (10000 - 1)) % 4;
-  let isLate = false;
   switch (baseStatusDecider) {
     case 0:
-      statusArray.push('graded');
-      isLate = Math.random() > 0.5;
-      if (isLate) {
-        statusArray.push('late');
+      statusObject.graded = true;
+      if (Math.random() > 0.5) {
+        statusObject.late = true;
+      }
+      if (Math.random() < 0.5) {
+        statusObject.has_feedback = true;
       }
       break;
     case 1:
-      statusArray.push('excused');
+      statusObject.excused = true;
       break;
     case 2:
-      statusArray.push('submitted');
-      isLate = Math.random() > 0.5;
-      if (isLate) {
-        statusArray.push('late');
+      statusObject.submitted = true;
+      if (Math.random() > 0.5) {
+        statusObject.late = true;
+      }
+      if (Math.random() < 0.5) {
+        statusObject.needs_grading = true;
       }
       break;
     default:
-      const isMissing = Math.random() > 0.5;
-      if (isMissing) {
-        statusArray.push('missing');
+      if (Math.random() > 0.5) {
+        statusObject.missing = true;
       }
       break;
   }
 
-  return statusArray;
+  return statusObject;
 };
 
-const generateActivity = (isDiscussion = false, overrides) => {
-  if (overrides) { return overrides; }
-  const activityArray = [];
-  const activityDecider = Math.floor(Math.random() * (10000 - 1)) % 3;
-  switch (activityDecider) {
-    case 0:
-      activityArray.push('new_grades');
-      break;
-    case 1:
-      activityArray.push('new_feedback');
-      break;
-    default:
-      break;
-  }
-
-  if (isDiscussion && (Math.random() > 0.5)) {
-    activityArray.push('new_replies');
-  }
-};
-
-const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
+const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), completed = false, status = false) => {
   const id = getKindaUniqueId();
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
     status: status,
-    activity: activity,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -71,6 +64,7 @@ const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), com
     visible_in_planner: true,
     planner_override: null,
     plannable_type: 'assignment',
+    submissions: status,
     plannable: {
       id: id,
       description: "<p>Lorem ipsum etc.</p>",
@@ -116,13 +110,12 @@ const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), com
   };
 };
 
-const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
+const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), completed = false, status = false) => {
   const id = getKindaUniqueId();
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
     status: status,
-    activity: activity,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -131,6 +124,7 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
     visible_in_planner: true,
     planner_override: null,
     plannable_type: 'discussion_topic',
+    submissions: status,
     plannable: {
       id: "1",
       title: name,
@@ -188,13 +182,12 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
   };
 };
 
-const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
+const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed = false, status = false) => {
   const id = getKindaUniqueId();
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
     status: status,
-    activity: activity,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -203,6 +196,7 @@ const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed 
     visible_in_planner: true,
     planner_override: null,
     plannable_type: 'quiz',
+    submissions: status,
     plannable: {
       id: 2,
       title: name,
@@ -270,20 +264,20 @@ const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed 
   };
 };
 
-const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed = false, status = [], activity = []) => {
+const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed = false, status = false) => {
   const id = getKindaUniqueId();
 
   return {
     context_type: 'Course',
     course_id: courseId,
     status: status,
-    activity: activity,
     type: 'viewing',
     ignore: `/api/v1/users/self/todo/wiki_page_${id}/viewing?permanent=0`,
     ignore_permanently: `/api/v1/users/self/todo/wiki_page_${id}/viewing?permanent=1`,
     visible_in_planner: true,
     planner_override: null,
     plannable_type: 'wiki_page',
+    submissions: status,
     plannable: {
       title: name,
       created_at: '2017-06-05T14:48:47Z',
@@ -318,5 +312,4 @@ module.exports = {
   createFakeWiki,
   getKindaUniqueId,
   generateStatus,
-  generateActivity
 };
