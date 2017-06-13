@@ -47,7 +47,7 @@ module.exports = (req, res, next) => {
   }
 
   if (req.query.filter && req.query.filter === 'new_activity') {
-    req.query['activity_like'] = 'new_.*';
+    req.query['status.has_feedback'] = 'true';
     delete req.query.filter;
   }
 
