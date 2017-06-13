@@ -55,7 +55,6 @@ const createFakeAssignment  = (name, courseId = "1", dueDateTime = moment(), com
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
-    status: status,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -115,7 +114,6 @@ const createFakeDiscussion = (name, courseId = "1", dueDateTime = moment(), comp
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
-    status: status,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -187,7 +185,6 @@ const createFakeQuiz = (name, courseId = "1", dueDateTime = moment(), completed 
 
   return {
     id: id, // This is NOT part of the Canvas API but is required for JSON Server
-    status: status,
     context_type: "Course",
     course_id: courseId,
     type: "submitting",
@@ -270,7 +267,6 @@ const createFakeWiki = (name, courseId = "1", dueDateTime = moment(), completed 
   return {
     context_type: 'Course',
     course_id: courseId,
-    status: status,
     type: 'viewing',
     ignore: `/api/v1/users/self/todo/wiki_page_${id}/viewing?permanent=0`,
     ignore_permanently: `/api/v1/users/self/todo/wiki_page_${id}/viewing?permanent=1`,

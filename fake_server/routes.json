@@ -1,4 +1,5 @@
 {
   "/planner/": "/",
-  "/users/self/missing_submissions": "/missing_submissions?userId=1"
+  "/users/self/missing_submissions": "/missing_submissions?userId=1",
+  "/planner_notes": "/items"
 }
