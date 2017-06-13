@@ -47,6 +47,9 @@
   "details_98a31b68": {
     "message": "Details"
   },
+  "due_5d7267be": {
+    "message": "Due:"
+  },
   "due_date_8ce289b6": {
     "message": "DUE: { date }"
   },
@@ -79,6 +82,9 @@
   },
   "optional_add_course_ef0d70fc": {
     "message": "Optional: Add Course"
+  },
+  "points_bceb5005": {
+    "message": "points"
   },
   "previous_month_bb1e3c84": {
     "message": "Previous Month"
