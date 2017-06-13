@@ -9,6 +9,7 @@ import ShowOnFocusButton from '../ShowOnFocusButton';
 import StickyButton from '../StickyButton';
 import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
+import PlannerEmptyState from '../PlannerEmptyState';
 import formatMessage from '../../format-message';
 import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity} from '../../actions';
 import {getFirstLoadedMoment} from '../../utilities/dateUtils';
@@ -35,6 +36,7 @@ export class PlannerApp extends Component {
     loadFutureItems: func,
     stickyOffset: string,
     stickyZIndex: number,
+    changeToDashboardCardView: func
   };
 
   static defaultProps = {
@@ -107,7 +109,18 @@ export class PlannerApp extends Component {
       onLoadMore={this.props.loadFutureItems} />;
   }
 
+  renderNoAssignments() {
+    return <PlannerEmptyState changeToDashboardCardView={this.props.changeToDashboardCardView}/>;
+  }
+
   renderBody (children) {
+
+    if (children.length === 0) {
+      return <div>
+        {this.renderNoAssignments()}
+      </div>;
+    }
+
     return <div className="PlannerApp">
       {this.renderNewActivity()}
       <ShowOnFocusButton

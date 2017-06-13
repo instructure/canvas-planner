@@ -44,7 +44,7 @@ export default {
 
     ReactDOM.render(applyTheme(
       <Provider store={store}>
-          <PlannerApp stickyOffset={opts.stickyOffset} stickyZIndex={opts.stickyZIndex} />
+          <PlannerApp stickyOffset={opts.stickyOffset} stickyZIndex={opts.stickyZIndex} changeToDashboardCardView={opts.changeToDashboardCardView} />
       </Provider>
     , opts.theme), element);
   },

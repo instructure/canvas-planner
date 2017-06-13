@@ -5,5 +5,8 @@
     "test": {
       "presets": [["./babel-preset"]]
     }
-  }
+  },
+  "plugins": [
+    "inline-react-svg"
+  ]
 }

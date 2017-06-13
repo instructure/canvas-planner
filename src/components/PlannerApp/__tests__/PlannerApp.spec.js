@@ -21,6 +21,15 @@ it('renders base component using dayKeys', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+it('renders empty component with no assignments', () => {
+  var opts = getDefaultValues();
+  opts.days = [];
+  const wrapper = shallow(
+    <PlannerApp {...opts}/>
+  );
+  expect(wrapper.find('PlannerEmptyState').exists()).toBeTruthy();
+});
+
 it('shows only the loading component when the isLoading prop is true', () => {
   const wrapper = shallow(
     <PlannerApp

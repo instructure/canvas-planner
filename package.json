@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "axios": "^0.16.0",
+    "babel-plugin-inline-react-svg": "^0.4.0",
     "classnames": "^2.2.5",
     "esrever": "^0.2.0",
     "format-message": "^5.1.2",

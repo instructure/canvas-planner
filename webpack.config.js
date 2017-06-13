@@ -7,7 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'canvas-planner.js',
   },
-
   module: {
     rules: [
       {
@@ -66,5 +65,5 @@ module.exports = {
       }
     },
     contentBase: path.join(__dirname, 'public')
-  },
+  }
 };
