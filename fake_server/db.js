@@ -30,16 +30,14 @@ module.exports = () => {
         "1",
         moment().subtract(2, 'days').endOf('day'),
         false,
-        generateStatus(['missing']),
-        generateActivity(false, ['new_feedback'])
+        generateStatus({ missing: true, has_feedback: true })
       ),
       createFakeQuiz(
         "War of the Language",
         "2",
         moment().subtract(2, 'days').endOf('day'),
         false,
-        generateStatus(['missing']),
-        generateActivity(false, ['new_feedback'])
+        generateStatus({ missing: true, has_feedback: true })
       ),
 
       // yestreday
@@ -55,16 +53,14 @@ module.exports = () => {
         "1",
         moment().subtract(1, 'days').startOf('day').add(17, 'hours'),
         false,
-        generateStatus(['graded']),
-        generateActivity(false, ['new_grades'])
+        generateStatus({ graded: true })
       ),
       createFakeAssignment(
         "The Great Migration",
         "1",
         moment().subtract(1, 'days').startOf('day').add(17, 'hours'),
         false,
-        generateStatus(['graded']),
-        generateActivity(false, ['new_grades'])
+        generateStatus({ graded: true })
       ),
 
       // today
