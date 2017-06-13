@@ -3,6 +3,7 @@ import moment from 'moment-timezone';
 const getItemDetailsFromPlannable = (apiResponse) => {
   const { plannable, plannable_type } = apiResponse;
   const details = {
+    course_id: plannable.course_id,
     title: plannable.name || plannable.title,
     date: plannable.due_at || plannable.todo_date,
     completed: plannable.has_submitted_submissions, // TODO: Fix this to use the status field
@@ -29,6 +30,7 @@ const getItemType = (apiResponse) => {
     assignment: "Assignment",
     wiki_page: "Page",
     announcement: "Announcement",
+    planner_note: "To Do"
   };
 
   return TYPE_MAPPING[apiResponse.plannable_type];
@@ -57,13 +59,24 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
 
   const details = getItemDetailsFromPlannable(apiResponse);
 
+  if ((!contextInfo.context) && apiResponse.plannable_type === 'planner_note' && (details.course_id)) {
+    const course = courses.find(c => c.id === details.course_id);
+    contextInfo.context = {
+      type: 'Planner Note',
+      id: details.course_id,
+      title: course.shortName,
+      image_url: course.image,
+      color: course.color,
+      url: course.href
+    };
+  }
+
   if (details.unread_count && apiResponse.submissions) {
     apiResponse.submissions.unread_count = details.unread_count;
   }
-
   return {
     ...contextInfo,
-    id: apiResponse.id,
+    id: apiResponse.plannable_id,
     dateBucketMoment: moment.tz(details.date, timeZone).startOf('day'),
     type: getItemType(apiResponse),
     status: apiResponse.submissions,
@@ -83,11 +96,8 @@ export function transformInternalToApiItem (internalItem) {
   return {
     id: internalItem.id,
     ...contextInfo,
-    assignment: {
-      id: internalItem.id,
-      due_at: internalItem.date,
-      name: internalItem.title,
-      description: internalItem.details,
-    }
+    todo_date: internalItem.date,
+    title: internalItem.title,
+    details: internalItem.details,
   };
 }

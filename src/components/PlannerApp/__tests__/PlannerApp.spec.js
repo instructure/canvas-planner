@@ -10,7 +10,8 @@ const getDefaultValues = (overrides) => (
       ["2017-04-25", [{dateBucketMoment: moment.tz('2017-04-25', 'Asia/Tokyo')}]],
       ["2017-04-26", [{dateBucketMoment: moment.tz('2017-04-26', 'Asia/Tokyo')}]],
     ],
-    timeZone: "UTC"
+    timeZone: "UTC",
+    changeToDashboardCardView () {}
   }, overrides)
 );
 

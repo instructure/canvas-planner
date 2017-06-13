@@ -39,7 +39,7 @@ export const addDay = createAction('ADD_DAY', () => {
 function saveExistingPlannerItem (apiItem) {
   return axios({
     method: 'put',
-    url: `api/v1/planner/items/${apiItem.id}`,
+    url: `api/v1/planner_notes/${apiItem.id}`,
     data: apiItem,
   });
 }
@@ -47,7 +47,7 @@ function saveExistingPlannerItem (apiItem) {
 function saveNewPlannerItem (apiItem) {
   return axios({
     method: 'post',
-    url: 'api/v1/planner/items',
+    url: 'api/v1/planner_notes',
     data: apiItem,
   });
 }
@@ -112,7 +112,7 @@ export const deletePlannerItem = (plannerItem) => {
     dispatch(deletingPlannerItem(plannerItem));
     const promise = axios({
       method: 'delete',
-      url: `api/v1/planner/items/${plannerItem.id}`,
+      url: `api/v1/planner_notes/${plannerItem.id}`,
     }).then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone));
     dispatch(deletedPlannerItem(promise));
     return promise;

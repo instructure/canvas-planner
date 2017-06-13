@@ -137,7 +137,7 @@ describe('getOpportunities', () => {
       Actions.savePlannerItem(plannerItem)(() => {});
       return moxiosWait((request) => {
         expect(request.config.method).toBe('post');
-        expect(request.url).toBe('api/v1/planner/items');
+        expect(request.url).toBe('api/v1/planner_notes');
         expect(JSON.parse(request.config.data)).toMatchObject({some: 'data', transformedToApi: true});
       });
     });
@@ -147,7 +147,7 @@ describe('getOpportunities', () => {
       Actions.savePlannerItem(plannerItem, )(() => {});
       return moxiosWait((request) => {
         expect(request.config.method).toBe('put');
-        expect(request.url).toBe('api/v1/planner/items/42');
+        expect(request.url).toBe('api/v1/planner_notes/42');
         expect(JSON.parse(request.config.data)).toMatchObject({id: '42', some: 'data', transformedToApi: true});
       });
     });
@@ -168,7 +168,7 @@ describe('getOpportunities', () => {
       Actions.deletePlannerItem(plannerItem, )(() => {});
       return moxiosWait((request) => {
         expect(request.config.method).toBe('delete');
-        expect(request.url).toBe('api/v1/planner/items/42');
+        expect(request.url).toBe('api/v1/planner_notes/42');
       });
     });
 

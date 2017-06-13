@@ -10,7 +10,7 @@ const courses = [{
 
 function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
   return {
-    id: "10",
+    plannable_id: "10",
     context_type: "Course",
     course_id: "1",
     type: "submitting",
@@ -23,6 +23,19 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
     plannable: makeAssignment(),
     submissions: false,
     ...overrides,
+  };
+}
+
+function makePlannerNote (overrides = {}) {
+  return {
+    id: 10,
+    todo_date: "2017-05-19T05:59:59Z",
+    title: "Some To Do Note",
+    details: "Some To Do Note Details :)",
+    user_id: '1',
+    course_id: '1',
+    workflow_state: 'active',
+    ...overrides
   };
 }
 
@@ -236,6 +249,21 @@ describe('transformApiToInternalItem', () => {
     expect(result).toMatchSnapshot();
   });
 
+  it('extracts and transforms the proper data for a graded discussion reponse with an unread count', () => {
+    const apiResponse = makeApiResponse({
+      plannable_type: 'discussion_topic',
+      submissions: { submitted: true },
+      plannable: makeDiscussionTopic({
+        title: "How to make enemies",
+        points_possible: 40,
+        todo_date: "2017-05-19T05:59:59Z",
+        unread_count: 10
+      })
+    });
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
   it('extracts and transforms the proper data for a assignment response', () => {
     const apiResponse = makeApiResponse({
       plannable_type: 'assignment',
@@ -244,6 +272,45 @@ describe('transformApiToInternalItem', () => {
         name: "How to be neutral",
       }),
     });
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
+  it('extracts and transforms the proper data for a planner_note response', () => {
+    const apiResponse = makeApiResponse({
+      context_type: undefined,
+      course_id: undefined,
+      plannable_type: 'planner_note',
+      plannable: makePlannerNote()
+    });
+
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
+  it('extracts and transforms the proper data for a planner_note response without an associated course', () => {
+    const apiResponse = makeApiResponse({
+      context_type: undefined,
+      course_id: undefined,
+      plannable_type: 'planner_note',
+      plannable: makePlannerNote({
+        course_id: undefined
+      })
+    });
+
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
+  it('extracts and transforms the proper data for an announcement response', () => {
+    const apiResponse = makeApiResponse({
+      plannable_type: 'announcement',
+      plannable: makeDiscussionTopic({ // TODO: Discussion topic is probably fine for now to simulate this, but probably should change later
+        due_at: undefined,
+        todo_date: undefined
+      })
+    });
+
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
     expect(result).toMatchSnapshot();
   });
@@ -285,12 +352,9 @@ describe('transformInternalToApiItem', () => {
     const result = transformInternalToApiItem(internalItem);
     expect(result).toMatchObject({
       id: '42',
-      assignment: {
-        id: '42',
-        due_at: '2017-05-25',
-        name: 'an item',
-        description: 'item details',
-      }
+      todo_date: '2017-05-25',
+      title: 'an item',
+      details: 'item details',
     });
   });
 

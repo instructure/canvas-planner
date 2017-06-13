@@ -70,11 +70,12 @@ class Grouping extends Component {
       itemsToRender = items;
     }
 
-    const componentsToRender = itemsToRender.map(item => (
-      <li
-        className={styles.item}
-        key={item.id}
-      >
+    const componentsToRender = itemsToRender.map(item => {
+      return (
+        <li
+          className={styles.item}
+          key={item.id}
+        >
         <PlannerItem
           theme={{
             iconColor: this.props.color
@@ -92,7 +93,8 @@ class Grouping extends Component {
           badges={this.state.badgeMap[item.id]}
         />
       </li>
-    ));
+      );
+    });
 
     if (!this.state.showCompletedItems && completedItems.length > 0) {
       // Super odd that this is keyed on length?  Sure it is.  But there should
@@ -100,7 +102,7 @@ class Grouping extends Component {
       componentsToRender.push(
         <li
           className={styles.item}
-          key={completedItems.length}
+          key={`length-${completedItems.length}`}
         >
           <CompletedItemsFacade
             onClick={this.handleFacadeClick}

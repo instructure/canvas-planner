@@ -16,6 +16,7 @@ module.exports = (req, res, next) => {
       plannable: {
         id,
         todo_date: originalBody.todo_date,
+        due_at: originalBody.todo_date, // Not part of the canvas spec, but required for json-server to handle filtering, etc.
         title: originalBody.title,
         details: originalBody.details,
         user_id: '1',
