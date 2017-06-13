@@ -83,6 +83,7 @@ class Day extends Component {
                     color={courseInfo.color}
                     timeZone={this.props.timeZone}
                     items={this.state.groupedItems[cid]}
+                    url={courseInfo.url}
                     key={cid}
                     theme={{
                       titleColor: courseInfo.color

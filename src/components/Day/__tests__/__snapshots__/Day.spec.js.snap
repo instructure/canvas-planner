@@ -1,5 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders grouping correctly when having itemsForDay 1`] = `
+<div>
+  <Heading
+    border="none"
+    color="inherit"
+    ellipsis={false}
+    level="h2"
+  >
+    <Typography
+      as="div"
+      letterSpacing="normal"
+      lineHeight="condensed"
+      size="medium"
+      transform="uppercase"
+    >
+      Tuesday
+    </Typography>
+    <Typography
+      as="div"
+      letterSpacing="normal"
+      lineHeight="condensed"
+      size="medium"
+    >
+      April 25, 2017
+    </Typography>
+  </Heading>
+  <div>
+    <Grouping
+      isInPast={true}
+      items={
+        Array [
+          Object {
+            "context": Object {
+              "id": 128,
+              "url": "http://www.non_default_url.com",
+            },
+            "title": "Black Friday",
+          },
+        ]
+      }
+      theme={
+        Object {
+          "titleColor": undefined,
+        }
+      }
+      timeZone="America/Denver"
+      url="http://www.non_default_url.com"
+    />
+    <Grouping
+      isInPast={true}
+      items={
+        Array [
+          Object {
+            "context": Object {
+              "id": 256,
+              "url": "http://www.non_default_url.com",
+            },
+            "title": "San Juan",
+          },
+          Object {
+            "context": Object {
+              "id": 256,
+              "url": "http://www.non_default_url.com",
+            },
+            "title": "Roll for the Galaxy",
+          },
+        ]
+      }
+      theme={
+        Object {
+          "titleColor": undefined,
+        }
+      }
+      timeZone="America/Denver"
+      url="http://www.non_default_url.com"
+    />
+  </div>
+</div>
+`;
+
 exports[`renders the base component with required props 1`] = `
 <div>
   <Heading

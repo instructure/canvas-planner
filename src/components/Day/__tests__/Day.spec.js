@@ -52,6 +52,32 @@ it('groups itemsForDay based on context id', () => {
   expect(groupedItems[256].length).toEqual(2);
 });
 
+it('renders grouping correctly when having itemsForDay', () => {
+  const items = [{
+    title: 'Black Friday',
+    context: {
+      id: 128,
+      url:"http://www.non_default_url.com"
+    }
+  }, {
+    title: 'San Juan',
+    context: {
+      id: 256,
+      url:"http://www.non_default_url.com"
+    }
+  }, {
+    title: 'Roll for the Galaxy',
+    context: {
+      id: 256,
+      url:"http://www.non_default_url.com"
+    }
+  }];
+
+  const wrapper = shallow(
+    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} />
+  );
+  expect(wrapper).toMatchSnapshot();
+});
 it('groups itemsForDay that have no context into the "Notes" category', () => {
   const items = [{
     title: 'Black Friday',

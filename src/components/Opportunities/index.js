@@ -3,7 +3,9 @@ import themeable from 'instructure-ui/lib/themeable';
 
 import Opportunity from '../Opportunity';
 import { array, string} from 'prop-types';
+import formatMessage from '../../format-message';
 
+import Heading from 'instructure-ui/lib/components/Heading';
 import styles from './styles.css';
 import theme from './theme.js';
 
@@ -36,7 +38,7 @@ export class Opportunities extends Component {
   render () {
     return (
       <ol className={styles.root}>
-        {this.renderOpportunity()}
+        {this.props.opportunities.length ? this.renderOpportunity() : formatMessage('Nothing planned today')}
       </ol>
     );
   }

@@ -1,15 +1,14 @@
 import moment from 'moment-timezone';
 
 const getItemDetailsFromPlannable = (apiResponse) => {
-  const { plannable, plannable_type, html_url} = apiResponse;
+  const { plannable, plannable_type } = apiResponse;
   const details = {
     title: plannable.name || plannable.title,
     date: plannable.due_at || plannable.todo_date,
     completed: plannable.has_submitted_submissions, // TODO: Fix this to use the status field
     points: plannable.points_possible,
-    html_url,
+    html_url: plannable.html_url,
   };
-
   if (plannable_type === 'discussion_topic') {
     details.unread_count = plannable.unread_count;
   }
@@ -22,6 +21,7 @@ const getItemType = (apiResponse) => {
     quiz: "Quiz",
     discussion_topic: "Discussion",
     assignment: "Assignment",
+    wiki_page: "Page",
   };
 
   return TYPE_MAPPING[apiResponse.plannable_type];
