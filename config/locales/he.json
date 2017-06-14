@@ -20,6 +20,9 @@
   "details_98a31b68": {
     "message": "פרטים"
   },
+  "due_5d7267be": {
+    "message": "תאריך יעד:"
+  },
   "loading_6ac402e1": {
     "message": "טוען..."
   },
@@ -31,6 +34,9 @@
   },
   "optional_add_course_ef0d70fc": {
     "message": "אופציונלי: הוספת קורס"
+  },
+  "points_bceb5005": {
+    "message": "נקודות"
   },
   "pts_699bd9aa": {
     "message": "נקודות"

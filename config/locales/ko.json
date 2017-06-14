@@ -14,8 +14,14 @@
   "details_98a31b68": {
     "message": "세부 정보"
   },
+  "due_5d7267be": {
+    "message": "기한:"
+  },
   "loading_6ac402e1": {
     "message": "로드 중..."
+  },
+  "points_bceb5005": {
+    "message": "점수"
   },
   "pts_699bd9aa": {
     "message": "점"
