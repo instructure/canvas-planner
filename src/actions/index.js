@@ -71,6 +71,9 @@ function loadPlannerItems (fromMoment, onNothing, dispatch, getState, intoThePas
   let getPromise = null;
   if (nextPageUrl) {
     getPromise = axios.get(nextPageUrl);
+  } else if (getState().items && getState().items.length > 0) {
+    onNothing(dispatch, getState);
+    return [];
   } else {
     getPromise = axios.get(`/api/v1/planner/items`, {
       params: {
