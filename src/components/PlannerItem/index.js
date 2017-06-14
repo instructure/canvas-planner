@@ -62,6 +62,13 @@ class PlannerItem extends Component {
     });
   }
 
+
+  renderDateField = () => {
+    if (this.props.associated_item === "Announcement") {
+      return this.props.date.format("LT");
+    }
+    return formatMessage(`DUE: {date}`, {date: this.props.date.format("LT")});
+  }
   renderIcon = () => {
     switch(this.props.associated_item) {
         case "Assignment":
@@ -121,7 +128,7 @@ class PlannerItem extends Component {
           <div className={styles.due}>
             <Typography color="secondary" size="x-small">
                 { this.props.date
-                    ? formatMessage(`DUE: {date}`, {date: this.props.date.format("LT")})
+                    ? this.renderDateField()
                     : null
                 }
             </Typography>

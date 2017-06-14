@@ -86,7 +86,7 @@ exports[`renders Announcement correctly with everything 1`] = `
             letterSpacing="normal"
             size="x-small"
           >
-            DUE: 3:30 AM
+            3:30 AM
           </Typography>
         </div>
       </div>
@@ -157,7 +157,7 @@ exports[`renders Announcement correctly with just date 1`] = `
             letterSpacing="normal"
             size="x-small"
           >
-            DUE: 3:30 AM
+            3:30 AM
           </Typography>
         </div>
       </div>

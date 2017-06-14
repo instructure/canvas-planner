@@ -12,6 +12,9 @@ const getItemDetailsFromPlannable = (apiResponse) => {
   if (plannable_type === 'discussion_topic') {
     details.unread_count = plannable.unread_count;
   }
+  if (plannable_type === 'announcement' && !details.date) {
+    details.date = plannable.posted_at;
+  }
 
   return details;
 };
@@ -22,6 +25,7 @@ const getItemType = (apiResponse) => {
     discussion_topic: "Discussion",
     assignment: "Assignment",
     wiki_page: "Page",
+    announcement: "Announcement",
   };
 
   return TYPE_MAPPING[apiResponse.plannable_type];
