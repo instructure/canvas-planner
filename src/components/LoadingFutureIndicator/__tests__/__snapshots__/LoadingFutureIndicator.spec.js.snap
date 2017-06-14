@@ -10,8 +10,9 @@ exports[`renders all future items loaded regardless of other props 1`] = `
   >
     <Typography
       as="span"
+      color="secondary"
       letterSpacing="normal"
-      size="medium"
+      size="small"
     >
       All items loaded
     </Typography>
@@ -37,7 +38,7 @@ exports[`renders load more by default 1`] = `
       type="button"
       variant="link"
     >
-      load more
+      Load more
     </Button>
   </Container>
   <Waypoint
@@ -67,17 +68,19 @@ exports[`renders loading when indicated 1`] = `
         display="inline"
       >
         <Spinner
+          margin="0 x-small 0 0"
           size="small"
-          title="loading..."
+          title="Loading..."
           variant="default"
         />
       </Container>
       <Typography
         as="span"
+        color="secondary"
         letterSpacing="normal"
-        size="medium"
+        size="small"
       >
-        loading...
+        Loading...
       </Typography>
     </Container>
   </Container>

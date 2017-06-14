@@ -23,7 +23,7 @@ export default function generator ({ borders, colors, spacing, typography }) {
   };
 }
 
-generator.canavs = function (variables) {
+generator.canvas = function (variables) {
   return {
     iconColor: variables["ic-brand-primary"],
   };

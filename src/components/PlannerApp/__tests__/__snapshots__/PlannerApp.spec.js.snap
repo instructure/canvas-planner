@@ -173,17 +173,12 @@ exports[`shows new activity button when new activity is indicated 1`] = `
 <div
   className="PlannerApp"
 >
-  <Button
-    as="button"
-    buttonRef={[Function]}
-    fluidWidth={false}
-    margin="0"
-    size="medium"
-    type="button"
-    variant="primary"
+  <StickyButton
+    direction="up"
+    zIndex={10}
   >
     New Activity
-  </Button>
+  </StickyButton>
   <ScreenReaderContent
     as="span"
   >

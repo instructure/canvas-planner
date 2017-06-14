@@ -31,7 +31,7 @@ export default class LoadingFutureIndicator extends Component {
   renderLoadMore () {
     if (!this.props.loadingFuture && !this.props.allFutureItemsLoaded) {
       return <Button variant="link" onClick={this.handleLoadMoreButton}>
-        {formatMessage('load more')}
+        {formatMessage('Load more')}
       </Button>;
     }
   }
@@ -40,16 +40,18 @@ export default class LoadingFutureIndicator extends Component {
     if (this.props.loadingFuture && !this.props.allFutureItemsLoaded) {
       return <Container>
         <Container display="inline">
-          <Spinner size="small" title={formatMessage('loading...')} />
+          <Spinner size="small" margin="0 x-small 0 0" title={formatMessage('Loading...')} />
         </Container>
-        <Typography>{formatMessage('loading...')}</Typography>
+        <Typography size="small" color="secondary">
+          {formatMessage('Loading...')}</Typography>
       </Container>;
     }
   }
 
   renderEverythingLoaded () {
     if (this.props.allFutureItemsLoaded) {
-      return <Typography>{formatMessage('All items loaded')}</Typography>;
+      return <Typography color="secondary" size="small">
+        {formatMessage('All items loaded')}</Typography>;
     }
   }
 

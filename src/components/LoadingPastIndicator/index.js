@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import themeable from 'instructure-ui/lib/themeable';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import formatMessage from 'format-message';
 
-export default class LoadingPastIndicator extends Component {
+import styles from './styles.css';
+import theme from './theme.js';
+
+class LoadingPastIndicator extends Component {
   render () {
-    return <div>
-      <Spinner size="small" title={formatMessage('Loading past items...')}/>
-      {formatMessage('Loading Past Items...')}
-    </div>;
+    return (
+      <span className={styles.root}>
+        <Spinner size="small" title={formatMessage('Loading past items')}/>
+        <span className={styles.message}>
+          {formatMessage('Loading past items')}
+        </span>
+      </span>
+    );
   }
 }
+
+export default themeable(theme, styles)(LoadingPastIndicator);

@@ -7,6 +7,7 @@ import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderConte
 import { arrayOf, oneOfType, bool, object, string, func } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import Day from '../Day';
+import StickyButton from '../StickyButton';
 import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
 import formatMessage from '../../format-message';
@@ -62,9 +63,15 @@ export class PlannerApp extends Component {
     const firstLoadedMoment = getFirstLoadedMoment(this.props.days, this.props.timeZone);
     if (firstLoadedMoment.isSameOrBefore(this.props.firstNewActivityDate)) return;
 
-    return <Button variant="primary" onClick={this.props.loadPastUntilNewActivity}>
-      {formatMessage("New Activity")}
-    </Button>;
+    return (
+      <StickyButton
+        direction="up"
+        onClick={this.props.scrollIntoPast}
+        zIndex={10}
+      >
+        {formatMessage("New Activity")}
+      </StickyButton>
+    );
   }
 
   renderLoadingPast () {
