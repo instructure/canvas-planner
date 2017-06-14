@@ -144,7 +144,7 @@ export const getOpportunities = () => {
     dispatch(startLoadingOpportunities());
     axios({
       method: 'get',
-      url: '/api/v1/users/1/missing_submissions',
+      url: '/api/v1/users/self/missing_submissions',
     }).then(response => {
       dispatch(addOpportunities(response.data));
     });
