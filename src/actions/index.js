@@ -1,8 +1,11 @@
 import { createAction, createActions } from 'redux-actions';
 import axios from 'axios';
 import moment from 'moment';
+import configureAxios from '../utilities/configureAxios';
 import {formatDayKey} from '../utilities/dateUtils';
 import { transformApiToInternalItem, transformInternalToApiItem } from '../utilities/apiUtils';
+
+configureAxios(axios);
 
 export const {
   initialOptions,
