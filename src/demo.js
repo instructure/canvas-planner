@@ -34,8 +34,14 @@ const COURSES = [{
   color: "#19C3B4"
 }];
 
+const flashAlertFunctions = {
+  visualSuccessCallback () { console.log('visual alert called'); },
+  visualErrorallback () { console.log('visual error called'); },
+  srAlertCallback () { console.log('sr alert called'); }
+};
+
 const mount_point = document.getElementById('mount_point');
-CanvasPlanner.render(mount_point, { courses: COURSES });
+CanvasPlanner.render(mount_point, { courses: COURSES, flashAlertFunctions });
 
 const header_mount_point = document.getElementById('header_mount_point');
 CanvasPlanner.renderHeader(header_mount_point);

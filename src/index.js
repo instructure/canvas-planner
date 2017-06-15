@@ -8,6 +8,7 @@ import i18n from './i18n';
 import configureStore from './store/configureStore';
 import { initialOptions, getPlannerItems, scrollIntoPast } from './actions';
 import { registerScrollEvents } from './utilities/scrollUtils';
+import { initialize as initializeAlerts } from './utilities/alertUtils';
 import moment from 'moment-timezone';
 
 const defaultOptions = {
@@ -31,6 +32,10 @@ export default {
     moment.locale(opts.locale);
     moment.tz.setDefault(opts.timeZone);
     registerScrollEvents(handleScrollIntoPastAttempt);
+    if (!opts.flashAlertFunctions) {
+      throw new Error('You must provide callbacks to handle flash messages');
+    }
+    initializeAlerts(opts.flashAlertFunctions);
 
     store.dispatch(initialOptions(opts));
     store.dispatch(getPlannerItems(moment.tz(opts.timeZone).startOf('day')));

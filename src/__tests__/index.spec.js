@@ -12,8 +12,16 @@ describe('render', () => {
   });
 
   it('calls render with PlannerApp', () => {
-    CanvasPlanner.render(document.getElementById('container'));
+    CanvasPlanner.render(document.getElementById('container'), {
+      flashAlertFunctions: {}
+    });
     expect(document.querySelector('.PlannerApp')).toBeTruthy();
+  });
+
+  it('throws an error if flashAlertFunctions are not provided', () => {
+    expect(() => {
+      CanvasPlanner.render(document.getElementById('container'));
+    }).toThrow();
   });
 });
 
