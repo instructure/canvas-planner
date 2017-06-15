@@ -42,6 +42,7 @@
   box-sizing: border-box;
   width: 1.375rem;
   margin-right: var(--checkboxRightMarginPhoneUp);
+  line-height: 1;
 }
 
 [data-media-medium] {
