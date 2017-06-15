@@ -1,22 +1,38 @@
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
+import PropTypes from 'prop-types';
+import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
+import Typography from 'instructure-ui/lib/components/Typography';
 import formatMessage from 'format-message';
+import {animateSlideDown} from '../../utilities/scrollUtils';
 
-import styles from './styles.css';
-import theme from './theme.js';
+export default class LoadingPastIndicator extends Component {
+  static propTypes = {
+    onComponentWillUnmount: PropTypes.func,
+  }
 
-class LoadingPastIndicator extends Component {
+  componentDidMount () {
+    if (this.rootDiv) animateSlideDown(this.rootDiv);
+  }
+
+  componentWillUnmount () {
+    if (this.props.onComponentWillUnmount) this.props.onComponentWillUnmount();
+  }
+
+  rootDiv = (elt) => {
+    this.rootDiv = elt;
+  }
+
   render () {
-    return (
-      <span className={styles.root}>
-        <Spinner size="small" title={formatMessage('Loading past items')}/>
-        <span className={styles.message}>
+    return <div ref={this.rootDiv}>
+      <Container as="div" padding="small" textAlign="center">
+        <Container display="inline">
+          <Spinner size="small" margin="0 x-small 0 0" title={formatMessage('Loading past items')}/>
+        </Container>
+        <Typography size="small" color="secondary">
           {formatMessage('Loading past items')}
-        </span>
-      </span>
-    );
+        </Typography>
+      </Container>
+    </div>;
   }
 }
-
-export default themeable(theme, styles)(LoadingPastIndicator);

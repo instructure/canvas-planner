@@ -29,3 +29,9 @@ it('renders the right course with the right opportunity', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+it('renders nothing if no opportunities', () => {
+  let tempProps = defaultProps();
+  tempProps.opportunities = [];
+  const wrapper = shallow(<Opportunities {...tempProps} />);
+  expect(wrapper).toMatchSnapshot();
+});

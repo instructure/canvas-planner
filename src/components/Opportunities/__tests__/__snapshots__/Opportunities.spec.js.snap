@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders nothing if no opportunities 1`] = `
+<ol>
+  Nothing planned today
+</ol>
+`;
+
 exports[`renders the base component correctly with one opportunity 1`] = `
 <ol>
   <li>

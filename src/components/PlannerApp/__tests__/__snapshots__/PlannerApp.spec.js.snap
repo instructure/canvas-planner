@@ -53,6 +53,7 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
+  <div />
 </div>
 `;
 
@@ -110,6 +111,7 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
+  <div />
 </div>
 `;
 
@@ -166,6 +168,7 @@ exports[`renders base component using dayKeys 1`] = `
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
+  <div />
 </div>
 `;
 
@@ -175,6 +178,7 @@ exports[`shows new activity button when new activity is indicated 1`] = `
 >
   <StickyButton
     direction="up"
+    onClick={[Function]}
     zIndex={10}
   >
     New Activity
@@ -228,6 +232,7 @@ exports[`shows new activity button when new activity is indicated 1`] = `
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
+  <div />
 </div>
 `;
 
@@ -261,6 +266,7 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
       variant="default"
     />
   </Container>
+  <div />
 </div>
 `;
 
@@ -283,7 +289,9 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
       Load prior dates
     </Button>
   </ScreenReaderContent>
-  <LoadingPastIndicator />
+  <LoadingPastIndicator
+    onComponentWillUnmount={[Function]}
+  />
   <Day
     day="2017-04-24"
     itemsForDay={
@@ -318,5 +326,6 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
+  <div />
 </div>
 `;

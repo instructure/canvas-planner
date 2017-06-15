@@ -22,6 +22,15 @@ exports[`renders all future items loaded regardless of other props 1`] = `
 
 exports[`renders load more by default 1`] = `
 <div>
+  <Waypoint
+    bottomOffset="0px"
+    fireOnRapidScroll={true}
+    horizontal={false}
+    onEnter={[Function]}
+    onLeave={[Function]}
+    onPositionChange={[Function]}
+    topOffset="0px"
+  />
   <Container
     as="div"
     display={null}
@@ -41,15 +50,6 @@ exports[`renders load more by default 1`] = `
       Load more
     </Button>
   </Container>
-  <Waypoint
-    bottomOffset="0px"
-    fireOnRapidScroll={true}
-    horizontal={false}
-    onEnter={[Function]}
-    onLeave={[Function]}
-    onPositionChange={[Function]}
-    topOffset="0px"
-  />
 </div>
 `;
 

@@ -1,14 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders stuff 1`] = `
-<span>
-  <Spinner
-    size="small"
-    title="Loading past items"
-    variant="default"
-  />
-  <span>
-    Loading past items
-  </span>
-</span>
+<div>
+  <Container
+    as="div"
+    display={null}
+    padding="small"
+    textAlign="center"
+  >
+    <Container
+      display="inline"
+    >
+      <Spinner
+        margin="0 x-small 0 0"
+        size="small"
+        title="Loading past items"
+        variant="default"
+      />
+    </Container>
+    <Typography
+      as="span"
+      color="secondary"
+      letterSpacing="normal"
+      size="small"
+    >
+      Loading past items
+    </Typography>
+  </Container>
+</div>
 `;

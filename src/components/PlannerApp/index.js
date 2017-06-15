@@ -13,6 +13,7 @@ import LoadingPastIndicator from '../LoadingPastIndicator';
 import formatMessage from '../../format-message';
 import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity} from '../../actions';
 import {getFirstLoadedMoment} from '../../utilities/dateUtils';
+import {maintainViewportPosition} from '../../utilities/scrollUtils';
 
 export class PlannerApp extends Component {
   static propTypes = {
@@ -43,6 +44,20 @@ export class PlannerApp extends Component {
     if (focusableElement) focusableElement.focus();
   }
 
+  fixedElementRef = (elt) => {
+    this.fixedElement = elt;
+  }
+
+  handleNewActivityClick = () => {
+    this.props.loadPastUntilNewActivity();
+  }
+
+  handleLoadingPastIndicatorWillUnmount = () => {
+    if (this.fixedElement) {
+      maintainViewportPosition(this.fixedElement);
+    }
+  }
+
   renderLoading () {
     return <Container
       display="block"
@@ -66,7 +81,7 @@ export class PlannerApp extends Component {
     return (
       <StickyButton
         direction="up"
-        onClick={this.props.scrollIntoPast}
+        onClick={this.handleNewActivityClick}
         zIndex={10}
       >
         {formatMessage("New Activity")}
@@ -75,7 +90,10 @@ export class PlannerApp extends Component {
   }
 
   renderLoadingPast () {
-    if (this.props.loadingPast) return <LoadingPastIndicator />;
+    if (this.props.loadingPast) {
+      return <LoadingPastIndicator
+        onComponentWillUnmount={this.handleLoadingPastIndicatorWillUnmount} />;
+    }
   }
 
   renderLoadMore () {
@@ -97,6 +115,7 @@ export class PlannerApp extends Component {
       {this.renderLoadingPast()}
       {children}
       {this.renderLoadMore()}
+      <div ref={this.fixedElementRef} />
     </div>;
   }
 

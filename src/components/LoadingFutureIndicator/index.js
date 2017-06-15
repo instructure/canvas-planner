@@ -63,12 +63,12 @@ export default class LoadingFutureIndicator extends Component {
 
   render () {
     return <div>
+      {this.renderWaypoint()}
       <Container as="div" padding="x-large" textAlign="center">
         {this.renderLoadMore()}
         {this.renderLoading()}
         {this.renderEverythingLoaded()}
       </Container>
-      {this.renderWaypoint()}
     </div>;
   }
 }
