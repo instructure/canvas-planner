@@ -8,14 +8,18 @@ export const {
   initialOptions,
   addOpportunities,
   startLoadingOpportunities,
+  startDismissingOpportunity,
   savingPlannerItem,
   savedPlannerItem,
+  dismissedOpportunity,
   deletingPlannerItem,
   deletedPlannerItem,
 } = createActions(
   'INITIAL_OPTIONS',
   'ADD_OPPORTUNITIES',
+  'DISMISSED_OPPORTUNITY',
   'START_LOADING_OPPORTUNITIES',
+  'START_DISMISSING_OPPORTUNITY',
   'SAVING_PLANNER_ITEM',
   'SAVED_PLANNER_ITEM',
   'DELETING_PLANNER_ITEM',
@@ -50,10 +54,40 @@ export const getOpportunities = () => {
     dispatch(startLoadingOpportunities());
     axios({
       method: 'get',
-      url: '/api/v1/users/self/missing_submissions',
+      url: '/api/v1/users/self/missing_submissions?include[]=planner_overrides',
     }).then(response => {
       dispatch(addOpportunities(response.data));
     });
+  };
+};
+
+export const dismissOpportunity = (id, plannerOverride) => {
+  return (dispatch, getState) => {
+    dispatch(startDismissingOpportunity(id));
+    if (plannerOverride) {
+      axios({
+        method: 'put',
+        params: {
+          id: plannerOverride.id,
+          visible: false,
+        },
+        url: `/api/v1/planner/overrides/${plannerOverride.id}`,
+      }).then(response => {
+        dispatch(dismissedOpportunity(response.data));
+      });
+    } else {
+      axios({
+        method: 'post',
+        params: {
+          plannable_id: id,
+          plannable_type: 'Assignment',
+          visible: false,
+        },
+        url: '/api/v1/planner/overrides',
+      }).then(response => {
+        dispatch(dismissedOpportunity(response.data));
+      });
+    }
   };
 };
 

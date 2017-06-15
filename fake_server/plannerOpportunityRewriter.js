@@ -1,7 +1,7 @@
 const { getKindaUniqueId } = require('./utils');
 
 module.exports = (req, res, next) => {
-  if ((req.method === 'POST') && (/planner_notes/.test(req.originalUrl))) {
+  if ((req.method === 'POST') && (/planner\/overrides/.test(req.originalUrl))) {
     const originalBody = req.body;
     const id = getKindaUniqueId();
     const newBody = {

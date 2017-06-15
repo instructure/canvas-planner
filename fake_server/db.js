@@ -23,6 +23,7 @@ module.exports = () => {
       }
     ],
     missing_submissions: [createFakeOpportunity(), createFakeOpportunity(), createFakeOpportunity()],
+    overrides: {planner_override: {id:1, plannable_id: 1, blah: "lsakdjasdlkjf"}},
     planner: {},
     items: [
       // 2 days ago

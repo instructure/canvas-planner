@@ -11,6 +11,7 @@ function defaultProps (option) {
     locale: 'en',
     timeZone: 'America/Denver',
     deletePlannerItem: () => {},
+    dismissOpportunity: () => {},
   };
 }
 

@@ -8,18 +8,21 @@ import Container from 'instructure-ui/lib/components/Container';
 import Link from 'instructure-ui/lib/components/Link';
 import Pill from 'instructure-ui/lib/components/Pill';
 import IconXLine from 'instructure-icons/lib/Line/IconXLine';
-import { string, number} from 'prop-types';
+import { string, number, func, object } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 
 export class Opportunity extends Component {
   static propTypes = {
+    id: string.isRequired,
     dueAt: string.isRequired,
     points: number,
     courseName: string.isRequired,
     opportunityTitle: string.isRequired,
     timeZone: string.isRequired,
-    url: string.isRequired
+    url: string.isRequired,
+    dismiss: func.isRequired,
+    plannerOverride: object,
   }
 
   constructor (props) {
@@ -38,8 +41,8 @@ export class Opportunity extends Component {
             {this.props.courseName}
           </div>
           <div className={styles.close}>
-            <Button variant="icon" size="small">
-              <IconXLine title={formatMessage("Close")} />
+            <Button onClick={() => this.props.dismiss(this.props.id, this.props.plannerOverride)} variant="icon" size="small">
+              <IconXLine title={formatMessage("Dismiss")} />
             </Button>
           </div>
         </header>
@@ -50,7 +53,7 @@ export class Opportunity extends Component {
 
         <footer className={styles.footer}>
           <div className={styles.status}>
-            <Pill text="Badge list..." />
+            <Pill text={formatMessage('Missing')} variant="danger"/>
             <div className={styles.due}>
               <span className={styles.dueText}>
                 {formatMessage('Due:')}</span> {this.fullDate}

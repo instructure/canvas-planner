@@ -12,12 +12,13 @@ exports[`renders the base component correctly 1`] = `
         buttonRef={[Function]}
         fluidWidth={false}
         margin="0"
+        onClick={[Function]}
         size="small"
         type="button"
         variant="icon"
       >
         <IconXLine
-          title="Close"
+          title="Dismiss"
         />
       </Button>
     </div>
@@ -39,8 +40,8 @@ exports[`renders the base component correctly 1`] = `
   <footer>
     <div>
       <Pill
-        text="Badge list..."
-        variant="default"
+        text="Missing"
+        variant="danger"
       />
       <div>
         <span>
@@ -72,12 +73,13 @@ exports[`renders the base component correctly without points 1`] = `
         buttonRef={[Function]}
         fluidWidth={false}
         margin="0"
+        onClick={[Function]}
         size="small"
         type="button"
         variant="icon"
       >
         <IconXLine
-          title="Close"
+          title="Dismiss"
         />
       </Button>
     </div>
@@ -99,8 +101,8 @@ exports[`renders the base component correctly without points 1`] = `
   <footer>
     <div>
       <Pill
-        text="Badge list..."
-        variant="default"
+        text="Missing"
+        variant="danger"
       />
       <div>
         <span>

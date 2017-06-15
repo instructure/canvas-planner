@@ -7,6 +7,7 @@ const middlewares = jsonServer.defaults();
 const pause = require('connect-pause');
 const dateRewriter = require('./dateRewriter');
 const plannerNoteRewriter = require('./plannerNoteRewriter');
+const plannerOpportunityRewriter = require('./plannerOpportunityRewriter');
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
@@ -24,6 +25,7 @@ server.use(pause(1500));
 // Custom middlewares
 server.use(dateRewriter);
 server.use(plannerNoteRewriter);
+server.use(plannerOpportunityRewriter);
 
 
 

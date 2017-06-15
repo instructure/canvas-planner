@@ -10,7 +10,7 @@ import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
 import Badge from 'instructure-ui/lib/components/Badge';
 import Opportunities from '../Opportunities';
-import {addDay, savePlannerItem, deletePlannerItem, getOpportunities} from '../../actions';
+import {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity} from '../../actions';
 
 import styles from './styles.css';
 import theme from './theme.js';
@@ -29,11 +29,14 @@ export class PlannerHeader extends Component {
     timeZone: PropTypes.string.isRequired,
     opportunities: PropTypes.array.isRequired,
     getOpportunities: PropTypes.func.isRequired,
+    dismissOpportunity: PropTypes.func.isRequired,
   };
 
   constructor (props) {
     super(props);
+    let opportunities = props.opportunities.filter((opportunity) => this.isOpportunityVisible(opportunity));
     this.state = {
+      opportunities,
       trayOpen: false,
     };
   }
@@ -42,9 +45,18 @@ export class PlannerHeader extends Component {
     this.props.getOpportunities();
   }
 
+  componentWillReceiveProps(nextProps) {
+    let opportunities = nextProps.opportunities.filter((opportunity) => this.isOpportunityVisible(opportunity));
+    this.setState({opportunities});
+  }
+
   handleSavePlannerItem = (plannerItem) => {
     this.toggleUpdateItemTray();
     this.props.savePlannerItem(plannerItem);
+  }
+
+  isOpportunityVisible = (opportunity) => {
+    return opportunity.planner_override ? opportunity.planner_override.visible : true;
   }
 
   handleDeletePlannerItem = (plannerItem) => {
@@ -85,16 +97,18 @@ export class PlannerHeader extends Component {
         <Popover on="click">
           <PopoverTrigger>
             <Button variant="icon">
-              <Badge {...this.props.opportunities.length ? {count :this.props.opportunities.length} : {}}>
+              <Badge {...this.state.opportunities.length ? {count :this.state.opportunities.length} : {}}>
                 <IconAlertLine title={this.opportunityTitle()} />
               </Badge>
             </Button>
           </PopoverTrigger>
           <PopoverContent>
             <Opportunities
-              opportunities={this.props.opportunities}
+              opportunities={this.state.opportunities}
               courses={this.props.courses}
-              timeZone={this.props.timeZone} />
+              timeZone={this.props.timeZone}
+              dismiss={this.props.dismissOpportunity}
+            />
           </PopoverContent>
         </Popover>
         <Tray
@@ -123,6 +137,6 @@ export class PlannerHeader extends Component {
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
 const mapStateToProps = ({opportunities, loading, courses}) => ({opportunities, loading, courses});
-const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities};
+const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);
