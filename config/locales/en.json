@@ -47,11 +47,17 @@
   "details_98a31b68": {
     "message": "Details"
   },
+  "dismiss_dacdb625": {
+    "message": "Dismiss"
+  },
   "due_5d7267be": {
     "message": "Due:"
   },
   "due_date_8ce289b6": {
     "message": "DUE: { date }"
+  },
+  "education_is_what_remains_after_one_has_forgotten__6b4ad493": {
+    "message": "Education is what remains after one has forgotten what one has learned in school."
   },
   "load_more_a36f9cf9": {
     "message": "Load more"
@@ -67,6 +73,9 @@
   },
   "loading_planner_items_947a813d": {
     "message": "Loading planner items"
+  },
+  "missing_1a256b3b": {
+    "message": "Missing"
   },
   "new_activity_8b84847d": {
     "message": "New Activity"
