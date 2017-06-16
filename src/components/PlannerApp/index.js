@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
-import { arrayOf, oneOfType, bool, object, string, func } from 'prop-types';
+import { arrayOf, oneOfType, bool, object, string, number, func } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import Day from '../Day';
 import ShowOnFocusButton from '../ShowOnFocusButton';
@@ -33,11 +33,14 @@ export class PlannerApp extends Component {
     scrollIntoPast: func,
     loadPastUntilNewActivity: func,
     loadFutureItems: func,
+    stickyOffset: string,
+    stickyZIndex: number,
   };
 
   static defaultProps = {
     isLoading: false
   };
+
 
   takeFocusRef = (focusableElement) => {
     if (focusableElement) focusableElement.focus();
@@ -81,7 +84,8 @@ export class PlannerApp extends Component {
       <StickyButton
         direction="up"
         onClick={this.handleNewActivityClick}
-        zIndex={10}
+        offset={this.props.stickyOffset}
+        zIndex={this.props.stickyZIndex}
       >
         {formatMessage("New Activity")}
       </StickyButton>

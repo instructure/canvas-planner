@@ -160,8 +160,8 @@ exports[`shows new activity button when new activity is indicated 1`] = `
 >
   <StickyButton
     direction="up"
+    offset="0"
     onClick={[Function]}
-    zIndex={10}
   >
     New Activity
   </StickyButton>

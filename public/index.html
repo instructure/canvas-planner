@@ -7,6 +7,10 @@
   <style>
     #header {
       display: flex;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
 
     #demo_only_mount {
@@ -20,8 +24,8 @@
   </style>
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
-<body style="margin: 0 8px;">
-  <div id="header" style="position: sticky; top: 0; z-index: 10">
+<body>
+  <div id="header">
     <div id="demo_only_mount"></div>
     <div id="header_mount_point"></div>
   </div>

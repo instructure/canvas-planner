@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import themeable from 'instructure-ui/lib/themeable';
-import { bool, func, node, number, oneOf } from 'prop-types';
+import { bool, func, node, number, string, oneOf } from 'prop-types';
 import IconMoveUpLine from 'instructure-icons/lib/Line/IconMoveUpLine';
 import IconMoveDownLine from 'instructure-icons/lib/Line/IconMoveDownLine';
 
 import styles from './styles.css';
 import theme from './theme.js';
+
+import '../../utilities/modernizr';
 
 class StickyButton extends Component {
   static propTypes = {
@@ -14,11 +16,13 @@ class StickyButton extends Component {
     onClick: func,
     disabled: bool,
     direction: oneOf(['none', 'up', 'down']),
-    zIndex: number
+    zIndex: number,
+    offset: string,
   };
 
   static defaultProps = {
-    direction: 'none'
+    direction: 'none',
+    offset: '0',
   };
 
   handleClick = (e) => {
@@ -52,7 +56,8 @@ class StickyButton extends Component {
       children,
       disabled,
       direction,
-      zIndex
+      zIndex,
+      offset,
     } = this.props;
 
     const classes = {
@@ -61,8 +66,12 @@ class StickyButton extends Component {
     };
 
     const style = {
-      zIndex: (zIndex) ? zIndex : null
+      zIndex: (zIndex) ? zIndex : null,
+      top: offset,
     };
+    if (!window.Modernizr.csspositionsticky) {
+      style.top = '0';
+    }
 
     return (
       <button

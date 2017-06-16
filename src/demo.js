@@ -40,17 +40,9 @@ const flashAlertFunctions = {
   srAlertCallback () { console.log('sr alert called'); }
 };
 
-const mount_point = document.getElementById('mount_point');
-CanvasPlanner.render(mount_point, { courses: COURSES, flashAlertFunctions });
-
-const header_mount_point = document.getElementById('header_mount_point');
-CanvasPlanner.renderHeader(header_mount_point);
-
-/***************
-* Things below this point deal with the demo area setting bar only
-***************/
-
 const demo_only_mount_point = document.getElementById('demo_only_mount');
+const header_mount_point = document.getElementById('header_mount_point');
+const mount_point = document.getElementById('mount_point');
 
 const locales = ["en", "ar", "da", "de", "en-AU", "en-GB", "es", "fa", "fr-CA",
                  "fr", "he", "ht", "hy", "ja", "ko", "mi", "nl", "nb", "nn", "pl",
@@ -63,7 +55,10 @@ class DemoArea extends Component {
       timeZone: 'America/Denver',
       locale: 'en',
       courses: COURSES,
-      theme: 'canvas'
+      theme: 'canvas',
+      stickyOffset: '0',
+      stickyZIndex: 10,
+      flashAlertFunctions,
     };
     this.dayCount = 3;
   }
@@ -88,14 +83,27 @@ class DemoArea extends Component {
     PlannerStore.dispatch(getPlannerItems(fakeDay));
   }
 
-  componentWillUpdate (nextProps, nextState) {
-    const opts = {
-      ...nextState,
-      theme: THEMES[nextState.theme]
-    };
+  componentDidMount () {
+    this.renderPlannerHeaderAndBody();
+  }
 
-    CanvasPlanner.render(mount_point, opts);
-    CanvasPlanner.renderHeader(header_mount_point, opts);
+  componentDidUpdate () {
+    this.renderPlannerHeaderAndBody();
+  }
+
+  renderPlannerHeaderAndBody () {
+    // This sucks, but Safari seems to need a little time to correctly calculate the header height.
+    window.setTimeout(() => {
+      const headerRect = header_mount_point.getBoundingClientRect();
+      const stickyOffset = (headerRect.bottom - headerRect.top) + 'px';
+      const opts = {
+        ...this.state,
+        theme: THEMES[this.state.theme],
+        stickyOffset,
+      };
+      CanvasPlanner.renderHeader(header_mount_point, opts);
+      CanvasPlanner.render(mount_point, opts);
+    }, 150);
   }
 
   render () {
@@ -175,7 +183,6 @@ class DemoArea extends Component {
     );
   }
 }
-
 
 ReactDOM.render(
     <DemoArea />

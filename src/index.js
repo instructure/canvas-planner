@@ -16,6 +16,8 @@ const defaultOptions = {
   timeZone: moment.tz.guess(),
   theme: 'canvas',
   courses: [],
+  stickyOffset: '0',
+  stickyZIndex: 5,
 };
 
 export const store = configureStore();
@@ -42,7 +44,7 @@ export default {
 
     ReactDOM.render(applyTheme(
       <Provider store={store}>
-          <PlannerApp />
+          <PlannerApp stickyOffset={opts.stickyOffset} stickyZIndex={opts.stickyZIndex} />
       </Provider>
     , opts.theme), element);
   },
