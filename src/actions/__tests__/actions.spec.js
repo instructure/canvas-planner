@@ -2,6 +2,7 @@ import * as Actions from '../index';
 import moxios from 'moxios';
 import moment from 'moment-timezone';
 import {isPromise, moxiosWait, moxiosRespond} from '../../test-utils';
+import { initialize as alertInitialize } from '../../utilities/alertUtils';
 
 jest.mock('../../utilities/apiUtils', () => ({
   transformApiToInternalItem: jest.fn(response => ({...response, transformedToInternal: true})),
@@ -27,6 +28,11 @@ describe('api actions', () => {
   beforeEach(() => {
     moxios.install();
     expect.hasAssertions();
+    alertInitialize({
+      visualSuccessCallback () {},
+      visualErrorCallback () {},
+      srAlertCallback () {}
+    });
   });
 
   afterEach(() => {
@@ -99,6 +105,24 @@ describe('getOpportunities', () => {
       });
     });
   });
+
+  it('calls the alert function when a failure occurs', (done) => {
+    const mockDispatch = jest.fn();
+    const fakeAlert = jest.fn();
+    alertInitialize({
+      visualErrorCallback: fakeAlert
+    });
+    Actions.getOpportunities()(mockDispatch, getBasicState);
+    moxios.wait(() => {
+      let request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 500,
+      }).then(() => {
+        expect(fakeAlert).toHaveBeenCalled();
+        done();
+      });
+    });
+  });
 });
 
   describe('savePlannerItem', () => {
@@ -163,6 +187,24 @@ describe('getOpportunities', () => {
         expect(JSON.parse(request.config.data)).toMatchObject({id: '42', some: 'data', transformedToApi: true});
       });
     });
+
+    it('calls the alert function when a failure occurs', () => {
+      const fakeAlert = jest.fn();
+      const mockDispatch = jest.fn();
+      alertInitialize({
+        visualErrorCallback: fakeAlert
+      });
+
+      const plannerItem = {some: 'data'};
+      const savePromise = Actions.savePlannerItem(plannerItem)(mockDispatch, getBasicState);
+      return moxiosRespond(
+        { some: 'response data' },
+        savePromise,
+        { status: 500 }
+      ).then((result) => {
+        expect(fakeAlert).toHaveBeenCalled();
+      });
+    });
   });
 
   describe('deletePlannerItem', () => {
@@ -193,6 +235,24 @@ describe('getOpportunities', () => {
         deletePromise
       ).then((result) => {
         expect(result).toMatchObject({some: 'response data', transformedToInternal: true});
+      });
+    });
+
+    it('calls the alert function when a failure occurs', () => {
+      const fakeAlert = jest.fn();
+      const mockDispatch = jest.fn();
+      alertInitialize({
+        visualErrorCallback: fakeAlert
+      });
+
+      const plannerItem = { some: 'data' };
+      const deletePromise = Actions.deletePlannerItem(plannerItem)(mockDispatch, getBasicState);
+      return moxiosRespond(
+        { some: 'response data' },
+        deletePromise,
+        { status: 500 }
+      ).then((result) => {
+        expect(fakeAlert).toHaveBeenCalled();
       });
     });
   });

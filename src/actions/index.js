@@ -4,6 +4,8 @@ import moment from 'moment';
 import configureAxios from '../utilities/configureAxios';
 import {formatDayKey} from '../utilities/dateUtils';
 import { transformApiToInternalItem, transformInternalToApiItem, transformInternalToApiOverride } from '../utilities/apiUtils';
+import { alert } from '../utilities/alertUtils';
+import formatMessage from '../format-message';
 
 configureAxios(axios);
 
@@ -60,7 +62,7 @@ export const getOpportunities = () => {
       url: '/api/v1/users/self/missing_submissions?include[]=planner_overrides',
     }).then(response => {
       dispatch(addOpportunities(response.data));
-    });
+    }).catch(() => alert(formatMessage('Failed to load opportunities'), true));
   };
 };
 
@@ -103,7 +105,8 @@ export const savePlannerItem = (plannerItem) => {
     let promise = plannerItem.id ?
       saveExistingPlannerItem(apiItem) :
       saveNewPlannerItem(apiItem);
-    promise = promise.then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone));
+    promise = promise.then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone))
+                     .catch(() => alert(formatMessage('Failed to save to do'), true));
     dispatch(savedPlannerItem(promise));
     return promise;
   };
@@ -115,7 +118,8 @@ export const deletePlannerItem = (plannerItem) => {
     const promise = axios({
       method: 'delete',
       url: `api/v1/planner_notes/${plannerItem.id}`,
-    }).then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone));
+    }).then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone))
+      .catch(() => alert(formatMessage('Failed to delete to do'), true));
     dispatch(deletedPlannerItem(promise));
     return promise;
   };

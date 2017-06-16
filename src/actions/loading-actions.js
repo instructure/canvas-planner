@@ -4,6 +4,8 @@ import parseLinkHeader from 'parse-link-header';
 import { getFirstLoadedMoment, getLastLoadedMoment } from '../utilities/dateUtils';
 import { transformApiToInternalItem } from '../utilities/apiUtils';
 import { anyNewActivity } from '../utilities/statusUtils';
+import { alert, srAlert } from '../utilities/alertUtils';
+import formatMessage from '../format-message';
 
 export const {
   startLoadingItems,
@@ -50,7 +52,7 @@ export function getNewActivity (fromMoment) {
         const first = transformApiToInternalItem(response.data[0], getState().courses, getState().timeZone);
         dispatch(foundFirstNewActivityDate(first.dateBucketMoment));
       }
-    });
+    }).catch(() => alert(formatMessage('Failed to get new activity'), true));
   };
 }
 
@@ -114,6 +116,13 @@ export const loadPastUntilNewActivity = () => (dispatch, getState) => {
 };
 
 function handleGotItems (loadingOptions, response, newItems) {
+  srAlert(
+    formatMessage(`Loaded { count, plural,
+      =0 {# items}
+      one {# item}
+      other {# items}
+    }`, { count: newItems.length})
+  );
   loadingOptions.dispatch(gotItemsSuccess(newItems, response));
 }
 
@@ -135,7 +144,8 @@ function handleLoadPastItemsUntilNewActivity (loadingOptions, response, newItems
 
 function sendFetchRequest (loadingOptions) {
   return axios.get(...fetchParams(loadingOptions))
-    .then(response => handleFetchResponse(loadingOptions, response));
+    .then(response => handleFetchResponse(loadingOptions, response))
+    .catch(() => alert(formatMessage('Error loading items'), true));
 }
 
 function fetchParams (loadingOptions) {

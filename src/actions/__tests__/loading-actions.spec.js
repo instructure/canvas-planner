@@ -2,6 +2,7 @@ import * as Actions from '../loading-actions';
 import moxios from 'moxios';
 import moment from 'moment-timezone';
 import {isPromise, moxiosWait, moxiosRespond} from '../../test-utils';
+import { initialize as alertInitialize } from '../../utilities/alertUtils';
 
 jest.mock('../../utilities/apiUtils', () => ({
   transformApiToInternalItem: jest.fn(response => ({...response, transformedToInternal: true})),
@@ -29,6 +30,11 @@ describe('api actions', () => {
   beforeEach(() => {
     moxios.install();
     expect.hasAssertions();
+    alertInitialize({
+      visualSuccessCallback () {},
+      visualErrorCallback () {},
+      srAlertCallback () {}
+    });
   });
 
   afterEach(() => {
@@ -52,6 +58,18 @@ describe('api actions', () => {
        expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
          type: 'FOUND_FIRST_NEW_ACTIVITY_DATE',
        }));
+     });
+   });
+
+   it('calls srAlert indicating the number of items retrieved', () => {
+     const fakeDispatch = jest.fn();
+     const fakeSrAlert = jest.fn();
+     alertInitialize({
+       srAlertCallback: fakeSrAlert
+     });
+     const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
+     return moxiosRespond([{some: 'data'}], loadingPromise).then((result) => {
+       expect(fakeSrAlert).toHaveBeenCalledWith('Loaded 1 item');
      });
    });
 
@@ -81,15 +99,32 @@ describe('api actions', () => {
   });
 
   describe('getNewActivity', () => {
-   it('sends deep past and filter parameters', () => {
-     const mockDispatch = jest.fn();
-     const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
-     Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
-     return moxiosWait(request => {
-       expect(request.config.params.filter).toBe('new_activity');
-       expect(request.config.params.start_date).toBe(mockMoment.subtract(6, 'months').format());
-     });
-   });
+    it('sends deep past and filter parameters', () => {
+      const mockDispatch = jest.fn();
+      const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
+      Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
+      return moxiosWait(request => {
+        expect(request.config.params.filter).toBe('new_activity');
+        expect(request.config.params.start_date).toBe(mockMoment.subtract(6, 'months').format());
+      });
+    });
+
+    it('calls the alert method when it fails to get new activity', () => {
+      const fakeAlert = jest.fn();
+      alertInitialize({
+        visualErrorCallback: fakeAlert
+      });
+      const mockDispatch = jest.fn();
+      const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
+      const promise = Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
+      return moxiosRespond(
+        { some: 'response data' },
+        promise,
+        { status: 500 }
+      ).then((result) => {
+        expect(fakeAlert).toHaveBeenCalled();
+      });
+    });
   });
 
   describe('loadFutureItems', () => {
@@ -102,6 +137,22 @@ describe('api actions', () => {
         payload: {setFocusAfterLoad: false},
       }));
       // GOT_ITEMS_SUCCESS is dispatched by the action when internal promise is fulfulled
+    });
+
+    it('calls alert on error', () => {
+      const fakeAlert = jest.fn();
+      alertInitialize({
+        visualErrorCallback: fakeAlert
+      });
+      const mockDispatch = jest.fn();
+      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
+      return moxiosRespond(
+        { some: 'response data' },
+        fetchPromise,
+        { status: 500 }
+      ).then((result) => {
+        expect(fakeAlert).toHaveBeenCalled();
+      });
     });
 
     it('sends the start_date parameter as one day after the last day if no futureNextUrl', () => {
