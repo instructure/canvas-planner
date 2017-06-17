@@ -14,11 +14,20 @@
   "details_98a31b68": {
     "message": "Detaljar"
   },
+  "dismiss_dacdb625": {
+    "message": "Forkast"
+  },
   "due_5d7267be": {
     "message": "Frist:"
   },
-  "loading_6ac402e1": {
-    "message": "lastar..."
+  "load_more_a36f9cf9": {
+    "message": "Last opp meir"
+  },
+  "loading_25990131": {
+    "message": "Lastar..."
+  },
+  "missing_1a256b3b": {
+    "message": "Manglar"
   },
   "points_bceb5005": {
     "message": "poeng"

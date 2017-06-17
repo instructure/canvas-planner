@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "Tāpiri hei mahi"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } Kua oti"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } Kaore i te oti"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Canvas Mahere"
+  },
+  "close_d634289d": {
+    "message": "Katia"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# Ngā whaiwāhitanga}\n    one {# whaiwāhitanga}\n  other {# ngā whaiwāhitanga}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {Whakaatu # tūemi kua oti}\n  other {Whakaatu # ngā tūemi kua oti}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "akorangas"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } Hei mahi"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Hanga/Whkahou mahere tūemi"
+  },
+  "date_ee500367": {
+    "message": "Rā"
+  },
+  "date_is_required_915f975f": {
+    "message": "Te rā e hiahiatia ana"
+  },
+  "delete_a6efa79d": {
+    "message": "Muku"
+  },
+  "details_98a31b68": {
+    "message": "taipitopito"
+  },
+  "due_date_8ce289b6": {
+    "message": "E TIKA ANA: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Uta ana mahere tūemi"
+  },
+  "next_month_749b1778": {
+    "message": "Tērā marama"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Kāore he mahere mo tēnei rā"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Kāre Herea: Tāpiri akoranga"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Te marama o muri nei"
+  },
+  "pts_699bd9aa": {
+    "message": "pts"
+  },
+  "save_11a80ec3": {
+    "message": "Tiaki"
+  },
+  "task_16b0ef38": {
+    "message": "Mahi"
+  },
+  "title_ee03d132": {
+    "message": "taitara"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "Te taitara e hiahiatia ana"
+  },
+  "to_do_1d554f36": {
+    "message": "hei mahi"
+  }
+}

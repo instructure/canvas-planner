@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "Aufgabe hinzufügen"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } Vollständig"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } Unvollständig"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Canvas-Plan"
+  },
+  "close_d634289d": {
+    "message": "Schließen"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# Gelegenheiten}\n    one {# Gelegenheit}\n  other {# Gelegenheiten}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {# Fertiges Element anzeigen }\n  other {# Fertiges Element anzeigen}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "Kurs"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } ZU ERLEDIGEN"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Planungselement erstellen/aktualisieren"
+  },
+  "date_ee500367": {
+    "message": "Datum"
+  },
+  "date_is_required_915f975f": {
+    "message": "Datum ist erforderlich"
+  },
+  "delete_a6efa79d": {
+    "message": "Löschen"
+  },
+  "details_98a31b68": {
+    "message": "Details"
+  },
+  "due_date_8ce289b6": {
+    "message": "FÄLLIG: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Planungselemente werden geladen."
+  },
+  "next_month_749b1778": {
+    "message": "Nächster Monat"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Heute nichts geplant"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Optional: Kurs hinzufügen"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Vorheriger Monat"
+  },
+  "pts_699bd9aa": {
+    "message": "Pkte."
+  },
+  "save_11a80ec3": {
+    "message": "Speichern"
+  },
+  "task_16b0ef38": {
+    "message": "Aufgabe"
+  },
+  "title_ee03d132": {
+    "message": "Titel"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "Titel ist erforderlich"
+  },
+  "to_do_1d554f36": {
+    "message": "Zu erledigen"
+  }
+}

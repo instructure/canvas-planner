@@ -14,11 +14,20 @@
   "details_98a31b68": {
     "message": "اطلاعات"
   },
+  "dismiss_dacdb625": {
+    "message": "صرفنظر کردن"
+  },
   "due_5d7267be": {
     "message": "مهلت:"
   },
-  "loading_6ac402e1": {
-    "message": "درحال بارگذاری..."
+  "load_more_a36f9cf9": {
+    "message": "بارگذاری بیشتر"
+  },
+  "loading_25990131": {
+    "message": "در حال بارگذاری..."
+  },
+  "missing_1a256b3b": {
+    "message": "جا افتاده"
   },
   "pts_699bd9aa": {
     "message": "امتیازها"

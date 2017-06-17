@@ -14,11 +14,20 @@
   "details_98a31b68": {
     "message": "Подробиці"
   },
+  "dismiss_dacdb625": {
+    "message": "Відхилити"
+  },
   "due_5d7267be": {
     "message": "Очікується:"
   },
-  "loading_6ac402e1": {
-    "message": "завантаження..."
+  "load_more_a36f9cf9": {
+    "message": "Завантажити більше"
+  },
+  "loading_25990131": {
+    "message": "Завантаження..."
+  },
+  "missing_1a256b3b": {
+    "message": "Втрачено"
   },
   "points_bceb5005": {
     "message": "бали"

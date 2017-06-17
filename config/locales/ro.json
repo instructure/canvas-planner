@@ -14,8 +14,11 @@
   "details_98a31b68": {
     "message": "Detalii"
   },
-  "loading_6ac402e1": {
-    "message": "încărcare..."
+  "load_more_a36f9cf9": {
+    "message": "Încarcă mai mult"
+  },
+  "loading_25990131": {
+    "message": "Se încarcă..."
   },
   "save_11a80ec3": {
     "message": "Salvează"

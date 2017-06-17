@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "Tilføj til opgaveliste"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } er komplet"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } er ufuldstændig"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Canvas-planlægger"
+  },
+  "close_d634289d": {
+    "message": "Luk"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# muligheder}\n    one {# mulighed}\n  other {# muligheder}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {Vis # afsluttet emne}\n  other {Vis # afsluttede emner}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "Fag"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } OPGAVELISTE"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Opret / opdater planlægningselement"
+  },
+  "date_ee500367": {
+    "message": "Dato"
+  },
+  "date_is_required_915f975f": {
+    "message": "dato er påkrævet"
+  },
+  "delete_a6efa79d": {
+    "message": "Slet"
+  },
+  "details_98a31b68": {
+    "message": "Nærmere oplysninger"
+  },
+  "due_date_8ce289b6": {
+    "message": "FORFALDER: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Indlæser planlægningselementer"
+  },
+  "next_month_749b1778": {
+    "message": "Næste måned"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Intet planlagt i dag"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Valgfrit: Tilføj fag"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Forrige måned"
+  },
+  "pts_699bd9aa": {
+    "message": "point"
+  },
+  "save_11a80ec3": {
+    "message": "Gem"
+  },
+  "task_16b0ef38": {
+    "message": "Opgave"
+  },
+  "title_ee03d132": {
+    "message": "Titel"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "titel er påkrævet"
+  },
+  "to_do_1d554f36": {
+    "message": "Opgaveliste"
+  }
+}

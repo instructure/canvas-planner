@@ -14,11 +14,20 @@
   "details_98a31b68": {
     "message": "Ayrıntılar"
   },
+  "dismiss_dacdb625": {
+    "message": "Yoksay"
+  },
   "due_5d7267be": {
     "message": "Bitiş:"
   },
-  "loading_6ac402e1": {
-    "message": "yükleniyor..."
+  "load_more_a36f9cf9": {
+    "message": "Daha fazla yükle"
+  },
+  "loading_25990131": {
+    "message": "Yükleniyor..."
+  },
+  "missing_1a256b3b": {
+    "message": "Eksik"
   },
   "points_bceb5005": {
     "message": "puanlar"

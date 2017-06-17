@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "添加到待办事项"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } 已完成"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } 未完成"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Canvas 计划程序"
+  },
+  "close_d634289d": {
+    "message": "关闭"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# 机会}\n    one {# 机会}\n  other {# 机会}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {显示 # 个已完成项目}\n  other {显示 # 个已完成项目}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "课程"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } 待办事项"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "创建/更新计划程序项目"
+  },
+  "date_ee500367": {
+    "message": "日期"
+  },
+  "date_is_required_915f975f": {
+    "message": "日期必填"
+  },
+  "delete_a6efa79d": {
+    "message": "删除"
+  },
+  "details_98a31b68": {
+    "message": "详情"
+  },
+  "due_date_8ce289b6": {
+    "message": "到期：{ date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "加载计划程序项目"
+  },
+  "next_month_749b1778": {
+    "message": "下个月"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "今日无计划"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "可选：添加课程"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "上个月"
+  },
+  "pts_699bd9aa": {
+    "message": "得分"
+  },
+  "save_11a80ec3": {
+    "message": "保存"
+  },
+  "task_16b0ef38": {
+    "message": "任务"
+  },
+  "title_ee03d132": {
+    "message": "名称"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "名称必填"
+  },
+  "to_do_1d554f36": {
+    "message": "待办事项"
+  }
+}

@@ -20,14 +20,23 @@
   "details_98a31b68": {
     "message": "פרטים"
   },
+  "dismiss_dacdb625": {
+    "message": "פטור"
+  },
   "due_5d7267be": {
     "message": "תאריך יעד:"
   },
-  "loading_6ac402e1": {
-    "message": "טוען..."
+  "load_more_a36f9cf9": {
+    "message": "טען עוד"
+  },
+  "loading_25990131": {
+    "message": "טוען... "
   },
   "loading_planner_items_947a813d": {
     "message": "טעינת פריטי המתכנן"
+  },
+  "missing_1a256b3b": {
+    "message": "חסר"
   },
   "nothing_planned_today_174ba986": {
     "message": "לא תונכן כלום להיום"

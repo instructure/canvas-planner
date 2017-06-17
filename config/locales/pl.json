@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "Dodaj do listy zadań"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } jest ukończony"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } jest nieukończony"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Planer Canvas"
+  },
+  "close_d634289d": {
+    "message": "Zamknij"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# okazje}\n    one {# okazja}\n  other {# okazji}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {Pokaż # ukończony element}\n  other {Pokaż ukończone elementy: #}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "Kurs"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } LISTA ZADAŃ"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Utwórz/zaktualizuj element planera"
+  },
+  "date_ee500367": {
+    "message": "Data"
+  },
+  "date_is_required_915f975f": {
+    "message": "Wymagana jest data"
+  },
+  "delete_a6efa79d": {
+    "message": "Usuń"
+  },
+  "details_98a31b68": {
+    "message": "Szczegóły"
+  },
+  "due_date_8ce289b6": {
+    "message": "Termin: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Wczytywanie elementu planera"
+  },
+  "next_month_749b1778": {
+    "message": "Następny miesiąc"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Nic na dziś nie zaplanowano"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Opcjonalnie: Dodaj kurs"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Poprzedni miesiąc"
+  },
+  "pts_699bd9aa": {
+    "message": "pkt"
+  },
+  "save_11a80ec3": {
+    "message": "Zapisz"
+  },
+  "task_16b0ef38": {
+    "message": "Zadanie"
+  },
+  "title_ee03d132": {
+    "message": "Tytuł"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "Wymagany jest tytuł"
+  },
+  "to_do_1d554f36": {
+    "message": "Lista zadań"
+  }
+}

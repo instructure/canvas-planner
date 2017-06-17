@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "Adicionar à Lista de Tarefas"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } está completo"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } está incompleto"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Planejador do Canvas"
+  },
+  "close_d634289d": {
+    "message": "Fechar"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# oportunidades}\n    one {# oportunidade}\n  other {# oportunidades}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {Mostrar # item completo}\n  other {Mostrar # itens completos}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "Curso"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } LISTA DE TAREFAS"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Criar/atualizar item do planejador"
+  },
+  "date_ee500367": {
+    "message": "Data"
+  },
+  "date_is_required_915f975f": {
+    "message": "data é necessária"
+  },
+  "delete_a6efa79d": {
+    "message": "Excluir"
+  },
+  "details_98a31b68": {
+    "message": "Detalhes"
+  },
+  "due_date_8ce289b6": {
+    "message": "VENCIMENTO: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Carregando itens do planejador"
+  },
+  "next_month_749b1778": {
+    "message": "Próximo mês"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Nada planejado hoje"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Opcional: Adicionar Curso"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Mês anterior"
+  },
+  "pts_699bd9aa": {
+    "message": "pts"
+  },
+  "save_11a80ec3": {
+    "message": "Salvar"
+  },
+  "task_16b0ef38": {
+    "message": "Tarefa"
+  },
+  "title_ee03d132": {
+    "message": "Título"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "título é necessário"
+  },
+  "to_do_1d554f36": {
+    "message": "Lista de Tarefas"
+  }
+}

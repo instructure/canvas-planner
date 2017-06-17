@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "إضافة قائمة مهام"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } مكتمل"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } غير مكتمل"
+  },
+  "canvas_planner_98ed106": {
+    "message": "مخطِط Canvas"
+  },
+  "close_d634289d": {
+    "message": "إغلاق"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# فرص}\n    one {# فرصة}\n  other {# فرص}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {إظهار # عنصر مكتمل}\n  other {إظهار # عناصر مكتملة}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "المساق"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } قائمة مهام"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "إنشاء/تحديث عنصر للمخطِط"
+  },
+  "date_ee500367": {
+    "message": "التاريخ"
+  },
+  "date_is_required_915f975f": {
+    "message": "التاريخ مطلوب"
+  },
+  "delete_a6efa79d": {
+    "message": "حذف"
+  },
+  "details_98a31b68": {
+    "message": "التفاصيل"
+  },
+  "due_date_8ce289b6": {
+    "message": "تاريخ الاستحقاق: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "جارٍ تحميل عناصر المخطِط"
+  },
+  "next_month_749b1778": {
+    "message": "الشهر القادم"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "لم يتم اليوم تخطيط أي شيء "
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "اختياري: إضافة مساق"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "الشهر السابق"
+  },
+  "pts_699bd9aa": {
+    "message": "نقاط"
+  },
+  "save_11a80ec3": {
+    "message": "حفظ"
+  },
+  "task_16b0ef38": {
+    "message": "مهمة"
+  },
+  "title_ee03d132": {
+    "message": "العنوان"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "العنوان مطلوب"
+  },
+  "to_do_1d554f36": {
+    "message": "قائمة مهام"
+  }
+}

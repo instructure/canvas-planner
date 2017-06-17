@@ -14,11 +14,20 @@
   "details_98a31b68": {
     "message": "Λεπτομέρειες"
   },
+  "dismiss_dacdb625": {
+    "message": "Παράβλεψη"
+  },
   "due_5d7267be": {
     "message": "Καταληκτική Ημερ/νία:"
   },
-  "loading_6ac402e1": {
-    "message": "φόρτωση..."
+  "load_more_a36f9cf9": {
+    "message": "Φόρτωση περισσότερων"
+  },
+  "loading_25990131": {
+    "message": "Φόρτωση..."
+  },
+  "missing_1a256b3b": {
+    "message": "Απομένει"
   },
   "points_bceb5005": {
     "message": "Μόρια"

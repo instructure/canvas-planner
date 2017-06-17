@@ -14,11 +14,20 @@
   "details_98a31b68": {
     "message": "Részletek"
   },
+  "dismiss_dacdb625": {
+    "message": "Elvet"
+  },
   "due_5d7267be": {
     "message": "Határidő: "
   },
-  "loading_6ac402e1": {
-    "message": "betöltés..."
+  "load_more_a36f9cf9": {
+    "message": "Továbbiak betöltése"
+  },
+  "loading_25990131": {
+    "message": "Betöltés..."
+  },
+  "missing_1a256b3b": {
+    "message": "Hiányzik"
   },
   "points_bceb5005": {
     "message": "pontszám"

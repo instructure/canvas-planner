@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "Добавить в задачи"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } завершено"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } не завершено"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Планировщик Canvas"
+  },
+  "close_d634289d": {
+    "message": "Закрыть"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# возможности}\n    one {# возможность}\n  other {# возможности}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {Показать # завершенное событие}\n  other {Показать # завершенные события}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "Курс"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } ЗАДАЧИ"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Создать/обновить событие планировщика"
+  },
+  "date_ee500367": {
+    "message": "Дата"
+  },
+  "date_is_required_915f975f": {
+    "message": "необходима дата"
+  },
+  "delete_a6efa79d": {
+    "message": "Удалить"
+  },
+  "details_98a31b68": {
+    "message": "Подробные сведения"
+  },
+  "due_date_8ce289b6": {
+    "message": "СРОК: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Загрузка событий планировщика"
+  },
+  "next_month_749b1778": {
+    "message": "Следующий месяц"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "На сегодня ничего не запланировано"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Опционально: Добавить курс"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Предыдущий месяц"
+  },
+  "pts_699bd9aa": {
+    "message": "баллы"
+  },
+  "save_11a80ec3": {
+    "message": "Сохранить"
+  },
+  "task_16b0ef38": {
+    "message": "Задача"
+  },
+  "title_ee03d132": {
+    "message": "Заголовок"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "необходим заголовок"
+  },
+  "to_do_1d554f36": {
+    "message": "Задачи"
+  }
+}

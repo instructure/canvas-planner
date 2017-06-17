@@ -1,0 +1,80 @@
+{
+  "add_to_do_7def3c37": {
+    "message": "To-do lijst toevoegen"
+  },
+  "assignmenttype_title_is_complete_813e54f8": {
+    "message": "{ assignmentType } { title } is voltooid"
+  },
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } is onvolledig"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Canvas planner"
+  },
+  "close_d634289d": {
+    "message": "Sluiten"
+  },
+  "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
+    "message": "{ count, plural,\n     =0 {# mogelijkheden}\n    one {# mogelijkheid}\n  other {# mogelijkheden}\n}"
+  },
+  "count_plural_one_show_completed_item_other_show_co_8d0d0ae5": {
+    "message": "{ count, plural,\n    one {Voltooid item # tonen}\n  other {Voltooide items # tonen}\n}"
+  },
+  "course_8a63b4a3": {
+    "message": "Cursus"
+  },
+  "course_to_do_bcbbab54": {
+    "message": "{ course } TO-DO"
+  },
+  "create_update_planner_item_701fa795": {
+    "message": "Planner item aanmaken/updaten"
+  },
+  "date_ee500367": {
+    "message": "Datum"
+  },
+  "date_is_required_915f975f": {
+    "message": "datum is verplicht"
+  },
+  "delete_a6efa79d": {
+    "message": "Verwijderen"
+  },
+  "details_98a31b68": {
+    "message": "Details"
+  },
+  "due_date_8ce289b6": {
+    "message": "VERVALDATUM: { date }"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Planner items laden"
+  },
+  "next_month_749b1778": {
+    "message": "Volgende maand"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Niks gepland voor vandaag"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Optioneel: Cursus toevoegen"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Vorige maand"
+  },
+  "pts_699bd9aa": {
+    "message": "punten"
+  },
+  "save_11a80ec3": {
+    "message": "Opslaan"
+  },
+  "task_16b0ef38": {
+    "message": "Taak"
+  },
+  "title_ee03d132": {
+    "message": "Titel"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "titel is verplicht"
+  },
+  "to_do_1d554f36": {
+    "message": "To-do lijst"
+  }
+}
