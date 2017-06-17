@@ -2,7 +2,7 @@
 
 exports[`renders nothing if no opportunities 1`] = `
 <ol>
-  Nothing planned today
+  Education is what remains after one has forgotten what one has learned in school.
 </ol>
 `;
 

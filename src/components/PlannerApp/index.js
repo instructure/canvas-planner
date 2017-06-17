@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from 'instructure-ui/lib/components/Button';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
-import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import { arrayOf, oneOfType, bool, object, string, func } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import Day from '../Day';
+import ShowOnFocusButton from '../ShowOnFocusButton';
 import StickyButton from '../StickyButton';
 import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
@@ -107,11 +106,13 @@ export class PlannerApp extends Component {
   renderBody (children) {
     return <div className="PlannerApp">
       {this.renderNewActivity()}
-      <ScreenReaderContent>
-        <Button onClick={this.props.scrollIntoPast}>
-          {formatMessage('Load prior dates')}
-        </Button>
-      </ScreenReaderContent>
+      <ShowOnFocusButton
+        buttonProps={{
+          onClick: this.props.scrollIntoPast
+        }}
+      >
+        {formatMessage('Load prior dates')}
+      </ShowOnFocusButton>
       {this.renderLoadingPast()}
       {children}
       {this.renderLoadMore()}

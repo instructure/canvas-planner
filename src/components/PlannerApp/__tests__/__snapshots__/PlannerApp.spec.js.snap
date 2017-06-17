@@ -4,21 +4,15 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
 <div
   className="PlannerApp"
 >
-  <ScreenReaderContent
-    as="span"
+  <ShowOnFocusButton
+    buttonProps={
+      Object {
+        "onClick": undefined,
+      }
+    }
   >
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0"
-      size="medium"
-      type="button"
-      variant="default"
-    >
-      Load prior dates
-    </Button>
-  </ScreenReaderContent>
+    Load prior dates
+  </ShowOnFocusButton>
   <Day
     day="2017-04-24"
     itemsForDay={
@@ -61,21 +55,15 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
 <div
   className="PlannerApp"
 >
-  <ScreenReaderContent
-    as="span"
+  <ShowOnFocusButton
+    buttonProps={
+      Object {
+        "onClick": undefined,
+      }
+    }
   >
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0"
-      size="medium"
-      type="button"
-      variant="default"
-    >
-      Load prior dates
-    </Button>
-  </ScreenReaderContent>
+    Load prior dates
+  </ShowOnFocusButton>
   <Day
     day="2017-04-24"
     itemsForDay={
@@ -119,21 +107,15 @@ exports[`renders base component using dayKeys 1`] = `
 <div
   className="PlannerApp"
 >
-  <ScreenReaderContent
-    as="span"
+  <ShowOnFocusButton
+    buttonProps={
+      Object {
+        "onClick": undefined,
+      }
+    }
   >
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0"
-      size="medium"
-      type="button"
-      variant="default"
-    >
-      Load prior dates
-    </Button>
-  </ScreenReaderContent>
+    Load prior dates
+  </ShowOnFocusButton>
   <Day
     day="2017-04-24"
     itemsForDay={
@@ -183,21 +165,15 @@ exports[`shows new activity button when new activity is indicated 1`] = `
   >
     New Activity
   </StickyButton>
-  <ScreenReaderContent
-    as="span"
+  <ShowOnFocusButton
+    buttonProps={
+      Object {
+        "onClick": undefined,
+      }
+    }
   >
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0"
-      size="medium"
-      type="button"
-      variant="default"
-    >
-      Load prior dates
-    </Button>
-  </ScreenReaderContent>
+    Load prior dates
+  </ShowOnFocusButton>
   <Day
     day="2017-04-24"
     itemsForDay={
@@ -240,21 +216,15 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
 <div
   className="PlannerApp"
 >
-  <ScreenReaderContent
-    as="span"
+  <ShowOnFocusButton
+    buttonProps={
+      Object {
+        "onClick": undefined,
+      }
+    }
   >
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0"
-      size="medium"
-      type="button"
-      variant="default"
-    >
-      Load prior dates
-    </Button>
-  </ScreenReaderContent>
+    Load prior dates
+  </ShowOnFocusButton>
   <Container
     display="block"
     padding="xx-large medium"
@@ -274,21 +244,15 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
 <div
   className="PlannerApp"
 >
-  <ScreenReaderContent
-    as="span"
+  <ShowOnFocusButton
+    buttonProps={
+      Object {
+        "onClick": undefined,
+      }
+    }
   >
-    <Button
-      as="button"
-      buttonRef={[Function]}
-      fluidWidth={false}
-      margin="0"
-      size="medium"
-      type="button"
-      variant="default"
-    >
-      Load prior dates
-    </Button>
-  </ScreenReaderContent>
+    Load prior dates
+  </ShowOnFocusButton>
   <LoadingPastIndicator
     onComponentWillUnmount={[Function]}
   />
