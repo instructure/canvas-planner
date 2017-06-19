@@ -10,6 +10,7 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
         "onClick": undefined,
       }
     }
+    buttonRef={[Function]}
   >
     Load prior dates
   </ShowOnFocusButton>
@@ -61,6 +62,7 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
         "onClick": undefined,
       }
     }
+    buttonRef={[Function]}
   >
     Load prior dates
   </ShowOnFocusButton>
@@ -113,6 +115,7 @@ exports[`renders base component using dayKeys 1`] = `
         "onClick": undefined,
       }
     }
+    buttonRef={[Function]}
   >
     Load prior dates
   </ShowOnFocusButton>
@@ -171,6 +174,7 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         "onClick": undefined,
       }
     }
+    buttonRef={[Function]}
   >
     Load prior dates
   </ShowOnFocusButton>
@@ -222,6 +226,7 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
         "onClick": undefined,
       }
     }
+    buttonRef={[Function]}
   >
     Load prior dates
   </ShowOnFocusButton>
@@ -250,6 +255,7 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         "onClick": undefined,
       }
     }
+    buttonRef={[Function]}
   >
     Load prior dates
   </ShowOnFocusButton>

@@ -1,22 +1,37 @@
 .root {
-  list-style-type: none;
-  color: var(--color);
-  max-height: 400px;
-  overflow-y: scroll;
-  margin: 0;
   padding: var(--padding);
+  max-height: 18rem;
+  overflow: auto;
+  box-sizing: border-box;
   width: 20rem;
   max-width: 100%;
+}
+
+.header {
+  border-bottom: var(--borderBottom);
+  text-align: end;
+  margin-bottom: 0.25rem;
+}
+
+.list {
+  list-style-type: none;
+  color: var(--color);
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 .item {
+  margin: 0;
+  padding: 0;
+
   &:not(:last-of-type) {
     margin-bottom: var(--itemMargin);
   }
 
   &:not(:first-of-type) {
-    border-top: var(--itemBorderWidth) var(--itemBorderStyle) var(--itemBorderColor);
+    border-top: var(--borderWidth) var(--borderStyle) var(--borderColor);
+    padding-top: var(--itemPadding);
   }
 }
 

@@ -1,50 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders nothing if no opportunities 1`] = `
-<ol>
-  Education is what remains after one has forgotten what one has learned in school.
-</ol>
+<div
+  id="opportunities_parent"
+  onKeyDown={[Function]}
+>
+  <div>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      onClick={[Function]}
+      size="small"
+      type="button"
+      variant="icon"
+    >
+      <IconXLine
+        title="Close opportunities popover"
+      />
+    </Button>
+  </div>
+  <ol>
+    Nothing new needs attention.
+  </ol>
+</div>
 `;
 
 exports[`renders the base component correctly with one opportunity 1`] = `
-<ol>
-  <li>
-    <Opportunity
-      courseName="Course Short Name"
-      dismiss={[Function]}
-      dueAt="2017-03-09T20:40:35Z"
-      id="1"
-      opportunityTitle="learning object title"
-      timeZone="America/Denver"
-      url="http://www.non_default_url.com"
-    />
-  </li>
-</ol>
+<div
+  id="opportunities_parent"
+  onKeyDown={[Function]}
+>
+  <div>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      onClick={[Function]}
+      size="small"
+      type="button"
+      variant="icon"
+    >
+      <IconXLine
+        title="Close opportunities popover"
+      />
+    </Button>
+  </div>
+  <ol>
+    <li>
+      <Opportunity
+        courseName="Course Short Name"
+        dismiss={[Function]}
+        dueAt="2017-03-09T20:40:35Z"
+        id="1"
+        opportunityTitle="learning object title"
+        timeZone="America/Denver"
+        url="http://www.non_default_url.com"
+      />
+    </li>
+  </ol>
+</div>
 `;
 
 exports[`renders the right course with the right opportunity 1`] = `
-<ol>
-  <li>
-    <Opportunity
-      courseName="Course Short Name"
-      dismiss={[Function]}
-      dueAt="2017-03-09T20:40:35Z"
-      id="1"
-      opportunityTitle="learning object title"
-      timeZone="America/Denver"
-      url="http://www.non_default_url.com"
-    />
-  </li>
-  <li>
-    <Opportunity
-      courseName="A different Course Name"
-      dismiss={[Function]}
-      dueAt="2017-03-09T20:40:35Z"
-      id="2"
-      opportunityTitle="other learning object"
-      timeZone="America/Denver"
-      url="http://www.non_default_url.com"
-    />
-  </li>
-</ol>
+<div
+  id="opportunities_parent"
+  onKeyDown={[Function]}
+>
+  <div>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      onClick={[Function]}
+      size="small"
+      type="button"
+      variant="icon"
+    >
+      <IconXLine
+        title="Close opportunities popover"
+      />
+    </Button>
+  </div>
+  <ol>
+    <li>
+      <Opportunity
+        courseName="Course Short Name"
+        dismiss={[Function]}
+        dueAt="2017-03-09T20:40:35Z"
+        id="1"
+        opportunityTitle="learning object title"
+        timeZone="America/Denver"
+        url="http://www.non_default_url.com"
+      />
+    </li>
+    <li>
+      <Opportunity
+        courseName="A different Course Name"
+        dismiss={[Function]}
+        dueAt="2017-03-09T20:40:35Z"
+        id="2"
+        opportunityTitle="other learning object"
+        timeZone="America/Denver"
+        url="http://www.non_default_url.com"
+      />
+    </li>
+  </ol>
+</div>
 `;

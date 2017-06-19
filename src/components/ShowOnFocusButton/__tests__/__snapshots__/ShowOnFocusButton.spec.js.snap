@@ -13,7 +13,7 @@ exports[`renders a ScreenReaderContent by default 1`] = `
     onFocus={[Function]}
     size="medium"
     type="button"
-    variant="default"
+    variant="link"
   >
     Button
   </Button>

@@ -38,6 +38,7 @@ export class PlannerHeader extends Component {
     this.state = {
       opportunities,
       trayOpen: false,
+      opportunitiesOpen: false,
     };
   }
 
@@ -56,7 +57,7 @@ export class PlannerHeader extends Component {
   }
 
   isOpportunityVisible = (opportunity) => {
-    return opportunity.planner_override ? opportunity.planner_override.visible : true;
+    return opportunity.planner_override ? !opportunity.planner_override.marked_complete : true;
   }
 
   handleDeletePlannerItem = (plannerItem) => {
@@ -67,6 +68,11 @@ export class PlannerHeader extends Component {
   toggleUpdateItemTray = () => {
     const trayOpen = this.state.trayOpen;
     this.setState({trayOpen: !trayOpen});
+  }
+
+  toggleOpportunitiesDropdown = () => {
+    this.opportunitiesButton.focus();
+    this.setState({opportunitiesOpen: !this.state.opportunitiesOpen});
   }
 
   noteBtnOnClose = () => {
@@ -80,7 +86,7 @@ export class PlannerHeader extends Component {
         =0 {# opportunities}
         one {# opportunity}
         other {# opportunities}
-      }`, { count: this.props.opportunities.length})
+      }`, { count: this.state.opportunities.length })
     );
   }
 
@@ -94,9 +100,15 @@ export class PlannerHeader extends Component {
         >
           <IconPlusLine title={formatMessage("Add To Do")} />
         </Button>
-        <Popover on="click">
+        <Popover
+          onToggle={this.toggleOpportunitiesDropdown}
+          show={this.state.opportunitiesOpen}
+          on="click">
           <PopoverTrigger>
-            <Button variant="icon">
+            <Button
+              onClick={this.toggleOpportunitiesDropdown}
+              variant="icon"
+              ref={(b) => { this.opportunitiesButton = b; }}>
               <Badge {...this.state.opportunities.length ? {count :this.state.opportunities.length} : {}}>
                 <IconAlertLine title={this.opportunityTitle()} />
               </Badge>
@@ -104,6 +116,7 @@ export class PlannerHeader extends Component {
           </PopoverTrigger>
           <PopoverContent>
             <Opportunities
+              togglePopover={this.toggleOpportunitiesDropdown}
               opportunities={this.state.opportunities}
               courses={this.props.courses}
               timeZone={this.props.timeZone}

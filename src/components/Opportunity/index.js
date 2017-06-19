@@ -7,6 +7,8 @@ import Button from 'instructure-ui/lib/components/Button';
 import Container from 'instructure-ui/lib/components/Container';
 import Link from 'instructure-ui/lib/components/Link';
 import Pill from 'instructure-ui/lib/components/Pill';
+import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
+import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import IconXLine from 'instructure-icons/lib/Line/IconXLine';
 import { string, number, func, object } from 'prop-types';
 import styles from './styles.css';
@@ -36,16 +38,16 @@ export class Opportunity extends Component {
     return (
       <div className={styles.root}>
 
-        <header className={styles.header}>
+        <div className={styles.header}>
           <div className={styles.oppName}>
             {this.props.courseName}
           </div>
           <div className={styles.close}>
             <Button onClick={() => this.props.dismiss(this.props.id, this.props.plannerOverride)} variant="icon" size="small">
-              <IconXLine title={formatMessage("Dismiss")} />
+              <IconXLine title={formatMessage("Dismiss {opportunityName}", {opportunityName: this.props.opportunityTitle})} />
             </Button>
           </div>
-        </header>
+        </div>
 
         <Container as="div" margin="0 0 small">
           <Link href={this.props.url}>{this.props.opportunityTitle}</Link>
@@ -60,10 +62,15 @@ export class Opportunity extends Component {
             </div>
           </div>
           <div className={styles.points}>
-            <span className={styles.pointsNumber}>
-              {this.props.points}
-            </span>
-            {formatMessage("points")}
+            <ScreenReaderContent>
+               {formatMessage("{points} points", {points: this.props.points})}
+            </ScreenReaderContent>
+            <PresentationContent>
+              <span className={styles.pointsNumber}>
+                {this.props.points}
+              </span>
+              {formatMessage("points")}
+            </PresentationContent>
           </div>
         </footer>
 

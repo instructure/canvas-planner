@@ -30,15 +30,15 @@ it('adds items to the state on ADD_OPPORTUNITIES', () => {
   expect(newState.length).toBe(2);
 });
 
-it('updates state correctly on DISMISSED_OPPORTUNITY with opportunity that has ovveride', () => {
+it('updates state correctly on DISMISSED_OPPORTUNITY with opportunity that has overide', () => {
   const initialState = [basicOpportunity()];
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
-    payload: {planner_override: {id: "6", visible: false, plannable_id: "6"}}
+    payload: {planner_override: {id: "6", marked_completed: true, plannable_id: "6"}}
   });
 
-  expect(newState[0].planner_override.visible).toBe(false);
+  expect(newState[0].planner_override.visible).toBe(true);
 });
 
 it('adds to opportunity object if no planner override DISMISSED_OPPORTUNITY', () => {

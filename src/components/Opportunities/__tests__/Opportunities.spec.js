@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Opportunities } from '../index';
 
 function defaultProps (option) {
@@ -9,8 +9,11 @@ function defaultProps (option) {
     timeZone: 'America/Denver',
     dismiss: () => {},
     id: "6",
+    togglePopover: () => {},
   };
 }
+
+jest.useFakeTimers();
 
 it('renders the base component correctly with one opportunity', () => {
   const wrapper = shallow(
@@ -35,3 +38,30 @@ it('renders nothing if no opportunities', () => {
   const wrapper = shallow(<Opportunities {...tempProps} />);
   expect(wrapper).toMatchSnapshot();
 });
+
+it('calls toggle popover when escape is pressed', () => {
+  let tempProps = defaultProps();
+  const mockDispatch = jest.fn();
+  tempProps.togglePopover = mockDispatch;
+  const wrapper = shallow(
+    <Opportunities {...tempProps} />
+  );
+  wrapper.find("#opportunities_parent").simulate("keyDown", {
+    keyCode: 27,
+    which: 27,
+    key: "escape",
+    preventDefault: () => {},
+  });
+  expect(tempProps.togglePopover).toHaveBeenCalled();
+});
+
+it('calls setTimeout when component is mounted', () => {
+  mount(
+    <Opportunities {...defaultProps()} />
+  );
+  expect(setTimeout.mock.calls.length).toBe(1);
+  expect(setTimeout.mock.calls[0][1]).toBe(200);
+  jest.runAllTimers();
+});
+
+

@@ -72,7 +72,7 @@ export const dismissOpportunity = (id, plannerOverride) => {
         method: 'put',
         params: {
           id: plannerOverride.id,
-          visible: false,
+          marked_complete: true,
         },
         url: `/api/v1/planner/overrides/${plannerOverride.id}`,
       }).then(response => {
@@ -84,7 +84,7 @@ export const dismissOpportunity = (id, plannerOverride) => {
         params: {
           plannable_id: id,
           plannable_type: 'Assignment',
-          visible: false,
+          marked_complete: true,
         },
         url: '/api/v1/planner/overrides',
       }).then(response => {

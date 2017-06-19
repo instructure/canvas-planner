@@ -20,8 +20,10 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     contentRef={[Function]}
     defaultShow={false}
     on="click"
+    onToggle={[Function]}
     placement="bottom center"
     rootClose={true}
+    show={false}
     variant="default"
     withArrow={true}
   >
@@ -31,6 +33,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
         buttonRef={[Function]}
         fluidWidth={false}
         margin="0"
+        onClick={[Function]}
         size="medium"
         type="button"
         variant="icon"
@@ -73,6 +76,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
           ]
         }
         timeZone="America/Denver"
+        togglePopover={[Function]}
       />
     </PopoverContent>
   </Popover>

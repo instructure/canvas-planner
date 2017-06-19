@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import { node, object } from 'prop-types';
+import { node, object, func } from 'prop-types';
 
 import themeable from 'instructure-ui/lib/themeable';
 import Button from 'instructure-ui/lib/components/Button';
@@ -14,7 +14,12 @@ class ShowOnFocusButton extends Component {
   static propTypes = {
     buttonProps: object,
     srProps: object,
-    children: node.isRequired
+    children: node.isRequired,
+    buttonRef: func
+  };
+
+  static defaultProps = {
+    buttonRef: () =>{}
   };
 
   constructor (props) {
@@ -43,7 +48,8 @@ class ShowOnFocusButton extends Component {
     const { buttonProps, children } = this.props;
     return (
       <Button
-        buttonRef={(btn) => { this.btnRef = btn; }}
+        variant="link"
+        buttonRef={(btn) => { this.btnRef = btn; this.props.buttonRef(btn); }}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         {...buttonProps}

@@ -2,7 +2,7 @@
 
 exports[`renders the base component correctly 1`] = `
 <div>
-  <header>
+  <div>
     <div>
       course about stuff
     </div>
@@ -18,11 +18,11 @@ exports[`renders the base component correctly 1`] = `
         variant="icon"
       >
         <IconXLine
-          title="Dismiss"
+          title="Dismiss this is a description about the opportunity"
         />
       </Button>
     </div>
-  </header>
+  </div>
   <Container
     as="div"
     display={null}
@@ -52,10 +52,19 @@ exports[`renders the base component correctly 1`] = `
       </div>
     </div>
     <div>
-      <span>
-        20
-      </span>
-      points
+      <ScreenReaderContent
+        as="span"
+      >
+        20 points
+      </ScreenReaderContent>
+      <PresentationContent
+        as="span"
+      >
+        <span>
+          20
+        </span>
+        points
+      </PresentationContent>
     </div>
   </footer>
 </div>
@@ -63,7 +72,7 @@ exports[`renders the base component correctly 1`] = `
 
 exports[`renders the base component correctly without points 1`] = `
 <div>
-  <header>
+  <div>
     <div>
       course about stuff
     </div>
@@ -79,11 +88,11 @@ exports[`renders the base component correctly without points 1`] = `
         variant="icon"
       >
         <IconXLine
-          title="Dismiss"
+          title="Dismiss this is a description about the opportunity"
         />
       </Button>
     </div>
-  </header>
+  </div>
   <Container
     as="div"
     display={null}
@@ -113,8 +122,17 @@ exports[`renders the base component correctly without points 1`] = `
       </div>
     </div>
     <div>
-      <span />
-      points
+      <ScreenReaderContent
+        as="span"
+      >
+        null points
+      </ScreenReaderContent>
+      <PresentationContent
+        as="span"
+      >
+        <span />
+        points
+      </PresentationContent>
     </div>
   </footer>
 </div>

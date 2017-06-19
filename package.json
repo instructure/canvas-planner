@@ -48,6 +48,7 @@
     "format-message-print": "^5.1.2",
     "instructure-icons": "^3.0.1",
     "instructure-ui": "^2.3.0",
+    "keycode": "^2.1.9",
     "moment-timezone": "^0.5.13",
     "parse-link-header": "^1.0.1",
     "prop-types": "^15.5.8",

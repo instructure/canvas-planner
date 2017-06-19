@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import themeable from 'instructure-ui/lib/themeable';
+import scopeTab from 'instructure-ui/lib/util/dom/scopeTab';
+import keycode from 'keycode';
 
 import Opportunity from '../Opportunity';
+import { findDOMNode } from 'react-dom';
 import { array, string, func} from 'prop-types';
 import formatMessage from '../../format-message';
+// import ShowOnFocusButton from '../ShowOnFocusButton';
+import Button from 'instructure-ui/lib/components/Button';
+import IconXLine from 'instructure-icons/lib/Line/IconXLine';
 
 import styles from './styles.css';
 import theme from './theme.js';
@@ -14,6 +20,26 @@ export class Opportunities extends Component {
     timeZone: string.isRequired,
     courses: array.isRequired,
     dismiss: func.isRequired,
+    togglePopover: func.isRequired,
+  }
+
+  componentDidMount() {
+    // eslint-disable-next-line react/no-find-dom-node
+    setTimeout(() =>{
+      let closeButtonRef = findDOMNode(this.closeButton);
+      closeButtonRef.focus();
+    }, 200);
+  }
+
+  handleKeyDown = (event) => {
+    if ((event.keyCode === keycode.codes.tab)) {
+      scopeTab(this._content, event);
+    }
+
+   if (event.keyCode === keycode.codes.escape) {
+      event.preventDefault();
+      this.props.togglePopover();
+    }
   }
 
   renderOpportunity = () => {
@@ -40,9 +66,24 @@ export class Opportunities extends Component {
 
   render () {
     return (
-      <ol className={styles.root}>
-        {this.props.opportunities.length ? this.renderOpportunity() : formatMessage('Education is what remains after one has forgotten what one has learned in school.')}
-      </ol>
+      <div
+        id="opportunities_parent"
+        className={styles.root}
+        onKeyDown={this.handleKeyDown}
+        ref={(c) => {this._content=c;}}>
+        <div className={styles.header}>
+          <Button
+            variant="icon"
+            size="small"
+            onClick={this.props.togglePopover}
+            buttonRef={(btnRef) =>{this.closeButton = btnRef;}}>
+            <IconXLine title={formatMessage('Close opportunities popover')} />
+          </Button>
+        </div>
+        <ol className={styles.list}>
+          {this.props.opportunities.length ? this.renderOpportunity() : formatMessage('Nothing new needs attention.')}
+        </ol>
+      </div>
     );
   }
 }

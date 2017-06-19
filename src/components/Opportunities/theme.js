@@ -2,10 +2,12 @@
 
 export default function generator ({ borders, colors, spacing, typography }) {
   return {
-    padding: spacing.small,
-    itemBorderWidth: borders.widthSmall,
-    itemBorderColor: colors.tiara,
-    itemBorderStyle: borders.style,
-    itemMargin: spacing.small
+    padding: `${spacing.xSmall} ${spacing.small} ${spacing.small}`,
+    borderBottom: `${borders.widthSmall} ${borders.style} ${colors.tiara}`,
+    borderColor: colors.tiara,
+    borderWidth: borders.widthSmall,
+    borderStyle: borders.style,
+    itemMargin: spacing.small,
+    itemPadding: spacing.xxSmall
   };
 }

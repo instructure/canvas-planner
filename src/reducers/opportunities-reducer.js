@@ -9,7 +9,7 @@ export default handleActions({
     let stateCopy = _.cloneDeep(state);
     let dismissedOpportunity = stateCopy.find((opportunity) => opportunity.id === action.payload.planner_override.plannable_id + "");
     if (dismissedOpportunity.planner_override) {
-      dismissedOpportunity.planner_override.visible = action.payload.planner_override.visible;
+      dismissedOpportunity.planner_override.marked_complete = action.payload.planner_override.marked_complete;
     } else {
       dismissedOpportunity.planner_override = action.payload.planner_override;
     }
