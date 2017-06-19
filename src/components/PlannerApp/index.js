@@ -4,7 +4,7 @@ import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import { arrayOf, oneOfType, bool, object, string, number, func } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
-import Day from '../Day';
+import SmartDay from '../SmartDay';
 import ShowOnFocusButton from '../ShowOnFocusButton';
 import StickyButton from '../StickyButton';
 import LoadingFutureIndicator from '../LoadingFutureIndicator';
@@ -34,13 +34,14 @@ export class PlannerApp extends Component {
     scrollIntoPast: func,
     loadPastUntilNewActivity: func,
     loadFutureItems: func,
-    stickyOffset: string,
+    stickyOffset: number, // in pixels
     stickyZIndex: number,
     changeToDashboardCardView: func
   };
 
   static defaultProps = {
-    isLoading: false
+    isLoading: false,
+    stickyOffset: 0,
   };
 
 
@@ -86,7 +87,7 @@ export class PlannerApp extends Component {
       <StickyButton
         direction="up"
         onClick={this.handleNewActivityClick}
-        offset={this.props.stickyOffset}
+        offset={this.props.stickyOffset + 'px'}
         zIndex={this.props.stickyZIndex}
       >
         {formatMessage("New Activity")}
@@ -147,7 +148,8 @@ export class PlannerApp extends Component {
       if (this.props.setFocusAfterLoad && this.props.firstNewDayKey === dayKey) {
         takeFocusRef = this.takeFocusRef;
       }
-      return <Day
+      return <SmartDay
+        stickyOffset={this.props.stickyOffset}
         takeFocusRef={takeFocusRef}
         timeZone={this.props.timeZone}
         day={dayKey}

@@ -16,7 +16,7 @@ const defaultOptions = {
   timeZone: moment.tz.guess(),
   theme: 'canvas',
   courses: [],
-  stickyOffset: '0',
+  stickyOffset: 0,
   stickyZIndex: 5,
 };
 

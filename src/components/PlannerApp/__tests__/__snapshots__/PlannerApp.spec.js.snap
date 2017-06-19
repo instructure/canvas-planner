@@ -14,7 +14,7 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
   >
     Load prior dates
   </ShowOnFocusButton>
-  <Day
+  <Connect(SmartDay)
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -23,9 +23,10 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -34,9 +35,10 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -45,6 +47,7 @@ exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if 
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
@@ -66,7 +69,7 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
   >
     Load prior dates
   </ShowOnFocusButton>
-  <Day
+  <Connect(SmartDay)
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -75,9 +78,10 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -86,10 +90,11 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
         },
       ]
     }
+    stickyOffset={0}
     takeFocusRef={[Function]}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -98,6 +103,7 @@ exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocu
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
@@ -119,7 +125,7 @@ exports[`renders base component using dayKeys 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
-  <Day
+  <Connect(SmartDay)
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -128,9 +134,10 @@ exports[`renders base component using dayKeys 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -139,9 +146,10 @@ exports[`renders base component using dayKeys 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -150,6 +158,7 @@ exports[`renders base component using dayKeys 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
@@ -163,7 +172,7 @@ exports[`shows new activity button when new activity is indicated 1`] = `
 >
   <StickyButton
     direction="up"
-    offset="0"
+    offset="0px"
     onClick={[Function]}
   >
     New Activity
@@ -178,7 +187,7 @@ exports[`shows new activity button when new activity is indicated 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
-  <Day
+  <Connect(SmartDay)
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -187,9 +196,10 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -198,9 +208,10 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -209,6 +220,7 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
@@ -262,7 +274,7 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
   <LoadingPastIndicator
     onComponentWillUnmount={[Function]}
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -271,9 +283,10 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -282,9 +295,10 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
-  <Day
+  <Connect(SmartDay)
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -293,6 +307,7 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         },
       ]
     }
+    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />

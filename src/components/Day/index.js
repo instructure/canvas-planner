@@ -19,6 +19,7 @@ class Day extends Component {
     itemsForDay: arrayOf(object),
     timeZone: string.isRequired,
     takeFocusRef: func,
+    rootElementRef: func,
   }
 
   constructor (props) {
@@ -47,7 +48,7 @@ class Day extends Component {
     const hasGroupedItems = !!Object.keys(this.state.groupedItems).length;
 
     return (
-      <div className={styles.root}>
+      <div className={styles.root} ref={this.props.rootElementRef}>
           <Heading
             border={(hasGroupedItems) ? 'none' : 'bottom'}
           >

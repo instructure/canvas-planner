@@ -76,7 +76,7 @@ export default handleActions({
     return loadingState(state, {isLoading: true});
   },
   GETTING_PAST_ITEMS: (state, action) => {
-    return loadingState(state, {loadingPast: true});
+    return loadingState(state, {loadingPast: true, seekingNewActivity: action.payload.seekingNewActivity});
   },
   GETTING_FUTURE_ITEMS: (state, action) => {
     return loadingState(state, {loadingFuture: true, setFocusAfterLoad: action.payload.setFocusAfterLoad});
@@ -97,4 +97,5 @@ export default handleActions({
   firstNewDayKey: null,
   futureNextUrl: null,
   pastNextUrl: null,
+  seekingNewActivity: false,
 }));

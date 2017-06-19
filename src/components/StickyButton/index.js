@@ -8,8 +8,6 @@ import IconMoveDownLine from 'instructure-icons/lib/Line/IconMoveDownLine';
 import styles from './styles.css';
 import theme from './theme.js';
 
-import '../../utilities/modernizr';
-
 class StickyButton extends Component {
   static propTypes = {
     children: node.isRequired,
@@ -67,10 +65,12 @@ class StickyButton extends Component {
 
     const style = {
       zIndex: (zIndex) ? zIndex : null,
-      top: offset,
+      top: '0',
     };
-    if (!window.Modernizr.csspositionsticky) {
-      style.top = '0';
+
+    if ( window.CSS &&
+      (window.CSS.supports('position', 'sticky') || window.CSS.supports('position', '-webkit-sticky')) ) {
+      style.top = offset;
     }
 
     return (

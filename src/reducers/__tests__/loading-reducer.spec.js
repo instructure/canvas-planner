@@ -13,7 +13,8 @@ it('sets loading to true on START_LOADING_ITEMS', () => {
 
 it('sets loadingPast to true on GETTING_PAST_ITEMS', () => {
   const newState = loadingReducer({}, {
-    type: 'GETTING_PAST_ITEMS'
+    type: 'GETTING_PAST_ITEMS',
+    payload: {seekingNewActivity: false},
   });
 
   expect(newState).toMatchObject({

@@ -60,7 +60,7 @@ class DemoArea extends Component {
       locale: 'en',
       courses: COURSES,
       theme: 'canvas',
-      stickyOffset: '0',
+      stickyOffset: 0,
       stickyZIndex: 10,
       flashAlertFunctions,
     };
@@ -99,7 +99,7 @@ class DemoArea extends Component {
     // This sucks, but Safari seems to need a little time to correctly calculate the header height.
     window.setTimeout(() => {
       const headerRect = header_mount_point.getBoundingClientRect();
-      const stickyOffset = (headerRect.bottom - headerRect.top) + 'px';
+      const stickyOffset = (headerRect.bottom - headerRect.top);
       const opts = {
         ...this.state,
         theme: THEMES[this.state.theme],

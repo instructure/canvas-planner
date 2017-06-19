@@ -60,6 +60,7 @@
     "redux-logger": "^3.0.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
     "velocity-animate": "^1.5.0"
   },
   "devDependencies": {

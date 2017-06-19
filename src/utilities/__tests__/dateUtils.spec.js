@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 import {
-  isToday, isInPast,
+  isToday, isInPast, isInFuture,
   getFriendlyDate, getFullDate,
   getFirstLoadedMoment, getLastLoadedMoment
 } from '../dateUtils';
@@ -71,6 +71,23 @@ describe('isInPast', () => {
   it('returns false when the date is after today', () => {
     const date = moment().add(1, 'days');
     expect(isInPast(date)).toBeFalsy();
+  });
+});
+
+describe('isInFuture', () => {
+  it('returns true when the date is after today', () => {
+    const date = moment().add(1, 'days');
+    expect(isInFuture(date)).toBeTruthy();
+  });
+
+  it('returns false when the date is today', () => {
+    const date = moment();
+    expect(isInFuture(date)).toBeFalsy();
+  });
+
+  it('returns false when the date is before today', () => {
+    const date = moment().subtract(1, 'days');
+    expect(isInFuture(date)).toBeFalsy();
   });
 });
 

@@ -8,7 +8,6 @@ import { anyNewActivity } from '../utilities/statusUtils';
 export const {
   startLoadingItems,
   foundFirstNewActivityDate,
-  gettingPastItems,
   gettingFutureItems,
   allFutureItemsLoaded,
   allPastItemsLoaded,
@@ -16,12 +15,15 @@ export const {
 } = createActions(
   'START_LOADING_ITEMS',
   'FOUND_FIRST_NEW_ACTIVITY_DATE',
-  'GETTING_PAST_ITEMS',
   'GETTING_FUTURE_ITEMS',
   'ALL_FUTURE_ITEMS_LOADED',
   'ALL_PAST_ITEMS_LOADED',
   'FLUSH_PENDING_PAST_ITEMS',
 );
+
+export const gettingPastItems = createAction('GETTING_PAST_ITEMS', (opts = {seekingNewActivity: false}) => {
+  return opts;
+});
 
 export const gotItemsSuccess = createAction('GOT_ITEMS_SUCCESS', (newItems, response) => {
   return {
@@ -100,7 +102,7 @@ export function scrollIntoPast () {
 }
 
 export const loadPastUntilNewActivity = () => (dispatch, getState) => {
-  dispatch(gettingPastItems());
+  dispatch(gettingPastItems({seekingNewActivity: true}));
   const loadingOptions = {
     dispatch, getState,
     intoThePast: true,

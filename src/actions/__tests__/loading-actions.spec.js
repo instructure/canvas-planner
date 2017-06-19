@@ -163,7 +163,7 @@ describe('api actions', () => {
       const mockDispatch = jest.fn();
       const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
       expect(isPromise(scrollPromise));
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS'});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS', payload: {seekingNewActivity: false}});
       return moxiosRespond([{some: 'response'}], scrollPromise).then((result) => {
         const gotItemsParams = mockDispatch.mock.calls[1][0];
         expect(gotItemsParams).toMatchObject({
@@ -216,7 +216,7 @@ describe('api actions', () => {
     it('dispatches getting past items', () => {
       const mockDispatch = jest.fn();
       Actions.loadPastUntilNewActivity()(mockDispatch, (getBasicState));
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS'});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS', payload: {seekingNewActivity: true}});
     });
 
     it('sends a fetch with the past url', () => {
