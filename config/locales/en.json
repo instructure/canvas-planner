@@ -59,6 +59,9 @@
   "education_is_what_remains_after_one_has_forgotten__6b4ad493": {
     "message": "Education is what remains after one has forgotten what one has learned in school."
   },
+  "go_to_dashboard_card_view_10398ef6": {
+    "message": "Go to Dashboard Card View"
+  },
   "load_more_a36f9cf9": {
     "message": "Load more"
   },
@@ -74,6 +77,9 @@
   "loading_planner_items_947a813d": {
     "message": "Loading planner items"
   },
+  "looks_like_there_isn_t_anything_here_d9bcef49": {
+    "message": "Looks like there isn''t anything here"
+  },
   "missing_1a256b3b": {
     "message": "Missing"
   },
@@ -82,6 +88,9 @@
   },
   "next_month_749b1778": {
     "message": "Next Month"
+  },
+  "no_due_dates_assigned_e8f5bac8": {
+    "message": "No Due Dates Assigned"
   },
   "nothing_planned_today_174ba986": {
     "message": "Nothing planned today"
