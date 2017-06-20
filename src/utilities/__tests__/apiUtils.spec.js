@@ -127,6 +127,61 @@ function makeDiscussionTopic (overrides = {}) {
   };
 }
 
+function makeGradedDiscussionTopic (overrides = {}) {
+  return {
+    id: "1",
+    title: "",
+    last_reply_at: "2017-05-15T16:32:34Z",
+    delayed_post_at: null,
+    posted_at: null,
+    assignment_id: 10,
+    root_topic_id: null,
+    assignment: {due_at: "2017-05-15T16:32:34Z"},
+    position: null,
+    podcast_has_student_posts: false,
+    discussion_type: "side_comment",
+    lock_at: null,
+    allow_rating: false,
+    only_graders_can_rate: false,
+    sort_by_rating: false,
+    user_name: "clay@instructure.com",
+    discussion_subentry_count: 0,
+    permissions: {
+      attach: false,
+      update: false,
+      reply: true,
+      delete: false
+    },
+    require_initial_post: null,
+    user_can_see_posts: true,
+    podcast_url: null,
+    read_state: "unread",
+    unread_count: 0,
+    subscribed: false,
+    topic_children: [],
+    attachments: [],
+    published: true,
+    can_unpublish: false,
+    locked: false,
+    can_lock: false,
+    comments_disabled: false,
+    author: {
+      id: "1",
+      display_name: "Carl Chudyk",
+      avatar_image_url: "http://canvas.instructure.com/images/messages/avatar-50.png",
+      html_url: `/courses/1/users/1`
+    },
+    html_url: `/courses/1/discussion_topics/10`,
+    url: `/courses/1/discussion_topics/10`,
+    pinned: false,
+    group_category_id: null,
+    can_group: true,
+    locked_for_user: false,
+    message: "<p>Some prompt</p>",
+    ...overrides,
+  };
+}
+
 describe('transformApiToInternalItem', () => {
   it('extracts and transforms the proper data for responses containing a status', () => {
     const apiResponse = makeApiResponse({
@@ -150,6 +205,18 @@ describe('transformApiToInternalItem', () => {
       plannable: makeAssignment({
         name: 'How to make friends',
         submission_types: [ 'online_quiz' ],
+      })
+    });
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
+  it('extracts and transforms the proper data for a graded discussion response', () => {
+    const apiResponse = makeApiResponse({
+      plannable_type: 'discussion_topic',
+      plannable: makeGradedDiscussionTopic({
+        name: 'How to make friends part 2',
+        submission_types: [ 'discussion_topic' ],
       })
     });
     const result = transformApiToInternalItem(apiResponse, courses, 'UTC');

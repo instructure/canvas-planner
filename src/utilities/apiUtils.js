@@ -10,6 +10,9 @@ const getItemDetailsFromPlannable = (apiResponse) => {
     html_url: plannable.html_url,
   };
   if (plannable_type === 'discussion_topic') {
+    if (apiResponse.plannable.assignment) {
+      details.date = apiResponse.plannable.assignment.due_at;
+    }
     details.unread_count = plannable.unread_count;
   }
   if (plannable_type === 'announcement' && !details.date) {
