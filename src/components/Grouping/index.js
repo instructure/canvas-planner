@@ -61,7 +61,7 @@ class Grouping extends Component {
     this.setState(() => ({
       showCompletedItems: true
     }), () => {
-      this.groupingLink.focus();
+      if (this.groupingLink) this.groupingLink.focus();
     });
   }
 
@@ -129,28 +129,47 @@ class Grouping extends Component {
     }
   }
 
+  // I wouldn't have broken the background and title apart, but wrapping them in a container span breaks styling
+  renderGroupLinkBackground() {
+    return <span className={classnames({
+      [styles.overlay]: true,
+      [styles.withImage]: this.props.image_url
+    })}
+      style={{ backgroundColor: this.props.color }}
+    />;
+  }
+
+  renderGroupLinkTitle() {
+    return <span className={styles.title}>
+        {this.props.title || formatMessage('To Do')}
+      </span>;
+  }
+
+  renderGroupLink () {
+    if (!this.props.title) {
+      return <span className={styles.hero}>
+        {this.renderGroupLinkBackground()}
+        {this.renderGroupLinkTitle()}
+      </span>;
+    }
+    return <a
+      href={this.props.url || "#"}
+      ref={this.groupingLinkRef}
+      className={`${styles.hero} ${styles.heroHover}`}
+      style={{backgroundImage: `url(${this.props.image_url || ''})`}}
+    >
+      {this.renderGroupLinkBackground()}
+      {this.renderGroupLinkTitle()}
+    </a>;
+  }
+
   render () {
     return (
       <div className={styles.root}>
         <div className={styles.activityIndicator}>
           {this.renderNotificationBadge()}
         </div>
-        <a
-          href={this.props.url || "#"}
-          ref={this.groupingLinkRef}
-          className={styles.hero}
-          style={{backgroundImage: `url(${this.props.image_url || ''})`}}
-        >
-          <span className={classnames({
-            [styles.overlay]: true,
-            [styles.withImage]: this.props.image_url
-          })}
-            style={{ backgroundColor: this.props.color }}
-          />
-          <span className={ styles.title }>
-            {this.props.title || formatMessage('To Do')}
-          </span>
-        </a>
+        {this.renderGroupLink()}
         <ol className={styles.items} style={{ borderColor: this.props.color }}>
           { this.renderItemsAndFacade(this.props.items)}
         </ol>

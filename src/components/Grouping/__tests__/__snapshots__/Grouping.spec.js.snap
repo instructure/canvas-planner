@@ -4,6 +4,7 @@ exports[`grouping contains link pointing to course url 1`] = `
 <div>
   <div />
   <a
+    className="undefined undefined"
     href="example.com"
     style={
       Object {
@@ -85,6 +86,7 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
 <div>
   <div />
   <a
+    className="undefined undefined"
     href="example.com"
     style={
       Object {
@@ -149,6 +151,7 @@ exports[`renders the base component with required props 1`] = `
 <div>
   <div />
   <a
+    className="undefined undefined"
     href="example.com"
     style={
       Object {
@@ -229,14 +232,7 @@ exports[`renders the base component with required props 1`] = `
 exports[`renders to do items correctly 1`] = `
 <div>
   <div />
-  <a
-    href="#"
-    style={
-      Object {
-        "backgroundImage": "url()",
-      }
-    }
-  >
+  <span>
     <span
       className=""
       style={
@@ -248,7 +244,7 @@ exports[`renders to do items correctly 1`] = `
     <span>
       To Do
     </span>
-  </a>
+  </span>
   <ol
     style={
       Object {

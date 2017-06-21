@@ -42,7 +42,7 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
       }
       theme={
         Object {
-          "titleColor": "#008EE2",
+          "titleColor": null,
         }
       }
       timeZone="America/Denver"
@@ -70,7 +70,7 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
       }
       theme={
         Object {
-          "titleColor": "#008EE2",
+          "titleColor": null,
         }
       }
       timeZone="America/Denver"

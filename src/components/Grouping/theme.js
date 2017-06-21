@@ -27,7 +27,7 @@ export default function generator ({ borders, colors, media, spacing, typography
     titlePadding: `${spacing.xxSmall} ${spacing.xSmall}`,
     titleTextDecoration: 'none',
     titleTextDecorationHover: 'underline',
-    titleColor: colors.licorice,
+    titleColor: colors.brand,
     activityIndicatorPadding: spacing.small,
     activityIndicatorWidth: spacing.small,
     ...media
@@ -45,5 +45,6 @@ generator['canvas-a11y'] = generator['modern-a11y'] = function ({ colors }) {
 generator.canvas = function (variables) {
   return {
     groupColor: variables["ic-brand-primary"],
+    titleColor: variables["ic-brand-primary"]
   };
 };
