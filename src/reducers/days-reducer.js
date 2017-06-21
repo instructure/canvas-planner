@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import moment from 'moment-timezone';
 import { handleActions } from 'redux-actions';
 import { formatDayKey } from '../utilities/dateUtils';
 
@@ -45,21 +44,6 @@ function mergeDays(firstDay, secondDay) {
   return firstDayMerged.concat([...secondDayMap.values()]);
 }
 
-function addMissingDays (dayKeyToItems) {
-  const sortedDayKeys = Object.keys(dayKeyToItems).sort();
-  if (sortedDayKeys.length === 0) return;
-  // timezones don't matter for this algorithm
-  const dateIterator = moment(sortedDayKeys[0]);
-  const lastDate = moment(sortedDayKeys[sortedDayKeys.length - 1]);
-  while (dateIterator.isBefore(lastDate)) {
-    const dayKey = formatDayKey(dateIterator);
-    if (!dayKeyToItems.hasOwnProperty(dayKey)) {
-      dayKeyToItems[dayKey] = [];
-    }
-    dateIterator.add(1, 'days');
-  }
-}
-
 function gotItemsSuccess (state, items) {
   const newGroups = _.groupBy(items, (item) => {
     return formatDayKey(item.dateBucketMoment);
@@ -69,7 +53,6 @@ function gotItemsSuccess (state, items) {
     if (firstDay == null) firstDay = [];
     return mergeDays(firstDay, secondDay);
   });
-  addMissingDays(mergedGroups);
   return _.chain(mergedGroups)
     .toPairs()
     .sortBy(_.head)
