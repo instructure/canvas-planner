@@ -145,7 +145,7 @@ class Grouping extends Component {
           })}
             style={{ backgroundColor: this.props.color }}
           />
-          <span className={styles.title}>
+          <span className={ styles.title }>
             {this.props.title || formatMessage('To Do')}
           </span>
         </a>

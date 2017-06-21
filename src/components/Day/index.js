@@ -88,7 +88,7 @@ class Day extends Component {
                     url={courseInfo.url}
                     key={cid}
                     theme={{
-                      titleColor: courseInfo.color
+                      titleColor: courseInfo.color || '#008EE2'
                     }}
                     toggleCompletion={this.props.toggleCompletion}
                   />
