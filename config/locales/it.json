@@ -1,14 +1,32 @@
 {
-  "close_d634289d": {
-    "message": "Chiudi"
+  "add_planner_item_51ab3c02": {
+    "message": "Aggiungi elemento agenda"
   },
-  "course_8a63b4a3": {
-    "message": "Corso"
+  "all_items_loaded_aa256183": {
+    "message": "Tutti gli elementi caricati"
   },
-  "date_ee500367": {
-    "message": "Data"
+  "due_5d7267be": {
+    "message": "Scadenza:"
   },
-  "save_11a80ec3": {
-    "message": "Salva"
+  "load_more_a36f9cf9": {
+    "message": "Carica altro"
+  },
+  "load_prior_dates_f2b0f6f0": {
+    "message": "Carica date precedenti"
+  },
+  "loading_25990131": {
+    "message": "Caricamento in corso..."
+  },
+  "loading_past_items_ca499e75": {
+    "message": "Caricamento elementi precedenti"
+  },
+  "missing_1a256b3b": {
+    "message": "Mancante"
+  },
+  "new_activity_8b84847d": {
+    "message": "Nuova attività"
+  },
+  "points_bceb5005": {
+    "message": "punti"
   }
 }

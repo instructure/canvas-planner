@@ -1,6 +1,12 @@
 {
+  "add_planner_item_51ab3c02": {
+    "message": "添加计划程序项目"
+  },
   "add_to_do_7def3c37": {
     "message": "添加到待办事项"
+  },
+  "all_items_loaded_aa256183": {
+    "message": "已加载所有项目"
   },
   "assignmenttype_title_is_complete_813e54f8": {
     "message": "{ assignmentType } { title } 已完成"
@@ -41,11 +47,32 @@
   "details_98a31b68": {
     "message": "详情"
   },
+  "due_5d7267be": {
+    "message": "到期："
+  },
   "due_date_8ce289b6": {
     "message": "到期：{ date }"
   },
+  "load_more_a36f9cf9": {
+    "message": "加载更多"
+  },
+  "load_prior_dates_f2b0f6f0": {
+    "message": "加载以前的日期"
+  },
+  "loading_25990131": {
+    "message": "加载中……"
+  },
+  "loading_past_items_ca499e75": {
+    "message": "正在加载过去的项目"
+  },
   "loading_planner_items_947a813d": {
     "message": "加载计划程序项目"
+  },
+  "missing_1a256b3b": {
+    "message": "缺失"
+  },
+  "new_activity_8b84847d": {
+    "message": "新活动"
   },
   "next_month_749b1778": {
     "message": "下个月"
@@ -55,6 +82,9 @@
   },
   "optional_add_course_ef0d70fc": {
     "message": "可选：添加课程"
+  },
+  "points_bceb5005": {
+    "message": "分值"
   },
   "previous_month_bb1e3c84": {
     "message": "上个月"

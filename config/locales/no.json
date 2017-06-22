@@ -1,6 +1,12 @@
 {
+  "add_planner_item_51ab3c02": {
+    "message": "Legg til planleggingselementer"
+  },
   "add_to_do_7def3c37": {
     "message": "Legg til gjøremål"
+  },
+  "all_items_loaded_aa256183": {
+    "message": "Alle elementer lastet opp"
   },
   "assignmenttype_title_is_complete_813e54f8": {
     "message": "{ assignmentType } { title } er fullført"
@@ -41,11 +47,32 @@
   "details_98a31b68": {
     "message": "Detaljer"
   },
+  "due_5d7267be": {
+    "message": "Frist:"
+  },
   "due_date_8ce289b6": {
     "message": "FORFALL: { date }"
   },
+  "load_more_a36f9cf9": {
+    "message": "Last mer"
+  },
+  "load_prior_dates_f2b0f6f0": {
+    "message": "Last inn tidligere datoer"
+  },
+  "loading_25990131": {
+    "message": "Laster..."
+  },
+  "loading_past_items_ca499e75": {
+    "message": "Laster tidligere elementer"
+  },
   "loading_planner_items_947a813d": {
     "message": "Laster elementplanlegger"
+  },
+  "missing_1a256b3b": {
+    "message": "Mangler"
+  },
+  "new_activity_8b84847d": {
+    "message": "Ny aktivitet"
   },
   "next_month_749b1778": {
     "message": "Neste måned"
@@ -55,6 +82,9 @@
   },
   "optional_add_course_ef0d70fc": {
     "message": "Valgfri: Legg til emne"
+  },
+  "points_bceb5005": {
+    "message": "poeng"
   },
   "previous_month_bb1e3c84": {
     "message": "Forrige måned"
