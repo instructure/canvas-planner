@@ -1,5 +1,10 @@
 import moment from 'moment-timezone';
-import { transformApiToInternalItem, transformInternalToApiItem, transformInternalToApiOverride } from '../apiUtils';
+import {
+  transformApiToInternalItem,
+  transformInternalToApiItem,
+  transformInternalToApiOverride,
+  transformPlannerNoteApiToInternalItem
+} from '../apiUtils';
 
 const courses = [{
   id: '1',
@@ -23,6 +28,23 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
     plannable: makeAssignment(assignmentOverrides),
     submissions: false,
     ...overrides,
+  };
+}
+
+function makePlannerNoteApiResponse (overrides = {}) {
+  return {
+    planner_note: {
+      id: 14,
+      todo_date: '2017-06-21T18:58:51Z',
+      title: 'abc123',
+      details: 'asdfasdfasdf',
+      user_id: 5,
+      course_id: null,
+      workflow_state: 'active',
+      created_at: '2017-06-21T18:58:57Z',
+      updated_at: '2017-06-21T18:58:57Z',
+      ...overrides
+    }
   };
 }
 
@@ -457,5 +479,13 @@ describe('transformInternalToApiOverride', () => {
       user_id: '1',
       marked_complete: false
     });
+  });
+});
+
+describe('transformPlannerNoteApiToInternalItem', () => {
+  it('transforms the planner note response to the internal item', () => {
+    const apiResponse = makePlannerNoteApiResponse();
+    const internalItem = transformPlannerNoteApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(internalItem).toMatchSnapshot();
   });
 });

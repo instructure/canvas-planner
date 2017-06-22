@@ -197,3 +197,20 @@ Object {
   "type": "Announcement",
 }
 `;
+
+exports[`transformPlannerNoteApiToInternalItem transforms the planner note response to the internal item 1`] = `
+Object {
+  "completed": false,
+  "context": Object {
+    "id": null,
+  },
+  "course_id": null,
+  "date": "2017-06-21T18:58:51Z",
+  "dateBucketMoment": "2017-06-21T00:00:00.000Z",
+  "details": "asdfasdfasdf",
+  "id": 14,
+  "status": false,
+  "title": "abc123",
+  "type": "To Do",
+}
+`;

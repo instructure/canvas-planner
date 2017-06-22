@@ -95,6 +95,28 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
 }
 
 /**
+ * This takes the response from creating a new planner note aka To Do and puts it in the internal
+ * format.
+ */
+export function transformPlannerNoteApiToInternalItem (plannerItemApiResponse, courses, timeZone) {
+  const plannerNote = plannerItemApiResponse.planner_note;
+  return {
+    id: plannerNote.id,
+    dateBucketMoment: moment.tz(plannerNote.todo_date, timeZone).startOf('day'),
+    type: 'To Do',
+    status: false,
+    course_id: plannerNote.course_id,
+    context: {
+      id: plannerNote.course_id
+    },
+    title: plannerNote.title,
+    date: plannerNote.todo_date,
+    details: plannerNote.details,
+    completed: false
+  };
+}
+
+/**
 * Turn internal item format into data the API can consume for save actions
 */
 export function transformInternalToApiItem (internalItem) {

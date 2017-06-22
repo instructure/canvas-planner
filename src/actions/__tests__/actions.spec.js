@@ -8,6 +8,7 @@ jest.mock('../../utilities/apiUtils', () => ({
   transformApiToInternalItem: jest.fn(response => ({...response, transformedToInternal: true})),
   transformInternalToApiItem: jest.fn(internal => ({...internal, transformedToApi: true})),
   transformInternalToApiOverride: jest.fn(internal => ({...internal.planner_override, marked_complete: null, transformedToApiOverride: true})),
+  transformPlannerNoteApiToInternalItem: jest.fn(response => ({...response, transformedToInternal: true}))
 }));
 
 const getBasicState = () => ({

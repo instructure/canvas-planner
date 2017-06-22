@@ -3,9 +3,15 @@ import axios from 'axios';
 import moment from 'moment';
 import configureAxios from '../utilities/configureAxios';
 import {formatDayKey} from '../utilities/dateUtils';
-import { transformApiToInternalItem, transformInternalToApiItem, transformInternalToApiOverride } from '../utilities/apiUtils';
 import { alert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
+import {
+  transformApiToInternalItem,
+  transformInternalToApiItem,
+  transformInternalToApiOverride,
+  transformPlannerNoteApiToInternalItem
+} from '../utilities/apiUtils';
+
 
 configureAxios(axios);
 
@@ -107,7 +113,7 @@ export const savePlannerItem = (plannerItem) => {
     let promise = plannerItem.id ?
       saveExistingPlannerItem(apiItem) :
       saveNewPlannerItem(apiItem);
-    promise = promise.then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone))
+    promise = promise.then(response => transformPlannerNoteApiToInternalItem(response.data, getState().courses, getState().timeZone))
                      .catch(() => alert(formatMessage('Failed to save to do'), true));
     dispatch(savedPlannerItem(promise));
     return promise;
