@@ -16,7 +16,8 @@ function defaultProps (option) {
       title: option.title || "This Assignment is about awesome stuff",
       points: option.points,
       html_url: option.html_url,
-      toggleCompletion: () => {}
+      toggleCompletion: () => {},
+      updateTodo: () => {}
   };
 }
 
@@ -28,7 +29,8 @@ function noteProps (option) {
       courseName: option.courseName,
       completed: !!option.completed,
       title: option.title || "A note about note taking",
-      toggleCompletion: () => {}
+      toggleCompletion: () => {},
+      updateTodo: () => {}
   };
 }
 

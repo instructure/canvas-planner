@@ -19,6 +19,7 @@ export const {
   dismissedOpportunity,
   deletingPlannerItem,
   deletedPlannerItem,
+  updateTodo,
 } = createActions(
   'INITIAL_OPTIONS',
   'ADD_OPPORTUNITIES',
@@ -29,6 +30,7 @@ export const {
   'SAVED_PLANNER_ITEM',
   'DELETING_PLANNER_ITEM',
   'DELETED_PLANNER_ITEM',
+  'UPDATE_TODO',
 );
 
 export * from './loading-actions';

@@ -34,6 +34,13 @@ exports[`grouping contains link pointing to course url 1`] = `
       <PlannerItem
         badges={Array []}
         color="#5678"
+        context={
+          Object {
+            "color": "#5678",
+            "id": 256,
+            "url": "example.com",
+          }
+        }
         courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="5"
@@ -44,12 +51,19 @@ exports[`grouping contains link pointing to course url 1`] = `
         }
         title="San Juan"
         toggleCompletion={[Function]}
+        updateTodo={[Function]}
       />
     </li>
     <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        context={
+          Object {
+            "color": "#5678",
+            "id": 256,
+          }
+        }
         courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="6"
@@ -60,6 +74,7 @@ exports[`grouping contains link pointing to course url 1`] = `
         }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
+        updateTodo={[Function]}
       />
     </li>
   </ol>
@@ -100,6 +115,12 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
       <PlannerItem
         badges={Array []}
         color="#5678"
+        context={
+          Object {
+            "color": "#5678",
+            "id": 256,
+          }
+        }
         courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="6"
@@ -110,6 +131,7 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
         }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
+        updateTodo={[Function]}
       />
     </li>
     <li>
@@ -157,6 +179,13 @@ exports[`renders the base component with required props 1`] = `
       <PlannerItem
         badges={Array []}
         color="#5678"
+        context={
+          Object {
+            "color": "#5678",
+            "id": 256,
+            "url": "example.com",
+          }
+        }
         courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="5"
@@ -167,12 +196,19 @@ exports[`renders the base component with required props 1`] = `
         }
         title="San Juan"
         toggleCompletion={[Function]}
+        updateTodo={[Function]}
       />
     </li>
     <li>
       <PlannerItem
         badges={Array []}
         color="#5678"
+        context={
+          Object {
+            "color": "#5678",
+            "id": 256,
+          }
+        }
         courseName="Board Games"
         date={"2017-04-25T13:06:07.000Z"}
         id="6"
@@ -183,6 +219,7 @@ exports[`renders the base component with required props 1`] = `
         }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
+        updateTodo={[Function]}
       />
     </li>
   </ol>
@@ -223,6 +260,7 @@ exports[`renders to do items correctly 1`] = `
       <PlannerItem
         badges={Array []}
         color={null}
+        context={Object {}}
         courseName={null}
         date={"2017-06-16T11:06:07.000Z"}
         id="700"
@@ -233,6 +271,7 @@ exports[`renders to do items correctly 1`] = `
         }
         title="To Do 700"
         toggleCompletion={[Function]}
+        updateTodo={[Function]}
       />
     </li>
   </ol>

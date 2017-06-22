@@ -25,6 +25,7 @@ class Grouping extends Component {
     isInPast: bool,
     takeFocusRef: func,
     toggleCompletion: func,
+    updateTodo: func,
   }
 
   static defaultProps = {
@@ -70,7 +71,6 @@ class Grouping extends Component {
     if (this.state.showCompletedItems) {
       itemsToRender = items;
     }
-
     const componentsToRender = itemsToRender.map(item => (
       <li
         className={styles.item}
@@ -84,10 +84,12 @@ class Grouping extends Component {
           completed={item.completed}
           id={item.id}
           courseName={this.props.title}
+          context={item.context || {}}
           date={moment(item.date).tz(this.props.timeZone)}
           associated_item={item.type}
           title={item.title}
           points={item.points}
+          updateTodo={this.props.updateTodo}
           html_url={item.html_url}
           toggleCompletion={() => this.props.toggleCompletion(item)}
           badges={this.state.badgeMap[item.id]}

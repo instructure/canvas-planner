@@ -30,6 +30,7 @@ export class PlannerHeader extends Component {
     opportunities: PropTypes.array.isRequired,
     getOpportunities: PropTypes.func.isRequired,
     dismissOpportunity: PropTypes.func.isRequired,
+    todo: PropTypes.object,
   };
 
   constructor (props) {
@@ -48,6 +49,9 @@ export class PlannerHeader extends Component {
 
   componentWillReceiveProps(nextProps) {
     let opportunities = nextProps.opportunities.filter((opportunity) => this.isOpportunityVisible(opportunity));
+    if (nextProps.todo.updateTodoItem) {
+      this.setState({trayOpen: true, updateTodoItem: nextProps.todo.updateTodoItem});
+    }
     this.setState({opportunities});
   }
 
@@ -137,6 +141,7 @@ export class PlannerHeader extends Component {
           <UpdateItemTray
             locale={this.props.locale}
             timeZone={this.props.timeZone}
+            noteItem={this.state.updateTodoItem}
             onSavePlannerItem={this.handleSavePlannerItem}
             onDeletePlannerItem={this.handleDeletePlannerItem}
             courses={this.props.courses}
@@ -149,7 +154,7 @@ export class PlannerHeader extends Component {
 
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
-const mapStateToProps = ({opportunities, loading, courses}) => ({opportunities, loading, courses});
+const mapStateToProps = ({opportunities, loading, courses, todo}) => ({opportunities, loading, courses, todo});
 const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);

@@ -21,6 +21,7 @@ class Day extends Component {
     takeFocusRef: func,
     rootElementRef: func,
     toggleCompletion: func,
+    updateTodo: func,
   }
 
   constructor (props) {
@@ -84,6 +85,7 @@ class Day extends Component {
                     image_url={courseInfo.image_url}
                     color={courseInfo.color}
                     timeZone={this.props.timeZone}
+                    updateTodo={this.props.updateTodo}
                     items={this.state.groupedItems[cid]}
                     url={courseInfo.url}
                     key={cid}

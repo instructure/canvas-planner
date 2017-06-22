@@ -5,6 +5,7 @@ import loading from './loading-reducer';
 import courses from './courses-reducer';
 import opportunities from './opportunities-reducer';
 import pendingItems from './pending-items-reducer';
+import todo from './todo-reducer';
 
 const locale = handleAction('INITIAL_OPTIONS', (state, action) => {
   return action.payload.locale;
@@ -27,4 +28,5 @@ export default combineReducers({
   firstNewActivityDate,
   opportunities,
   pendingItems,
+  todo,
 });

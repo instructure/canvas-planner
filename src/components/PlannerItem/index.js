@@ -16,7 +16,7 @@ import Page from 'instructure-icons/lib/Line/IconMsWordLine';
 import BadgeList from '../BadgeList';
 import styles from './styles.css';
 import theme from './theme.js';
-import { arrayOf, bool, number, string, func, shape } from 'prop-types';
+import { arrayOf, bool, number, string, func, shape, object } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import formatMessage from '../../format-message';
 
@@ -30,8 +30,10 @@ class PlannerItem extends Component {
     courseName: string,
     completed: bool,
     associated_item: string,
+    context: object,
     html_url: string,
     toggleCompletion: func,
+    updateTodo: func.isRequired,
     badges: arrayOf(shape({
       text: string,
       variant: string
@@ -53,6 +55,10 @@ class PlannerItem extends Component {
     this.setState({
       completed: nextProps.completed
     });
+  }
+
+  toDoLinkClick = () => {
+    this.props.updateTodo({updateTodoItem: {...this.props}});
   }
 
   renderDateField = () => {
@@ -148,7 +154,11 @@ class PlannerItem extends Component {
           </Typography>
         </div>
         <div className={styles.title}>
-          <Link href={this.props.html_url || "#" }>{this.props.title}</Link>
+          <Link
+            {...this.props.associated_item === "To Do" ? {onClick: this.toDoLinkClick} : {}}
+            href={this.props.html_url || "#" }>
+            {this.props.title}
+          </Link>
         </div>
       </div>
     );

@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { updateTodo } from '../../actions';
 import { isToday, isInFuture } from '../../utilities/dateUtils';
 import { anyNewActivity } from '../../utilities/statusUtils';
 import { animateScroll } from '../../utilities/scrollUtils';
@@ -34,6 +35,7 @@ export class SmartDay extends React.Component {
     seekingNewActivity: bool,
     stickyOffset: number,
     animateScroll: func,
+    updateTodo: func,
   }
 
   static defaultProps = {
@@ -62,5 +64,5 @@ const mapStateToProps = (state) => ({
   newActivityTargetDayKey: getLastUnseenDayKeyWithNewActivity(state),
   seekingNewActivity: state.loading.seekingNewActivity,
 });
-const mapDispatchToProps = {};
+const mapDispatchToProps = { updateTodo };
 export default connect(mapStateToProps, mapDispatchToProps)(SmartDay);
