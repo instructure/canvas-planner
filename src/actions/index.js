@@ -95,6 +95,8 @@ export const dismissOpportunity = (id, plannerOverride) => {
 };
 
 export const savePlannerItem = (plannerItem) => {
+  plannerItem.date = moment(plannerItem.date).endOf('day').format('YYYY-MM-DDTHH:mm:ssZ');
+
   return (dispatch, getState) => {
     dispatch(savingPlannerItem(plannerItem));
     const apiItem = transformInternalToApiItem(plannerItem);

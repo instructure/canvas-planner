@@ -144,6 +144,16 @@ describe('getOpportunities', () => {
       });
     });
 
+    it('does set default time of 11:59 pm for planner date', () => {
+      const plannerItem = {date: '2017-06-22T10:05:54+00:00'};
+      Actions.savePlannerItem(plannerItem)(() => {});
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('post');
+        expect(request.url).toBe('api/v1/planner_notes');
+        expect(JSON.parse(request.config.data)).toMatchObject({date: '2017-06-22T23:59:59+00:00', transformedToApi: true});
+      });
+    });
+
     it('does a put if the planner item exists (has id)', () => {
       const plannerItem = {id: '42', some: 'data'};
       Actions.savePlannerItem(plannerItem, )(() => {});
