@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import {registerScrollEvents, maintainViewportPosition} from '../scrollUtils';
+import {registerScrollEvents} from '../scrollUtils';
 
 it('registers proper events', () => {
   const mockWindow = {
@@ -24,29 +24,6 @@ it('registers proper events', () => {
   registerScrollEvents(jest.fn(), mockWindow);
   expect(mockWindow.addEventListener.mock.calls[0][0]).toBe('wheel');
   expect(mockWindow.addEventListener.mock.calls[1][0]).toBe('keydown');
-});
-
-describe('animations', () => {
-  it ('maintains the viewport position', () => {
-    const mocks = {
-      element: {
-        getBoundingClientRect: jest.fn()
-          .mockImplementationOnce(() => ({top: 123}))
-          .mockImplementationOnce(() => ({top: 234}))
-      },
-      document: {
-        documentElement: {
-          getBoundingClientRect: jest.fn(() => ({top: -50})),
-        },
-      },
-      window: {
-        requestAnimationFrame: jest.fn((fn) => fn()),
-        scroll: jest.fn(),
-      }
-    };
-    maintainViewportPosition(mocks.element, mocks);
-    expect(mocks.window.scroll).toHaveBeenCalledWith(0, (234 - (-50) - 123));
-  });
 });
 
 describe('wheel events', () => {

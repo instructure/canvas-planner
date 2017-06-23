@@ -29,8 +29,12 @@ const PILL_MAPPING = {
   'new_replies': { id: 'new_replies', text: formatMessage('New Replies') },
 };
 
+export function isNewActivityItem (item) {
+  return item.newActivity;
+}
+
 export function anyNewActivity (items) {
-  return items && items.some((item => item.newActivity));
+  return items && items.some(isNewActivityItem);
 }
 
 /**

@@ -20,7 +20,7 @@ import _ from 'lodash';
 
 const getItemDetailsFromPlannable = (apiResponse, timeZone) => {
   let { plannable, plannable_type, planner_override } = apiResponse;
-
+  const plannableId = plannable.id || plannable.page_id;
   const markedComplete = planner_override;
 
   const details = {
@@ -36,7 +36,8 @@ const getItemDetailsFromPlannable = (apiResponse, timeZone) => {
     html_url: plannable.html_url,
     overrideId: planner_override && planner_override.id,
     overrideAssignId: plannable.assignment_id,
-    id: plannable.id || plannable.page_id
+    id: plannableId,
+    uniqueId: `${plannable_type}-${plannableId}`,
   };
   if (plannable_type === 'discussion_topic') {
     if (plannable.assignment) {

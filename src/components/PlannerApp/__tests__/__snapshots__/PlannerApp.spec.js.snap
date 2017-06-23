@@ -1,116 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`does not pass takeFocusRef to first day that matches firstNewDayKey if not setFocusAfterLoad 1`] = `
-<div
-  className="PlannerApp"
->
-  <ShowOnFocusButton
-    buttonProps={
-      Object {
-        "onClick": undefined,
-      }
-    }
-    buttonRef={[Function]}
-  >
-    Load prior dates
-  </ShowOnFocusButton>
-  <Connect(SmartDay)
-    day="2017-04-24"
-    itemsForDay={
-      Array [
-        Object {
-          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
-        },
-      ]
-    }
-    stickyOffset={0}
-    timeZone="UTC"
-  />
-  <Connect(SmartDay)
-    day="2017-04-25"
-    itemsForDay={
-      Array [
-        Object {
-          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
-        },
-      ]
-    }
-    stickyOffset={0}
-    timeZone="UTC"
-  />
-  <Connect(SmartDay)
-    day="2017-04-26"
-    itemsForDay={
-      Array [
-        Object {
-          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
-        },
-      ]
-    }
-    stickyOffset={0}
-    timeZone="UTC"
-  />
-  <LoadingFutureIndicator />
-  <div />
-</div>
-`;
-
-exports[`passes takeFocusRef to first day that matches firstNewDayKey if setFocusAfterLoad 1`] = `
-<div
-  className="PlannerApp"
->
-  <ShowOnFocusButton
-    buttonProps={
-      Object {
-        "onClick": undefined,
-      }
-    }
-    buttonRef={[Function]}
-  >
-    Load prior dates
-  </ShowOnFocusButton>
-  <Connect(SmartDay)
-    day="2017-04-24"
-    itemsForDay={
-      Array [
-        Object {
-          "dateBucketMoment": "2017-04-23T15:00:00.000Z",
-        },
-      ]
-    }
-    stickyOffset={0}
-    timeZone="UTC"
-  />
-  <Connect(SmartDay)
-    day="2017-04-25"
-    itemsForDay={
-      Array [
-        Object {
-          "dateBucketMoment": "2017-04-24T15:00:00.000Z",
-        },
-      ]
-    }
-    stickyOffset={0}
-    takeFocusRef={[Function]}
-    timeZone="UTC"
-  />
-  <Connect(SmartDay)
-    day="2017-04-26"
-    itemsForDay={
-      Array [
-        Object {
-          "dateBucketMoment": "2017-04-25T15:00:00.000Z",
-        },
-      ]
-    }
-    stickyOffset={0}
-    timeZone="UTC"
-  />
-  <LoadingFutureIndicator />
-  <div />
-</div>
-`;
-
 exports[`renders base component using dayKeys 1`] = `
 <div
   className="PlannerApp"
@@ -125,7 +14,8 @@ exports[`renders base component using dayKeys 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={0}
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -134,10 +24,10 @@ exports[`renders base component using dayKeys 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={1}
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -146,10 +36,10 @@ exports[`renders base component using dayKeys 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={2}
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -158,7 +48,6 @@ exports[`renders base component using dayKeys 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
@@ -187,7 +76,8 @@ exports[`shows new activity button when new activity is indicated 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={0}
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -196,10 +86,10 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={1}
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -208,10 +98,10 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={2}
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -220,7 +110,6 @@ exports[`shows new activity button when new activity is indicated 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
@@ -271,10 +160,9 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
-  <LoadingPastIndicator
-    onComponentWillUnmount={[Function]}
-  />
-  <Connect(SmartDay)
+  <LoadingPastIndicator />
+  <Animatable(Day)
+    animatableIndex={0}
     day="2017-04-24"
     itemsForDay={
       Array [
@@ -283,10 +171,10 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={1}
     day="2017-04-25"
     itemsForDay={
       Array [
@@ -295,10 +183,10 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
-  <Connect(SmartDay)
+  <Animatable(Day)
+    animatableIndex={2}
     day="2017-04-26"
     itemsForDay={
       Array [
@@ -307,7 +195,6 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
         },
       ]
     }
-    stickyOffset={0}
     timeZone="UTC"
   />
   <LoadingFutureIndicator />

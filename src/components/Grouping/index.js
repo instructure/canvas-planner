@@ -22,7 +22,7 @@ import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import Badge from 'instructure-ui/lib/components/Badge';
 import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import { partition } from 'lodash';
-import { arrayOf, string, object, func } from 'prop-types';
+import { arrayOf, string, number, object, func } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import PlannerItem from '../PlannerItem';
@@ -30,18 +30,24 @@ import CompletedItemsFacade from '../CompletedItemsFacade';
 import moment from 'moment-timezone';
 import formatMessage from '../../format-message';
 import { getBadgesForItem, getBadgesForItems } from '../../utilities/statusUtils';
+import { animatable } from '../../dynamic-ui';
 
-class Grouping extends Component {
+export class Grouping extends Component {
   static propTypes = {
     items: arrayOf(object).isRequired,
+    animatableIndex: number,
     title: string,
     color: string,
     image_url: string,
     timeZone: string.isRequired,
     url: string,
-    takeFocusRef: func,
     toggleCompletion: func,
     updateTodo: func,
+    registerAnimatable: func,
+  }
+
+  static defaultProps = {
+    registerAnimatable: () => {},
   }
 
   constructor (props) {
@@ -51,6 +57,21 @@ class Grouping extends Component {
       badgeMap: this.setupItemBadgeMap(props.items)
     };
   }
+
+  componentDidMount () {
+    this.props.registerAnimatable('group', this, this.props.animatableIndex, this.itemUniqueIds());
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.props.registerAnimatable('group', null, this.props.animatableIndex, this.itemUniqueIds());
+    this.props.registerAnimatable('group', this, newProps.animatableIndex, this.itemUniqueIds(newProps));
+  }
+
+  componentWillUnmount () {
+    this.props.registerAnimatable('group', null, this.props.animatableIndex, this.itemUniqueIds());
+  }
+
+  itemUniqueIds (props = this.props) { return props.items.map(item => item.uniqueId); }
 
   setupItemBadgeMap (items) {
     const mapping = {};
@@ -63,10 +84,10 @@ class Grouping extends Component {
 
   groupingLinkRef = (link) => {
     this.groupingLink = link;
-    if (this.props.takeFocusRef) {
-      this.props.takeFocusRef(link);
-    }
   }
+
+  getFocusable () { return this.groupingLink; }
+  getScrollable () { return this.groupingLink; }
 
   handleFacadeClick = (e) => {
     if (e) { e.preventDefault(); }
@@ -83,10 +104,10 @@ class Grouping extends Component {
     if (this.state.showCompletedItems) {
       itemsToRender = items;
     }
-    const componentsToRender = itemsToRender.map(item => (
+    const componentsToRender = itemsToRender.map((item, itemIndex) => (
       <li
         className={styles.item}
-        key={`${item.type}-${item.id}`}
+        key={item.uniqueId}
       >
         <PlannerItem
           theme={{
@@ -95,6 +116,8 @@ class Grouping extends Component {
           color={this.props.color}
           completed={item.completed}
           id={item.id}
+          uniqueId={item.uniqueId}
+          animatableIndex={itemIndex}
           courseName={this.props.title}
           context={item.context || {}}
           date={moment(item.date).tz(this.props.timeZone)}
@@ -113,6 +136,7 @@ class Grouping extends Component {
     if (!this.state.showCompletedItems && completedItems.length > 0) {
       // Super odd that this is keyed on length?  Sure it is.  But there should
       // only ever be one in our grouping and this keeps react from complaining
+      const completedItemIds = completedItems.map(item => item.uniqueId);
       componentsToRender.push(
         <li
           className={styles.item}
@@ -122,6 +146,8 @@ class Grouping extends Component {
             onClick={this.handleFacadeClick}
             itemCount={completedItems.length}
             badges={getBadgesForItems(completedItems)}
+            animatableIndex={itemsToRender.length}
+            animatableItemIds={completedItemIds}
           />
         </li>
       );
@@ -214,11 +240,11 @@ class Grouping extends Component {
   }
 }
 
-export default themeable(theme, styles)(
+export default animatable(themeable(theme, styles)(
   // we can update this to be whatever works for this component and its content
   containerQuery({
     'media-x-large': { minWidth: '68rem' },
     'media-large': { minWidth: '58rem' },
     'media-medium': { minWidth: '48rem' }
   })(Grouping)
-);
+));

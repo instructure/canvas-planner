@@ -15,28 +15,9 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
-import reduxPromise from 'redux-promise';
-import rootReducer from '../reducers';
-import {createDynamicUiMiddleware} from '../dynamic-ui';
 
-export default function configureStore (uiManager, defaultState) {
-  let middlewares = [
-    reduxThunk,
-    reduxPromise,
-    createDynamicUiMiddleware(uiManager),
-  ];
-
-  if ((process.env.NODE_ENV !== 'production') &&
-     (process.env.NODE_ENV !== 'test')) {
-    const reduxLogger = require('redux-logger').default;
-    middlewares = [ ...middlewares, reduxLogger ];
-  }
-
-  return createStore(
-    rootReducer,
-    defaultState,
-    applyMiddleware(...middlewares)
-  );
-}
+export * from './animatable';
+export * from './middleware';
+export * from './manager';
+export * from './notifier';
+export * from './provider';

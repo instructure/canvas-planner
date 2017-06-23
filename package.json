@@ -46,6 +46,7 @@
   "dependencies": {
     "axios": "^0.16.0",
     "babel-plugin-inline-react-svg": "^0.4.0",
+    "change-case": "^3.0.1",
     "classnames": "^2.2.5",
     "esrever": "^0.2.0",
     "format-message": "^5.1.2",
@@ -66,7 +67,6 @@
     "redux-logger": "^3.0.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
     "velocity-animate": "^1.5.0"
   },
   "devDependencies": {

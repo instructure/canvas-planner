@@ -27,6 +27,7 @@ import { initialOptions, getPlannerItems, scrollIntoPast } from './actions';
 import { registerScrollEvents } from './utilities/scrollUtils';
 import { initialize as initializeAlerts } from './utilities/alertUtils';
 import moment from 'moment-timezone';
+import {DynamicUiManager, DynamicUiProvider} from './dynamic-ui';
 
 const defaultOptions = {
   locale: 'en',
@@ -37,7 +38,8 @@ const defaultOptions = {
   stickyZIndex: 5,
 };
 
-export const store = configureStore();
+const dynamicUiManager = new DynamicUiManager();
+export const store = configureStore(dynamicUiManager);
 
 function handleScrollIntoPastAttempt () {
   store.dispatch(scrollIntoPast());
@@ -50,6 +52,7 @@ export default {
     i18n.init(opts.locale);
     moment.locale(opts.locale);
     moment.tz.setDefault(opts.timeZone);
+    dynamicUiManager.setStickyOffset(opts.stickyOffset);
     registerScrollEvents(handleScrollIntoPastAttempt);
     if (!opts.flashAlertFunctions) {
       throw new Error('You must provide callbacks to handle flash messages');
@@ -60,9 +63,11 @@ export default {
     store.dispatch(getPlannerItems(moment.tz(opts.timeZone).startOf('day')));
 
     ReactDOM.render(applyTheme(
-      <Provider store={store}>
+      <DynamicUiProvider manager={dynamicUiManager} >
+        <Provider store={store}>
           <PlannerApp stickyOffset={opts.stickyOffset} stickyZIndex={opts.stickyZIndex} changeToDashboardCardView={opts.changeToDashboardCardView} />
-      </Provider>
+        </Provider>
+      </DynamicUiProvider>
     , opts.theme), element);
   },
 

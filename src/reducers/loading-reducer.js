@@ -17,7 +17,6 @@
  */
 import { handleActions } from 'redux-actions';
 import parseLinkHeader from 'parse-link-header';
-import { formatDayKey } from '../utilities/dateUtils';
 import { anyNewActivity } from '../utilities/statusUtils';
 
 function loadingState (currentState, loadingState) {
@@ -55,23 +54,9 @@ function getNextUrls (state, action) {
   return linkState;
 }
 
-function determineFocusAfterLoad (state, action) {
-  const newItems = action.payload.internalItems;
-  let firstNewDayKey = null;
-  let setFocusAfterLoad = false;
-  if (state.loadingFuture && state.setFocusAfterLoad) {
-    setFocusAfterLoad = true;
-    if (newItems.length) {
-      firstNewDayKey = formatDayKey(newItems[0].dateBucketMoment);
-    }
-  }
-  return {firstNewDayKey, setFocusAfterLoad};
-}
-
 function gotItemsSuccess (state, action) {
-  const focusState = determineFocusAfterLoad(state, action);
   const linkState = getNextUrls(state, action);
-  const newState = {...focusState, ...linkState};
+  const newState = {...linkState};
   return loadingState(state, newState);
 }
 
@@ -96,10 +81,10 @@ export default handleActions({
     return loadingState(state, {loadingPast: true, seekingNewActivity: action.payload.seekingNewActivity});
   },
   GETTING_FUTURE_ITEMS: (state, action) => {
-    return loadingState(state, {loadingFuture: true, setFocusAfterLoad: action.payload.setFocusAfterLoad});
+    return loadingState(state, {loadingFuture: true});
   },
   ALL_FUTURE_ITEMS_LOADED: (state, action) => {
-    return loadingState(state, {allFutureItemsLoaded: true, setFocusAfterLoad: false});
+    return loadingState(state, {allFutureItemsLoaded: true});
   },
   ALL_OPPORTUNITIES_LOADED: (state, action) => {
     return loadingState(state, {loadingOpportunities: false, allOpportunitiesLoaded: true});
@@ -115,8 +100,6 @@ export default handleActions({
   allFutureItemsLoaded: false,
   allOpportunitiesLoaded: false,
   loadingOpportunities: false,
-  setFocusAfterLoad: false,
-  firstNewDayKey: null,
   futureNextUrl: null,
   pastNextUrl: null,
   seekingNewActivity: false,

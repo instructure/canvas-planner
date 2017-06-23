@@ -38,7 +38,7 @@ export default class LoadingFutureIndicator extends Component {
   }
 
   handleLoadMoreButton = () => {
-    this.props.onLoadMore({setFocusAfterLoad: true});
+    this.props.onLoadMore({});
   }
 
   handleWaypoint = () => {

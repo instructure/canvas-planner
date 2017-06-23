@@ -21,16 +21,16 @@ import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import { arrayOf, oneOfType, bool, object, string, number, func } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
-import SmartDay from '../SmartDay';
+import Day from '../Day';
 import ShowOnFocusButton from '../ShowOnFocusButton';
 import StickyButton from '../StickyButton';
 import LoadingFutureIndicator from '../LoadingFutureIndicator';
 import LoadingPastIndicator from '../LoadingPastIndicator';
 import PlannerEmptyState from '../PlannerEmptyState';
 import formatMessage from '../../format-message';
-import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity, togglePlannerItemCompletion} from '../../actions';
+import {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity, togglePlannerItemCompletion, updateTodo} from '../../actions';
 import {getFirstLoadedMoment} from '../../utilities/dateUtils';
-import {maintainViewportPosition} from '../../utilities/scrollUtils';
+import {notifier} from '../../dynamic-ui';
 
 export class PlannerApp extends Component {
   static propTypes = {
@@ -45,8 +45,6 @@ export class PlannerApp extends Component {
     allPastItemsLoaded: bool,
     loadingFuture: bool,
     allFutureItemsLoaded: bool,
-    setFocusAfterLoad: bool,
-    firstNewDayKey: string,
     firstNewActivityDate: momentObj,
     scrollIntoPast: func,
     loadPastUntilNewActivity: func,
@@ -55,16 +53,24 @@ export class PlannerApp extends Component {
     stickyZIndex: number,
     changeToDashboardCardView: func,
     togglePlannerItemCompletion: func,
+    updateTodo: func,
+    triggerDynamicUiUpdates: func,
+    preTriggerDynamicUiUpdates: func,
   };
 
   static defaultProps = {
     isLoading: false,
     stickyOffset: 0,
+    triggerDynamicUiUpdates: () => {},
+    preTriggerDynamicUiUpdates: () => {},
   };
 
+  componentWillUpdate () {
+    this.props.preTriggerDynamicUiUpdates(this.fixedElement);
+  }
 
-  takeFocusRef = (focusableElement) => {
-    if (focusableElement) focusableElement.focus();
+  componentDidUpdate () {
+    this.props.triggerDynamicUiUpdates(this.fixedElement);
   }
 
   fixedElementRef = (elt) => {
@@ -73,12 +79,6 @@ export class PlannerApp extends Component {
 
   handleNewActivityClick = () => {
     this.props.loadPastUntilNewActivity();
-  }
-
-  handleLoadingPastIndicatorWillUnmount = () => {
-    if (this.fixedElement) {
-      maintainViewportPosition(this.fixedElement);
-    }
   }
 
   renderLoading () {
@@ -162,19 +162,15 @@ export class PlannerApp extends Component {
       return this.renderBody(this.renderLoading());
     }
 
-    const children = this.props.days.map(([dayKey, dayItems]) => {
-      let takeFocusRef;
-      if (this.props.setFocusAfterLoad && this.props.firstNewDayKey === dayKey) {
-        takeFocusRef = this.takeFocusRef;
-      }
-      return <SmartDay
-        stickyOffset={this.props.stickyOffset}
-        takeFocusRef={takeFocusRef}
+    const children = this.props.days.map(([dayKey, dayItems], dayIndex) => {
+      return <Day
         timeZone={this.props.timeZone}
         day={dayKey}
         itemsForDay={dayItems}
+        animatableIndex={dayIndex}
         key={dayKey}
         toggleCompletion={this.props.togglePlannerItemCompletion}
+        updateTodo={this.props.updateTodo}
       />;
     });
 
@@ -190,12 +186,10 @@ const mapStateToProps = (state) => {
     allPastItemsLoaded: state.loading.allPastItemsLoaded,
     loadingFuture: state.loading.loadingFuture,
     allFutureItemsLoaded: state.loading.allFutureItemsLoaded,
-    setFocusAfterLoad: state.loading.setFocusAfterLoad,
-    firstNewDayKey: state.loading.firstNewDayKey,
     firstNewActivityDate: state.firstNewActivityDate,
     timeZone: state.timeZone,
   };
 };
 
-const mapDispatchToProps = {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity, togglePlannerItemCompletion};
-export default connect(mapStateToProps, mapDispatchToProps)(PlannerApp);
+const mapDispatchToProps = {loadFutureItems, scrollIntoPast, loadPastUntilNewActivity, togglePlannerItemCompletion, updateTodo};
+export default notifier(connect(mapStateToProps, mapDispatchToProps)(PlannerApp));

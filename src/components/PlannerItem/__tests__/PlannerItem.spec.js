@@ -16,16 +16,17 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-import PlannerItem from '../index';
+import { shallow, mount } from 'enzyme';
+import {PlannerItem} from '../index';
 import moment from 'moment-timezone';
 
 const DEFAULT_DATE = moment.tz('2011-12-17T03:30:00', "America/Los_Angeles");
 
-function defaultProps (option) {
+function defaultProps (option = {}) {
   return {
       color: '#d71f85',
       id: "1",
+      uniqueId: "one",
       associated_item: option.associated_item || "Assignment",
       date: option.date,
       courseName: 'A Course about being Diffrient',
@@ -41,6 +42,7 @@ function defaultProps (option) {
 function noteProps (option) {
   return {
       id: "22",
+      uniqueId: "twenty-two",
       associated_item: null,
       date: option.date,
       courseName: option.courseName,
@@ -474,4 +476,25 @@ it('calls toggleCompletion when the checkbox is clicked', () => {
   );
   wrapper.find('Checkbox').simulate('change');
   expect(mock).toBeCalled();
+});
+
+it('registers itself as animatable', () => {
+  const fakeRegister = jest.fn();
+  const wrapper = mount(
+    <PlannerItem
+      {...defaultProps()}
+      id="1"
+      uniqueId="first"
+      animatableIndex={42}
+      registerAnimatable={fakeRegister}
+    />
+  );
+  expect(fakeRegister).toHaveBeenCalledWith('item', wrapper.instance(), 42, ['first']);
+
+  wrapper.setProps({uniqueId: 'second'});
+  expect(fakeRegister).toHaveBeenCalledWith('item', null, 42, ['first']);
+  expect(fakeRegister).toHaveBeenCalledWith('item', wrapper.instance(), 42, ['second']);
+
+  wrapper.unmount();
+  expect(fakeRegister).toHaveBeenCalledWith('item', null, 42, ['second']);
 });

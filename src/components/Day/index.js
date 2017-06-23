@@ -21,25 +21,25 @@ import themeable from 'instructure-ui/lib/themeable';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Container from 'instructure-ui/lib/components/Container';
-import { string, arrayOf, object, func, bool } from 'prop-types';
+import { string, number, arrayOf, object, func, bool } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import { getFriendlyDate, getFullDate, isToday } from '../../utilities/dateUtils';
 import { groupBy } from 'lodash';
 import Grouping from '../Grouping';
 import formatMessage from '../../format-message';
+import { animatable } from '../../dynamic-ui';
 
-
-class Day extends Component {
+export class Day extends Component {
   static propTypes = {
     day: string.isRequired,
     itemsForDay: arrayOf(object),
+    animatableIndex: number,
     timeZone: string.isRequired,
-    takeFocusRef: func,
-    rootElementRef: func,
     toggleCompletion: func,
     updateTodo: func,
     alwaysRender: bool,
+    registerAnimatable: func,
   }
 
   constructor (props) {
@@ -53,13 +53,26 @@ class Day extends Component {
     };
   }
 
+  componentDidMount () {
+    this.props.registerAnimatable('day', this, this.props.animatableIndex, this.itemUniqueIds());
+  }
+
   componentWillReceiveProps (nextProps) {
+    this.props.registerAnimatable('day', null, this.props.animatableIndex, this.itemUniqueIds());
+    this.props.registerAnimatable('day', this, nextProps.animatableIndex, this.itemUniqueIds(nextProps));
+
     this.setState((state) => {
       return {
         groupedItems: this.groupItems(nextProps.itemsForDay)
       };
     });
   }
+
+  componentWillUnmount () {
+    this.props.registerAnimatable('day', null, this.props.animatableIndex, this.itemUniqueIds());
+  }
+
+  itemUniqueIds (props = this.props) { return props.itemsForDay.map(item => item.uniqueId); }
 
   groupItems = (items) => groupBy(items, item => (item.context && item.context.id) || 'Notes');
 
@@ -81,7 +94,7 @@ class Day extends Component {
     if (!this.shouldRender()) return null;
 
     return (
-      <div className={styles.root} ref={this.props.rootElementRef}>
+      <div className={styles.root} >
           <Heading
             border={(this.hasItems()) ? 'none' : 'bottom'}
           >
@@ -104,19 +117,18 @@ class Day extends Component {
         <div>
           {
             (this.hasItems()) ? (
-              Object.keys(this.state.groupedItems).map((cid, index) => {
-                const courseInfo = this.state.groupedItems[cid][0].context || {};
-                let takeFocusRef;
-                if (index === 0) takeFocusRef = this.props.takeFocusRef;
+              Object.keys(this.state.groupedItems).map((cid, groupIndex) => {
+                const groupItems = this.state.groupedItems[cid];
+                const courseInfo = groupItems[0].context || {};
                 return (
                   <Grouping
-                    takeFocusRef={takeFocusRef}
                     title={courseInfo.title}
                     image_url={courseInfo.image_url}
                     color={courseInfo.color}
                     timeZone={this.props.timeZone}
                     updateTodo={this.props.updateTodo}
-                    items={this.state.groupedItems[cid]}
+                    items={groupItems}
+                    animatableIndex={groupIndex}
                     url={courseInfo.url}
                     key={cid}
                     theme={{
@@ -142,4 +154,4 @@ class Day extends Component {
   }
 }
 
-export default themeable(theme, styles)(Day);
+export default animatable(themeable(theme, styles)(Day));

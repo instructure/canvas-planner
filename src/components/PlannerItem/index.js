@@ -37,11 +37,14 @@ import { arrayOf, bool, number, string, func, shape, object } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import formatMessage from '../../format-message';
 import focusStore from '../../utilities/focusStore';
+import {animatable} from '../../dynamic-ui';
 
-class PlannerItem extends Component {
+export class PlannerItem extends Component {
   static propTypes = {
     color: string,
     id: string.isRequired,
+    uniqueId: string.isRequired,
+    animatableIndex: number,
     title: string.isRequired,
     points: number,
     date: momentObj,
@@ -56,11 +59,12 @@ class PlannerItem extends Component {
     badges: arrayOf(shape({
       text: string,
       variant: string
-    }))
+    })),
+    registerAnimatable: func,
   };
 
   static defaultProps = {
-    badges: []
+    badges: [],
   };
 
   constructor (props) {
@@ -70,16 +74,34 @@ class PlannerItem extends Component {
     };
   }
 
+  componentDidMount () {
+    this.props.registerAnimatable('item', this, this.props.animatableIndex, [this.props.uniqueId]);
+  }
+
   componentWillReceiveProps (nextProps) {
+    this.props.registerAnimatable('item', null, this.props.animatableIndex, [this.props.uniqueId]);
+    this.props.registerAnimatable('item', this, nextProps.animatableIndex, [nextProps.uniqueId]);
     this.setState({
       completed: nextProps.completed
     });
+  }
+
+  componentWillUnmount () {
+    this.props.registerAnimatable('item', null, this.props.animatableIndex, [this.props.uniqueId]);
   }
 
   toDoLinkClick = (e) => {
     e.preventDefault();
     focusStore.setItemToFocus(this.itemLink);
     this.props.updateTodo({updateTodoItem: {...this.props}});
+  }
+
+  registerFocusElementRef = (elt) => {
+    this.checkboxRef = elt;
+  }
+
+  getFocusable () {
+    return this.checkboxRef;
   }
 
   renderDateField = () => {
@@ -199,6 +221,7 @@ class PlannerItem extends Component {
       <div className={styles.root}>
         <div className={styles.completed}>
           <Checkbox
+            ref={this.registerFocusElementRef}
             label={<ScreenReaderContent>{checkboxLabel}</ScreenReaderContent>}
             checked={this.state.completed}
             onChange={this.props.toggleCompletion}
@@ -220,11 +243,11 @@ class PlannerItem extends Component {
   }
 }
 
-export default themeable(theme, styles)(
+export default animatable(themeable(theme, styles)(
   // we can update this to be whatever works for this component and its content
   containerQuery({
     'media-x-large': { minWidth: '68rem' },
     'media-large': { minWidth: '58rem' },
     'media-medium': { minWidth: '48rem' }
-  })(PlannerItem)
+  })(PlannerItem))
 );

@@ -34,8 +34,8 @@ exports[`grouping contains link pointing to course url 1`] = `
     }
   >
     <li>
-      <PlannerItem
-        badges={Array []}
+      <Animatable(PlannerItem)
+        animatableIndex={0}
         color="#5678"
         context={
           Object {
@@ -54,12 +54,13 @@ exports[`grouping contains link pointing to course url 1`] = `
         }
         title="San Juan"
         toggleCompletion={[Function]}
+        uniqueId="five"
         updateTodo={[Function]}
       />
     </li>
     <li>
-      <PlannerItem
-        badges={Array []}
+      <Animatable(PlannerItem)
+        animatableIndex={1}
         color="#5678"
         context={
           Object {
@@ -77,6 +78,7 @@ exports[`grouping contains link pointing to course url 1`] = `
         }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
+        uniqueId="six"
         updateTodo={[Function]}
       />
     </li>
@@ -118,8 +120,8 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
     }
   >
     <li>
-      <PlannerItem
-        badges={Array []}
+      <Animatable(PlannerItem)
+        animatableIndex={0}
         color="#5678"
         context={
           Object {
@@ -137,11 +139,18 @@ exports[`renders a CompletedItemsFacade when completed items are present by defa
         }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
+        uniqueId="six"
         updateTodo={[Function]}
       />
     </li>
     <li>
-      <CompletedItemsFacade
+      <Animatable(CompletedItemsFacade)
+        animatableIndex={1}
+        animatableItemIds={
+          Array [
+            "five",
+          ]
+        }
         badges={Array []}
         itemCount={1}
         onClick={[Function]}
@@ -185,8 +194,8 @@ exports[`renders the base component with required props 1`] = `
     }
   >
     <li>
-      <PlannerItem
-        badges={Array []}
+      <Animatable(PlannerItem)
+        animatableIndex={0}
         color="#5678"
         context={
           Object {
@@ -205,12 +214,13 @@ exports[`renders the base component with required props 1`] = `
         }
         title="San Juan"
         toggleCompletion={[Function]}
+        uniqueId="five"
         updateTodo={[Function]}
       />
     </li>
     <li>
-      <PlannerItem
-        badges={Array []}
+      <Animatable(PlannerItem)
+        animatableIndex={1}
         color="#5678"
         context={
           Object {
@@ -228,6 +238,7 @@ exports[`renders the base component with required props 1`] = `
         }
         title="Roll for the Galaxy"
         toggleCompletion={[Function]}
+        uniqueId="six"
         updateTodo={[Function]}
       />
     </li>
@@ -261,8 +272,8 @@ exports[`renders to do items correctly 1`] = `
     }
   >
     <li>
-      <PlannerItem
-        badges={Array []}
+      <Animatable(PlannerItem)
+        animatableIndex={0}
         color={null}
         context={Object {}}
         courseName={null}
@@ -275,6 +286,7 @@ exports[`renders to do items correctly 1`] = `
         }
         title="To Do 700"
         toggleCompletion={[Function]}
+        uniqueId="seven hundred"
         updateTodo={[Function]}
       />
     </li>

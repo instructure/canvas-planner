@@ -22,13 +22,14 @@ import CheckboxFacade from 'instructure-ui/lib/components/Checkbox/CheckboxFacad
 import Pill from 'instructure-ui/lib/components/Pill';
 import BadgeList from '../BadgeList';
 import { func, number, string, arrayOf, shape } from 'prop-types';
+import {animatable} from '../../dynamic-ui';
 
 import styles from './styles.css';
 import theme from './theme.js';
 
 import formatMessage from '../../format-message';
 
-class CompletedItemsFacade extends Component {
+export class CompletedItemsFacade extends Component {
 
   static propTypes = {
     onClick: func.isRequired,
@@ -36,12 +37,31 @@ class CompletedItemsFacade extends Component {
     badges: arrayOf(shape({
       text: string,
       variant: string
-    }))
+    })),
+    animatableIndex: number,
+    animatableItemIds: arrayOf(string),
+    registerAnimatable: func,
   }
 
   static defaultProps = {
-    badges: []
+    badges: [],
+    registerAnimatable: () => {},
   }
+
+  componentDidMount () {
+    this.props.registerAnimatable('item', this, this.props.animatableIndex, this.props.animatableItemIds);
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.props.registerAnimatable('item', null, this.props.animatableIndex, this.props.animatableItemIds);
+    this.props.registerAnimatable('item', this, newProps.animatableIndex, newProps.animatableItemIds);
+  }
+
+  componentWillUnmount () {
+    this.props.registerAnimatable('item', null, this.props.animatableIndex, this.props.animatableItemIds);
+  }
+
+  getFocusable () { return this.mainButton; }
 
   renderBadges () {
     if (this.props.badges.length) {
@@ -66,6 +86,7 @@ class CompletedItemsFacade extends Component {
       <div className={styles.root}>
         <div className={styles.contentPrimary}>
           <button
+            ref={elt => this.mainButton = elt}
             type="button"
             className={styles.button}
             onClick={this.props.onClick}
@@ -92,11 +113,11 @@ class CompletedItemsFacade extends Component {
   }
 }
 
-export default themeable(theme, styles)(
+export default animatable(themeable(theme, styles)(
   // we can update this to be whatever works for this component and its content
   containerQuery({
     'media-x-large': { minWidth: '68rem' },
     'media-large': { minWidth: '58rem' },
     'media-medium': { minWidth: '34rem' }
   })(CompletedItemsFacade)
-);
+));

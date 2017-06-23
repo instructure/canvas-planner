@@ -94,7 +94,7 @@ export function getPlannerItems (fromMoment) {
   };
 }
 
-export function loadFutureItems (options = {setFocusAfterLoad: false}) {
+export function loadFutureItems (options = {}) {
   return (dispatch, getState) => {
     dispatch(gettingFutureItems(options));
     const loadingOptions = {

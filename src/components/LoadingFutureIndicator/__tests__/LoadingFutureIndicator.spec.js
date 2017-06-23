@@ -45,5 +45,5 @@ it('invokes the callback when loading more button is clicked', () => {
   const mockLoad = jest.fn();
   const wrapper = shallow(<LoadingFutureIndicator onLoadMore={mockLoad} />);
   wrapper.find('Button').simulate('click');
-  expect(mockLoad).toHaveBeenCalledWith({setFocusAfterLoad: true});
+  expect(mockLoad).toHaveBeenCalledWith({});
 });

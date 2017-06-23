@@ -16,9 +16,9 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import moment from 'moment';
-import Day from '../index';
+import {Day} from '../index';
 
 it('renders the base component with required props', () => {
   const wrapper = shallow(
@@ -137,7 +137,7 @@ it('groups itemsForDay that come in on prop changes', () => {
   }];
 
   const wrapper = shallow(
-    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} />
+    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} registerAnimatable={() => {}} />
   );
   let groupedItems = wrapper.state('groupedItems');
   expect(Object.keys(groupedItems).length).toEqual(2);
@@ -156,27 +156,6 @@ it('groups itemsForDay that come in on prop changes', () => {
   expect(Object.keys(groupedItems).length).toEqual(3);
 });
 
-it('forwards takeFocusRef to its first grouping', () => {
-  const mockTakeFocusRef = jest.fn();
-  const items = [{
-    title: 'Black Friday',
-    context: {
-      id: 128
-    }
-  }, {
-    title: 'San Juan',
-    context: {
-      id: 256
-    }
-  }];
-
-  const wrapper = shallow(
-    <Day takeFocusRef={mockTakeFocusRef} timeZone="Asia/Tokyo" day="2017-04-25" itemsForDay={items} />
-  );
-  expect(wrapper.find('Grouping').at(0).props().takeFocusRef).toBe(mockTakeFocusRef);
-  expect(wrapper.find('Grouping').at(1).props().takeFocusRef).not.toBeDefined();
-});
-
 it('renders nothing when there are no items and the date is outside of two weeks', () => {
   const date = moment.tz("Asia/Tokyo").add(15, 'days');
   const wrapper = shallow(
@@ -191,4 +170,28 @@ it('renders when there are no items but within two weeks', () => {
     <Day timeZone="Asia/Tokyo" day={date.format('YYYY-MM-DD')} itemsForDay={[]} />
   );
   expect(wrapper.type).not.toBeNull();
+});
+
+it('registers itself as animatable', () => {
+  const fakeRegister = jest.fn();
+  const firstItems = [{title: 'asdf', context: {id: 128}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256}, id: '2', uniqueId: 'second'}];
+  const secondItems = [{title: 'qwer', context: {id: 128}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256}, id: '4', uniqueId: 'fourth'}];
+  const wrapper = mount(
+    <Day
+      day={'2017-08-11'}
+      timeZone="Asia/Tokyo"
+      animatableIndex={42}
+      itemsForDay={firstItems}
+      registerAnimatable={fakeRegister}
+      updateTodo={() => {}}
+    />
+  );
+  expect(fakeRegister).toHaveBeenCalledWith('day', wrapper.instance(), 42, ['first', 'second']);
+
+  wrapper.setProps({itemsForDay: secondItems});
+  expect(fakeRegister).toHaveBeenCalledWith('day', null, 42, ['first', 'second']);
+  expect(fakeRegister).toHaveBeenCalledWith('day', wrapper.instance(), 42, ['third', 'fourth']);
+
+  wrapper.unmount();
+  expect(fakeRegister).toHaveBeenCalledWith('day', null, 42, ['third', 'fourth']);
 });

@@ -156,7 +156,7 @@ describe('api actions', () => {
       expect(isPromise(fetchPromise));
       expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
         type: 'GETTING_FUTURE_ITEMS',
-        payload: {setFocusAfterLoad: false},
+        payload: {},
       }));
       // GOT_ITEMS_SUCCESS is dispatched by the action when internal promise is fulfulled
     });

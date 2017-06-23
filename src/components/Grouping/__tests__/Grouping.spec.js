@@ -17,11 +17,12 @@
  */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Grouping from '../index';
+import {Grouping} from '../index';
 
 const getDefaultProps = () => ({
   items: [{
     id: "5",
+    uniqueId: "five",
     title: 'San Juan',
     date: '2017-04-25T05:06:07-08:00',
     context: {
@@ -31,6 +32,7 @@ const getDefaultProps = () => ({
     }
   }, {
     id: "6",
+    uniqueId: "six",
     date: '2017-04-25T05:06:07-08:00',
     title: 'Roll for the Galaxy',
     context: {
@@ -66,6 +68,7 @@ it('renders to do items correctly', () => {
   const props = {
     items: [{
       id: "700",
+      uniqueId: "seven hundred",
       title: 'To Do 700',
       date: '2017-06-16T05:06:07-06:00',
       context: null,
@@ -90,7 +93,7 @@ it('does not render completed items by default', () => {
     <Grouping {...props} />
   );
 
-  expect(wrapper.find('PlannerItem')).toHaveLength(1);
+  expect(wrapper.find('Animatable(PlannerItem)')).toHaveLength(1);
 });
 
 it('renders a CompletedItemsFacade when completed items are present by default', () => {
@@ -113,7 +116,7 @@ it('renders completed items when the facade is clicked', () => {
   );
 
   wrapper.instance().handleFacadeClick();
-  expect(wrapper.find('PlannerItem')).toHaveLength(2);
+  expect(wrapper.find('Animatable(PlannerItem)')).toHaveLength(2);
 });
 
 it('renders completed items when they have the show property', () => {
@@ -125,7 +128,7 @@ it('renders completed items when they have the show property', () => {
     <Grouping {...props} />
   );
 
-  expect(wrapper.find('PlannerItem')).toHaveLength(2);
+  expect(wrapper.find('Animatable(PlannerItem)')).toHaveLength(2);
 });
 
 it('does not render a CompletedItemsFacade when showCompletedItems state is true', () => {
@@ -186,12 +189,6 @@ it('does not render an activity badge when things have no new activity', () => {
   expect(wrapper.find('Badge')).toHaveLength(0);
 });
 
-it('invokes the takeFocusRef (if passed) on a focusable element', () => {
-  const mockTakeFocus = jest.fn();
-  mount(<Grouping {...getDefaultProps()} takeFocusRef={mockTakeFocus} />);
-  expect(mockTakeFocus).toHaveBeenCalledWith(expect.anything());
-});
-
 describe('handleFacadeClick', () => {
   it('sets focus to the groupingLink when called', () => {
     const wrapper = mount(
@@ -226,4 +223,26 @@ describe('toggleCompletion', () => {
     wrapper.find('input').first().simulate('change');
     expect(mock).toHaveBeenCalledWith(props.items[0]);
   });
+});
+
+it('registers itself as animatable', () => {
+  const fakeRegister = jest.fn();
+  const firstItems = [{title: 'asdf', context: {id: 128}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256}, id: '2', uniqueId: 'second'}];
+  const secondItems = [{title: 'qwer', context: {id: 128}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256}, id: '4', uniqueId: 'fourth'}];
+  const wrapper = mount(
+    <Grouping
+      {...getDefaultProps()}
+      items={firstItems}
+      animatableIndex={42}
+      registerAnimatable={fakeRegister}
+    />
+  );
+  expect(fakeRegister).toHaveBeenCalledWith('group', wrapper.instance(), 42, ['first', 'second']);
+
+  wrapper.setProps({items: secondItems});
+  expect(fakeRegister).toHaveBeenCalledWith('group', null, 42, ['first', 'second']);
+  expect(fakeRegister).toHaveBeenCalledWith('group', wrapper.instance(), 42, ['third', 'fourth']);
+
+  wrapper.unmount();
+  expect(fakeRegister).toHaveBeenCalledWith('group', null, 42, ['third', 'fourth']);
 });

@@ -27,7 +27,8 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
     </Typography>
   </Heading>
   <div>
-    <Grouping
+    <Animatable(Grouping)
+      animatableIndex={0}
       items={
         Array [
           Object {
@@ -47,7 +48,8 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
       timeZone="America/Denver"
       url="http://www.non_default_url.com"
     />
-    <Grouping
+    <Animatable(Grouping)
+      animatableIndex={1}
       items={
         Array [
           Object {
