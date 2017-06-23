@@ -12,6 +12,7 @@ function defaultProps (option) {
     timeZone: 'America/Denver',
     deletePlannerItem: () => {},
     dismissOpportunity: () => {},
+    ariaHideElement: document.createElement('div')
   };
 }
 
@@ -51,6 +52,18 @@ it('calls getOpportunities when component is mounted', () => {
     <PlannerHeader {...tempProps} />
   );
   expect(tempProps.getOpportunities).toHaveBeenCalled();
+});
+
+it('toggles aria-hidden on the ariaHideElement when opening', () => {
+  const fakeElement = document.createElement('div');
+  const wrapper = mount(
+    <PlannerHeader {...defaultProps()} ariaHideElement={fakeElement} />
+  );
+  const button = wrapper.find('PopoverTrigger').find('Button');
+  button.simulate('click');
+  expect(fakeElement.getAttribute('aria-hidden')).toBe('true');
+  button.simulate('click');
+  expect(fakeElement.getAttribute('aria-hidden')).toBe(null);
 });
 
 

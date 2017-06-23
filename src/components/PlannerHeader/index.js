@@ -31,6 +31,7 @@ export class PlannerHeader extends Component {
     getOpportunities: PropTypes.func.isRequired,
     dismissOpportunity: PropTypes.func.isRequired,
     todo: PropTypes.object,
+    ariaHideElement: PropTypes.instanceOf(Element).isRequired
   };
 
   constructor (props) {
@@ -76,7 +77,13 @@ export class PlannerHeader extends Component {
 
   toggleOpportunitiesDropdown = () => {
     this.opportunitiesButton.focus();
-    this.setState({opportunitiesOpen: !this.state.opportunitiesOpen});
+    this.setState({opportunitiesOpen: !this.state.opportunitiesOpen}, () => {
+      if (this.state.opportunitiesOpen) {
+        this.props.ariaHideElement.setAttribute('aria-hidden', 'true');
+      } else {
+        this.props.ariaHideElement.removeAttribute('aria-hidden');
+      }
+    });
   }
 
   noteBtnOnClose = () => {

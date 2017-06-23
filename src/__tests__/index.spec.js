@@ -27,6 +27,9 @@ describe('with mock api', () => {
   });
 
   describe('renderHeader', () => {
+    const options = {
+      ariaHideElement: document.createElement('div')
+    };
     beforeEach(() => {
       document.body.innerHTML = '<div id="header_container"></div>';
       moxios.install();
@@ -37,7 +40,7 @@ describe('with mock api', () => {
     });
 
     it('calls render with PlannerHeader', () => {
-      CanvasPlanner.renderHeader(document.getElementById('header_container'));
+      CanvasPlanner.renderHeader(document.getElementById('header_container'), options);
       // This assertion is a bit odd, we need to get class names working with
       // CSS modules under test then we can be more clear here.
       expect(document.querySelector('#header_container div')).toBeTruthy();
