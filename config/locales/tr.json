@@ -1,4 +1,10 @@
 {
+  "assignmenttype_title_is_incomplete_a1d5fac0": {
+    "message": "{ assignmentType } { title } tamamlanmadı"
+  },
+  "canvas_planner_98ed106": {
+    "message": "Canvas Planlayıcı"
+  },
   "close_d634289d": {
     "message": "Kapat"
   },
@@ -7,6 +13,9 @@
   },
   "date_ee500367": {
     "message": "Tarih"
+  },
+  "date_is_required_915f975f": {
+    "message": "tarih gereklidir"
   },
   "delete_a6efa79d": {
     "message": "Sil"
@@ -17,17 +26,44 @@
   "due_5d7267be": {
     "message": "Bitiş:"
   },
+  "go_to_dashboard_card_view_10398ef6": {
+    "message": "Kontrol Paneli Kartı Görünümüne Git"
+  },
   "load_more_a36f9cf9": {
     "message": "Daha fazla yükle"
   },
   "loading_25990131": {
     "message": "Yükleniyor..."
   },
+  "loading_past_items_ca499e75": {
+    "message": "Önceki öğeler yükleniyor"
+  },
+  "loading_planner_items_947a813d": {
+    "message": "Planlayıcı öğeleri yükleniyor"
+  },
   "missing_1a256b3b": {
     "message": "Eksik"
   },
+  "new_activity_8b84847d": {
+    "message": "Yeni Etkinlik"
+  },
+  "next_month_749b1778": {
+    "message": "Sonraki Hafta"
+  },
+  "nothing_planned_today_174ba986": {
+    "message": "Bugün birşey planlanmadı"
+  },
+  "optional_add_course_ef0d70fc": {
+    "message": "Tercihen: Kurs Ekle"
+  },
   "points_bceb5005": {
     "message": "puanlar"
+  },
+  "points_points_63e59cce": {
+    "message": "{ points } puan"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Önceki Hafta"
   },
   "pts_699bd9aa": {
     "message": "not"
@@ -35,8 +71,14 @@
   "save_11a80ec3": {
     "message": "Kaydet"
   },
+  "task_16b0ef38": {
+    "message": "Görev"
+  },
   "title_ee03d132": {
     "message": "Başlık"
+  },
+  "title_is_required_6ddcab69": {
+    "message": "başlık gereklidir"
   },
   "to_do_1d554f36": {
     "message": "Yapılacaklar"
