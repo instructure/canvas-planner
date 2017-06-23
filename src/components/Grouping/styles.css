@@ -5,6 +5,7 @@
   margin: var(--margin);
   border-color: var(--groupColor);
   color: var(--groupColor);
+  line-height: var(--lineHeight);
 }
 
 .title {

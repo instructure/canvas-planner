@@ -6,6 +6,7 @@
   background: var(--background);
   padding: var(--padding);
   box-sizing: border-box;
+  line-height: var(--lineHeight);
 }
 
 .header {

@@ -1,6 +1,7 @@
 export default function generator ({ borders, colors, spacing, typography }) {
   return {
     fontFamily: typography.fontFamily,
+    lineHeight: typography.lineHeightCondensed,
     color: colors.licorice,
 
     padding: `${spacing.small} ${spacing.xSmall}`,
@@ -19,7 +20,11 @@ export default function generator ({ borders, colors, spacing, typography }) {
     iconColor: colors.brand,
     badgeMargin: '0.0625rem',
 
-    metricsPadding: spacing.xxSmall
+    metricsPadding: spacing.xxSmall,
+
+    typeMargin: spacing.xxxSmall,
+
+    titleLineHeight: typography.lineHeightFit
   };
 }
 

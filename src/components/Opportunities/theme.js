@@ -8,6 +8,7 @@ export default function generator ({ borders, colors, spacing, typography }) {
     borderWidth: borders.widthSmall,
     borderStyle: borders.style,
     itemMargin: spacing.small,
-    itemPadding: spacing.xxSmall
+    itemPadding: spacing.xxSmall,
+    lineHeight: typography.lineHeightCondensed
   };
 }

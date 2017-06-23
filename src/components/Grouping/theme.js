@@ -3,6 +3,7 @@
 export default function generator ({ borders, colors, media, spacing, typography }) {
   return {
     fontFamily: typography.fontFamily,
+    lineHeight: typography.lineHeightCondensed,
     margin: `${spacing.medium} 0 0 0`,
 
     groupColor: colors.brand,

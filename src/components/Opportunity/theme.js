@@ -1,5 +1,6 @@
 export default function generator ({ colors, spacing, typography }) {
   return {
+    lineHeight: typography.lineHeightCondensed,
     fontSize: typography.fontSizeMedium,
     fontFamily: typography.fontFamily,
     fontWeight: typography.fontWeightNormal,

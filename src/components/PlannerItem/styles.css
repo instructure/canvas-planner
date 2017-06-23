@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   color: var(--color);
+  line-height: var(--lineHeight);
 }
 
 .completed,
@@ -53,7 +54,7 @@
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.0625rem;
-  margin-right: var(--gutterWidth);
+  margin-bottom: var(--typeMargin);
 }
 
 .title {

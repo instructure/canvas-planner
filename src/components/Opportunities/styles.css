@@ -5,6 +5,7 @@
   box-sizing: border-box;
   width: 20rem;
   max-width: 100%;
+  line-height: var(--lineHeight);
 }
 
 .header {

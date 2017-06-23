@@ -5,6 +5,7 @@ export default function generator ({ colors, typography, spacing }) {
     fontSize: typography.fontSizeMedium,
     fontFamily: typography.fontFamily,
     fontWeight: typography.fontWeightNormal,
+    lineHeight: typography.lineHeightCondensed,
 
     color: colors.oxford,
     background: colors.white,
