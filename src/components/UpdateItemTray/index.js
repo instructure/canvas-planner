@@ -193,6 +193,18 @@ export class UpdateItemTray extends Component {
     );
   }
 
+  renderTrayHeader () {
+    if (this.props.noteItem) {
+      return (
+        <h2>{formatMessage('Edit {title}', { title: this.props.noteItem.title })}</h2>
+      );
+    } else {
+      return (
+        <h2>{formatMessage("Add To Do")}</h2>
+      );
+    }
+  }
+
   render () {
     return (
       <div className={styles.root}>
@@ -204,7 +216,7 @@ export class UpdateItemTray extends Component {
             rowSpacing="small"
             description={
               <ScreenReaderContent>
-                {formatMessage("Add planner item")}
+                {this.renderTrayHeader()}
               </ScreenReaderContent>
             }
           >

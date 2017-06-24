@@ -54,7 +54,7 @@ it('calls getOpportunities when component is mounted', () => {
   expect(tempProps.getOpportunities).toHaveBeenCalled();
 });
 
-it('toggles aria-hidden on the ariaHideElement when opening', () => {
+it('toggles aria-hidden on the ariaHideElement when opening the opportunities popover', () => {
   const fakeElement = document.createElement('div');
   const wrapper = mount(
     <PlannerHeader {...defaultProps()} ariaHideElement={fakeElement} />
@@ -66,4 +66,25 @@ it('toggles aria-hidden on the ariaHideElement when opening', () => {
   expect(fakeElement.getAttribute('aria-hidden')).toBe(null);
 });
 
+it('toggles aria-hidden on the ariaHideElement when opening the add to do item tray', () => {
+  const fakeElement = document.createElement('div');
+  const wrapper = mount(
+    <PlannerHeader {...defaultProps()} ariaHideElement={fakeElement} />
+  );
 
+  const button = wrapper.find('IconPlusLine').parent();
+
+  button.simulate('click');
+  expect(fakeElement.getAttribute('aria-hidden')).toBe('true');
+  button.simulate('click');
+  expect(fakeElement.getAttribute('aria-hidden')).toBe(null);
+});
+
+it('renders the tray with the name of an existing item when provided', () => {
+  const wrapper = shallow(
+    <PlannerHeader {...defaultProps()} />
+  );
+
+  wrapper.setState({ updateTodoItem: { title: 'abc' }});
+  expect(wrapper.find('Tray').prop('label')).toBe('Edit abc');
+});

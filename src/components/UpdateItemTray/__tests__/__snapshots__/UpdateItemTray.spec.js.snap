@@ -14,7 +14,9 @@ exports[`renders the item to update if provided 1`] = `
         <ScreenReaderContent
           as="span"
         >
-          Add planner item
+          <h2>
+            Edit Planner Item
+          </h2>
         </ScreenReaderContent>
       }
       disabled={false}

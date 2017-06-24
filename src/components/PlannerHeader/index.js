@@ -51,7 +51,9 @@ export class PlannerHeader extends Component {
   componentWillReceiveProps(nextProps) {
     let opportunities = nextProps.opportunities.filter((opportunity) => this.isOpportunityVisible(opportunity));
     if (nextProps.todo.updateTodoItem) {
-      this.setState({trayOpen: true, updateTodoItem: nextProps.todo.updateTodoItem});
+      this.setState({trayOpen: true, updateTodoItem: nextProps.todo.updateTodoItem}, () => {
+        this.toggleAriaHiddenStuff(this.state.trayOpen);
+      });
     }
     this.setState({opportunities});
   }
@@ -70,19 +72,25 @@ export class PlannerHeader extends Component {
     this.props.deletePlannerItem(plannerItem);
   }
 
+  toggleAriaHiddenStuff = (hide) => {
+    if (hide) {
+      this.props.ariaHideElement.setAttribute('aria-hidden', 'true');
+    } else {
+      this.props.ariaHideElement.removeAttribute('aria-hidden');
+    }
+  }
+
   toggleUpdateItemTray = () => {
     const trayOpen = this.state.trayOpen;
-    this.setState({trayOpen: !trayOpen});
+    this.setState({ trayOpen: !trayOpen }, () => {
+      this.toggleAriaHiddenStuff(this.state.trayOpen);
+    });
   }
 
   toggleOpportunitiesDropdown = () => {
     this.opportunitiesButton.focus();
     this.setState({opportunitiesOpen: !this.state.opportunitiesOpen}, () => {
-      if (this.state.opportunitiesOpen) {
-        this.props.ariaHideElement.setAttribute('aria-hidden', 'true');
-      } else {
-        this.props.ariaHideElement.removeAttribute('aria-hidden');
-      }
+      this.toggleAriaHiddenStuff(this.state.opportunitiesOpen);
     });
   }
 
@@ -99,6 +107,13 @@ export class PlannerHeader extends Component {
         other {# opportunities}
       }`, { count: this.state.opportunities.length })
     );
+  }
+
+  getTrayLabel = () => {
+    if (this.state.updateTodoItem) {
+      return formatMessage('Edit {title}', { title: this.state.updateTodoItem.title });
+    }
+    return formatMessage("Add To Do");
   }
 
   render () {
@@ -138,7 +153,7 @@ export class PlannerHeader extends Component {
         <Tray
           closeButtonLabel={formatMessage("Close")}
           isOpen={this.state.trayOpen}
-          label={formatMessage("Create/update planner item")}
+          label={this.getTrayLabel()}
           placement="end"
           trapFocus={true}
           onExited={this.noteBtnOnClose}

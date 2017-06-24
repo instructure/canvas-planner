@@ -25,6 +25,14 @@ it('renders the item to update if provided', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+it('renders Add To Do header when creating a new to do', () => {
+  const wrapper = mount(
+    <UpdateItemTray {...defaultProps} />
+  );
+
+  expect(wrapper.find('h2').text()).toBe('Add To Do');
+});
+
 it('shows title inputs', () => {
   const wrapper = mount(
     <UpdateItemTray {...defaultProps} />
