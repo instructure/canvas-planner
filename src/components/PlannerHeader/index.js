@@ -11,6 +11,7 @@ import Tray from 'instructure-ui/lib/components/Tray';
 import Badge from 'instructure-ui/lib/components/Badge';
 import Opportunities from '../Opportunities';
 import {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity} from '../../actions';
+import focusStore from '../../utilities/focusStore';
 
 import styles from './styles.css';
 import theme from './theme.js';
@@ -83,6 +84,9 @@ export class PlannerHeader extends Component {
   toggleUpdateItemTray = () => {
     const trayOpen = this.state.trayOpen;
     this.setState({ trayOpen: !trayOpen }, () => {
+      if (this.state.trayOpen) {
+        focusStore.setItemToFocus(this.addNoteBtn);
+      }
       this.toggleAriaHiddenStuff(this.state.trayOpen);
     });
   }
@@ -95,7 +99,7 @@ export class PlannerHeader extends Component {
   }
 
   noteBtnOnClose = () => {
-    this.addNoteBtn.focus();
+    focusStore.focus();
   }
 
   opportunityTitle = () => {
@@ -157,7 +161,6 @@ export class PlannerHeader extends Component {
           placement="end"
           trapFocus={true}
           onExited={this.noteBtnOnClose}
-          onExiting={this.noteBtnOnClose}
           onRequestClose={this.toggleUpdateItemTray}
         >
           <UpdateItemTray

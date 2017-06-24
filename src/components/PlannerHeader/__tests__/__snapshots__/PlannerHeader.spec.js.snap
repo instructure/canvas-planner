@@ -90,7 +90,6 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     isOpen={false}
     label="Add To Do"
     onExited={[Function]}
-    onExiting={[Function]}
     onRequestClose={[Function]}
     placement="end"
     shadow={true}

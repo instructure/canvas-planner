@@ -38,7 +38,7 @@ it('sends focus back to the add new item button', () => {
   const wrapper = mount(
     <PlannerHeader {...defaultProps()} />
   );
-  wrapper.setState({trayOpen: true});
+  wrapper.instance().toggleUpdateItemTray();
   const btn = wrapper.instance().addNoteBtn;
   wrapper.instance().noteBtnOnClose();
   expect(btn.focused).toBe(true);

@@ -19,6 +19,7 @@ import theme from './theme.js';
 import { arrayOf, bool, number, string, func, shape, object } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import formatMessage from '../../format-message';
+import focusStore from '../../utilities/focusStore';
 
 class PlannerItem extends Component {
   static propTypes = {
@@ -58,6 +59,7 @@ class PlannerItem extends Component {
   }
 
   toDoLinkClick = () => {
+    focusStore.setItemToFocus(this.itemLink);
     this.props.updateTodo({updateTodoItem: {...this.props}});
   }
 
@@ -155,6 +157,7 @@ class PlannerItem extends Component {
         </div>
         <div className={styles.title}>
           <Link
+            linkRef={(link) => {this.itemLink = link;}}
             {...this.props.associated_item === "To Do" ? {onClick: this.toDoLinkClick} : {}}
             href={this.props.html_url || "#" }>
             {this.props.title}
