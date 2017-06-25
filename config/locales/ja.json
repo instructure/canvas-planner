@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "プランナーアイテムを追加する"
-  },
   "add_to_do_7def3c37": {
     "message": "タスクに追加"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } タスク"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "プランナーアイテムの作成/更新"
   },
   "date_ee500367": {
     "message": "日付"

@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Agregar elemento de planificación"
-  },
   "add_to_do_7def3c37": {
     "message": "Agregar actividad por hacer"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } POR HACER"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Crear/actualizar elemento del planificador"
   },
   "date_ee500367": {
     "message": "Fecha"

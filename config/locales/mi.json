@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Tāpiri tūemi mahere"
-  },
   "add_to_do_7def3c37": {
     "message": "Tāpiri hei mahi"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } Hei mahi"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Hanga/Whkahou mahere tūemi"
   },
   "date_ee500367": {
     "message": "Rā"

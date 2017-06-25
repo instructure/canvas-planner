@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Добавить элемент планировщика"
-  },
   "add_to_do_7def3c37": {
     "message": "Добавить в задачи"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } ЗАДАЧИ"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Создать/обновить событие планировщика"
   },
   "date_ee500367": {
     "message": "Дата"

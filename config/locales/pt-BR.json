@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Adicionar itens do planejador"
-  },
   "add_to_do_7def3c37": {
     "message": "Adicionar à Lista de Tarefas"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } LISTA DE TAREFAS"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Criar/atualizar item do planejador"
   },
   "date_ee500367": {
     "message": "Data"

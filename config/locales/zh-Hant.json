@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "加入手冊項目"
-  },
   "add_to_do_7def3c37": {
     "message": "添加到待辦事項"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } 待辦事項"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "建立/更新手冊項目："
   },
   "date_ee500367": {
     "message": "日期"

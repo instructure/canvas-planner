@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "إضافة عنصر مخطِط"
-  },
   "add_to_do_7def3c37": {
     "message": "إضافة قائمة مهام"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } قائمة مهام"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "إنشاء/تحديث عنصر للمخطِط"
   },
   "date_ee500367": {
     "message": "التاريخ"

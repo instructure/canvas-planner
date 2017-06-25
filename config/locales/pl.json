@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Dodaj element planera"
-  },
   "add_to_do_7def3c37": {
     "message": "Dodaj do listy zadań"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } LISTA ZADAŃ"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Utwórz/zaktualizuj element planera"
   },
   "date_ee500367": {
     "message": "Data"

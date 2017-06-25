@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Ajoute yon eleman planifikatè"
-  },
   "add_to_do_7def3c37": {
     "message": "Ajoute Lis Tach"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } POU FÈ"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Kreye/aktyalize planifikatè"
   },
   "date_ee500367": {
     "message": "Dat"

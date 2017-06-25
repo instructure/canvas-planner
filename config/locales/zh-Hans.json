@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "添加计划程序项目"
-  },
   "add_to_do_7def3c37": {
     "message": "添加到待办事项"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } 待办事项"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "创建/更新计划程序项目"
   },
   "date_ee500367": {
     "message": "日期"

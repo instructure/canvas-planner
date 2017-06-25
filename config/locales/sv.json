@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Lägger till planeringsföremål"
-  },
   "add_to_do_7def3c37": {
     "message": "Lägg till att göra"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } ATT GÖRA"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Skapa/uppdatera planeringsföremål"
   },
   "date_ee500367": {
     "message": "Datum"

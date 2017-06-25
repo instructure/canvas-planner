@@ -1,7 +1,4 @@
 {
-  "add_planner_item_51ab3c02": {
-    "message": "Add planner item"
-  },
   "add_to_do_7def3c37": {
     "message": "Add To Do"
   },
@@ -31,9 +28,6 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } TO DO"
-  },
-  "create_update_planner_item_701fa795": {
-    "message": "Create/update planner item"
   },
   "date_ee500367": {
     "message": "Date"
