@@ -10,7 +10,7 @@ import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
 import Badge from 'instructure-ui/lib/components/Badge';
 import Opportunities from '../Opportunities';
-import {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity} from '../../actions';
+import {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity, clearUpdateTodo} from '../../actions';
 import focusStore from '../../utilities/focusStore';
 
 import styles from './styles.css';
@@ -31,6 +31,7 @@ export class PlannerHeader extends Component {
     opportunities: PropTypes.array.isRequired,
     getOpportunities: PropTypes.func.isRequired,
     dismissOpportunity: PropTypes.func.isRequired,
+    clearUpdateTodo: PropTypes.func.isRequired,
     todo: PropTypes.object,
     ariaHideElement: PropTypes.instanceOf(Element).isRequired
   };
@@ -100,6 +101,8 @@ export class PlannerHeader extends Component {
 
   noteBtnOnClose = () => {
     focusStore.focus();
+    this.props.clearUpdateTodo();
+    this.setState({ updateTodoItem: {} });
   }
 
   opportunityTitle = () => {
@@ -180,6 +183,6 @@ export class PlannerHeader extends Component {
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
 const mapStateToProps = ({opportunities, loading, courses, todo}) => ({opportunities, loading, courses, todo});
-const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity};
+const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity, clearUpdateTodo};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);

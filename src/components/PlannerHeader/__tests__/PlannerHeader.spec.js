@@ -12,6 +12,7 @@ function defaultProps (option) {
     timeZone: 'America/Denver',
     deletePlannerItem: () => {},
     dismissOpportunity: () => {},
+    clearUpdateTodo: () => {},
     ariaHideElement: document.createElement('div')
   };
 }
@@ -87,4 +88,14 @@ it('renders the tray with the name of an existing item when provided', () => {
 
   wrapper.setState({ updateTodoItem: { title: 'abc' }});
   expect(wrapper.find('Tray').prop('label')).toBe('Edit abc');
+});
+
+it('calls clearUpdateTodo when closing the tray', () => {
+  const fakeClearFunc = jest.fn();
+  const wrapper = mount(
+    <PlannerHeader {...defaultProps()} clearUpdateTodo={fakeClearFunc} />
+  );
+  wrapper.instance().toggleUpdateItemTray();
+  wrapper.instance().noteBtnOnClose();
+  expect(fakeClearFunc).toHaveBeenCalled();
 });

@@ -1,6 +1,6 @@
-import opportunitiesReducer from '../todo-reducer';
+import todoReducer from '../todo-reducer';
 
-function basicTodo (option) {
+function basicTodo (options = {}) {
   return {
     theme:{
       iconColor: "#629f56"
@@ -19,18 +19,27 @@ function basicTodo (option) {
     date: "2017-06-22T14:32:22.000Z",
     associated_item: "To Do",
     title: "asdfasdfsdf",
-    badges: []
+    badges: [],
+    ...options
   };
 }
 
-it('adds items to the state on ADD_OPPORTUNITIES', () => {
-  const initialState = [];
+it('adds todo notes to the state on UPDATE_TODO', () => {
+  const initialState = {};
 
-  const newState = opportunitiesReducer(initialState, {
+  const newState = todoReducer(initialState, {
     type: 'UPDATE_TODO',
     payload: basicTodo()
   });
 
   expect(newState.id).toBe('6');
+});
+
+it('clears the todo note item on CLEAR_UPDATE_TODO', () => {
+  const initialState = basicTodo();
+  const newState = todoReducer(initialState, {
+    type: 'CLEAR_UPDATE_TODO'
+  });
+  expect(newState).toEqual({});
 });
 
