@@ -33,18 +33,16 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
 
 function makePlannerNoteApiResponse (overrides = {}) {
   return {
-    planner_note: {
-      id: 14,
-      todo_date: '2017-06-21T18:58:51Z',
-      title: 'abc123',
-      details: 'asdfasdfasdf',
-      user_id: 5,
-      course_id: null,
-      workflow_state: 'active',
-      created_at: '2017-06-21T18:58:57Z',
-      updated_at: '2017-06-21T18:58:57Z',
-      ...overrides
-    }
+    id: 14,
+    todo_date: '2017-06-21T18:58:51Z',
+    title: 'abc123',
+    details: 'asdfasdfasdf',
+    user_id: 5,
+    course_id: null,
+    workflow_state: 'active',
+    created_at: '2017-06-21T18:58:57Z',
+    updated_at: '2017-06-21T18:58:57Z',
+    ...overrides
   };
 }
 

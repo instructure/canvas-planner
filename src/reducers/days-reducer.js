@@ -18,7 +18,6 @@ function savedPlannerItem (state, action) {
 
 function deletedPlannerItem (state, action) {
   if (action.error) return state;
-
   const doomedPlannerItem = action.payload;
   const plannerDateString = formatDayKey(doomedPlannerItem.dateBucketMoment);
   const keyedState = new Map(state);

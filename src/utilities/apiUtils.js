@@ -2,7 +2,8 @@ import moment from 'moment-timezone';
 import _ from 'lodash';
 
 const getItemDetailsFromPlannable = (apiResponse) => {
-  const { plannable, plannable_type, planner_override } = apiResponse;
+  let { plannable, plannable_type, planner_override } = apiResponse;
+
   const markedComplete = planner_override && planner_override.marked_complete;
   const details = {
     course_id: plannable.course_id,
@@ -99,7 +100,7 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
  * format.
  */
 export function transformPlannerNoteApiToInternalItem (plannerItemApiResponse, courses, timeZone) {
-  const plannerNote = plannerItemApiResponse.planner_note;
+  const plannerNote = plannerItemApiResponse;
   return {
     id: plannerNote.id,
     dateBucketMoment: moment.tz(plannerNote.todo_date, timeZone).startOf('day'),
@@ -149,4 +150,3 @@ export function transformInternalToApiOverride (internalItem, userId) {
     marked_complete: internalItem.completed
   };
 }
-

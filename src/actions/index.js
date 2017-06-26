@@ -6,7 +6,6 @@ import {formatDayKey} from '../utilities/dateUtils';
 import { alert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
 import {
-  transformApiToInternalItem,
   transformInternalToApiItem,
   transformInternalToApiOverride,
   transformPlannerNoteApiToInternalItem
@@ -128,7 +127,7 @@ export const deletePlannerItem = (plannerItem) => {
     const promise = axios({
       method: 'delete',
       url: `api/v1/planner_notes/${plannerItem.id}`,
-    }).then(response => transformApiToInternalItem(response.data, getState().courses, getState().timeZone))
+    }).then(response => transformPlannerNoteApiToInternalItem(response.data, getState().courses, getState().timeZone))
       .catch(() => alert(formatMessage('Failed to delete to do'), true));
     dispatch(deletedPlannerItem(promise));
     return promise;
