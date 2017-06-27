@@ -4,7 +4,7 @@ import themeable from 'instructure-ui/lib/themeable';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Container from 'instructure-ui/lib/components/Container';
-import { string, arrayOf, object, func } from 'prop-types';
+import { string, arrayOf, object, func, bool } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import { getFriendlyDate, getFullDate, isToday, isInPast } from '../../utilities/dateUtils';
@@ -22,6 +22,7 @@ class Day extends Component {
     rootElementRef: func,
     toggleCompletion: func,
     updateTodo: func,
+    alwaysRender: bool,
   }
 
   constructor (props) {
@@ -46,13 +47,27 @@ class Day extends Component {
 
   groupItems = (items) => groupBy(items, item => (item.context && item.context.id) || 'Notes');
 
+  hasItems () {
+    return !!Object.keys(this.state.groupedItems).length;
+  }
+
+  shouldRender () {
+    if (this.props.alwaysRender) return true;
+    const myDate = moment.tz(this.props.day, this.props.timeZone);
+    const today = moment.tz(this.props.timeZone);
+    const future = today.clone().add(2, 'weeks');
+    const past = today.clone().subtract(2, 'weeks');
+    if (myDate.isBetween(past, future, 'days')) return true;
+    return this.hasItems();
+  }
+
   render () {
-    const hasGroupedItems = !!Object.keys(this.state.groupedItems).length;
+    if (!this.shouldRender()) return null;
 
     return (
       <div className={styles.root} ref={this.props.rootElementRef}>
           <Heading
-            border={(hasGroupedItems) ? 'none' : 'bottom'}
+            border={(this.hasItems()) ? 'none' : 'bottom'}
           >
             <Typography
               as="div"
@@ -72,7 +87,7 @@ class Day extends Component {
 
         <div>
           {
-            (hasGroupedItems) ? (
+            (this.hasItems()) ? (
               Object.keys(this.state.groupedItems).map((cid, index) => {
                 const courseInfo = this.state.groupedItems[cid][0].context || {};
                 let takeFocusRef;
@@ -102,7 +117,7 @@ class Day extends Component {
                 display="block"
                 margin="small 0 0 0"
               >
-                {formatMessage('Nothing planned today')}
+                {formatMessage('No "To-Do\'s" for this day yet.')}
               </Container>
             )
           }

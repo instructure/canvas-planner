@@ -5,7 +5,7 @@ import Day from '../index';
 
 it('renders the base component with required props', () => {
   const wrapper = shallow(
-    <Day timeZone="America/Denver" day="2017-04-25" />
+    <Day timeZone="America/Denver" day="2017-04-25" alwaysRender />
   );
   expect(wrapper).toMatchSnapshot();
 });
@@ -20,8 +20,9 @@ it('renders the friendly name in large text when it is today', () => {
 });
 
 it('renders the friendlyName in medium text when it is not today', () => {
+  const yesterday = moment().add(1, 'days');
   const wrapper = shallow(
-    <Day timeZone="America/Denver" day="2017-04-25" />
+    <Day timeZone="America/Denver" day={yesterday.format('YYYY-MM-DD')} />
   );
   expect(wrapper.find('Typography').first().props().size).toEqual('medium');
 });
@@ -157,4 +158,20 @@ it('forwards takeFocusRef to its first grouping', () => {
   );
   expect(wrapper.find('Grouping').at(0).props().takeFocusRef).toBe(mockTakeFocusRef);
   expect(wrapper.find('Grouping').at(1).props().takeFocusRef).not.toBeDefined();
+});
+
+it('renders nothing when there are no items and the date is outside of two weeks', () => {
+  const date = moment.tz("Asia/Tokyo").add(15, 'days');
+  const wrapper = shallow(
+    <Day timeZone="Asia/Tokyo" day={date.format('YYYY-MM-DD')} itemsForDay={[]} />
+  );
+  expect(wrapper.type()).toBeNull();
+});
+
+it('renders when there are no items but within two weeks', () => {
+  const date = moment.tz("Asia/Tokyo").add(13, 'days');
+  const wrapper = shallow(
+    <Day timeZone="Asia/Tokyo" day={date.format('YYYY-MM-DD')} itemsForDay={[]} />
+  );
+  expect(wrapper).toMatchSnapshot();
 });

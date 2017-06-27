@@ -1,5 +1,6 @@
 import moment from 'moment-timezone';
 import {
+  formatDayKey,
   isToday, isInPast, isInFuture,
   getFriendlyDate, getFullDate,
   getFirstLoadedMoment, getLastLoadedMoment
@@ -106,6 +107,15 @@ describe('getFirstLoadedMoment', () => {
     expect(result.isSame(expected)).toBeTruthy();
   });
 
+  it('uses the day key if the first day has no items', () => {
+    const expected = moment().tz('Asia/Tokyo').startOf('day');
+    const formattedDate = formatDayKey(expected);
+    const result = getFirstLoadedMoment([
+      [formattedDate, []],
+    ], 'Asia/Tokyo');
+    expect(result.isSame(expected)).toBeTruthy();
+  });
+
   it('returns a clone', () => {
     const expected = moment.tz('Asia/Tokyo').startOf('day');
     const result = getFirstLoadedMoment(
@@ -126,6 +136,15 @@ describe('getLastLoadedMoment', () => {
     const expected = moment().tz('Asia/Tokyo').startOf('day');
     const result = getLastLoadedMoment([
       ['some date', [{dateBucketMoment: expected}]],
+    ], 'Asia/Tokyo');
+    expect(result.isSame(expected)).toBeTruthy();
+  });
+
+  it('uses the day key if the last day has no items', () => {
+    const expected = moment().tz('Asia/Tokyo').startOf('day');
+    const formattedDate = formatDayKey(expected);
+    const result = getLastLoadedMoment([
+      [formattedDate, []],
     ], 'Asia/Tokyo');
     expect(result.isSame(expected)).toBeTruthy();
   });
