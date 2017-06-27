@@ -26,6 +26,10 @@ const getItemDetailsFromPlannable = (apiResponse) => {
     details.date = plannable.posted_at;
   }
 
+  if (plannable_type === 'planner_note') {
+    details.details = plannable.details;
+  }
+
   return details;
 };
 

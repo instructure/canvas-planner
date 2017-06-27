@@ -93,6 +93,7 @@ class Grouping extends Component {
           html_url={item.html_url}
           toggleCompletion={() => this.props.toggleCompletion(item)}
           badges={this.state.badgeMap[item.id]}
+          details={item.details}
         />
       </li>
     ));

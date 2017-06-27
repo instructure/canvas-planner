@@ -28,6 +28,7 @@ class PlannerItem extends Component {
     title: string.isRequired,
     points: number,
     date: momentObj,
+    details: string,
     courseName: string,
     completed: bool,
     associated_item: string,
