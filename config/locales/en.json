@@ -89,11 +89,11 @@
   "no_due_dates_assigned_e8f5bac8": {
     "message": "No Due Dates Assigned"
   },
+  "no_to_do_s_for_this_day_yet_90c5873d": {
+    "message": "No \"To-Do''s\" for this day yet."
+  },
   "nothing_new_needs_attention_3ac548d4": {
     "message": "Nothing new needs attention."
-  },
-  "nothing_planned_today_174ba986": {
-    "message": "Nothing planned today"
   },
   "optional_add_course_ef0d70fc": {
     "message": "Optional: Add Course"
