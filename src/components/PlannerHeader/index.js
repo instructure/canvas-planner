@@ -102,7 +102,7 @@ export class PlannerHeader extends Component {
   noteBtnOnClose = () => {
     focusStore.focus();
     this.props.clearUpdateTodo();
-    this.setState({ updateTodoItem: {} });
+    this.setState({ updateTodoItem: null });
   }
 
   opportunityTitle = () => {
