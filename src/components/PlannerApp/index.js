@@ -82,7 +82,7 @@ export class PlannerApp extends Component {
     if (!this.props.firstNewActivityDate) return;
 
     const firstLoadedMoment = getFirstLoadedMoment(this.props.days, this.props.timeZone);
-    if (firstLoadedMoment.isSameOrBefore(this.props.firstNewActivityDate)) return;
+    if (firstLoadedMoment.isSame(this.props.firstNewActivityDate) || firstLoadedMoment.isBefore(this.props.firstNewActivityDate)) return;
 
     return (
       <StickyButton
