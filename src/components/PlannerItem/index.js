@@ -59,7 +59,8 @@ class PlannerItem extends Component {
     });
   }
 
-  toDoLinkClick = () => {
+  toDoLinkClick = (e) => {
+    e.preventDefault();
     focusStore.setItemToFocus(this.itemLink);
     this.props.updateTodo({updateTodoItem: {...this.props}});
   }
