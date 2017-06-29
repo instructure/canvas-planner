@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "check-transifex": "BABEL_ENV=test babel-node ./scripts/check-transifex.js",
-    "extract": "format-message extract src/**/**/*.js -o config/locales/en.json",
+    "extract": "format-message extract $(find src/ -name \"*.js\") -o config/locales/en.json",
     "lint-staged": "lint-staged",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
