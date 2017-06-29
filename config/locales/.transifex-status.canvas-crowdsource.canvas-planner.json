@@ -21,16 +21,16 @@
     "last_update": "2017-06-27 21:17:24",
     "untranslated_entities": 1
   },
-  "en": {
+  "bg": {
     "reviewed_percentage": "0%",
-    "completed": "100%",
-    "untranslated_words": 0,
+    "completed": "26%",
+    "untranslated_words": 129,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 42,
-    "translated_words": 141,
-    "last_update": "2017-06-27 21:17:24",
-    "untranslated_entities": 0
+    "translated_entities": 11,
+    "translated_words": 12,
+    "last_update": "2017-06-27 21:17:23",
+    "untranslated_entities": 31
   },
   "fa_IR": {
     "reviewed_percentage": "0%",
@@ -54,16 +54,16 @@
     "last_update": "2017-06-27 21:17:24",
     "untranslated_entities": 28
   },
-  "vi": {
+  "sr": {
     "reviewed_percentage": "0%",
-    "completed": "21%",
-    "untranslated_words": 131,
+    "completed": "28%",
+    "untranslated_words": 127,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 9,
-    "translated_words": 10,
+    "translated_entities": 12,
+    "translated_words": 14,
     "last_update": "2017-06-27 21:17:23",
-    "untranslated_entities": 33
+    "untranslated_entities": 30
   },
   "sq": {
     "reviewed_percentage": "0%",
@@ -75,17 +75,6 @@
     "translated_words": 11,
     "last_update": "2017-06-27 21:17:23",
     "untranslated_entities": 32
-  },
-  "tr": {
-    "reviewed_percentage": "0%",
-    "completed": "64%",
-    "untranslated_words": 84,
-    "last_commiter": "canvastransifex",
-    "reviewed": 0,
-    "translated_entities": 27,
-    "translated_words": 57,
-    "last_update": "2017-06-27 21:17:24",
-    "untranslated_entities": 15
   },
   "ko": {
     "reviewed_percentage": "0%",
@@ -109,6 +98,17 @@
     "last_update": "2017-06-27 21:17:24",
     "untranslated_entities": 28
   },
+  "tr": {
+    "reviewed_percentage": "0%",
+    "completed": "64%",
+    "untranslated_words": 84,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 27,
+    "translated_words": 57,
+    "last_update": "2017-06-27 21:17:24",
+    "untranslated_entities": 15
+  },
   "uk_UA": {
     "reviewed_percentage": "0%",
     "completed": "33%",
@@ -120,38 +120,27 @@
     "last_update": "2017-06-27 21:17:24",
     "untranslated_entities": 28
   },
-  "hy": {
+  "en": {
     "reviewed_percentage": "0%",
-    "completed": "28%",
-    "untranslated_words": 127,
+    "completed": "100%",
+    "untranslated_words": 0,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 12,
-    "translated_words": 14,
-    "last_update": "2017-06-27 21:17:23",
-    "untranslated_entities": 30
+    "translated_entities": 42,
+    "translated_words": 141,
+    "last_update": "2017-06-27 21:17:24",
+    "untranslated_entities": 0
   },
-  "bg": {
+  "vi": {
     "reviewed_percentage": "0%",
-    "completed": "26%",
-    "untranslated_words": 129,
+    "completed": "21%",
+    "untranslated_words": 131,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 11,
-    "translated_words": 12,
+    "translated_entities": 9,
+    "translated_words": 10,
     "last_update": "2017-06-27 21:17:23",
-    "untranslated_entities": 31
-  },
-  "sr": {
-    "reviewed_percentage": "0%",
-    "completed": "28%",
-    "untranslated_words": 127,
-    "last_commiter": "canvastransifex",
-    "reviewed": 0,
-    "translated_entities": 12,
-    "translated_words": 14,
-    "last_update": "2017-06-27 21:17:23",
-    "untranslated_entities": 30
+    "untranslated_entities": 33
   },
   "cs": {
     "reviewed_percentage": "0%",
@@ -163,6 +152,17 @@
     "translated_words": 8,
     "last_update": "2017-06-27 21:17:23",
     "untranslated_entities": 34
+  },
+  "hy": {
+    "reviewed_percentage": "0%",
+    "completed": "28%",
+    "untranslated_words": 127,
+    "last_commiter": "canvastransifex",
+    "reviewed": 0,
+    "translated_entities": 12,
+    "translated_words": 14,
+    "last_update": "2017-06-27 21:17:23",
+    "untranslated_entities": 30
   },
   "ro": {
     "reviewed_percentage": "0%",
