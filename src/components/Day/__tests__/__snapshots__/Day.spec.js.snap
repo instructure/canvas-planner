@@ -133,7 +133,7 @@ exports[`renders when there are no items but within two weeks 1`] = `
       size="medium"
       transform="uppercase"
     >
-      Wednesday
+      Thursday
     </Typography>
     <Typography
       as="div"
@@ -141,7 +141,7 @@ exports[`renders when there are no items but within two weeks 1`] = `
       lineHeight="condensed"
       size="medium"
     >
-      July 12, 2017
+      July 13, 2017
     </Typography>
   </Heading>
   <div>
