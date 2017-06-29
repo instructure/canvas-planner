@@ -200,12 +200,32 @@ Object {
 }
 `;
 
-exports[`transformPlannerNoteApiToInternalItem transforms the planner note response to the internal item 1`] = `
+exports[`transformPlannerNoteApiToInternalItem transforms the planner note response to an internal item when the planner note has an associated course 1`] = `
 Object {
   "completed": false,
   "context": Object {
-    "id": null,
+    "color": "#abffaa",
+    "id": "1",
+    "image_url": "blah_url",
+    "title": "blah",
+    "type": "Planner Note",
+    "url": undefined,
   },
+  "course_id": "1",
+  "date": "2017-06-21T18:58:51Z",
+  "dateBucketMoment": "2017-06-21T00:00:00.000Z",
+  "details": "asdfasdfasdf",
+  "id": 14,
+  "status": false,
+  "title": "abc123",
+  "type": "To Do",
+}
+`;
+
+exports[`transformPlannerNoteApiToInternalItem transforms the planner note response to the internal item 1`] = `
+Object {
+  "completed": false,
+  "context": Object {},
   "course_id": null,
   "date": "2017-06-21T18:58:51Z",
   "dateBucketMoment": "2017-06-21T00:00:00.000Z",

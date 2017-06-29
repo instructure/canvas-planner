@@ -105,15 +105,27 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
  */
 export function transformPlannerNoteApiToInternalItem (plannerItemApiResponse, courses, timeZone) {
   const plannerNote = plannerItemApiResponse;
+  let context = {};
+  if (plannerNote.course_id) {
+    const course = courses.find(c => c.id === plannerNote.course_id);
+    if (course) {
+      context = {
+        type: 'Planner Note',
+        id: plannerNote.course_id,
+        title: course.shortName,
+        image_url: course.image,
+        color: course.color,
+        url: course.href
+      };
+    }
+  }
   return {
     id: plannerNote.id,
     dateBucketMoment: moment.tz(plannerNote.todo_date, timeZone).startOf('day'),
     type: 'To Do',
     status: false,
     course_id: plannerNote.course_id,
-    context: {
-      id: plannerNote.course_id
-    },
+    context: context,
     title: plannerNote.title,
     date: plannerNote.todo_date,
     details: plannerNote.details,

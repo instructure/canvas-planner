@@ -486,4 +486,10 @@ describe('transformPlannerNoteApiToInternalItem', () => {
     const internalItem = transformPlannerNoteApiToInternalItem(apiResponse, courses, 'UTC');
     expect(internalItem).toMatchSnapshot();
   });
+
+  it('transforms the planner note response to an internal item when the planner note has an associated course', () => {
+    const apiResponse = makePlannerNoteApiResponse({ course_id: '1'});
+    const internalItem = transformPlannerNoteApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(internalItem).toMatchSnapshot();
+  });
 });
