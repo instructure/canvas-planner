@@ -22,6 +22,23 @@ describe('getBadgesForItem', () => {
       variant: 'danger'
     }]);
   });
+
+  it('returns new_replies status when there is an unread_count', () => {
+    const item = { status: { unread_count: 42 }};
+    expect(getBadgesForItem(item)).toEqual([{
+      id: 'new_replies', text: 'New Replies',
+    }]);
+  });
+
+  it('does not set new_replies when unread_count is 0', () => {
+    const item = { status: { unread_count: 0 }};
+    expect(getBadgesForItem(item)).toEqual([]);
+  });
+
+  it('does not barf on unrecognized statuses', () => {
+    const item = { status: { barf: true }};
+    expect(getBadgesForItem(item)).toEqual([]);
+  });
 });
 
 describe('getBadgesForItems', () => {

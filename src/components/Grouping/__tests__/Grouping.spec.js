@@ -125,7 +125,7 @@ it('does not render a CompletedItemsFacade when showCompletedItems state is true
 
 it('renders an activity notification when there are things in the past with status badges', () => {
   const props = getDefaultProps();
-  props.items[0].status = ["graded"];
+  props.items[0].status = {"graded": true};
   props.isInPast = true;
 
   const wrapper = shallow(
@@ -137,7 +137,7 @@ it('renders an activity notification when there are things in the past with stat
 
 it('does not render an activity badge when things in the past have no status', () => {
   const props = getDefaultProps();
-  props.items[0].status = [];
+  props.items[0].status = {};
   props.isInPast = true;
   const wrapper = shallow(
     <Grouping {...props} />

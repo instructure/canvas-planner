@@ -34,8 +34,15 @@ export function anyNewActivity (items) {
 export function getBadgesForItem (item) {
   let badges = [];
   if (item.status) {
-    badges = Object.keys(item.status).filter(key => item.status[key] && key !== 'needs_grading').map(a => PILL_MAPPING[a]);
+    badges = Object.keys(item.status)
+      .filter(key => item.status[key] && PILL_MAPPING.hasOwnProperty(key))
+      .map(a => PILL_MAPPING[a]);
+
+    if (item.status.unread_count) {
+      badges.push(PILL_MAPPING.new_replies);
+    }
   }
+
   return badges;
 }
 
