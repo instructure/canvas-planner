@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import themeable from 'instructure-ui/lib/themeable';
 import Button from 'instructure-ui/lib/components/Button';
 import IconPlusLine from 'instructure-icons/lib/Line/IconPlusLine';
-import IconAlertLine from 'instructure-icons/lib/Line/IconAlertLine';
+import IconAlertsLine from 'instructure-icons/lib/Line/IconAlertsLine';
 import Popover, {PopoverTrigger, PopoverContent} from 'instructure-ui/lib/components/Popover';
 import PropTypes from 'prop-types';
 import UpdateItemTray from '../UpdateItemTray';
@@ -143,7 +143,7 @@ export class PlannerHeader extends Component {
               variant="icon"
               ref={(b) => { this.opportunitiesButton = b; }}>
               <Badge {...this.state.opportunities.length ? {count :this.state.opportunities.length} : {}}>
-                <IconAlertLine title={this.opportunityTitle()} />
+                <IconAlertsLine title={this.opportunityTitle()} />
               </Badge>
             </Button>
           </PopoverTrigger>

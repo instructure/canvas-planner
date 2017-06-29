@@ -47,7 +47,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
           type="count"
           variant="primary"
         >
-          <IconAlertLine
+          <IconAlertsLine
             title="1 opportunity"
           />
         </Badge>
