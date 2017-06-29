@@ -13,7 +13,10 @@ function savedPlannerItem (state, action) {
   const plannerItem = action.payload;
   const plannerDateString = formatDayKey(plannerItem.dateBucketMoment);
   const plannerDay = state.find(day => day[0] === plannerDateString);
-  if (!plannerDay) return state;
+  if (!plannerDay) {
+    const newState = state.concat([[plannerDateString, []]]);
+    return gotItemsSuccess(newState, [plannerItem]);
+  }
   return gotItemsSuccess(state, [plannerItem]);
 }
 

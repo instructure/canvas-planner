@@ -102,15 +102,22 @@ describe('saving planner items', () => {
     ]);
   });
 
-  it('does nothing if the date is not loaded', () => {
+  it('adds a new date if the date is not loaded', () => {
     const initialState = [
       ['2017-04-27', [{ id: '42'}]],
     ];
+
+    const fakeDateBucketMoment = moment.tz('2017-04-28', 'UTC');
     const newState = daysReducer(initialState, {
       type: 'SAVED_PLANNER_ITEM',
-      payload: {dateBucketMoment: moment.tz('2017-04-28', 'UTC'), id: '43'},
+      payload: {dateBucketMoment: fakeDateBucketMoment, id: '43'},
     });
-    expect(newState).toBe(initialState);
+
+    const expectedState = [
+      ['2017-04-27', [{ id: '42' }]],
+      ['2017-04-28', [{ id: '43', dateBucketMoment: fakeDateBucketMoment }]]
+    ];
+    expect(newState).toEqual(expectedState);
   });
 
   it('does not add anything if the action is an error', () => {
