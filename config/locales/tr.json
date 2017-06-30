@@ -26,8 +26,17 @@
   "due_5d7267be": {
     "message": "Bitiş:"
   },
+  "excused_cf8792eb": {
+    "message": "Mazeretli"
+  },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "Kontrol Paneli Kartı Görünümüne Git"
+  },
+  "graded_25cd3fcd": {
+    "message": "Notlandırıldı"
+  },
+  "late_2be42b88": {
+    "message": "Geç"
   },
   "load_more_a36f9cf9": {
     "message": "Daha fazla yükle"
@@ -68,6 +77,9 @@
   "save_11a80ec3": {
     "message": "Kaydet"
   },
+  "submitted_318fad53": {
+    "message": "Gönderildi"
+  },
   "task_16b0ef38": {
     "message": "Görev"
   },
@@ -79,5 +91,14 @@
   },
   "to_do_1d554f36": {
     "message": "Yapılacaklar"
+  },
+  "today_76e10f9c": {
+    "message": "Bugün"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "Yarın"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "Dün"
   }
 }

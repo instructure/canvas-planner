@@ -17,6 +17,15 @@
   "due_5d7267be": {
     "message": "Frist:"
   },
+  "excused_cf8792eb": {
+    "message": "Fritak er innvilga"
+  },
+  "graded_25cd3fcd": {
+    "message": "Karaktersett"
+  },
+  "late_2be42b88": {
+    "message": "Sein"
+  },
   "load_more_a36f9cf9": {
     "message": "Last opp meir"
   },
@@ -35,10 +44,22 @@
   "save_11a80ec3": {
     "message": "Lagre"
   },
+  "submitted_318fad53": {
+    "message": "Innlevert"
+  },
   "title_ee03d132": {
     "message": "Tittel"
   },
   "to_do_1d554f36": {
     "message": "Å gjere"
+  },
+  "today_76e10f9c": {
+    "message": "I dag"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "I morgon"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "I går"
   }
 }

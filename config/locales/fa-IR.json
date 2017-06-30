@@ -17,6 +17,15 @@
   "due_5d7267be": {
     "message": "مهلت:"
   },
+  "excused_cf8792eb": {
+    "message": "معاف شد"
+  },
+  "graded_25cd3fcd": {
+    "message": "نمره گذاری شده"
+  },
+  "late_2be42b88": {
+    "message": "با تأخیر"
+  },
   "load_more_a36f9cf9": {
     "message": "بارگذاری بیشتر"
   },
@@ -32,10 +41,22 @@
   "save_11a80ec3": {
     "message": "ذخیره سازی"
   },
+  "submitted_318fad53": {
+    "message": "ارسال شد"
+  },
   "title_ee03d132": {
     "message": "عنوان"
   },
   "to_do_1d554f36": {
     "message": "برای انجام"
+  },
+  "today_76e10f9c": {
+    "message": "امروز"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "فردا"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "دیروز"
   }
 }

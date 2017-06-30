@@ -50,8 +50,17 @@
   "edit_title_72e5a21e": {
     "message": "עריכת { title }"
   },
+  "excused_cf8792eb": {
+    "message": "נסלח"
+  },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "מעבר אל תצוגת כרטיס לוח המחוונים"
+  },
+  "graded_25cd3fcd": {
+    "message": "מוערך"
+  },
+  "late_2be42b88": {
+    "message": "איחור"
   },
   "load_more_a36f9cf9": {
     "message": "טען עוד"
@@ -104,6 +113,9 @@
   "save_11a80ec3": {
     "message": "שמירה "
   },
+  "submitted_318fad53": {
+    "message": "הוגש"
+  },
   "task_16b0ef38": {
     "message": "מטלה"
   },
@@ -115,5 +127,14 @@
   },
   "to_do_1d554f36": {
     "message": "לביצוע"
+  },
+  "today_76e10f9c": {
+    "message": "היום"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "מחר"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "אתמול"
   }
 }

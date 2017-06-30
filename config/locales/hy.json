@@ -17,6 +17,12 @@
   "due_5d7267be": {
     "message": "Մինչև"
   },
+  "excused_cf8792eb": {
+    "message": "Ներված է"
+  },
+  "graded_25cd3fcd": {
+    "message": "Գնահատվող"
+  },
   "load_more_a36f9cf9": {
     "message": "Բեռնել լրացուցիչ"
   },
@@ -29,10 +35,22 @@
   "save_11a80ec3": {
     "message": "Պահպանել"
   },
+  "submitted_318fad53": {
+    "message": "Ներկայացված է "
+  },
   "title_ee03d132": {
     "message": "Վերնագիր"
   },
   "to_do_1d554f36": {
     "message": "Անել"
+  },
+  "today_76e10f9c": {
+    "message": "Այսօր"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "Վաղը"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "Երեկ"
   }
 }

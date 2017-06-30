@@ -17,6 +17,15 @@
   "due_5d7267be": {
     "message": "Очікується:"
   },
+  "excused_cf8792eb": {
+    "message": "Поважно"
+  },
+  "graded_25cd3fcd": {
+    "message": "Оцінено"
+  },
+  "late_2be42b88": {
+    "message": "Пізніше"
+  },
   "load_more_a36f9cf9": {
     "message": "Завантажити більше"
   },
@@ -35,10 +44,22 @@
   "save_11a80ec3": {
     "message": "Зберегти"
   },
+  "submitted_318fad53": {
+    "message": "Підтверджено"
+  },
   "title_ee03d132": {
     "message": "Заголовок"
   },
   "to_do_1d554f36": {
     "message": "Зробити"
+  },
+  "today_76e10f9c": {
+    "message": "Сьогодні"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "Завтра"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "Вчора"
   }
 }

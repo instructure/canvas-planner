@@ -17,6 +17,9 @@
   "due_5d7267be": {
     "message": "기한:"
   },
+  "graded_25cd3fcd": {
+    "message": "평가됨"
+  },
   "load_more_a36f9cf9": {
     "message": "더 로드"
   },
@@ -32,10 +35,22 @@
   "save_11a80ec3": {
     "message": "저장"
   },
+  "submitted_318fad53": {
+    "message": "제출됨"
+  },
   "title_ee03d132": {
     "message": "제목"
   },
   "to_do_1d554f36": {
     "message": "할 일"
+  },
+  "today_76e10f9c": {
+    "message": "오늘"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "내일"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "어제"
   }
 }

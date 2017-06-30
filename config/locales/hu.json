@@ -17,6 +17,15 @@
   "due_5d7267be": {
     "message": "Határidő: "
   },
+  "excused_cf8792eb": {
+    "message": "Felmentve"
+  },
+  "graded_25cd3fcd": {
+    "message": "Értékelve"
+  },
+  "late_2be42b88": {
+    "message": "Késve"
+  },
   "load_more_a36f9cf9": {
     "message": "Továbbiak betöltése"
   },
@@ -35,10 +44,22 @@
   "save_11a80ec3": {
     "message": "Mentés"
   },
+  "submitted_318fad53": {
+    "message": "Beadva"
+  },
   "title_ee03d132": {
     "message": "Cím"
   },
   "to_do_1d554f36": {
     "message": "Teendők"
+  },
+  "today_76e10f9c": {
+    "message": "Ma"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "Holnap"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "Tegnap"
   }
 }
