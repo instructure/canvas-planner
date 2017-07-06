@@ -52,10 +52,10 @@ it('updates state correctly on DISMISSED_OPPORTUNITY with opportunity that has o
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
-    payload: {id: "6", marked_complete: true, plannable_id: "6"}
+    payload: {id: "6", marked_complete: false, plannable_id: "6", dismissed: true}
   });
 
-  expect(newState[0].planner_override.marked_complete).toBe(true);
+  expect(newState[0].planner_override.dismissed).toBe(true);
 });
 
 it('adds to opportunity object if no planner override DISMISSED_OPPORTUNITY', () => {
@@ -65,8 +65,8 @@ it('adds to opportunity object if no planner override DISMISSED_OPPORTUNITY', ()
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
-    payload: {id: "6", marked_complete: true, plannable_id: "6"}
+    payload: {id: "6", marked_complete: false, plannable_id: "6", dismissed: true}
   });
 
-  expect(newState[0].planner_override.marked_complete).toBe(true);
+  expect(newState[0].planner_override.dismissed).toBe(true);
 });

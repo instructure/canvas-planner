@@ -95,30 +95,13 @@ export const getOpportunities = () => {
 export const dismissOpportunity = (id, plannerOverride) => {
   return (dispatch, getState) => {
     dispatch(startDismissingOpportunity(id));
-    if (plannerOverride) {
-      axios({
-        method: 'put',
-        params: {
-          id: plannerOverride.id,
-          marked_complete: true,
-        },
-        url: `/api/v1/planner/overrides/${plannerOverride.id}`,
-      }).then(response => {
-        dispatch(dismissedOpportunity(response.data));
-      });
-    } else {
-      axios({
-        method: 'post',
-        params: {
-          plannable_id: id,
-          plannable_type: 'assignment',
-          marked_complete: true,
-        },
-        url: '/api/v1/planner/overrides',
-      }).then(response => {
-        dispatch(dismissedOpportunity(response.data));
-      });
-    }
+    const apiOverride = Object.assign({}, plannerOverride);
+    apiOverride.dismissed = true;
+    let promise = apiOverride.id ?
+      saveExistingPlannerOverride(apiOverride) :
+      saveNewPlannerOverride(apiOverride);
+    promise = promise.then(response => dispatch(dismissedOpportunity(response.data)));
+    return promise;
   };
 };
 

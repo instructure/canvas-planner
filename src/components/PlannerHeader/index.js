@@ -83,7 +83,7 @@ export class PlannerHeader extends Component {
   }
 
   isOpportunityVisible = (opportunity) => {
-    return opportunity.planner_override ? !opportunity.planner_override.marked_complete : true;
+    return opportunity.planner_override ? !opportunity.planner_override.dismissed : true;
   }
 
   handleDeletePlannerItem = (plannerItem) => {
