@@ -18,10 +18,11 @@
 import moment from 'moment-timezone';
 import _ from 'lodash';
 
-const getItemDetailsFromPlannable = (apiResponse) => {
+const getItemDetailsFromPlannable = (apiResponse, timeZone) => {
   let { plannable, plannable_type, planner_override } = apiResponse;
 
   const markedComplete = planner_override && planner_override.marked_complete;
+
   const details = {
     course_id: plannable.course_id,
     title: plannable.name || plannable.title,
@@ -46,7 +47,11 @@ const getItemDetailsFromPlannable = (apiResponse) => {
   if (plannable_type === 'planner_note') {
     details.details = plannable.details;
   }
-
+  // Standardize 00:00:00 date to 11:59PM on the current day to make due date less confusing
+  let currentDay = moment(details.date);
+  if (currentDay.tz(timeZone).format('HH:mm:ss') === '00:00:00') {
+    details.date = currentDay.endOf('day').format();
+  }
   return details;
 };
 
@@ -89,7 +94,7 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
     }
   }
 
-  const details = getItemDetailsFromPlannable(apiResponse);
+  const details = getItemDetailsFromPlannable(apiResponse, timeZone);
 
   if ((!contextInfo.context) && apiResponse.plannable_type === 'planner_note' && (details.course_id)) {
     const course = courses.find(c => c.id === details.course_id);
