@@ -86,7 +86,8 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
     };
   }
 
-  if (details.unread_count && apiResponse.submissions) {
+  if (details.unread_count) {
+    apiResponse.submissions = apiResponse.submissions || {};
     apiResponse.submissions.unread_count = details.unread_count;
   }
   return {

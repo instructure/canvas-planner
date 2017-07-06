@@ -200,6 +200,34 @@ Object {
 }
 `;
 
+exports[`transformApiToInternalItem extracts and transforms the proper data for an ungraded discussion reponse with an unread count 1`] = `
+Object {
+  "completed": undefined,
+  "context": Object {
+    "color": "#abffaa",
+    "id": "1",
+    "image_url": "blah_url",
+    "title": "blah",
+    "type": "Course",
+    "url": undefined,
+  },
+  "course_id": undefined,
+  "date": "2017-05-19T05:59:59Z",
+  "dateBucketMoment": "2017-05-19T00:00:00.000Z",
+  "html_url": "/courses/1/discussion_topics/10",
+  "id": "1",
+  "overrideAssignId": 9,
+  "overrideId": null,
+  "points": undefined,
+  "status": Object {
+    "unread_count": 10,
+  },
+  "title": "How to make enemies",
+  "type": "Discussion",
+  "unread_count": 10,
+}
+`;
+
 exports[`transformPlannerNoteApiToInternalItem transforms the planner note response to an internal item when the planner note has an associated course 1`] = `
 Object {
   "completed": false,

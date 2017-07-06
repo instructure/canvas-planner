@@ -309,6 +309,20 @@ describe('transformApiToInternalItem', () => {
     expect(result).toMatchSnapshot();
   });
 
+  it('extracts and transforms the proper data for an ungraded discussion reponse with an unread count', () => {
+    const apiResponse = makeApiResponse({
+      plannable_type: 'discussion_topic',
+      submissions: false,
+      plannable: makeDiscussionTopic({
+        title: "How to make enemies",
+        todo_date: "2017-05-19T05:59:59Z",
+        unread_count: 10
+      })
+    });
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
   it('extracts and transforms the proper data for a assignment response', () => {
     const apiResponse = makeApiResponse({
       plannable_type: 'assignment',
