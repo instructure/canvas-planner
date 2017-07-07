@@ -1,7 +1,7 @@
 canvas-planner
 ==================
 
-Canvas Planner is the UI component for the Planner feature in [Canvas](https://github.com/instructure/canvas-lms).
+Canvas Planner is the UI component for the List View Dashboard feature in [Canvas](https://github.com/instructure/canvas-lms).
 
 ## Production
 

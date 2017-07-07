@@ -3,6 +3,10 @@
   "version": "1.0.3",
   "description": "UI portion of planner application for canvas-lms.",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/instructure/canvas-planner.git"
+  },
   "scripts": {
     "check-transifex": "BABEL_ENV=test babel-node ./scripts/check-transifex.js",
     "extract": "format-message extract $(find src/ -name \"*.js\") -o config/locales/en.json",
@@ -33,7 +37,7 @@
     "canvas"
   ],
   "author": "Instructure, Inc.",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "peerDependencies": {
     "lodash": "^4.16.0",
     "react": "^0.14.7 || >=15.0.0",
