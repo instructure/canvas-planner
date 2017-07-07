@@ -93,6 +93,7 @@
     "eslint-plugin-flowtype": "^2.21.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.0.0 || ^3.0.0 || ^4.0.0",
+    "eslint-plugin-notice": "^0.2.2",
     "eslint-plugin-react": "^6.10.3",
     "format-message-cli": "^5.1.4",
     "identity-obj-proxy": "^3.0.0",

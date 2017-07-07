@@ -1,7 +1,5 @@
-/* Global variables (colors, typography, spacing, etc.) are defined in lib/themes */
-
 /*
- * Copyright (C) 2017 - present Instructure, Inc.
+ * Copyright (C) <%= YEAR %> - present Instructure, Inc.
  *
  * This module is part of Canvas.
  *
@@ -17,16 +15,3 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-export default function generator ({ colors, typography, spacing }) {
-  return {
-    fontSize: typography.fontSizeMedium,
-    fontFamily: typography.fontFamily,
-    fontWeight: typography.fontWeightNormal,
-    lineHeight: typography.lineHeightCondensed,
-
-    color: colors.oxford,
-    background: colors.white,
-
-    marginTop: spacing.large
-  };
-}
