@@ -17,6 +17,9 @@
   "close_d634289d": {
     "message": "إغلاق"
   },
+  "close_opportunities_popover_f4e50551": {
+    "message": "إغلاق الصفحات المنبثقة العلوية للفرص"
+  },
   "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
     "message": "{ count, plural,\n     =0 {# فرص}\n    one {# فرصة}\n  other {# فرص}\n}"
   },
@@ -28,6 +31,9 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } قائمة مهام"
+  },
+  "date_at_time_dbdb1b99": {
+    "message": "{ date } في { time }"
   },
   "date_ee500367": {
     "message": "التاريخ"
@@ -41,17 +47,53 @@
   "details_98a31b68": {
     "message": "التفاصيل"
   },
+  "dismiss_opportunityname_5995176f": {
+    "message": "تجاهل { opportunityName }"
+  },
   "due_5d7267be": {
     "message": "تاريخ الاستحقاق:"
   },
   "due_date_8ce289b6": {
     "message": "تاريخ الاستحقاق: { date }"
   },
+  "edit_title_72e5a21e": {
+    "message": "تحرير { title }"
+  },
+  "error_loading_items_5218438e": {
+    "message": "خطأ أثناء تحميل العناصر"
+  },
+  "excused_cf8792eb": {
+    "message": "غير إجباري"
+  },
+  "failed_to_delete_to_do_64edff49": {
+    "message": "تعذر حذف قائمة مهام"
+  },
+  "failed_to_get_new_activity_17e7ec7c": {
+    "message": "تعذر الحصول على نشاط جديد"
+  },
+  "failed_to_load_opportunities_52ab6404": {
+    "message": "تعذر تحميل الفرص"
+  },
+  "failed_to_save_to_do_ddc7503b": {
+    "message": "تعذر حفظ قائمة مهام"
+  },
+  "go_to_dashboard_card_view_10398ef6": {
+    "message": "اذهب إلى طريقة عرض بطاقة لوحة المعلومات"
+  },
+  "graded_25cd3fcd": {
+    "message": "تم منح الدرجات"
+  },
+  "late_2be42b88": {
+    "message": "متأخر"
+  },
   "load_more_a36f9cf9": {
     "message": "تحميل المزيد"
   },
   "load_prior_dates_f2b0f6f0": {
     "message": "تحميل تواريخ سابقة"
+  },
+  "loaded_count_plural_0_items_one_item_other_items_e58533e9": {
+    "message": "{ count, plural,\n     =0{# عناصر}\n    one {# عنصر}\n  other {# عناصر تم تحميلها}\n}"
   },
   "loading_25990131": {
     "message": "يتم الآن التحميل..."
@@ -62,20 +104,44 @@
   "loading_planner_items_947a813d": {
     "message": "جارٍ تحميل عناصر المخطِط"
   },
+  "looks_like_there_isn_t_anything_here_d9bcef49": {
+    "message": "يبدو أنه لا يوجد أي شيء هنا"
+  },
   "missing_1a256b3b": {
     "message": "مفقود"
   },
   "new_activity_8b84847d": {
     "message": "نشاط جديد"
   },
+  "new_feedback_f5d9c97f": {
+    "message": "ملاحظات جديدة"
+  },
+  "new_grades_7855c0dc": {
+    "message": "درجات جديدة"
+  },
+  "new_replies_ef068695": {
+    "message": "ردود جديدة"
+  },
   "next_month_749b1778": {
     "message": "الشهر القادم"
+  },
+  "no_due_dates_assigned_e8f5bac8": {
+    "message": "لم يتم تعيين تواريخ الاستحقاق"
+  },
+  "no_to_do_s_for_this_day_yet_90c5873d": {
+    "message": "لا توجد \"قوائم مهام\" في هذا اليوم حتى الآن."
+  },
+  "nothing_new_needs_attention_3ac548d4": {
+    "message": "لا يوجد شيء جديد يستدعي الاهتمام."
   },
   "optional_add_course_ef0d70fc": {
     "message": "اختياري: إضافة مساق"
   },
   "points_bceb5005": {
     "message": "نقاط"
+  },
+  "points_points_63e59cce": {
+    "message": "{ points } نقاط"
   },
   "previous_month_bb1e3c84": {
     "message": "الشهر السابق"
@@ -85,6 +151,9 @@
   },
   "save_11a80ec3": {
     "message": "حفظ"
+  },
+  "submitted_318fad53": {
+    "message": "تم الإرسال"
   },
   "task_16b0ef38": {
     "message": "مهمة"
@@ -97,5 +166,23 @@
   },
   "to_do_1d554f36": {
     "message": "قائمة مهام"
+  },
+  "today_76e10f9c": {
+    "message": "اليوم"
+  },
+  "today_at_date_8ac30d6": {
+    "message": "اليوم الساعة { date }"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "غدًا"
+  },
+  "tomorrow_at_date_b53f2cf1": {
+    "message": "غدًا الساعة { date }"
+  },
+  "yesterday_at_date_1aa6d18e": {
+    "message": "أمس الساعة { date }"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "أمس"
   }
 }

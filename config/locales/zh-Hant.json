@@ -17,6 +17,9 @@
   "close_d634289d": {
     "message": "關閉"
   },
+  "close_opportunities_popover_f4e50551": {
+    "message": "關閉機會彈出視窗"
+  },
   "count_plural_0_opportunities_one_opportunity_other_765e27fa": {
     "message": "{ count, plural,\n     =0 {# 機會}\n    one {# 機會}\n  other {# 機會}\n}"
   },
@@ -28,6 +31,9 @@
   },
   "course_to_do_bcbbab54": {
     "message": "{ course } 待辦事項"
+  },
+  "date_at_time_dbdb1b99": {
+    "message": "{ date } 於{ time }"
   },
   "date_ee500367": {
     "message": "日期"
@@ -41,17 +47,53 @@
   "details_98a31b68": {
     "message": "詳細資料"
   },
+  "dismiss_opportunityname_5995176f": {
+    "message": "解除{ opportunityName }"
+  },
   "due_5d7267be": {
     "message": "截止日期："
   },
   "due_date_8ce289b6": {
     "message": "截止日期：{ date }"
   },
+  "edit_title_72e5a21e": {
+    "message": "編輯{ title }"
+  },
+  "error_loading_items_5218438e": {
+    "message": "載入項目時發生錯誤"
+  },
+  "excused_cf8792eb": {
+    "message": "已免除"
+  },
+  "failed_to_delete_to_do_64edff49": {
+    "message": "未能刪除待辦事項"
+  },
+  "failed_to_get_new_activity_17e7ec7c": {
+    "message": "未能取得最新活動"
+  },
+  "failed_to_load_opportunities_52ab6404": {
+    "message": "未能加載機會"
+  },
+  "failed_to_save_to_do_ddc7503b": {
+    "message": "未能儲存待辦事項"
+  },
+  "go_to_dashboard_card_view_10398ef6": {
+    "message": "前往控制面板卡視圖"
+  },
+  "graded_25cd3fcd": {
+    "message": "已評分"
+  },
+  "late_2be42b88": {
+    "message": "逾期"
+  },
   "load_more_a36f9cf9": {
     "message": "載入更多"
   },
   "load_prior_dates_f2b0f6f0": {
     "message": "載入先前日期"
+  },
+  "loaded_count_plural_0_items_one_item_other_items_e58533e9": {
+    "message": "已加載 { count, plural,\n     =0{# 項目}\n    one {# 項目}\n  other {# 項目}\n}"
   },
   "loading_25990131": {
     "message": "載入中……"
@@ -62,20 +104,44 @@
   "loading_planner_items_947a813d": {
     "message": "正在載入手冊項目"
   },
+  "looks_like_there_isn_t_anything_here_d9bcef49": {
+    "message": "看來這兒甚麼也沒有"
+  },
   "missing_1a256b3b": {
     "message": "缺失"
   },
   "new_activity_8b84847d": {
     "message": "新活動"
   },
+  "new_feedback_f5d9c97f": {
+    "message": "最新反饋"
+  },
+  "new_grades_7855c0dc": {
+    "message": "最新成續"
+  },
+  "new_replies_ef068695": {
+    "message": "最新回覆"
+  },
   "next_month_749b1778": {
     "message": "下個月"
+  },
+  "no_due_dates_assigned_e8f5bac8": {
+    "message": "無指定截止日期"
+  },
+  "no_to_do_s_for_this_day_yet_90c5873d": {
+    "message": "當日暫無待辦事項。"
+  },
+  "nothing_new_needs_attention_3ac548d4": {
+    "message": "暫無新事項。"
   },
   "optional_add_course_ef0d70fc": {
     "message": "可選：添加課程"
   },
   "points_bceb5005": {
     "message": "分數"
+  },
+  "points_points_63e59cce": {
+    "message": "{ points } 分數"
   },
   "previous_month_bb1e3c84": {
     "message": "上個月"
@@ -85,6 +151,9 @@
   },
   "save_11a80ec3": {
     "message": "保存"
+  },
+  "submitted_318fad53": {
+    "message": "已提交"
   },
   "task_16b0ef38": {
     "message": "任務"
@@ -97,5 +166,23 @@
   },
   "to_do_1d554f36": {
     "message": "待辦事項"
+  },
+  "today_76e10f9c": {
+    "message": "今天"
+  },
+  "today_at_date_8ac30d6": {
+    "message": "於今天{ date }"
+  },
+  "tomorrow_9a6c9a00": {
+    "message": "明天"
+  },
+  "tomorrow_at_date_b53f2cf1": {
+    "message": "於明天{ date }"
+  },
+  "yesterday_at_date_1aa6d18e": {
+    "message": "於昨天{ date }"
+  },
+  "yesterday_c6bd6abf": {
+    "message": "昨天"
   }
 }
