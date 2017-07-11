@@ -97,6 +97,8 @@ export const dismissOpportunity = (id, plannerOverride) => {
     dispatch(startDismissingOpportunity(id));
     const apiOverride = Object.assign({}, plannerOverride);
     apiOverride.dismissed = true;
+    apiOverride.plannable_id = id;
+    apiOverride.plannable_type = 'assignment';
     let promise = apiOverride.id ?
       saveExistingPlannerOverride(apiOverride) :
       saveNewPlannerOverride(apiOverride);
