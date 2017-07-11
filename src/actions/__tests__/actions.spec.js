@@ -40,6 +40,20 @@ const getBasicState = () => ({
     pastNextUrl: null,
   },
   userId: '1',
+  opportunities: {
+    items: [
+      { id: 1, firstName: 'Fred', lastName: 'Flintstone', dismissed: false},
+      { id: 2, firstName: 'Wilma', lastName: 'Flintstone', dismissed: false },
+      { id: 3, firstName: 'Tommy', lastName: 'Flintstone', dismissed: false },
+      { id: 4, firstName: 'Bill', lastName: 'Flintstone', dismissed: false },
+      { id: 5, firstName: 'George', lastName: 'Flintstone', dismissed: false },
+      { id: 6, firstName: 'Randel', lastName: 'Flintstone', dismissed: false },
+      { id: 7, firstName: 'Harry', lastName: 'Flintstone', dismissed: false },
+      { id: 8, firstName: 'Tim', lastName: 'Flintstone', dismissed: false },
+      { id: 9, firstName: 'Sara', lastName: 'Flintstone', dismissed: false }
+    ],
+    nextUrl: null
+  }
 });
 
 describe('api actions', () => {
@@ -66,20 +80,25 @@ describe('getOpportunities', () => {
       let request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
+        headers: {
+          link: `</>; rel="next"`
+        },
         response: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
+          { id: 1, firstName: 'Fred', lastName: 'Flintstone', dismissed: false},
+          { id: 2, firstName: 'Wilma', lastName: 'Flintstone', dismissed: false }
         ]
       }).then(() => {
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'ADD_OPPORTUNITIES', payload: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
-        ]});
+        expect(mockDispatch).toHaveBeenCalledWith({type: 'ADD_OPPORTUNITIES', payload: {
+          items: [
+            { id: 1, firstName: 'Fred', lastName: 'Flintstone', dismissed: false},
+            { id: 2, firstName: 'Wilma', lastName: 'Flintstone', dismissed: false }
+          ], nextUrl : '/'
+        }
+      });
         done();
       });
     });
   });
-
   it('dispatches startDismissingOpportunity and dismissedOpportunity actions', (done) => {
     const mockDispatch = jest.fn();
     const plannerOverride = {

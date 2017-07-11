@@ -37,36 +37,64 @@ function basicOpportunity (option) {
 }
 
 it('adds items to the state on ADD_OPPORTUNITIES', () => {
-  const initialState = [];
+  const initialState = {
+    items: [],
+    nextUrl: null
+  };
 
   const newState = opportunitiesReducer(initialState, {
     type: 'ADD_OPPORTUNITIES',
-    payload: [{ date: '2017-04-28' }, { date: '2017-04-29' }]
+    payload: {
+      items: [{ date: '2017-04-28' }, { date: '2017-04-29' }],
+      nextUrl: null
+    }
+  });
+  expect(newState.items.length).toBe(2);
+});
+
+it('adds item to the state on ADD_OPPORTUNITY', () => {
+  const initialState = {
+    items: [],
+    nextUrl: null
+  };
+
+  const newState = opportunitiesReducer(initialState, {
+    type: 'ADD_OPPORTUNITY',
+    payload: {
+      items: [{ date: '2017-04-28' }],
+      nextUrl: null
+    }
   });
 
-  expect(newState.length).toBe(2);
+  expect(newState.items.length).toBe(1);
 });
 
 it('updates state correctly on DISMISSED_OPPORTUNITY with opportunity that has overide', () => {
-  const initialState = [basicOpportunity()];
+  const initialState = {
+    items: [basicOpportunity()],
+    nextUrl: null
+  };
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
     payload: {id: "6", marked_complete: false, plannable_id: "6", dismissed: true}
   });
 
-  expect(newState[0].planner_override.dismissed).toBe(true);
+  expect(newState.items[0].planner_override.dismissed).toBe(true);
 });
 
 it('adds to opportunity object if no planner override DISMISSED_OPPORTUNITY', () => {
-  let initialState = [basicOpportunity()];
+  let initialState = {
+    items: [basicOpportunity()],
+    nextUrl: null
+  };
 
-  initialState[0].planner_override = null;
+  initialState.items[0].planner_override = null;
 
   const newState = opportunitiesReducer(initialState, {
     type: 'DISMISSED_OPPORTUNITY',
     payload: {id: "6", marked_complete: false, plannable_id: "6", dismissed: true}
   });
 
-  expect(newState[0].planner_override.dismissed).toBe(true);
+  expect(newState.items[0].planner_override.dismissed).toBe(true);
 });

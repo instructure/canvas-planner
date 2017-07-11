@@ -22,6 +22,8 @@ import configureAxios from '../utilities/configureAxios';
 import {formatDayKey} from '../utilities/dateUtils';
 import { alert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
+import parseLinkHeader from 'parse-link-header';
+
 import {
   transformInternalToApiItem,
   transformInternalToApiOverride,
@@ -34,6 +36,7 @@ configureAxios(axios);
 export const {
   initialOptions,
   addOpportunities,
+  addOpportunity,
   startLoadingOpportunities,
   startDismissingOpportunity,
   savingPlannerItem,
@@ -46,6 +49,7 @@ export const {
 } = createActions(
   'INITIAL_OPTIONS',
   'ADD_OPPORTUNITIES',
+  'ADD_OPPORTUNITY',
   'DISMISSED_OPPORTUNITY',
   'START_LOADING_OPPORTUNITIES',
   'START_DISMISSING_OPPORTUNITY',
@@ -85,9 +89,29 @@ export const getOpportunities = () => {
     dispatch(startLoadingOpportunities());
     axios({
       method: 'get',
-      url: '/api/v1/users/self/missing_submissions?include[]=planner_overrides',
+      url: getState().opportunities.nextUrl || '/api/v1/users/self/missing_submissions?include[]=planner_overrides',
     }).then(response => {
-      dispatch(addOpportunities(response.data));
+      if(parseLinkHeader(response.headers.link).next) {
+        dispatch(addOpportunities({items: response.data, nextUrl: parseLinkHeader(response.headers.link).next.url }));
+      }else {
+        dispatch(addOpportunities({items: [], nextUrl: null}));
+      }
+    }).catch(() => alert(formatMessage('Failed to load opportunities'), true));
+  };
+};
+
+export const getOpportunity = () => {
+  return (dispatch, getState) => {
+    dispatch(startLoadingOpportunities());
+    axios({
+      method: 'get',
+      url: getState().opportunities.nextUrl || '/api/v1/users/self/missing_submissions?include[]=planner_overrides&per_page=1',
+    }).then(response => {
+      if(parseLinkHeader(response.headers.link).next) {
+        dispatch(addOpportunities({items: response.data, nextUrl: parseLinkHeader(response.headers.link).next.url }));
+      }else {
+        dispatch(addOpportunities({items: [], nextUrl: null}));
+      }
     }).catch(() => alert(formatMessage('Failed to load opportunities'), true));
   };
 };
@@ -102,7 +126,15 @@ export const dismissOpportunity = (id, plannerOverride) => {
     let promise = apiOverride.id ?
       saveExistingPlannerOverride(apiOverride) :
       saveNewPlannerOverride(apiOverride);
-    promise = promise.then(response => dispatch(dismissedOpportunity(response.data)));
+    promise = promise.then(response => {
+      dispatch(dismissedOpportunity(response.data));
+
+      // TODO: When splitting into dismissed not dismissed tabs this needs to change
+      if(getState().opportunities.items.filter((opp) => {
+        return opp.planner_override && !opp.planner_override.dismissed;
+      }).length < 10)
+        dispatch(getOpportunities());
+    });
     return promise;
   };
 };

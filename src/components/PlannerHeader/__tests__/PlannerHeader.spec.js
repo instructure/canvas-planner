@@ -22,7 +22,10 @@ import { PlannerHeader } from '../index';
 function defaultProps (option) {
   return {
     courses: [{id: "1", shortName: "Course Short Name"}],
-    opportunities: [{id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"}],
+    opportunities: {
+      items: [{id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"}],
+      nextUrl: null
+    },
     getOpportunities: () => {},
     savePlannerItem: () => {},
     locale: 'en',

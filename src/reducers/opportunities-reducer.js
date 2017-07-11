@@ -18,13 +18,16 @@
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';
 
+function setOpportunityState(state, action) {
+  return {items: [...state.items, ...action.payload.items], nextUrl: action.payload.nextUrl};
+}
+
 export default handleActions({
-  ADD_OPPORTUNITIES: (state, action) => {
-    return action.payload;
-  },
+  ADD_OPPORTUNITY: setOpportunityState,
+  ADD_OPPORTUNITIES: setOpportunityState,
   DISMISSED_OPPORTUNITY: (state, action) => {
     let stateCopy = _.cloneDeep(state);
-    let dismissedOpportunity = stateCopy.find((opportunity) => opportunity.id === action.payload.plannable_id + "");
+    let dismissedOpportunity = stateCopy.items.find((opportunity) => opportunity.id === action.payload.plannable_id + "");
     if (dismissedOpportunity.planner_override) {
       dismissedOpportunity.planner_override.dismissed = action.payload.dismissed;
     } else {
@@ -32,4 +35,7 @@ export default handleActions({
     }
     return stateCopy;
   }
-}, []);
+}, {
+  items: [],
+  nextUrl: null
+});

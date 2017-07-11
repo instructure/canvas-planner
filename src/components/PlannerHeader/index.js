@@ -45,7 +45,10 @@ export class PlannerHeader extends Component {
     deletePlannerItem: PropTypes.func.isRequired,
     locale: PropTypes.string.isRequired,
     timeZone: PropTypes.string.isRequired,
-    opportunities: PropTypes.array.isRequired,
+    opportunities: PropTypes.shape({
+      items: PropTypes.arrayOf(PropTypes.object),
+      nextUrl: PropTypes.string,
+    }).isRequired,
     getOpportunities: PropTypes.func.isRequired,
     dismissOpportunity: PropTypes.func.isRequired,
     clearUpdateTodo: PropTypes.func.isRequired,
@@ -55,7 +58,8 @@ export class PlannerHeader extends Component {
 
   constructor (props) {
     super(props);
-    let opportunities = props.opportunities.filter((opportunity) => this.isOpportunityVisible(opportunity));
+    let opportunities = props.opportunities.items.filter((opportunity) => this.isOpportunityVisible(opportunity));
+
     this.state = {
       opportunities,
       trayOpen: false,
@@ -68,7 +72,7 @@ export class PlannerHeader extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let opportunities = nextProps.opportunities.filter((opportunity) => this.isOpportunityVisible(opportunity));
+    let opportunities = nextProps.opportunities.items.filter((opportunity) => this.isOpportunityVisible(opportunity));
     if (nextProps.todo.updateTodoItem) {
       this.setState({trayOpen: true, updateTodoItem: nextProps.todo.updateTodoItem}, () => {
         this.toggleAriaHiddenStuff(this.state.trayOpen);
