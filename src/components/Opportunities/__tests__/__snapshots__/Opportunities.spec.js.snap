@@ -12,13 +12,15 @@ exports[`renders nothing if no opportunities 1`] = `
       fluidWidth={false}
       margin="0"
       onClick={[Function]}
-      size="small"
+      size="medium"
+      title="Close opportunities popover"
       type="button"
-      variant="icon"
+      variant="link"
     >
-      <IconXLine
-        title="Close opportunities popover"
-      />
+      <IconXLine />
+      <span>
+        CLOSE
+      </span>
     </Button>
   </div>
   <ol>
@@ -39,13 +41,15 @@ exports[`renders the base component correctly with one opportunity 1`] = `
       fluidWidth={false}
       margin="0"
       onClick={[Function]}
-      size="small"
+      size="medium"
+      title="Close opportunities popover"
       type="button"
-      variant="icon"
+      variant="link"
     >
-      <IconXLine
-        title="Close opportunities popover"
-      />
+      <IconXLine />
+      <span>
+        CLOSE
+      </span>
     </Button>
   </div>
   <ol>
@@ -76,13 +80,15 @@ exports[`renders the right course with the right opportunity 1`] = `
       fluidWidth={false}
       margin="0"
       onClick={[Function]}
-      size="small"
+      size="medium"
+      title="Close opportunities popover"
       type="button"
-      variant="icon"
+      variant="link"
     >
-      <IconXLine
-        title="Close opportunities popover"
-      />
+      <IconXLine />
+      <span>
+        CLOSE
+      </span>
     </Button>
   </div>
   <ol>

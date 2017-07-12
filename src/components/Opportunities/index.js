@@ -21,11 +21,11 @@ import scopeTab from 'instructure-ui/lib/util/dom/scopeTab';
 import keycode from 'keycode';
 
 import Opportunity from '../Opportunity';
+import Button from 'instructure-ui/lib/components/Button';
 import { findDOMNode } from 'react-dom';
 import { array, string, func} from 'prop-types';
 import formatMessage from '../../format-message';
-// import ShowOnFocusButton from '../ShowOnFocusButton';
-import Button from 'instructure-ui/lib/components/Button';
+
 import IconXLine from 'instructure-icons/lib/Line/IconXLine';
 
 import styles from './styles.css';
@@ -90,11 +90,13 @@ export class Opportunities extends Component {
         ref={(c) => {this._content=c;}}>
         <div className={styles.header}>
           <Button
-            variant="icon"
-            size="small"
+            variant="link"
+            title={formatMessage('Close opportunities popover')}
+            ref={(btnRef) =>{this.closeButton = btnRef;}}
             onClick={this.props.togglePopover}
-            buttonRef={(btnRef) =>{this.closeButton = btnRef;}}>
-            <IconXLine title={formatMessage('Close opportunities popover')} />
+            >
+            <IconXLine/>
+            <span>CLOSE</span>
           </Button>
         </div>
         <ol className={styles.list}>
