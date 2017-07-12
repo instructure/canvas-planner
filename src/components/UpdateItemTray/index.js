@@ -157,9 +157,9 @@ export class UpdateItemTray extends Component {
   }
 
   renderDateInput () {
-    let startingDate = this.findCurrentValue('date');
-    if (!startingDate) {
-      startingDate = moment.tz(this.props.timeZone).format();
+    let startingDate = moment.tz(this.props.timeZone).format();
+    if (this.props.noteItem) {
+      startingDate = this.props.noteItem.date || startingDate;
     }
     return (
       <DateInput
