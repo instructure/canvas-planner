@@ -32,7 +32,12 @@ export class FocusStore {
     if (this.itemToFocus == null) {
       throw new Error('Focus Store: You need to set an item before it can be focused.');
     }
+
+    // TODO: Make less hacky this: currently is a bandaid over the scrolling when saving a todo issue
+    var save = document.body.scrollTop;
     this.itemToFocus.focus();
+    document.body.scrollTop = save;
+
     this.itemToFocus = null;
   }
 }
