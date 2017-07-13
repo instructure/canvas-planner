@@ -20,8 +20,25 @@
   text-decoration: var(--titleTextDecoration);
   font-size: var(--titleFontSize);
   font-weight: var(--titleFontWeight);
-  letter-spacing: var(--titleLetterSpacing);
   color: var(--titleColor);
+
+  /* handle unusually long words that break the layout */
+  min-width: 1px;
+  overflow: hidden;
+  max-height: 3rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: var(--titleOverflowGradientHeight);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--titleBackground) 100%);
+  }
 }
 
 .hero {
@@ -38,6 +55,7 @@
   text-decoration: none;
 
   /* this can become min-height once we drop IE11 support */
+
   height: var(--heroMinHeight);
 
   .groupingName {
@@ -93,6 +111,9 @@
   .hero {
     flex: 0 0 var(--heroWidth);
     height: auto;
+
+    /* handle long words that break layout */
+    min-width: 1px;
   }
 
   .hero,
@@ -110,6 +131,5 @@
 [data-media-x-large] {
   .hero {
     flex: 0 0 var(--heroWidthLarge);
-    height: auto;
   }
 }

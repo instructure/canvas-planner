@@ -42,6 +42,7 @@ export default function generator ({ borders, colors, media, spacing, typography
     titleBackground: colors.white,
     titleTextTransform: 'uppercase',
     titlePadding: `${spacing.xxSmall} ${spacing.xSmall}`,
+    titleOverflowGradientHeight: spacing.xxSmall,
     titleTextDecoration: 'none',
     titleTextDecorationHover: 'underline',
     titleColor: colors.brand,
