@@ -21,6 +21,17 @@
     "last_update": "2017-07-08 00:18:57",
     "untranslated_entities": 0
   },
+  "is": {
+    "reviewed_percentage": "0%",
+    "completed": "0%",
+    "untranslated_words": 212,
+    "last_commiter": "kebarlow",
+    "reviewed": 0,
+    "translated_entities": 0,
+    "translated_words": 0,
+    "last_update": "2017-07-12 19:09:03",
+    "untranslated_entities": 62
+  },
   "it": {
     "reviewed_percentage": "100%",
     "completed": "100%",
