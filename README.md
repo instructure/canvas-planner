@@ -87,3 +87,9 @@ yarn link canvas-planner
 Once you've done those things, run the proper build steps for your Canvas
 installation and you'll see your local copy of canvas-planner working inside
 Canvas.
+
+### Deploying
+
+To deploy a new version of canvas-planner to npm first update the version field in the package.json.
+Next run `./bin/release` and follow the instructions.  You will need to update the version
+in Canvas after publishing to npm so that Canvas will use the new version.
