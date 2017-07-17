@@ -116,13 +116,14 @@ describe('api actions', () => {
   });
 
   describe('getNewActivity', () => {
-    it('sends deep past and filter parameters', () => {
+    it('sends deep past, filter, and order parameters', () => {
       const mockDispatch = jest.fn();
       const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
       Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
       return moxiosWait(request => {
         expect(request.config.params.filter).toBe('new_activity');
         expect(request.config.params.start_date).toBe(mockMoment.subtract(6, 'months').format());
+        expect(request.config.params.order).toBe('desc');
       });
     });
 

@@ -64,6 +64,7 @@ export function getNewActivity (fromMoment) {
     return axios.get('api/v1/planner/items', { params: {
       start_date: fromMoment.format(),
       filter: 'new_activity',
+      order: 'desc'
     }}).then(response => {
       if (response.data.length) {
         const first = transformApiToInternalItem(response.data[0], getState().courses, getState().timeZone);
@@ -176,9 +177,15 @@ function fetchParams (loadingOptions) {
   if (nextPageUrl) {
     return [nextPageUrl, {}];
   } else {
+    const params = {
+      [timeParam]: loadingOptions.fromMoment.format()
+    };
+    if (loadingOptions.intoThePast) {
+      params.order = 'desc';
+    }
     return [
       '/api/v1/planner/items',
-      {params: { [timeParam]: loadingOptions.fromMoment.format() }},
+      { params },
     ];
   }
 }
