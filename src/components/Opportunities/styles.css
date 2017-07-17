@@ -40,3 +40,13 @@
 .loading {
   text-align: center;
 }
+
+.closeButtonIcon {
+  /* using !important to override Inst-UI rule that usually makes sense, but makes the X look too big here */
+  font-size: var(--closeButtonIconSize) !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.closeButtonText {
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}

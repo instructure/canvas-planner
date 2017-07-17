@@ -26,6 +26,17 @@
   font-size: var(--nameFontSize);
 }
 
+.title {
+  margin-bottom: var(--titleMargin);
+}
+
+.oppName,
+.title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
 .footer {
   box-sizing: border-box;
   display: flex;
@@ -64,4 +75,8 @@
 
 .dueText {
   font-weight: var(--dueTextFontWeight);
+}
+
+.closeButtonIcon {
+  font-size: var(--closeButtonIconSize);
 }

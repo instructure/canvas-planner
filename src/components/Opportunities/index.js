@@ -95,8 +95,10 @@ export class Opportunities extends Component {
             ref={(btnRef) =>{this.closeButton = btnRef;}}
             onClick={this.props.togglePopover}
             >
-            <IconXLine/>
-            <span>CLOSE</span>
+            <IconXLine className={styles.closeButtonIcon} />
+            <span className={styles.closeButtonText}>
+              {formatMessage('Close')}
+            </span>
           </Button>
         </div>
         <ol className={styles.list}>

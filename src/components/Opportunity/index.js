@@ -21,7 +21,6 @@ import formatMessage from '../../format-message';
 import moment from 'moment-timezone';
 import { getFullDateAndTime } from '../../utilities/dateUtils';
 import Button from 'instructure-ui/lib/components/Button';
-import Container from 'instructure-ui/lib/components/Container';
 import Link from 'instructure-ui/lib/components/Link';
 import Pill from 'instructure-ui/lib/components/Pill';
 import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
@@ -60,15 +59,22 @@ export class Opportunity extends Component {
             {this.props.courseName}
           </div>
           <div className={styles.close}>
-            <Button onClick={() => this.props.dismiss(this.props.id, this.props.plannerOverride)} variant="icon" size="small">
-              <IconXLine title={formatMessage("Dismiss {opportunityName}", {opportunityName: this.props.opportunityTitle})} />
+            <Button
+              onClick={() => this.props.dismiss(this.props.id, this.props.plannerOverride)}
+              variant="icon"
+              size="small"
+            >
+              <IconXLine
+                className={styles.closeButtonIcon}
+                title={formatMessage("Dismiss {opportunityName}", {opportunityName: this.props.opportunityTitle})}
+              />
             </Button>
           </div>
         </div>
 
-        <Container as="div" margin="0 0 small">
+        <div className={styles.title}>
           <Link href={this.props.url}>{this.props.opportunityTitle}</Link>
-        </Container>
+        </div>
 
         <footer className={styles.footer}>
           <div className={styles.status}>

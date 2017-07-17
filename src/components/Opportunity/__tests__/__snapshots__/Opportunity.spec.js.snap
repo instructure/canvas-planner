@@ -23,11 +23,7 @@ exports[`renders the base component correctly 1`] = `
       </Button>
     </div>
   </div>
-  <Container
-    as="div"
-    display={null}
-    margin="0 0 small"
-  >
+  <div>
     <Link
       as="button"
       ellipsis={false}
@@ -36,7 +32,7 @@ exports[`renders the base component correctly 1`] = `
     >
       this is a description about the opportunity
     </Link>
-  </Container>
+  </div>
   <footer>
     <div>
       <Pill
@@ -93,11 +89,7 @@ exports[`renders the base component correctly without points 1`] = `
       </Button>
     </div>
   </div>
-  <Container
-    as="div"
-    display={null}
-    margin="0 0 small"
-  >
+  <div>
     <Link
       as="button"
       ellipsis={false}
@@ -106,7 +98,7 @@ exports[`renders the base component correctly without points 1`] = `
     >
       this is a description about the opportunity
     </Link>
-  </Container>
+  </div>
   <footer>
     <div>
       <Pill

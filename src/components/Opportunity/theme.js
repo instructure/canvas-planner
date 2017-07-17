@@ -34,6 +34,8 @@ export default function generator ({ colors, spacing, typography }) {
     footerPadding: spacing.xSmall,
     pointsFontSize: typography.fontSizeXSmall,
     pointsNumberFontSize: typography.fontSizeLarge,
-    pointsLineHeight: typography.lineHeightFit
+    pointsLineHeight: typography.lineHeightFit,
+    titleMargin: spacing.xSmall,
+    closeButtonIconSize: typography.fontSizeSmall
   };
 }

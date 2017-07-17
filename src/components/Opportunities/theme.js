@@ -26,6 +26,7 @@ export default function generator ({ borders, colors, spacing, typography }) {
     borderStyle: borders.style,
     itemMargin: spacing.small,
     itemPadding: spacing.xxSmall,
-    lineHeight: typography.lineHeightCondensed
+    lineHeight: typography.lineHeightCondensed,
+    closeButtonIconSize: typography.fontSizeSmall
   };
 }
