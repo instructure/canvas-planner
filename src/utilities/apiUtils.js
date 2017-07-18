@@ -21,13 +21,17 @@ import _ from 'lodash';
 const getItemDetailsFromPlannable = (apiResponse, timeZone) => {
   let { plannable, plannable_type, planner_override } = apiResponse;
 
-  const markedComplete = planner_override && planner_override.marked_complete;
+  const markedComplete = planner_override;
 
   const details = {
     course_id: plannable.course_id,
     title: plannable.name || plannable.title,
     date: plannable.due_at || plannable.todo_date,
-    completed: (markedComplete != null) ? markedComplete : plannable.has_submitted_submissions, // TODO: Fix this to use the status field
+    completed: (markedComplete != null) ? markedComplete.marked_complete : (apiResponse.submissions
+      && (apiResponse.submissions.submitted
+      || apiResponse.submissions.excused
+      || apiResponse.submissions.graded)
+    ),
     points: plannable.points_possible,
     html_url: plannable.html_url,
     overrideId: planner_override && planner_override.id,
@@ -93,7 +97,6 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
       };
     }
   }
-
   const details = getItemDetailsFromPlannable(apiResponse, timeZone);
 
   if ((!contextInfo.context) && apiResponse.plannable_type === 'planner_note' && (details.course_id)) {

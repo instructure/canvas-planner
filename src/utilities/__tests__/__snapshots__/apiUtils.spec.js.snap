@@ -27,7 +27,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for a discussion response 1`] = `
 Object {
-  "completed": undefined,
+  "completed": false,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
@@ -53,7 +53,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for a graded discussion reponse with an unread count 1`] = `
 Object {
-  "completed": undefined,
+  "completed": true,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
@@ -82,7 +82,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for a graded discussion response 1`] = `
 Object {
-  "completed": undefined,
+  "completed": false,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
@@ -108,7 +108,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for a planner_note response 1`] = `
 Object {
-  "completed": undefined,
+  "completed": false,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
@@ -134,7 +134,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for a planner_note response without an associated course 1`] = `
 Object {
-  "completed": undefined,
+  "completed": false,
   "course_id": undefined,
   "date": "2017-05-19T05:59:59Z",
   "dateBucketMoment": "2017-05-19T00:00:00.000Z",
@@ -177,7 +177,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for an announcement response 1`] = `
 Object {
-  "completed": undefined,
+  "completed": false,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
@@ -202,7 +202,7 @@ Object {
 
 exports[`transformApiToInternalItem extracts and transforms the proper data for an ungraded discussion reponse with an unread count 1`] = `
 Object {
-  "completed": undefined,
+  "completed": false,
   "context": Object {
     "color": "#abffaa",
     "id": "1",
