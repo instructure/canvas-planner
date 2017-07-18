@@ -1,6 +1,6 @@
 {
   "name": "canvas-planner",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "UI portion of planner application for canvas-lms.",
   "main": "lib/index.js",
   "repository": {
@@ -52,7 +52,7 @@
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
     "instructure-icons": "^4.1.0",
-    "instructure-ui": "^2.3.0",
+    "instructure-ui": "2.3.0",
     "keycode": "^2.1.9",
     "moment": "~2.10.6",
     "moment-timezone": "^0.5.13",
