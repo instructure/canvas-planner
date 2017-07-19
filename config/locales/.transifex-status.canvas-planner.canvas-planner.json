@@ -22,15 +22,15 @@
     "untranslated_entities": 0
   },
   "is": {
-    "reviewed_percentage": "0%",
-    "completed": "0%",
-    "untranslated_words": 212,
-    "last_commiter": "kebarlow",
-    "reviewed": 0,
-    "translated_entities": 0,
-    "translated_words": 0,
-    "last_update": "2017-07-12 19:09:03",
-    "untranslated_entities": 62
+    "reviewed_percentage": "100%",
+    "completed": "100%",
+    "untranslated_words": 0,
+    "last_commiter": "ZabOperations",
+    "reviewed": 62,
+    "translated_entities": 62,
+    "translated_words": 212,
+    "last_update": "2017-07-18 16:30:51",
+    "untranslated_entities": 0
   },
   "it": {
     "reviewed_percentage": "100%",
