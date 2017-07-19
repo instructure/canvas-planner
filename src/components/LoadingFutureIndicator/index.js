@@ -22,7 +22,7 @@ import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Waypoint from 'react-waypoint';
-import formatMessage from 'format-message';
+import formatMessage from '../../format-message';
 
 export default class LoadingFutureIndicator extends Component {
   static propTypes = {

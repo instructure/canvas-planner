@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import Typography from 'instructure-ui/lib/components/Typography';
-import formatMessage from 'format-message';
+import formatMessage from '../../format-message';
 import {animateSlideDown} from '../../utilities/scrollUtils';
 
 export default class LoadingPastIndicator extends Component {
