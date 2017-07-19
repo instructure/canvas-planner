@@ -91,5 +91,12 @@ Canvas.
 ### Deploying
 
 To deploy a new version of canvas-planner to npm first update the version field in the package.json.
-Next run `./bin/release` and follow the instructions.  You will need to update the version
-in Canvas after publishing to npm so that Canvas will use the new version.
+You will then commit that version to canvas-planner and in your commit message paste the output
+of the command below.
+`git log v(enter previous version here)...origin/master --pretty=format:"[%h] (%an)  %s"`
+Next run `./scripts/release` if you have already updated the planner version in your package.json
+you can press enter otherwise follow the instructions on screen.
+
+After published go to your canvas-lms directory and open the package.json.  Update the canvas-planner
+dependency to the one you just released.  After that you will need to remove your node_modules and reinstall
+using `yarn`.  From there you should commit the yarn.lock and the diff in the package.json.
