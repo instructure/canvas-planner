@@ -119,6 +119,20 @@ describe('saving planner items', () => {
     ]);
   });
 
+  it('edits the date of an existing item', () => {
+    const initialState = [
+      ['2017-04-27', [{dateBucketMoment: moment.tz('2017-04-27', 'UTC'), id: '42', title: 'an event'}]],
+    ];
+    const newState = daysReducer(initialState, {
+      type: 'SAVED_PLANNER_ITEM',
+      payload: {item: {dateBucketMoment: moment.tz( '2017-04-28', 'UTC'), id: '42', title: 'an event'}},
+    });
+    expect(newState).toMatchObject([
+      ['2017-04-27', []],
+      ['2017-04-28', [{id: '42', title: 'an event'}]],
+    ]);
+  });
+
   it('adds a new date if the date is not loaded', () => {
     const initialState = [
       ['2017-04-27', [{ id: '42'}]],

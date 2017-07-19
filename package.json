@@ -23,6 +23,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
+    "test:update": "jest --updateSnapshot",
     "generate-themeable": "./scripts/generate-themeable",
     "clean": "rm -rf .babel-cache && rm -rf es && rm -rf lib && rm -rf coverage"
   },

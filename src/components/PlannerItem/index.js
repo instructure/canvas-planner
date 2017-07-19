@@ -98,8 +98,8 @@ export class PlannerItem extends Component {
     this.checkboxRef = elt;
   }
 
-  getFocusable () {
-    return this.checkboxRef;
+  getFocusable (which) {
+    return which === 'update' ? this.itemLink : this.checkboxRef;
   }
 
   renderDateField = () => {

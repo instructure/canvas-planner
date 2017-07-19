@@ -74,7 +74,7 @@ export class DynamicUiManager {
       this.triggerFocusFirstNewItem();
     } else if (this.animationPlan.focusItem) {
       this.triggerFocusItem();
-    } else if (this.animationPlan.focusPreOpenTrayElement) {
+    } else if (this.animationPlan.focusPreOpenTrayElement && this.animationPlan.preOpenTrayElement) {
       this.triggerFocusPreOpenTrayElement();
     }
 
@@ -130,7 +130,7 @@ export class DynamicUiManager {
 
   triggerFocusItem () {
     const itemToFocus = this.animatableRegistry.getComponent('item', this.animationPlan.focusItem);
-    this.animator.focusElement(itemToFocus.component.getFocusable());
+    this.animator.focusElement(itemToFocus.component.getFocusable(this.animationPlan.trigger));
 
     const groupToScroll = this.animatableRegistry.getComponent('group', this.animationPlan.focusItem);
     this.animator.scrollTo(groupToScroll.component.getScrollable(), this.stickyOffset);
@@ -138,6 +138,7 @@ export class DynamicUiManager {
 
   triggerFocusPreOpenTrayElement () {
     this.animator.focusElement(this.animationPlan.preOpenTrayElement);
+
     // make sure the focused item is in view in case they scrolled away from it while the tray was open
     if (!this.animationPlan.noScroll) {
       this.animator.scrollTo(this.animationPlan.preOpenTrayElement, this.stickyOffset);
@@ -193,10 +194,10 @@ export class DynamicUiManager {
   }
 
   handleSavedPlannerItem = (action) => {
-    if (action.payload.isNewItem) {
-      this.animationPlan.focusItem = action.payload.item.uniqueId;
-    } else {
+    this.animationPlan.focusItem = action.payload.item.uniqueId;
+    if (!action.payload.isNewItem && this.animationPlan.preOpenTrayElement) {
       this.animationPlan.focusPreOpenTrayElement = true;
+      this.animationPlan.trigger = 'update';
     }
     this.animationPlan.ready = true;
   }

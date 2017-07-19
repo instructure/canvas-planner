@@ -19,6 +19,7 @@ import _ from 'lodash';
 import moment from 'moment-timezone';
 import { handleActions } from 'redux-actions';
 import { formatDayKey } from '../utilities/dateUtils';
+import { findPlannerItemById } from '../utilities/storeUtils';
 
 function addDay (state, action) {
   const newState = state.concat([[action.payload, []]]);
@@ -28,6 +29,10 @@ function addDay (state, action) {
 function savedPlannerItem (state, action) {
   if (action.error) return state;
   const plannerItem = action.payload.item;
+  if(plannerItem.id) {
+    // editing existing, remove the old copy
+    state = _deletePlannerItem(state, plannerItem.id);
+  }
   const plannerDateString = formatDayKey(plannerItem.dateBucketMoment);
   const plannerDay = state.find(day => day[0] === plannerDateString);
   if (!plannerDay) {
@@ -39,7 +44,20 @@ function savedPlannerItem (state, action) {
 
 function deletedPlannerItem (state, action) {
   if (action.error) return state;
-  const doomedPlannerItem = action.payload;
+  return _deletePlannerItem(state, action.payload);
+}
+
+function _deletePlannerItem(state, payload) {
+  let doomedPlannerItem;
+  if('string' === typeof payload) {
+    // payload is the item id. find it
+    doomedPlannerItem = findPlannerItemById(state, payload);
+  } else {
+    doomedPlannerItem = payload;
+  }
+  if (!doomedPlannerItem) {
+    return state;
+  }
   const plannerDateString = formatDayKey(doomedPlannerItem.dateBucketMoment);
   const keyedState = new Map(state);
   const existingDay = keyedState.get(plannerDateString);

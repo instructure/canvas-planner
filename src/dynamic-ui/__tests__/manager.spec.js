@@ -224,16 +224,16 @@ describe('manipulating items', () => {
   });
 
   it('restores focus to previous focus when saving an existing item', () => {
-    const {manager, animator, doc} = createManagerWithMocks();
+    const {manager, animator} = createManagerWithMocks();
     manager.handleOpenEditingPlannerItem();
     manager.handleSavedPlannerItem({payload: {isNewItem: false, item: {uniqueId: 'day-0-group-0-item-0'}}});
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
-    expect(animator.focusElement).toHaveBeenCalledWith(doc.activeElement);
+    expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-0-group-0-item-0');
     // maintain and scrolling works around a chrome bug
     expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
-    expect(animator.scrollTo).toHaveBeenCalledWith(doc.activeElement, 42);
+    expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-0', 42);
   });
 
   it('sets focus to the new item when adding a new item', () => {
