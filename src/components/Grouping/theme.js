@@ -48,6 +48,8 @@ export default function generator ({ borders, colors, media, spacing, typography
     titleColor: colors.brand,
     activityIndicatorPadding: spacing.small,
     activityIndicatorWidth: spacing.small,
+    activityIndicatorBorderSize: '1rem',
+    activityIndicatorBackground: colors.white,
     ...media
   };
 }

@@ -20,7 +20,6 @@ import themeable from 'instructure-ui/lib/themeable';
 import classnames from 'classnames';
 import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import Badge from 'instructure-ui/lib/components/Badge';
-import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
 import { partition } from 'lodash';
 import { arrayOf, string, object, bool, func } from 'prop-types';
 import styles from './styles.css';
@@ -138,9 +137,7 @@ class Grouping extends Component {
   renderNotificationBadge () {
     if (this.props.isInPast && Object.keys(this.state.badgeMap).length) {
       return (
-        <PresentationContent>
-          <Badge standalone type="notification" />
-        </PresentationContent>
+        <Badge standalone type="notification" />
       );
     } else {
       return null;
@@ -182,9 +179,20 @@ class Grouping extends Component {
   }
 
   render () {
+    const hasBadge = this.props.isInPast && Object.keys(this.state.badgeMap).length;
+
+    const activityIndicatorClasses = {
+      [styles.activityIndicator]: true,
+      [styles.hasBadge]: hasBadge
+    };
+
     return (
       <div className={styles.root}>
-        <div className={styles.activityIndicator}>
+        <div
+          className={classnames(activityIndicatorClasses)}
+          aria-hidden="true"
+          role="presentation"
+        >
           {this.renderNotificationBadge()}
         </div>
         {this.renderGroupLink()}

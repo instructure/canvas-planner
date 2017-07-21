@@ -6,6 +6,7 @@
   border-color: var(--groupColor);
   color: var(--groupColor);
   line-height: var(--lineHeight);
+  position: relative;
 }
 
 .title {
@@ -96,11 +97,18 @@
   color: var(--groupColor);
 }
 
-.activityIndicator {
+.activityIndicator.hasBadge {
+  background: var(--activityIndicatorBackground);
+  width: var(--activityIndicatorBorderSize);
+  height: var(--activityIndicatorBorderSize);
   display: flex;
   align-items: center;
-  width: var(--activityIndicatorWidth);
-  padding: var(--activityIndicatorPadding);
+  justify-content: center;
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  z-index: 1;
+  border-radius: 100%;
 }
 
 [data-media-medium] {
@@ -125,6 +133,22 @@
   .items {
     flex: 1;
     border-top: var(--borderTopWidthTabletUp) solid;
+  }
+
+  .activityIndicator {
+    width: var(--activityIndicatorWidth);
+    padding: var(--activityIndicatorPadding);
+
+    &.hasBadge {
+      background: transparent;
+      width: auto;
+      height: auto;
+      position: static;
+      top: auto;
+      right: auto;
+      z-index: auto;
+      border-radius: 0;
+    }
   }
 }
 
