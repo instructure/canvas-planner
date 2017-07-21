@@ -147,7 +147,7 @@ class PlannerItem extends Component {
           }
           <div className={styles.due}>
             <Typography color="secondary" size="x-small">
-                { this.props.date
+                { (this.props.date && !(this.props.associated_item === "To Do"))
                     ? this.renderDateField()
                     : null
                 }
