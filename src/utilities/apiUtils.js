@@ -42,6 +42,8 @@ const getItemDetailsFromPlannable = (apiResponse, timeZone) => {
     if (plannable.assignment) {
       details.date = plannable.assignment.due_at;
     }
+  }
+  if (plannable_type === 'discussion_topic' || plannable_type === 'announcement') {
     details.unread_count = plannable.unread_count;
   }
   if (plannable_type === 'announcement' && !details.date) {

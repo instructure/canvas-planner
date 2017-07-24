@@ -383,7 +383,8 @@ describe('transformApiToInternalItem', () => {
       plannable_type: 'announcement',
       plannable: makeDiscussionTopic({ // TODO: Discussion topic is probably fine for now to simulate this, but probably should change later
         due_at: undefined,
-        todo_date: undefined
+        todo_date: undefined,
+        unread_count: 1
       })
     });
 

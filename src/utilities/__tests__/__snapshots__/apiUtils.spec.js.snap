@@ -194,9 +194,12 @@ Object {
   "overrideAssignId": 9,
   "overrideId": null,
   "points": undefined,
-  "status": false,
+  "status": Object {
+    "unread_count": 1,
+  },
   "title": "",
   "type": "Announcement",
+  "unread_count": 1,
 }
 `;
 
