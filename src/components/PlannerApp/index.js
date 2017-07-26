@@ -136,6 +136,7 @@ export class PlannerApp extends Component {
 
     if (children.length === 0) {
       return <div>
+        {this.renderNewActivity()}
         {this.renderNoAssignments()}
       </div>;
     }

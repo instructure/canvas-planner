@@ -91,3 +91,14 @@ it('shows new activity button when new activity is indicated', () => {
   const wrapper = shallow(<PlannerApp {...getDefaultValues()} firstNewActivityDate={moment('2017-03-30')} />);
   expect(wrapper).toMatchSnapshot();
 });
+
+it('shows new activity button when there is new activity, but no current items', () => {
+  const wrapper = shallow(
+    <PlannerApp
+      days={[]}
+      timeZone="UTC"
+      changeToDashboardCardView={() => {}}
+      firstNewActivityDate={moment().add(-1, 'days')}
+    />);
+  expect(wrapper.find('StickyButton')).toHaveLength(1);
+});
