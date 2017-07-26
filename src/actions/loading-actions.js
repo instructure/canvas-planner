@@ -58,13 +58,15 @@ export const addPendingPastItems = createAction('ADD_PENDING_PAST_ITEMS', (newIt
   };
 });
 
-export function getNewActivity (fromMoment) {
+export function getFirstNewActivityDate (fromMoment) {
+  // We are requesting ascending order and only grabbing the first item,
+  // specifically so we know what the very oldest new activity is
   return (dispatch, getState) => {
     fromMoment = fromMoment.clone().subtract(6, 'months');
     return axios.get('api/v1/planner/items', { params: {
       start_date: fromMoment.format(),
       filter: 'new_activity',
-      order: 'desc'
+      order: 'asc'
     }}).then(response => {
       if (response.data.length) {
         const first = transformApiToInternalItem(response.data[0], getState().courses, getState().timeZone);
@@ -77,7 +79,7 @@ export function getNewActivity (fromMoment) {
 export function getPlannerItems (fromMoment) {
   return (dispatch, getState) => {
     dispatch(startLoadingItems());
-    dispatch(getNewActivity(fromMoment));
+    dispatch(getFirstNewActivityDate(fromMoment));
     const loadingOptions = {
       dispatch, getState,
       fromMoment,

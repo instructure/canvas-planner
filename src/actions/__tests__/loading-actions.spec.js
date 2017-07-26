@@ -59,18 +59,18 @@ describe('api actions', () => {
   });
 
   describe('getPlannerItems', () => {
-   it('dispatches startLoadingItems and getNewActivity initially', () => {
+   it('dispatches startLoadingItems and getFirstNewActivityDate initially', () => {
      const fakeDispatch = jest.fn();
      Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
      expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
        type: 'START_LOADING_ITEMS'
      }));
 
-     // also dispatches getNewActivity thunk
+     // also dispatches getFirstNewActivityDate thunk
      expect(typeof fakeDispatch.mock.calls[1][0]).toBe('function');
-     const getNewActivityThunk = fakeDispatch.mock.calls[1][0];
+     const getFirstNewActivityDateThunk = fakeDispatch.mock.calls[1][0];
      const mockMoment = moment();
-     const newActivityPromise = getNewActivityThunk(fakeDispatch, getBasicState);
+     const newActivityPromise = getFirstNewActivityDateThunk(fakeDispatch, getBasicState);
      return moxiosRespond([{dateBucketMoment: mockMoment}], newActivityPromise).then((result) => {
        expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
          type: 'FOUND_FIRST_NEW_ACTIVITY_DATE',
@@ -115,15 +115,15 @@ describe('api actions', () => {
    });
   });
 
-  describe('getNewActivity', () => {
+  describe('getFirstNewActivityDate', () => {
     it('sends deep past, filter, and order parameters', () => {
       const mockDispatch = jest.fn();
       const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
-      Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
+      Actions.getFirstNewActivityDate(mockMoment)(mockDispatch, getBasicState);
       return moxiosWait(request => {
         expect(request.config.params.filter).toBe('new_activity');
         expect(request.config.params.start_date).toBe(mockMoment.subtract(6, 'months').format());
-        expect(request.config.params.order).toBe('desc');
+        expect(request.config.params.order).toBe('asc');
       });
     });
 
@@ -134,7 +134,7 @@ describe('api actions', () => {
       });
       const mockDispatch = jest.fn();
       const mockMoment = moment.tz('Asia/Tokyo').startOf('day');
-      const promise = Actions.getNewActivity(mockMoment)(mockDispatch, getBasicState);
+      const promise = Actions.getFirstNewActivityDate(mockMoment)(mockDispatch, getBasicState);
       return moxiosRespond(
         { some: 'response data' },
         promise,
