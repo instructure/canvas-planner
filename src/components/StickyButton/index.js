@@ -19,8 +19,8 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import themeable from 'instructure-ui/lib/themeable';
 import { bool, func, node, number, string, oneOf } from 'prop-types';
-import IconMoveUpLine from 'instructure-icons/lib/Line/IconMoveUpLine';
-import IconMoveDownLine from 'instructure-icons/lib/Line/IconMoveDownLine';
+import IconArrowUpSolid from 'instructure-icons/lib/Solid/IconArrowUpSolid';
+import IconArrowDownLine from 'instructure-icons/lib/Line/IconArrowDownLine';
 
 import styles from './styles.css';
 import theme from './theme.js';
@@ -58,9 +58,9 @@ class StickyButton extends Component {
     const direction = this.props.direction;
 
     if (direction === 'up') {
-      return <IconMoveUpLine className={styles.icon} />;
+      return <IconArrowUpSolid className={styles.icon} />;
     } else if (direction === 'down') {
-      return <IconMoveDownLine className={styles.icon} />;
+      return <IconArrowDownLine className={styles.icon} />;
     } else {
       return null;
     }

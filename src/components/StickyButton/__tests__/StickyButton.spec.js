@@ -18,8 +18,8 @@
 import React from 'react';
 import StickyButton from '../index';
 import {shallow} from 'enzyme';
-import IconMoveUpLine from 'instructure-icons/lib/Line/IconMoveUpLine';
-import IconMoveDownLine from 'instructure-icons/lib/Line/IconMoveDownLine';
+import IconArrowUpSolid from 'instructure-icons/lib/Solid/IconArrowUpSolid';
+import IconArrowDownLine from 'instructure-icons/lib/Line/IconArrowDownLine';
 
 
 it('renders', () => {
@@ -60,7 +60,7 @@ it('renders the correct up icon', () => {
       Click me
     </StickyButton>
   );
-  expect(wrapper.find(IconMoveUpLine)).toHaveLength(1);
+  expect(wrapper.find(IconArrowUpSolid)).toHaveLength(1);
 });
 
 it('renders the correct down icon', () => {
@@ -69,5 +69,5 @@ it('renders the correct down icon', () => {
       Click me
     </StickyButton>
   );
-  expect(wrapper.find(IconMoveDownLine)).toHaveLength(1);
+  expect(wrapper.find(IconArrowDownLine)).toHaveLength(1);
 });
