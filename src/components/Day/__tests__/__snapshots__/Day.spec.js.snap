@@ -28,7 +28,6 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
   </Heading>
   <div>
     <Grouping
-      isInPast={true}
       items={
         Array [
           Object {
@@ -49,7 +48,6 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
       url="http://www.non_default_url.com"
     />
     <Grouping
-      isInPast={true}
       items={
         Array [
           Object {

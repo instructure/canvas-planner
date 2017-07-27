@@ -20,8 +20,9 @@ import themeable from 'instructure-ui/lib/themeable';
 import classnames from 'classnames';
 import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import Badge from 'instructure-ui/lib/components/Badge';
+import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import { partition } from 'lodash';
-import { arrayOf, string, object, bool, func } from 'prop-types';
+import { arrayOf, string, object, func } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import PlannerItem from '../PlannerItem';
@@ -38,14 +39,9 @@ class Grouping extends Component {
     image_url: string,
     timeZone: string.isRequired,
     url: string,
-    isInPast: bool,
     takeFocusRef: func,
     toggleCompletion: func,
     updateTodo: func,
-  }
-
-  static defaultProps = {
-    isInPast: false
   }
 
   constructor (props) {
@@ -60,7 +56,7 @@ class Grouping extends Component {
     const mapping = {};
     items.forEach((item) => {
       const badges = getBadgesForItem(item);
-      if (badges.length) mapping[item.id] = getBadgesForItem(item);
+      if (badges.length) mapping[item.id] = badges;
     });
     return mapping;
   }
@@ -134,10 +130,26 @@ class Grouping extends Component {
     return componentsToRender;
   }
 
+  renderToDoText () {
+    return formatMessage('To Do');
+  }
+
   renderNotificationBadge () {
-    if (this.props.isInPast && Object.keys(this.state.badgeMap).length) {
+    let missing = false;
+    const newItem = this.props.items.find(item => {
+      if (item.status && item.status.missing) missing = true;
+      return item.newActivity;
+    });
+    if (newItem || missing) {
+      let badgeMessage = newItem ? formatMessage('New activity for ') : formatMessage('Missing items for ');
+      badgeMessage += this.props.title ? this.props.title : this.renderToDoText();
       return (
-        <Badge standalone type="notification" />
+        <div>
+          <Badge standalone type="notification" variant={newItem ? 'primary' : 'danger'} />
+          <ScreenReaderContent>
+            {badgeMessage}
+          </ScreenReaderContent>
+        </div>
       );
     } else {
       return null;
@@ -156,7 +168,7 @@ class Grouping extends Component {
 
   renderGroupLinkTitle() {
     return <span className={styles.title}>
-        {this.props.title || formatMessage('To Do')}
+        {this.props.title || this.renderToDoText()}
       </span>;
   }
 
@@ -179,21 +191,19 @@ class Grouping extends Component {
   }
 
   render () {
-    const hasBadge = this.props.isInPast && Object.keys(this.state.badgeMap).length;
+    const badge = this.renderNotificationBadge();
 
     const activityIndicatorClasses = {
       [styles.activityIndicator]: true,
-      [styles.hasBadge]: hasBadge
+      [styles.hasBadge]: badge != null
     };
 
     return (
       <div className={styles.root}>
         <div
           className={classnames(activityIndicatorClasses)}
-          aria-hidden="true"
-          role="presentation"
         >
-          {this.renderNotificationBadge()}
+          {badge}
         </div>
         {this.renderGroupLink()}
         <ol className={styles.items} style={{ borderColor: this.props.color }}>

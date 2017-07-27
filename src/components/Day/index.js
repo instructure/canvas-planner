@@ -24,7 +24,7 @@ import Container from 'instructure-ui/lib/components/Container';
 import { string, arrayOf, object, func, bool } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
-import { getFriendlyDate, getFullDate, isToday, isInPast } from '../../utilities/dateUtils';
+import { getFriendlyDate, getFullDate, isToday } from '../../utilities/dateUtils';
 import { groupBy } from 'lodash';
 import Grouping from '../Grouping';
 import formatMessage from '../../format-message';
@@ -48,7 +48,6 @@ class Day extends Component {
     const tzMomentizedDate = moment.tz(props.day, props.timeZone);
     this.friendlyName = getFriendlyDate(tzMomentizedDate);
     this.fullDate = getFullDate(tzMomentizedDate);
-    this.isInPast = isInPast(tzMomentizedDate);
     this.state = {
       groupedItems: this.groupItems(props.itemsForDay)
     };
@@ -112,7 +111,6 @@ class Day extends Component {
                 return (
                   <Grouping
                     takeFocusRef={takeFocusRef}
-                    isInPast={this.isInPast}
                     title={courseInfo.title}
                     image_url={courseInfo.image_url}
                     color={courseInfo.color}

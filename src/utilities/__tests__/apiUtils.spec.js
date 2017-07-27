@@ -44,6 +44,7 @@ function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
     plannable_type: 'assignment',
     plannable: makeAssignment(assignmentOverrides),
     submissions: false,
+    new_activity: false,
     ...overrides,
   };
 }

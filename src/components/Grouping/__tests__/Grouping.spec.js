@@ -140,22 +140,46 @@ it('does not render a CompletedItemsFacade when showCompletedItems state is true
   expect(wrapper.find('CompletedItemsFacade')).toHaveLength(0);
 });
 
-it('renders an activity notification when there are things in the past with status badges', () => {
+it('renders an activity notification when there is new activity', () => {
   const props = getDefaultProps();
-  props.items[0].status = {"graded": true};
-  props.isInPast = true;
-
+  props.items[1].newActivity = true;
   const wrapper = shallow(
     <Grouping {...props} />
   );
 
   expect(wrapper.find('Badge')).toHaveLength(1);
+  expect(wrapper.find('Badge')).toHaveProperty('node.props.variant', 'primary');
+  expect(wrapper.find('ScreenReaderContent')).toHaveLength(1);
+  expect(wrapper.find('ScreenReaderContent')).toHaveProperty('node.props.children', 'New activity for ' + props.title);
 });
 
-it('does not render an activity badge when things in the past have no status', () => {
+it('renders a danger activity notification when there is a missing item', () => {
   const props = getDefaultProps();
-  props.items[0].status = {};
-  props.isInPast = true;
+  props.items[1].status = {missing: true};
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper.find('Badge')).toHaveLength(1);
+  expect(wrapper.find('Badge')).toHaveProperty('node.props.variant', 'danger');
+  expect(wrapper.find('ScreenReaderContent')).toHaveLength(1);
+  expect(wrapper.find('ScreenReaderContent')).toHaveProperty('node.props.children', 'Missing items for ' + props.title);
+});
+
+it('renders the to do screenreader text when there is no course', () => {
+  let props = getDefaultProps();
+  props.title = null;
+  props.items[1].newActivity = true;
+  const wrapper = shallow(
+    <Grouping {...props} />
+  );
+
+  expect(wrapper.find('ScreenReaderContent')).toHaveLength(1);
+  expect(wrapper.find('ScreenReaderContent')).toHaveProperty('node.props.children', 'New activity for To Do');
+});
+
+it('does not render an activity badge when things have no new activity', () => {
+  const props = getDefaultProps();
   const wrapper = shallow(
     <Grouping {...props} />
   );

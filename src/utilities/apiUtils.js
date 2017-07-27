@@ -123,6 +123,7 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
     dateBucketMoment: moment.tz(details.date, timeZone).startOf('day'),
     type: getItemType(apiResponse.plannable_type),
     status: apiResponse.submissions,
+    newActivity: apiResponse.new_activity,
     ...details
   };
 }

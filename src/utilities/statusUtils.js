@@ -29,19 +29,8 @@ const PILL_MAPPING = {
   'new_replies': { id: 'new_replies', text: formatMessage('New Replies') },
 };
 
-const newActivityKeys = {
-  missing: true,
-  new_grades: true,
-  has_feedback: true,
-  new_replies: true,
-};
-
-export function isNewActivityItem (item) {
-  return _.entries(item.status).some(([status, value]) => value && newActivityKeys[status]);
-}
-
 export function anyNewActivity (items) {
-  return items && items.some((item => isNewActivityItem(item)));
+  return items && items.some((item => item.newActivity));
 }
 
 /**

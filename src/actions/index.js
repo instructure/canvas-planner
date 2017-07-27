@@ -100,22 +100,6 @@ export const getOpportunities = () => {
   };
 };
 
-export const getOpportunity = () => {
-  return (dispatch, getState) => {
-    dispatch(startLoadingOpportunities());
-    axios({
-      method: 'get',
-      url: getState().opportunities.nextUrl || '/api/v1/users/self/missing_submissions?include[]=planner_overrides&per_page=1',
-    }).then(response => {
-      if(parseLinkHeader(response.headers.link).next) {
-        dispatch(addOpportunities({items: response.data, nextUrl: parseLinkHeader(response.headers.link).next.url }));
-      }else {
-        dispatch(addOpportunities({items: [], nextUrl: null}));
-      }
-    }).catch(() => alert(formatMessage('Failed to load opportunities'), true));
-  };
-};
-
 export const dismissOpportunity = (id, plannerOverride) => {
   return (dispatch, getState) => {
     dispatch(startDismissingOpportunity(id));

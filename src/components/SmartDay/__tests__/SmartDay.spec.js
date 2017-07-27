@@ -26,8 +26,8 @@ describe('getLastUnseenDayKeyWithNewActivity', () => {
     const result = getLastUnseenDayKeyWithNewActivity({
       days: [
         ['2017-05-01', [
-          {status: {}},
-          {status: {new_grades: true}},
+          {newActivity: false},
+          {newActivity: true},
         ]],
       ],
     });

@@ -261,7 +261,7 @@ describe('ADD_PENDING_PAST_ITEMS', () => {
       pastNextUrl: null,
     };
     const newState = loadingReducer(initialState, {type: 'ADD_PENDING_PAST_ITEMS', payload: {
-      internalItems: [{status: {new_grades: true}}],
+      internalItems: [{newActivity: true}],
       response: { headers: { link: '<someurl>; rel="next"'}},
     }});
     expect(newState).toMatchObject({

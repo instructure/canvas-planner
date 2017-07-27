@@ -39,11 +39,6 @@ export function isToday (date, today = moment()) {
   return today.isSame(momentizedDate, 'day');
 }
 
-export function isInPast (date, today = moment()) {
-  const momentizedDate = new moment(date);
-  return momentizedDate.isBefore(today, 'day');
-}
-
 export function isInFuture (date, today = moment()) {
   const momentizedDate = new moment(date);
   return momentizedDate.isAfter(today, 'day');

@@ -18,9 +18,10 @@
 import moment from 'moment-timezone';
 import {
   formatDayKey,
-  isToday, isInPast, isInFuture,
+  isToday, isInFuture,
   getFriendlyDate, getFullDate,
-  getFirstLoadedMoment, getLastLoadedMoment
+  getFirstLoadedMoment, getLastLoadedMoment,
+  getFullDateAndTime
 } from '../dateUtils';
 
 describe('isToday', () => {
@@ -75,20 +76,14 @@ describe('getFullDate', () => {
   });
 });
 
-describe('isInPast', () => {
-  it('returns true when the date is before today', () => {
-    const date = moment().subtract(1, 'days');
-    expect(isInPast(date)).toBeTruthy();
-  });
-
-  it('returns false when the date is today', () => {
-    const date = moment();
-    expect(isInPast(date)).toBeFalsy();
-  });
-
-  it('returns false when the date is after today', () => {
-    const date = moment().add(1, 'days');
-    expect(isInPast(date)).toBeFalsy();
+describe('getFullDateAndTime', () => {
+  it('returns the friendly day and formatted time', () => {
+    const today = moment();
+    expect(getFullDateAndTime(today)).toEqual(`Today at ${today.format('LT')}`);
+    const yesterday = moment().add(-1, 'days');
+    expect(getFullDateAndTime(yesterday)).toEqual(`Yesterday at ${yesterday.format('LT')}`);
+    const tomorrow = moment().add(1, 'days');
+    expect(getFullDateAndTime(tomorrow)).toEqual(`Tomorrow at ${tomorrow.format('LT')}`);
   });
 });
 

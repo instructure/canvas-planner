@@ -71,129 +71,130 @@ describe('api actions', () => {
     moxios.uninstall();
   });
 
-describe('getOpportunities', () => {
-  it('dispatches startLoading and addOpportunities actions', (done) => {
-    const mockDispatch = jest.fn();
-    Actions.getOpportunities()(mockDispatch, getBasicState);
-    expect(mockDispatch).toHaveBeenCalledWith({type: 'START_LOADING_OPPORTUNITIES'});
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        headers: {
-          link: `</>; rel="next"`
-        },
-        response: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone', dismissed: false},
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone', dismissed: false }
-        ]
-      }).then(() => {
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'ADD_OPPORTUNITIES', payload: {
-          items: [
+  describe('getOpportunities', () => {
+    it('dispatches startLoading and addOpportunities actions', (done) => {
+      const mockDispatch = jest.fn();
+      Actions.getOpportunities()(mockDispatch, getBasicState);
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'START_LOADING_OPPORTUNITIES'});
+      moxios.wait(() => {
+        let request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          headers: {
+            link: `</>; rel="next"`
+          },
+          response: [
             { id: 1, firstName: 'Fred', lastName: 'Flintstone', dismissed: false},
             { id: 2, firstName: 'Wilma', lastName: 'Flintstone', dismissed: false }
-          ], nextUrl : '/'
-        }
-      });
-        done();
-      });
-    });
-  });
-  it('dispatches startDismissingOpportunity and dismissedOpportunity actions', (done) => {
-    const mockDispatch = jest.fn();
-    const plannerOverride = {
-      id: '10',
-      plannable_type: 'assignment',
-      dismissed: true
-    };
-    Actions.dismissOpportunity("6", plannerOverride)(mockDispatch, getBasicState);
-    expect(mockDispatch).toHaveBeenCalledWith({"payload": "6", "type": "START_DISMISSING_OPPORTUNITY"});
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 201,
-        response: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
-        ]
-      }).then(() => {
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'DISMISSED_OPPORTUNITY', payload: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
-        ]});
-        done();
+          ]
+        }).then(() => {
+          expect(mockDispatch).toHaveBeenCalledWith({type: 'ADD_OPPORTUNITIES', payload: {
+            items: [
+              { id: 1, firstName: 'Fred', lastName: 'Flintstone', dismissed: false},
+              { id: 2, firstName: 'Wilma', lastName: 'Flintstone', dismissed: false }
+            ], nextUrl : '/'
+          }
+        });
+          done();
+        });
       });
     });
-  });
 
-  it('dispatches startDismissingOpportunity and dismissedOpportunity actions when given override', (done) => {
-    const mockDispatch = jest.fn();
-    Actions.dismissOpportunity("6", {id: "6"})(mockDispatch, getBasicState);
-    expect(mockDispatch).toHaveBeenCalledWith({"payload": "6", "type": "START_DISMISSING_OPPORTUNITY"});
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 201,
-        response: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
-        ]
-      }).then(() => {
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'DISMISSED_OPPORTUNITY', payload: [
-          { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
-          { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
-        ]});
-        done();
+    it('dispatches startDismissingOpportunity and dismissedOpportunity actions', (done) => {
+      const mockDispatch = jest.fn();
+      const plannerOverride = {
+        id: '10',
+        plannable_type: 'assignment',
+        dismissed: true
+      };
+      Actions.dismissOpportunity("6", plannerOverride)(mockDispatch, getBasicState);
+      expect(mockDispatch).toHaveBeenCalledWith({"payload": "6", "type": "START_DISMISSING_OPPORTUNITY"});
+      moxios.wait(() => {
+        let request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 201,
+          response: [
+            { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
+            { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
+          ]
+        }).then(() => {
+          expect(mockDispatch).toHaveBeenCalledWith({type: 'DISMISSED_OPPORTUNITY', payload: [
+            { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
+            { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
+          ]});
+          done();
+        });
+      });
+    });
+
+    it('dispatches startDismissingOpportunity and dismissedOpportunity actions when given override', (done) => {
+      const mockDispatch = jest.fn();
+      Actions.dismissOpportunity("6", {id: "6"})(mockDispatch, getBasicState);
+      expect(mockDispatch).toHaveBeenCalledWith({"payload": "6", "type": "START_DISMISSING_OPPORTUNITY"});
+      moxios.wait(() => {
+        let request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 201,
+          response: [
+            { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
+            { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
+          ]
+        }).then(() => {
+          expect(mockDispatch).toHaveBeenCalledWith({type: 'DISMISSED_OPPORTUNITY', payload: [
+            { id: 1, firstName: 'Fred', lastName: 'Flintstone' },
+            { id: 2, firstName: 'Wilma', lastName: 'Flintstone' }
+          ]});
+          done();
+        });
+      });
+    });
+
+    it('makes correct request for dismissedOpportunity for existing override', () => {
+      const plannerOverride = {
+        id: '10',
+        plannable_type: 'assignment',
+        dismissed: true
+      };
+      Actions.dismissOpportunity('6', plannerOverride)(() => {});
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('put');
+        expect(request.url).toBe('api/v1/planner/overrides/10');
+        expect(JSON.parse(request.config.data)).toMatchObject(plannerOverride);
+      });
+    });
+
+    it('makes correct request for dismissedOpportunity for new override', () => {
+      const plannerOverride = {
+        plannable_id: '10',
+        dismissed: true,
+        plannable_type: 'assignment'
+      };
+      Actions.dismissOpportunity('10', plannerOverride)(() => {});
+      return moxiosWait((request) => {
+        expect(request.config.method).toBe('post');
+        expect(request.url).toBe('api/v1/planner/overrides');
+        expect(JSON.parse(request.config.data)).toMatchObject(plannerOverride);
+      });
+    });
+
+    it('calls the alert function when a failure occurs', (done) => {
+      const mockDispatch = jest.fn();
+      const fakeAlert = jest.fn();
+      alertInitialize({
+        visualErrorCallback: fakeAlert
+      });
+      Actions.getOpportunities()(mockDispatch, getBasicState);
+      moxios.wait(() => {
+        let request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 500,
+        }).then(() => {
+          expect(fakeAlert).toHaveBeenCalled();
+          done();
+        });
       });
     });
   });
-
-  it('makes correct request for dismissedOpportunity for existing override', () => {
-    const plannerOverride = {
-      id: '10',
-      plannable_type: 'assignment',
-      dismissed: true
-    };
-    Actions.dismissOpportunity('6', plannerOverride)(() => {});
-    return moxiosWait((request) => {
-      expect(request.config.method).toBe('put');
-      expect(request.url).toBe('api/v1/planner/overrides/10');
-      expect(JSON.parse(request.config.data)).toMatchObject(plannerOverride);
-    });
-  });
-
-  it('makes correct request for dismissedOpportunity for new override', () => {
-    const plannerOverride = {
-      plannable_id: '10',
-      dismissed: true,
-      plannable_type: 'assignment'
-    };
-    Actions.dismissOpportunity('10', plannerOverride)(() => {});
-    return moxiosWait((request) => {
-      expect(request.config.method).toBe('post');
-      expect(request.url).toBe('api/v1/planner/overrides');
-      expect(JSON.parse(request.config.data)).toMatchObject(plannerOverride);
-    });
-  });
-
-  it('calls the alert function when a failure occurs', (done) => {
-    const mockDispatch = jest.fn();
-    const fakeAlert = jest.fn();
-    alertInitialize({
-      visualErrorCallback: fakeAlert
-    });
-    Actions.getOpportunities()(mockDispatch, getBasicState);
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 500,
-      }).then(() => {
-        expect(fakeAlert).toHaveBeenCalled();
-        done();
-      });
-    });
-  });
-});
 
   describe('savePlannerItem', () => {
     it('dispatches saving and saved actions', () => {

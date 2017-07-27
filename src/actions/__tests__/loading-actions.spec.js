@@ -22,7 +22,11 @@ import {isPromise, moxiosWait, moxiosRespond} from '../../test-utils';
 import { initialize as alertInitialize } from '../../utilities/alertUtils';
 
 jest.mock('../../utilities/apiUtils', () => ({
-  transformApiToInternalItem: jest.fn(response => ({...response, transformedToInternal: true})),
+  transformApiToInternalItem: jest.fn(response => ({
+    ...response,
+    newActivity: response.new_activity,
+    transformedToInternal: true
+  })),
   transformInternalToApiItem: jest.fn(internal => ({...internal, transformedToApi: true})),
 }));
 
@@ -319,7 +323,7 @@ describe('api actions', () => {
       const state = getBasicState();
       state.pendingItems.past = [{some: 'past'}];
       const fetchPromise = Actions.loadPastUntilNewActivity()(mockDispatch, () => state);
-      const response = ([{some: 'new-item', status: {new_replies: true}}]);
+      const response = ([{some: 'new-item', status: {new_replies: true}, new_activity: true}]);
       return moxiosRespond(response, fetchPromise, {headers: {link: '<next-past-url>; rel="next"'}})
       .then((response) => {
         expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({type: 'ADD_PENDING_PAST_ITEMS'}));

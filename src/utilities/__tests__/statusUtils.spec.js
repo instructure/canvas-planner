@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import { getBadgesForItem, getBadgesForItems, isNewActivityItem, anyNewActivity } from '../statusUtils';
+import { getBadgesForItem, getBadgesForItems, anyNewActivity } from '../statusUtils';
 
 describe('getBadgesForItem', () => {
   it('returns an empty array when there is not activity or status', () => {
@@ -89,23 +89,13 @@ describe('getBadgesForItems', () => {
 });
 
 describe('new activity', () => {
-  it('can determine if an item has any new activity status', () => {
-    const item = { status: { has_feedback: true }};
-    expect(isNewActivityItem(item)).toBeTruthy();
-  });
-
-  it('excludes items with a status that is not new activity', () => {
-    const item = { status: { late: true }};
-    expect(isNewActivityItem(item)).toBeFalsy();
-  });
-
   it('detects items for new activity', () => {
-    const items = [ {status: {}}, {status: {new_grades: true}} ];
+    const items = [ {newActivity: false}, {newActivity: true} ];
     expect(anyNewActivity(items)).toBeTruthy();
   });
 
   it('does not detect items when no new activity', () => {
-    const items = [ {status: {late: true}}, {status: {graded: true}} ];
+    const items = [ {newActivity: false}, {newActivity: false} ];
     expect(anyNewActivity(items)).toBeFalsy();
   });
 });
