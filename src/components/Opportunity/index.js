@@ -53,30 +53,15 @@ export class Opportunity extends Component {
   render () {
     return (
       <div className={styles.root}>
-
         <div className={styles.header}>
           <div className={styles.oppName}>
             {this.props.courseName}
           </div>
-          <div className={styles.close}>
-            <Button
-              onClick={() => this.props.dismiss(this.props.id, this.props.plannerOverride)}
-              variant="icon"
-              size="small"
-            >
-              <IconXLine
-                className={styles.closeButtonIcon}
-                title={formatMessage("Dismiss {opportunityName}", {opportunityName: this.props.opportunityTitle})}
-              />
-            </Button>
+          <div className={styles.title}>
+            <Link href={this.props.url}>{this.props.opportunityTitle}</Link>
           </div>
         </div>
-
-        <div className={styles.title}>
-          <Link href={this.props.url}>{this.props.opportunityTitle}</Link>
-        </div>
-
-        <footer className={styles.footer}>
+        <div className={styles.footer}>
           <div className={styles.status}>
             <Pill text={formatMessage('Missing')} variant="danger"/>
             <div className={styles.due}>
@@ -95,8 +80,19 @@ export class Opportunity extends Component {
               {formatMessage("points")}
             </PresentationContent>
           </div>
-        </footer>
-
+        </div>
+        <div className={styles.close}>
+          <Button
+            onClick={() => this.props.dismiss(this.props.id, this.props.plannerOverride)}
+            variant="icon"
+            size="small"
+          >
+            <IconXLine
+              className={styles.closeButtonIcon}
+              title={formatMessage("Dismiss {opportunityName}", {opportunityName: this.props.opportunityTitle})}
+            />
+          </Button>
+        </div>
       </div>
     );
   }

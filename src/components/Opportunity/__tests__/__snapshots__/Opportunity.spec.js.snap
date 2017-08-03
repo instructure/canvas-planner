@@ -7,33 +7,17 @@ exports[`renders the base component correctly 1`] = `
       course about stuff
     </div>
     <div>
-      <Button
+      <Link
         as="button"
-        buttonRef={[Function]}
-        fluidWidth={false}
-        margin="0"
-        onClick={[Function]}
-        size="small"
-        type="button"
-        variant="icon"
+        ellipsis={false}
+        href="http://www.non_default_url.com"
+        linkRef={[Function]}
       >
-        <IconXLine
-          title="Dismiss this is a description about the opportunity"
-        />
-      </Button>
+        this is a description about the opportunity
+      </Link>
     </div>
   </div>
   <div>
-    <Link
-      as="button"
-      ellipsis={false}
-      href="http://www.non_default_url.com"
-      linkRef={[Function]}
-    >
-      this is a description about the opportunity
-    </Link>
-  </div>
-  <footer>
     <div>
       <Pill
         text="Missing"
@@ -62,7 +46,23 @@ exports[`renders the base component correctly 1`] = `
         points
       </PresentationContent>
     </div>
-  </footer>
+  </div>
+  <div>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      onClick={[Function]}
+      size="small"
+      type="button"
+      variant="icon"
+    >
+      <IconXLine
+        title="Dismiss this is a description about the opportunity"
+      />
+    </Button>
+  </div>
 </div>
 `;
 
@@ -73,33 +73,17 @@ exports[`renders the base component correctly without points 1`] = `
       course about stuff
     </div>
     <div>
-      <Button
+      <Link
         as="button"
-        buttonRef={[Function]}
-        fluidWidth={false}
-        margin="0"
-        onClick={[Function]}
-        size="small"
-        type="button"
-        variant="icon"
+        ellipsis={false}
+        href="http://www.non_default_url.com"
+        linkRef={[Function]}
       >
-        <IconXLine
-          title="Dismiss this is a description about the opportunity"
-        />
-      </Button>
+        this is a description about the opportunity
+      </Link>
     </div>
   </div>
   <div>
-    <Link
-      as="button"
-      ellipsis={false}
-      href="http://www.non_default_url.com"
-      linkRef={[Function]}
-    >
-      this is a description about the opportunity
-    </Link>
-  </div>
-  <footer>
     <div>
       <Pill
         text="Missing"
@@ -126,6 +110,22 @@ exports[`renders the base component correctly without points 1`] = `
         points
       </PresentationContent>
     </div>
-  </footer>
+  </div>
+  <div>
+    <Button
+      as="button"
+      buttonRef={[Function]}
+      fluidWidth={false}
+      margin="0"
+      onClick={[Function]}
+      size="small"
+      type="button"
+      variant="icon"
+    >
+      <IconXLine
+        title="Dismiss this is a description about the opportunity"
+      />
+    </Button>
+  </div>
 </div>
 `;

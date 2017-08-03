@@ -24,7 +24,6 @@ export default function generator ({ colors, spacing, typography }) {
     color: colors.licorice,
     secondaryColor: colors.slate,
     background: colors.white,
-    namePaddingRight: spacing.xSmall,
     namePaddingTop: spacing.xxSmall,
     nameFontSize: typography.fontSizeSmall,
     statusPadding: spacing.small,
