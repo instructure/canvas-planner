@@ -19,7 +19,7 @@ import { createAction, createActions } from 'redux-actions';
 import axios from 'axios';
 import moment from 'moment';
 import configureAxios from '../utilities/configureAxios';
-import {formatDayKey} from '../utilities/dateUtils';
+import { formatDayKey } from '../utilities/dateUtils';
 import { alert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
 import parseLinkHeader from 'parse-link-header';
@@ -30,15 +30,14 @@ import {
   transformPlannerNoteApiToInternalItem
 } from '../utilities/apiUtils';
 
-
 configureAxios(axios);
 
 export const {
   initialOptions,
   addOpportunities,
-  addOpportunity,
   startLoadingOpportunities,
   startDismissingOpportunity,
+  allOpportunitiesLoaded,
   savingPlannerItem,
   savedPlannerItem,
   dismissedOpportunity,
@@ -49,12 +48,12 @@ export const {
 } = createActions(
   'INITIAL_OPTIONS',
   'ADD_OPPORTUNITIES',
-  'ADD_OPPORTUNITY',
-  'DISMISSED_OPPORTUNITY',
   'START_LOADING_OPPORTUNITIES',
   'START_DISMISSING_OPPORTUNITY',
+  'ALL_OPPORTUNITIES_LOADED',
   'SAVING_PLANNER_ITEM',
   'SAVED_PLANNER_ITEM',
+  'DISMISSED_OPPORTUNITY',
   'DELETING_PLANNER_ITEM',
   'DELETED_PLANNER_ITEM',
   'UPDATE_TODO',
@@ -84,9 +83,30 @@ function saveNewPlannerItem (apiItem) {
   });
 }
 
-export const getOpportunities = () => {
+export const getNextOpportunities = () => {
   return (dispatch, getState) => {
     dispatch(startLoadingOpportunities());
+    if(getState().opportunities.nextUrl) {
+      axios({
+        method: 'get',
+        url: getState().opportunities.nextUrl,
+      }).then(response => {
+        if(parseLinkHeader(response.headers.link).next) {
+          dispatch(addOpportunities({items: response.data, nextUrl: parseLinkHeader(response.headers.link).next.url }));
+        }else {
+          dispatch(addOpportunities({items: response.data, nextUrl: null}));
+        }
+      }).catch(() => alert(formatMessage('Failed to load opportunities'), true));
+    } else {
+      dispatch(allOpportunitiesLoaded());
+    }
+  };
+};
+
+export const getInitialOpportunities = () => {
+  return (dispatch, getState) => {
+    dispatch(startLoadingOpportunities());
+
     axios({
       method: 'get',
       url: getState().opportunities.nextUrl || '/api/v1/users/self/missing_submissions?include[]=planner_overrides',
@@ -94,7 +114,7 @@ export const getOpportunities = () => {
       if(parseLinkHeader(response.headers.link).next) {
         dispatch(addOpportunities({items: response.data, nextUrl: parseLinkHeader(response.headers.link).next.url }));
       }else {
-        dispatch(addOpportunities({items: [], nextUrl: null}));
+        dispatch(addOpportunities({items: response.data, nextUrl: null}));
       }
     }).catch(() => alert(formatMessage('Failed to load opportunities'), true));
   };
@@ -114,10 +134,10 @@ export const dismissOpportunity = (id, plannerOverride) => {
       dispatch(dismissedOpportunity(response.data));
 
       // TODO: When splitting into dismissed not dismissed tabs this needs to change
-      if(getState().opportunities.items.filter((opp) => {
+      if(!getState().loading.allOpportunitiesLoaded && !getState().loading.loadingOpportunities && getState().opportunities.items.filter((opp) => {
         return opp.planner_override && !opp.planner_override.dismissed;
       }).length < 10)
-        dispatch(getOpportunities());
+        dispatch(getNextOpportunities());
     });
     return promise;
   };

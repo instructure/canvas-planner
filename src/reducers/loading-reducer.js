@@ -101,6 +101,9 @@ export default handleActions({
   ALL_FUTURE_ITEMS_LOADED: (state, action) => {
     return loadingState(state, {allFutureItemsLoaded: true, setFocusAfterLoad: false});
   },
+  ALL_OPPORTUNITIES_LOADED: (state, action) => {
+    return loadingState(state, {loadingOpportunities: false, allOpportunitiesLoaded: true});
+  },
   ALL_PAST_ITEMS_LOADED: (state, action) => {
     return loadingState(state, {allPastItemsLoaded: true});
   },
@@ -110,6 +113,8 @@ export default handleActions({
 }, loadingState({}, {
   allPastItemsLoaded: false,
   allFutureItemsLoaded: false,
+  allOpportunitiesLoaded: false,
+  loadingOpportunities: false,
   setFocusAfterLoad: false,
   firstNewDayKey: null,
   futureNextUrl: null,

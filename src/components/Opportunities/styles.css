@@ -1,6 +1,6 @@
 .root {
   padding: var(--padding);
-  max-height: 18rem;
+  max-height: 36rem;
   overflow: auto;
   box-sizing: border-box;
   width: 20rem;

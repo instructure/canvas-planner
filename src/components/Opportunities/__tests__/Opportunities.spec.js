@@ -80,5 +80,3 @@ it('calls setTimeout when component is mounted', () => {
   expect(setTimeout.mock.calls[0][1]).toBe(200);
   jest.runAllTimers();
 });
-
-

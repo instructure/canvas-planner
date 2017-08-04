@@ -27,7 +27,7 @@ import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
 import Badge from 'instructure-ui/lib/components/Badge';
 import Opportunities from '../Opportunities';
-import {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity, clearUpdateTodo} from '../../actions';
+import {addDay, savePlannerItem, deletePlannerItem, getNextOpportunities, getInitialOpportunities, dismissOpportunity, clearUpdateTodo} from '../../actions';
 import focusStore from '../../utilities/focusStore';
 
 import styles from './styles.css';
@@ -49,30 +49,49 @@ export class PlannerHeader extends Component {
       items: PropTypes.arrayOf(PropTypes.object),
       nextUrl: PropTypes.string,
     }).isRequired,
-    getOpportunities: PropTypes.func.isRequired,
+    getInitialOpportunities: PropTypes.func.isRequired,
+    getNextOpportunities: PropTypes.func.isRequired,
     dismissOpportunity: PropTypes.func.isRequired,
     clearUpdateTodo: PropTypes.func.isRequired,
     todo: PropTypes.object,
+    loading: PropTypes.shape({
+      allPastItemsLoaded: PropTypes.bool,
+      allFutureItemsLoaded: PropTypes.bool,
+      allOpportunitiesLoaded: PropTypes.bool,
+      loadingOpportunities:  PropTypes.bool,
+      setFocusAfterLoad: PropTypes.bool,
+      firstNewDayKey: PropTypes.object,
+      futureNextUrl: PropTypes.string,
+      pastNextUrl: PropTypes.string,
+      seekingNewActivity: PropTypes.bool,
+    }).isRequired,
     ariaHideElement: PropTypes.instanceOf(Element).isRequired
   };
 
   constructor (props) {
     super(props);
-    let opportunities = props.opportunities.items.filter((opportunity) => this.isOpportunityVisible(opportunity));
 
     this.state = {
-      opportunities,
+      opportunities: props.opportunities.items,
       trayOpen: false,
       opportunitiesOpen: false,
+      dismissedTabSelected: false
     };
   }
 
   componentDidMount() {
-    this.props.getOpportunities();
+    this.props.getInitialOpportunities();
   }
 
   componentWillReceiveProps(nextProps) {
     let opportunities = nextProps.opportunities.items.filter((opportunity) => this.isOpportunityVisible(opportunity));
+
+    if (!nextProps.loading.allOpportunitiesLoaded && !nextProps.loading.loadingOpportunities && opportunities.length < 10) {
+      nextProps.getNextOpportunities();
+    }
+
+    opportunities = opportunities.slice(0, 10);
+
     if (nextProps.todo.updateTodoItem) {
       this.setState({trayOpen: true, updateTodoItem: nextProps.todo.updateTodoItem}, () => {
         this.toggleAriaHiddenStuff(this.state.trayOpen);
@@ -87,7 +106,11 @@ export class PlannerHeader extends Component {
   }
 
   isOpportunityVisible = (opportunity) => {
-    return opportunity.planner_override ? !opportunity.planner_override.dismissed : true;
+    if(this.state.dismissedTabSelected) {
+      return opportunity.planner_override ? opportunity.planner_override.dismissed : false;
+    } else {
+      return opportunity.planner_override ? !opportunity.planner_override.dismissed : true;
+    }
   }
 
   handleDeletePlannerItem = (plannerItem) => {
@@ -204,6 +227,6 @@ export class PlannerHeader extends Component {
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
 
 const mapStateToProps = ({opportunities, loading, courses, todo}) => ({opportunities, loading, courses, todo});
-const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getOpportunities, dismissOpportunity, clearUpdateTodo};
+const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getInitialOpportunities, getNextOpportunities, dismissOpportunity, clearUpdateTodo};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);

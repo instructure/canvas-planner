@@ -29,8 +29,8 @@ export function moxiosWait (fn) {
       try {
         resolve(fn(moxios.requests.mostRecent()));
       } catch (e) {
-         reject(e);
-       }
+        reject(e);
+      }
     });
   });
 }

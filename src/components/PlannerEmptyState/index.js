@@ -31,7 +31,7 @@ import theme from './theme.js';
 class PlannerEmptyState extends Component {
 
   static propTypes = {
-    changeToDashboardCardView: func.isRequired
+    changeToDashboardCardView: func
   }
 
   handleDashboardCardLinkClick = () => {

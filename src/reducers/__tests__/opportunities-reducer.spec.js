@@ -52,23 +52,6 @@ it('adds items to the state on ADD_OPPORTUNITIES', () => {
   expect(newState.items.length).toBe(2);
 });
 
-it('adds item to the state on ADD_OPPORTUNITY', () => {
-  const initialState = {
-    items: [],
-    nextUrl: null
-  };
-
-  const newState = opportunitiesReducer(initialState, {
-    type: 'ADD_OPPORTUNITY',
-    payload: {
-      items: [{ date: '2017-04-28' }],
-      nextUrl: null
-    }
-  });
-
-  expect(newState.items.length).toBe(1);
-});
-
 it('updates state correctly on DISMISSED_OPPORTUNITY with opportunity that has overide', () => {
   const initialState = {
     items: [basicOpportunity()],

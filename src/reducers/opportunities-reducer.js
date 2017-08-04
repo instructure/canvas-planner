@@ -23,7 +23,6 @@ function setOpportunityState(state, action) {
 }
 
 export default handleActions({
-  ADD_OPPORTUNITY: setOpportunityState,
   ADD_OPPORTUNITIES: setOpportunityState,
   DISMISSED_OPPORTUNITY: (state, action) => {
     let stateCopy = _.cloneDeep(state);

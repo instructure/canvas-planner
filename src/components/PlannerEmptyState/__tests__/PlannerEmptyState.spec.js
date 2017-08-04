@@ -16,10 +16,41 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import PlannerEmptyState from '../index';
 
 it('renders empty page', () => {
   const wrapper = shallow(<PlannerEmptyState changeToDashboardCardView={() => {}} />, );
   expect(wrapper).toMatchSnapshot();
+});
+
+it('does not changeToDashboardCardView on mount', () => {
+  const mockDispatch = jest.fn();
+
+  const changeToDashboardCardView = mockDispatch;
+
+  mount(<PlannerEmptyState changeToDashboardCardView={changeToDashboardCardView} />, );
+  expect(changeToDashboardCardView).not.toHaveBeenCalled();
+});
+
+it('calls changeToDashboardCardView on link click', () => {
+  const mockDispatch = jest.fn();
+
+  const changeToDashboardCardView = mockDispatch;
+
+  const wrapper = mount(<PlannerEmptyState changeToDashboardCardView={changeToDashboardCardView} />, );
+  const button = wrapper.find('Link').find('button');
+
+  button.simulate('click');
+  expect(changeToDashboardCardView).toHaveBeenCalled();
+});
+
+it('does not call changeToDashboardCardView on false prop', () => {
+  const wrapper = mount(<PlannerEmptyState/>, );
+  const button = wrapper.find('Link').find('button');
+
+  button.simulate('click');
+  expect(() => {
+    button.simulate('click');
+  }).not.toThrow();
 });

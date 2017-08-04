@@ -26,14 +26,29 @@ function defaultProps (option) {
       items: [{id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"}],
       nextUrl: null
     },
-    getOpportunities: () => {},
+    getInitialOpportunities: () => {},
+    getNextOpportunities: () => {},
     savePlannerItem: () => {},
     locale: 'en',
     timeZone: 'America/Denver',
     deletePlannerItem: () => {},
     dismissOpportunity: () => {},
     clearUpdateTodo: () => {},
-    ariaHideElement: document.createElement('div')
+    ariaHideElement: document.createElement('div'),
+    loading: {
+      allPastItemsLoaded: false,
+      allFutureItemsLoaded: false,
+      allOpportunitiesLoaded: false,
+      setFocusAfterLoad: false,
+      firstNewDayKey: null,
+      futureNextUrl: null,
+      pastNextUrl: null,
+      seekingNewActivity: false,
+    },
+    todo: {
+      updateTodo: () => {},
+      clearUpdateTodo: () => {}
+    }
   };
 }
 
@@ -65,14 +80,14 @@ it('sends focus back to the add new item button', () => {
   expect(btn.focused).toBe(true);
 });
 
-it('calls getOpportunities when component is mounted', () => {
+it('calls getInitialOpportunities when component is mounted', () => {
   let tempProps = defaultProps();
   const mockDispatch = jest.fn();
-  tempProps.getOpportunities = mockDispatch;
+  tempProps.getInitialOpportunities = mockDispatch;
   mount(
     <PlannerHeader {...tempProps} />
   );
-  expect(tempProps.getOpportunities).toHaveBeenCalled();
+  expect(tempProps.getInitialOpportunities).toHaveBeenCalled();
 });
 
 it('toggles aria-hidden on the ariaHideElement when opening the opportunities popover', () => {
@@ -118,4 +133,166 @@ it('calls clearUpdateTodo when closing the tray', () => {
   wrapper.instance().toggleUpdateItemTray();
   wrapper.instance().noteBtnOnClose();
   expect(fakeClearFunc).toHaveBeenCalled();
+});
+
+it('does not call getNextOpportunities when component has 12 opportunities', () => {
+  const mockDispatch = jest.fn();
+  const props = defaultProps();
+  props.courses = [
+    {id: "1", shortName: "Course Short Name"},
+    {id: "2", shortName: "Course Other Name"},
+    {id: "3", shortName: "Course Big Name"}
+  ];
+
+  props.opportunities.items = [
+    {id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "2", course_id: "2", due_at: "2017-04-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "3", course_id: "3", due_at: "2017-05-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "4", course_id: "1", due_at: "2017-06-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "5", course_id: "2", due_at: "2017-07-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "6", course_id: "3", due_at: "2017-08-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "7", course_id: "1", due_at: "2017-09-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "8", course_id: "2", due_at: "2017-10-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "9", course_id: "1", due_at: "2017-15-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "11", course_id: "2", due_at: "2017-16-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "12", course_id: "1", due_at: "2017-12-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "10", course_id: "2", due_at: "2017-17-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"}
+  ];
+
+  props.loading = {
+    allPastItemsLoaded: false,
+    allFutureItemsLoaded: false,
+    allOpportunitiesLoaded: false,
+    setFocusAfterLoad: false,
+    firstNewDayKey: null,
+    futureNextUrl: null,
+    pastNextUrl: null,
+    seekingNewActivity: false,
+  };
+
+  props.todo = {};
+
+  props.getNextOpportunities = mockDispatch;
+  const wrapper = shallow(
+    <PlannerHeader {...props} />
+  );
+
+  wrapper.setProps(props);
+  expect(props.getNextOpportunities).not.toHaveBeenCalled();
+});
+
+it('does call getNextOpportunities when component has 9 opportunities', () => {
+  const mockDispatch = jest.fn();
+  const props = defaultProps();
+  props.courses = [
+    {id: "1", shortName: "Course Short Name"},
+    {id: "2", shortName: "Course Other Name"},
+    {id: "3", shortName: "Course Big Name"}
+  ];
+
+  props.opportunities.items = [
+    {id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "2", course_id: "2", due_at: "2017-04-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "3", course_id: "3", due_at: "2017-05-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "4", course_id: "1", due_at: "2017-06-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "5", course_id: "2", due_at: "2017-07-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "6", course_id: "3", due_at: "2017-08-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "7", course_id: "1", due_at: "2017-09-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "8", course_id: "2", due_at: "2017-10-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "9", course_id: "1", due_at: "2017-15-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+  ];
+
+  props.loading = {
+    allPastItemsLoaded: false,
+    allFutureItemsLoaded: false,
+    allOpportunitiesLoaded: false,
+    setFocusAfterLoad: false,
+    firstNewDayKey: null,
+    futureNextUrl: null,
+    pastNextUrl: null,
+    seekingNewActivity: false,
+  };
+  props.todo = {};
+
+  props.getNextOpportunities = mockDispatch;
+  const wrapper = shallow(
+    <PlannerHeader {...props} />
+  );
+
+  wrapper.setProps(props);
+  expect(props.getNextOpportunities).toHaveBeenCalled();
+});
+
+it('opens tray if todo update item props is set', () => {
+  const mockDispatch = jest.fn();
+  const props = defaultProps();
+  props.courses = [
+    {id: "1", shortName: "Course Short Name"},
+    {id: "2", shortName: "Course Other Name"},
+    {id: "3", shortName: "Course Big Name"}
+  ];
+
+  props.opportunities.items = [
+    {id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "2", course_id: "2", due_at: "2017-04-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "3", course_id: "3", due_at: "2017-05-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "4", course_id: "1", due_at: "2017-06-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "5", course_id: "2", due_at: "2017-07-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "6", course_id: "3", due_at: "2017-08-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "7", course_id: "1", due_at: "2017-09-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "8", course_id: "2", due_at: "2017-10-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "9", course_id: "1", due_at: "2017-15-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "11", course_id: "2", due_at: "2017-16-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "12", course_id: "1", due_at: "2017-12-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "10", course_id: "2", due_at: "2017-17-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"}
+  ];
+
+  props.todo = {
+    updateTodoItem: {
+      id: 10
+    }
+  };
+
+  props.updateTodoItem = true;
+
+  props.getNextOpportunities = mockDispatch;
+  const wrapper = shallow(
+    <PlannerHeader {...props} />
+  );
+
+  wrapper.setProps(props);
+  expect(wrapper.state().trayOpen).toEqual(true);
+});
+
+it('shows only 10 opportunities badge when we over 10 items', () => {
+  const props = defaultProps();
+  props.courses = [
+    {id: "1", shortName: "Course Short Name"},
+    {id: "2", shortName: "Course Other Name"},
+    {id: "3", shortName: "Course Big Name"}
+  ];
+
+  props.opportunities.items = [
+    {id: "1", course_id: "1", due_at: "2017-03-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "2", course_id: "2", due_at: "2017-04-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "3", course_id: "3", due_at: "2017-05-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "4", course_id: "1", due_at: "2017-06-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "5", course_id: "2", due_at: "2017-07-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "6", course_id: "3", due_at: "2017-08-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "7", course_id: "1", due_at: "2017-09-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "8", course_id: "2", due_at: "2017-10-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "9", course_id: "3", due_at: "2017-13-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "10", course_id: "1", due_at: "2017-14-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "11", course_id: "2", due_at: "2017-15-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+    {id: "12", course_id: "3", due_at: "2017-16-09T20:40:35Z", html_url: "http://www.non_default_url.com", name: "learning object title"},
+  ];
+
+  const fakeElement = document.createElement('div');
+  const wrapper = mount(
+    <PlannerHeader {...props} ariaHideElement={fakeElement} />
+  );
+  wrapper.setProps(props);
+  expect(wrapper.find('Badge').filterWhere((item) => {
+    return item.prop('count') === 10; //src undefined
+  }).length).toEqual(1);
 });
