@@ -1,91 +1,91 @@
 {
   "el": {
     "reviewed_percentage": "0%",
-    "completed": "33%",
-    "untranslated_words": 189,
+    "completed": "32%",
+    "untranslated_words": 195,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-08-03 12:04:55",
-    "untranslated_entities": 41
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 43
   },
   "hy": {
     "reviewed_percentage": "0%",
-    "completed": "29%",
-    "untranslated_words": 192,
+    "completed": "28%",
+    "untranslated_words": 198,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 18,
     "translated_words": 20,
-    "last_update": "2017-08-03 12:04:55",
-    "untranslated_entities": 44
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 46
   },
   "fa_IR": {
     "reviewed_percentage": "0%",
-    "completed": "32%",
-    "untranslated_words": 190,
+    "completed": "31%",
+    "untranslated_words": 196,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 20,
     "translated_words": 22,
-    "last_update": "2017-08-03 12:04:56",
-    "untranslated_entities": 42
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 44
   },
   "nn": {
     "reviewed_percentage": "0%",
-    "completed": "33%",
-    "untranslated_words": 189,
+    "completed": "32%",
+    "untranslated_words": 195,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-08-03 12:04:56",
-    "untranslated_entities": 41
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 43
   },
   "tr": {
     "reviewed_percentage": "0%",
-    "completed": "54%",
-    "untranslated_words": 148,
+    "completed": "53%",
+    "untranslated_words": 154,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 34,
     "translated_words": 64,
-    "last_update": "2017-08-03 12:04:56",
-    "untranslated_entities": 28
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 30
   },
   "ko": {
     "reviewed_percentage": "0%",
-    "completed": "29%",
-    "untranslated_words": 192,
+    "completed": "28%",
+    "untranslated_words": 198,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 18,
     "translated_words": 20,
-    "last_update": "2017-08-03 12:04:56",
-    "untranslated_entities": 44
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 46
   },
   "hu": {
     "reviewed_percentage": "0%",
-    "completed": "33%",
-    "untranslated_words": 189,
+    "completed": "32%",
+    "untranslated_words": 195,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-08-03 12:04:56",
-    "untranslated_entities": 41
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 43
   },
   "uk_UA": {
     "reviewed_percentage": "0%",
-    "completed": "33%",
-    "untranslated_words": 189,
+    "completed": "32%",
+    "untranslated_words": 195,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-08-03 12:04:56",
-    "untranslated_entities": 41
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 43
   },
   "en": {
     "reviewed_percentage": "0%",
@@ -93,20 +93,20 @@
     "untranslated_words": 0,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 62,
-    "translated_words": 212,
-    "last_update": "2017-06-29 18:20:11",
+    "translated_entities": 64,
+    "translated_words": 218,
+    "last_update": "2017-08-08 20:20:13",
     "untranslated_entities": 0
   },
   "he": {
     "reviewed_percentage": "12%",
-    "completed": "77%",
-    "untranslated_words": 70,
-    "last_commiter": "kebarlow",
+    "completed": "75%",
+    "untranslated_words": 76,
+    "last_commiter": "canvastransifex",
     "reviewed": 8,
     "translated_entities": 48,
     "translated_words": 142,
-    "last_update": "2017-08-04 18:33:12",
-    "untranslated_entities": 14
+    "last_update": "2017-08-08 20:20:13",
+    "untranslated_entities": 16
   }
 }
