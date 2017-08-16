@@ -63,20 +63,30 @@ describe('getBadgesForItems', () => {
     expect(getBadgesForItems([{ status: 'excused' }, { status: 'late' }])).toEqual([]);
   });
 
-  it('returns New Grades object when at least one item has a graded status', () => {
-    const items = [{ status: { graded: true } }, { status: { excused: true } }];
+  it('returns New Grades object when at least one new activity item has a graded status', () => {
+    const items = [{ newActivity: true, status: { graded: true } }, { status: { excused: true } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_grades',
       text: 'New Grades'
     });
   });
 
-  it('returns New Feedback object when at least one item has a has_feedback status', () => {
-    const items = [{ status: { fake: true } }, { status: { has_feedback: true } }];
+  it('returns New Feedback object when at least one new activity item has a has_feedback status', () => {
+    const items = [{ status: { fake: true } }, { newActivity: true, status: { has_feedback: true } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_feedback',
       text: 'New Feedback'
     });
+  });
+
+  it('does not return New Grades object when only old items have a graded status', () => {
+    const items = [{ status: { graded: true } }, { status: { excused: true } }];
+    expect(getBadgesForItems(items)).toEqual([]);
+  });
+
+  it('does not return New Feedback object when only old items have a has_feedback status', () => {
+    const items = [{ status: { fake: true } }, { status: { has_feedback: true } }];
+    expect(getBadgesForItems(items)).toEqual([]);
   });
 
   it('returns New Replies object when at least one item has a non-zero unread count', () => {
