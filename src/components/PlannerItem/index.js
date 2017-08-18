@@ -36,7 +36,6 @@ import theme from './theme.js';
 import { arrayOf, bool, number, string, func, shape, object } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import formatMessage from '../../format-message';
-import focusStore from '../../utilities/focusStore';
 import {animatable} from '../../dynamic-ui';
 
 export class PlannerItem extends Component {
@@ -92,7 +91,6 @@ export class PlannerItem extends Component {
 
   toDoLinkClick = (e) => {
     e.preventDefault();
-    focusStore.setItemToFocus(this.itemLink);
     this.props.updateTodo({updateTodoItem: {...this.props}});
   }
 

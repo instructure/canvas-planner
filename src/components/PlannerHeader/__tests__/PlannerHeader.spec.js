@@ -19,7 +19,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { PlannerHeader } from '../index';
 
-function defaultProps (option) {
+function defaultProps (options) {
   return {
     courses: [{id: "1", shortName: "Course Short Name"}],
     opportunities: {
@@ -46,9 +46,9 @@ function defaultProps (option) {
       seekingNewActivity: false,
     },
     todo: {
-      updateTodo: () => {},
-      clearUpdateTodo: () => {}
-    }
+      updateTodoItem: null
+    },
+    ...options,
   };
 }
 
@@ -71,13 +71,13 @@ it('toggles the new item tray', () => {
 });
 
 it('sends focus back to the add new item button', () => {
+  const mockCancel = jest.fn();
   const wrapper = mount(
-    <PlannerHeader {...defaultProps()} />
+    <PlannerHeader {...defaultProps()} cancelEditingPlannerItem={mockCancel}/>
   );
   wrapper.instance().toggleUpdateItemTray();
-  const btn = wrapper.instance().addNoteBtn;
-  wrapper.instance().noteBtnOnClose();
-  expect(btn.focused).toBe(true);
+  wrapper.instance().handleCancelPlannerItem();
+  expect(mockCancel).toHaveBeenCalled();
 });
 
 it('calls getInitialOpportunities when component is mounted', () => {
@@ -118,10 +118,8 @@ it('toggles aria-hidden on the ariaHideElement when opening the add to do item t
 
 it('renders the tray with the name of an existing item when provided', () => {
   const wrapper = shallow(
-    <PlannerHeader {...defaultProps()} />
+    <PlannerHeader {...defaultProps({todo: {updateTodoItem: {title: 'abc'}}})} />
   );
-
-  wrapper.setState({ updateTodoItem: { title: 'abc' }});
   expect(wrapper.find('Tray').prop('label')).toBe('Edit abc');
 });
 

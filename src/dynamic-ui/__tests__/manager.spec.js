@@ -31,11 +31,18 @@ class MockAnimator {
   }
 }
 
+class MockDocument {
+  activeElement = {some: 'element'}
+}
+
 function createManagerWithMocks (opts = {}) {
-  const animator = new MockAnimator();
-  const manager = new Manager(animator);
+  opts = Object.assign({
+    animator: new MockAnimator(),
+    document: new MockDocument(),
+  }, opts);
+  const manager = new Manager(opts);
   manager.setStickyOffset(42);
-  return {manager, animator};
+  return {manager, animator: opts.animator, doc: opts.document};
 }
 
 function registerStandardDays (manager, opts = {}) {
@@ -186,6 +193,95 @@ describe('getting new activity', () => {
     // other animations don't happen because we don't know what to animate to.
     expect(animator.focusElement).not.toHaveBeenCalled();
     expect(animator.scrollTo).not.toHaveBeenCalled();
+  });
+});
+
+describe('manipulating items', () => {
+  it('restores previous focus on cancel', () => {
+    const {manager, animator, doc} = createManagerWithMocks();
+    manager.handleOpenEditingPlannerItem();
+    manager.handleCancelEditingPlannerItem({});
+    registerStandardDays(manager);
+    manager.preTriggerUpdates('fixed-element');
+    manager.triggerUpdates();
+    expect(animator.focusElement).toHaveBeenCalledWith(doc.activeElement);
+    // maintain and scrolling works around a chrome bug
+    expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
+    expect(animator.scrollTo).toHaveBeenCalledWith(doc.activeElement, 42);
+  });
+
+  it('does not scroll on cancel if told not to', () => {
+    const {manager, animator, doc} = createManagerWithMocks();
+    manager.handleOpenEditingPlannerItem();
+    manager.handleCancelEditingPlannerItem({payload: {noScroll: true}});
+    registerStandardDays(manager);
+    manager.preTriggerUpdates('fixed-element');
+    manager.triggerUpdates();
+    expect(animator.focusElement).toHaveBeenCalledWith(doc.activeElement);
+    // maintain and scrolling works around a chrome bug
+    expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
+    expect(animator.scrollTo).not.toHaveBeenCalled();
+  });
+
+  it('restores focus to previous focus when saving an existing item', () => {
+    const {manager, animator, doc} = createManagerWithMocks();
+    manager.handleOpenEditingPlannerItem();
+    manager.handleSavedPlannerItem({payload: {isNewItem: false, item: {uniqueId: 'day-0-group-0-item-0'}}});
+    registerStandardDays(manager);
+    manager.preTriggerUpdates('fixed-element');
+    manager.triggerUpdates();
+    expect(animator.focusElement).toHaveBeenCalledWith(doc.activeElement);
+    // maintain and scrolling works around a chrome bug
+    expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
+    expect(animator.scrollTo).toHaveBeenCalledWith(doc.activeElement, 42);
+  });
+
+  it('sets focus to the new item when adding a new item', () => {
+    const {manager, animator} = createManagerWithMocks();
+    manager.handleOpenEditingPlannerItem();
+    manager.handleSavedPlannerItem({payload: {isNewItem: true, item: {uniqueId: 'day-0-group-0-item-0'}}});
+    registerStandardDays(manager);
+    manager.preTriggerUpdates('fixed-element');
+    manager.triggerUpdates();
+    expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-0-group-0-item-0');
+    expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
+    expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-0', 42);
+  });
+
+  describe('deleting an item', () => {
+    it('sets focus to to the next item if there is one', () => {
+      const {manager, animator} = createManagerWithMocks();
+      // when deleting, we need to assume the item has already been registered.
+      registerStandardDays(manager);
+      manager.handleOpenEditingPlannerItem();
+      manager.handleDeletedPlannerItem({payload: {uniqueId: 'day-1-group-1-item-1'}});
+      manager.preTriggerUpdates('fixed-element');
+      manager.triggerUpdates();
+      expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-1-group-1-item-2');
+    });
+
+    it('sets focus to the previous item if there is no next item', () => {
+      const {manager, animator} = createManagerWithMocks();
+      // when deleting, we need to assume the item has already been registered.
+      registerStandardDays(manager);
+      manager.handleOpenEditingPlannerItem();
+      manager.handleDeletedPlannerItem({payload: {uniqueId: 'day-2-group-2-item-2'}});
+      manager.preTriggerUpdates('fixed-element');
+      manager.triggerUpdates();
+      expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-2-group-2-item-1');
+    });
+
+    it('gives up setting focus if deleting the only item', () => {
+      const {manager, animator} = createManagerWithMocks();
+      manager.registerAnimatable('item', {uniqueId: 'some-item'}, 0, ['some-item']);
+      manager.registerAnimatable('group', {}, 0, ['some-item']);
+      manager.registerAnimatable('day', {}, 0, ['some-item']);
+      manager.handleOpenEditingPlannerItem();
+      manager.handleDeletedPlannerItem({payload: {uniqueId: 'some-item'}});
+      manager.preTriggerUpdates('fixed-element');
+      manager.triggerUpdates();
+      expect(animator.focusElement).not.toHaveBeenCalled();
+    });
   });
 });
 

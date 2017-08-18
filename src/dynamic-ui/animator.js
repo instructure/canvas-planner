@@ -54,7 +54,11 @@ export class Animator {
 
   scrollTo (elt, offset) {
     this.queueAnimation(() => {
-      this.velocity(elt, 'scroll', {offset: -offset, duration: 1000, easing: 'ease-in-out'});
+      const viewportHeight = this.window.innerHeight;
+      const rect = elt.getBoundingClientRect();
+      if (rect.top < offset || rect.bottom > viewportHeight) {
+        this.velocity(elt, 'scroll', {offset: -offset, duration: 1000, easing: 'ease-in-out'});
+      }
     });
   }
 

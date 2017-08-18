@@ -96,7 +96,7 @@ describe('saving planner items', () => {
     ];
     const newState = daysReducer(initialState, {
       type: 'SAVED_PLANNER_ITEM',
-      payload: {id: '43', dateBucketMoment: moment.tz('2017-04-27', 'UTC')},
+      payload: {item: {id: '43', dateBucketMoment: moment.tz('2017-04-27', 'UTC')}},
     });
     expect(newState).toMatchObject([
       ['2017-04-27', [
@@ -112,7 +112,7 @@ describe('saving planner items', () => {
     ];
     const newState = daysReducer(initialState, {
       type: 'SAVED_PLANNER_ITEM',
-      payload: {dateBucketMoment: moment.tz( '2017-04-27', 'UTC'), id: '42', title: 'renamed event'},
+      payload: {item: {dateBucketMoment: moment.tz( '2017-04-27', 'UTC'), id: '42', title: 'renamed event'}},
     });
     expect(newState).toMatchObject([
       ['2017-04-27', [{id: '42', title: 'renamed event'}]],
@@ -127,7 +127,7 @@ describe('saving planner items', () => {
     const fakeDateBucketMoment = moment.tz('2017-04-28', 'UTC');
     const newState = daysReducer(initialState, {
       type: 'SAVED_PLANNER_ITEM',
-      payload: {dateBucketMoment: fakeDateBucketMoment, id: '43'},
+      payload: {item: {dateBucketMoment: fakeDateBucketMoment, id: '43'}},
     });
 
     const expectedState = [
@@ -143,7 +143,7 @@ describe('saving planner items', () => {
     ];
     const newState = daysReducer(initialState, {
       type: 'SAVED_PLANNER_ITEM',
-      payload: {dateBucketMoment: moment.tz('2017-04-27', 'UTC'), id: '43'},
+      payload: {item: {dateBucketMoment: moment.tz('2017-04-27', 'UTC'), id: '43'}},
       error: true,
     });
     expect(newState).toBe(initialState);

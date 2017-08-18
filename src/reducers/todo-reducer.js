@@ -16,10 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import { handleActions } from 'redux-actions';
+import _ from 'lodash';
 
 export default handleActions({
   UPDATE_TODO: (state, action) => {
-    return action.payload;
+    return _.cloneDeep(action.payload);
   },
   CLEAR_UPDATE_TODO: (state, action) => {
     return {};

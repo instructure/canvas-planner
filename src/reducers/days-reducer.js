@@ -27,7 +27,7 @@ function addDay (state, action) {
 
 function savedPlannerItem (state, action) {
   if (action.error) return state;
-  const plannerItem = action.payload;
+  const plannerItem = action.payload.item;
   const plannerDateString = formatDayKey(plannerItem.dateBucketMoment);
   const plannerDay = state.find(day => day[0] === plannerDateString);
   if (!plannerDay) {

@@ -43,6 +43,11 @@ export class AnimatableRegistry {
     }
   }
 
+  getComponent (type, itemId) {
+    this.validateType(type);
+    return this.registries[type][itemId];
+  }
+
   getFirstComponent (type, itemIds) {
     this.validateType(type);
     const registry = this.registries[type];
@@ -55,5 +60,18 @@ export class AnimatableRegistry {
     const registry = this.registries[type];
     const maxItemId = _.maxBy(itemIds, itemId => registry[itemId].index);
     return registry[maxItemId];
+  }
+
+  getUniqSortedComponents (type, itemIds) {
+    this.validateType(type);
+    let components = itemIds.map(itemId => this.registries[type][itemId]);
+    return _.chain(components).sortBy('index').sortedUniqBy('index').value();
+  }
+
+  getAllItemsSorted () {
+    const sortedDays = _.chain(this.registries.day).values().sortBy('index').sortedUniqBy('index').value();
+    const sortedGroups = _.flatMap(sortedDays, day => this.getUniqSortedComponents('group', day.itemIds));
+    const sortedItems = _.flatMap(sortedGroups, group => this.getUniqSortedComponents('item', group.itemIds));
+    return sortedItems;
   }
 }

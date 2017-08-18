@@ -34,6 +34,7 @@ function mockWindow (opts = {}) {
   const queue = [];
   return {
     queue,
+    innerHeight: 100,
     scroll: jest.fn(),
     requestAnimationFrame: (fn) => queue.push(fn),
     runAnimationFrames: () => {
@@ -71,13 +72,32 @@ it('focuses elements', () => {
   expect(elt.focus).toHaveBeenCalled();
 });
 
-it('scrolls to elements with offset', () => {
+it('scrolls to elements with that are below the viewport', () => {
   const {animator, mocks} = makeAnimator();
   const elt = mockElement();
+  elt.getBoundingClientRect.mockReturnValueOnce({top: 95, left: 0, bottom: 105, right: 42});
   animator.scrollTo(elt, 5);
   expect(mocks.velocity).not.toHaveBeenCalled();
   mocks.window.runAnimationFrames();
   expect(mocks.velocity).toHaveBeenCalledWith(elt, 'scroll', expect.objectContaining({offset: -5}));
+});
+
+it('scrolls to elements that are above the offset', () => {
+  const {animator, mocks} = makeAnimator();
+  const elt = mockElement();
+  elt.getBoundingClientRect.mockReturnValueOnce({top: 4, left: 0, bottom: 20, right: 42});
+  animator.scrollTo(elt, 5);
+  mocks.window.runAnimationFrames();
+  expect(mocks.velocity).toHaveBeenCalledWith(elt, 'scroll', expect.objectContaining({offset: -5}));
+});
+
+it('does not scroll to element if it is already fully in view', () => {
+  const {animator, mocks} = makeAnimator();
+  const elt = mockElement();
+  elt.getBoundingClientRect.mockReturnValue({top: 5, left: 0, bottom: 95, right: 42});
+  animator.scrollTo(elt, 5);
+  mocks.window.runAnimationFrames();
+  expect(mocks.velocity).not.toHaveBeenCalled();
 });
 
 it('maintains scroll position of element', () => {
@@ -99,6 +119,7 @@ it('maintains scroll position of element', () => {
 it('does focus action before other operations', () => {
   const {animator, mocks} = makeAnimator();
   const elt = mockElement();
+  elt.getBoundingClientRect.mockReturnValue({top: 10, left: 0, bottom: 20, right: 42});
   animator.scrollTo(elt, 42);
   animator.focusElement(elt);
   expect(mocks.window.queue.length).toBe(2);

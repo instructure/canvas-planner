@@ -77,13 +77,15 @@ export default {
     const opts = { ...defaultOptions, ...options };
 
     ReactDOM.render(applyTheme(
-      <Provider store={store}>
-        <PlannerHeader
-          timeZone={opts.timeZone}
-          locale={opts.locale}
-          ariaHideElement={opts.ariaHideElement}
-        />
-      </Provider>
+      <DynamicUiProvider manager={dynamicUiManager} >
+        <Provider store={store}>
+          <PlannerHeader
+            timeZone={opts.timeZone}
+            locale={opts.locale}
+            ariaHideElement={opts.ariaHideElement}
+          />
+        </Provider>
+      </DynamicUiProvider>
     , opts.theme), element);
   }
 };

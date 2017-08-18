@@ -45,6 +45,8 @@ export const {
   deletedPlannerItem,
   updateTodo,
   clearUpdateTodo,
+  openEditingPlannerItem,
+  cancelEditingPlannerItem,
 } = createActions(
   'INITIAL_OPTIONS',
   'ADD_OPPORTUNITIES',
@@ -57,7 +59,9 @@ export const {
   'DELETING_PLANNER_ITEM',
   'DELETED_PLANNER_ITEM',
   'UPDATE_TODO',
-  'CLEAR_UPDATE_TODO'
+  'CLEAR_UPDATE_TODO',
+  'OPEN_EDITING_PLANNER_ITEM',
+  'CANCEL_EDITING_PLANNER_ITEM',
 );
 
 export * from './loading-actions';
@@ -147,13 +151,18 @@ export const savePlannerItem = (plannerItem) => {
   plannerItem.date = moment(plannerItem.date).endOf('day').format('YYYY-MM-DDTHH:mm:ssZ');
 
   return (dispatch, getState) => {
-    dispatch(savingPlannerItem(plannerItem));
+    const isNewItem = !plannerItem.id;
+    dispatch(savingPlannerItem({item: plannerItem, isNewItem}));
     const apiItem = transformInternalToApiItem(plannerItem);
-    let promise = plannerItem.id ?
-      saveExistingPlannerItem(apiItem) :
-      saveNewPlannerItem(apiItem);
-    promise = promise.then(response => transformPlannerNoteApiToInternalItem(response.data, getState().courses, getState().timeZone))
-                     .catch(() => alert(formatMessage('Failed to save to do'), true));
+    let promise = isNewItem ?
+      saveNewPlannerItem(apiItem) :
+      saveExistingPlannerItem(apiItem);
+    promise = promise
+      .then(response => {
+        const apiItem = transformPlannerNoteApiToInternalItem(response.data, getState().courses, getState().timeZone);
+        return {item: apiItem, isNewItem};
+      })
+      .catch(() => alert(formatMessage('Failed to save to do'), true));
     dispatch(savedPlannerItem(promise));
     return promise;
   };
@@ -190,13 +199,16 @@ function saveNewPlannerOverride (apiOverride) {
 
 export const togglePlannerItemCompletion = (plannerItem) => {
   return (dispatch, getState) => {
-    dispatch(savingPlannerItem(plannerItem));
+    dispatch(savingPlannerItem({item: plannerItem, isNewItem: false}));
     const apiOverride = transformInternalToApiOverride(plannerItem, getState().userId);
     apiOverride.marked_complete = !apiOverride.marked_complete;
     let promise = apiOverride.id ?
       saveExistingPlannerOverride(apiOverride) :
       saveNewPlannerOverride(apiOverride);
-    promise = promise.then(response => updateOverrideDataOnItem(plannerItem, response.data));
+    promise = promise.then(response => ({
+      item: updateOverrideDataOnItem(plannerItem, response.data),
+      isNewItem: false,
+    }));
     dispatch(savedPlannerItem(promise));
     return promise;
   };

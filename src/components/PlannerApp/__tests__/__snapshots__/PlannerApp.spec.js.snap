@@ -51,7 +51,9 @@ exports[`renders base component using dayKeys 1`] = `
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
-  <div />
+  <div
+    id="planner-app-fixed-element"
+  />
 </div>
 `;
 
@@ -113,7 +115,9 @@ exports[`shows new activity button when new activity is indicated 1`] = `
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
-  <div />
+  <div
+    id="planner-app-fixed-element"
+  />
 </div>
 `;
 
@@ -142,7 +146,9 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
       variant="default"
     />
   </Container>
-  <div />
+  <div
+    id="planner-app-fixed-element"
+  />
 </div>
 `;
 
@@ -198,6 +204,8 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
     timeZone="UTC"
   />
   <LoadingFutureIndicator />
-  <div />
+  <div
+    id="planner-app-fixed-element"
+  />
 </div>
 `;

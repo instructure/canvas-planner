@@ -27,12 +27,13 @@ import UpdateItemTray from '../UpdateItemTray';
 import Tray from 'instructure-ui/lib/components/Tray';
 import Badge from 'instructure-ui/lib/components/Badge';
 import Opportunities from '../Opportunities';
-import {addDay, savePlannerItem, deletePlannerItem, getNextOpportunities, getInitialOpportunities, dismissOpportunity, clearUpdateTodo} from '../../actions';
-import focusStore from '../../utilities/focusStore';
+import {addDay, savePlannerItem, deletePlannerItem, cancelEditingPlannerItem, openEditingPlannerItem, getNextOpportunities, getInitialOpportunities, dismissOpportunity, clearUpdateTodo} from '../../actions';
 
 import styles from './styles.css';
 import theme from './theme.js';
 import formatMessage from '../../format-message';
+import {notifier} from '../../dynamic-ui';
+
 export class PlannerHeader extends Component {
 
   static propTypes = {
@@ -43,6 +44,10 @@ export class PlannerHeader extends Component {
     addDay: PropTypes.func,
     savePlannerItem: PropTypes.func.isRequired,
     deletePlannerItem: PropTypes.func.isRequired,
+    cancelEditingPlannerItem: PropTypes.func,
+    openEditingPlannerItem: PropTypes.func,
+    triggerDynamicUiUpdates: PropTypes.func,
+    preTriggerDynamicUiUpdates: PropTypes.func,
     locale: PropTypes.string.isRequired,
     timeZone: PropTypes.string.isRequired,
     opportunities: PropTypes.shape({
@@ -53,7 +58,11 @@ export class PlannerHeader extends Component {
     getNextOpportunities: PropTypes.func.isRequired,
     dismissOpportunity: PropTypes.func.isRequired,
     clearUpdateTodo: PropTypes.func.isRequired,
-    todo: PropTypes.object,
+    todo: PropTypes.shape({
+      updateTodoItem: PropTypes.shape({
+        title: PropTypes.string,
+      }),
+    }),
     loading: PropTypes.shape({
       allPastItemsLoaded: PropTypes.bool,
       allFutureItemsLoaded: PropTypes.bool,
@@ -67,6 +76,11 @@ export class PlannerHeader extends Component {
     }).isRequired,
     ariaHideElement: PropTypes.instanceOf(Element).isRequired
   };
+
+  static defaultProps = {
+    triggerDynamicUiUpdates: () => {},
+    preTriggerDynamicUiUpdates: () => {},
+  }
 
   constructor (props) {
     super(props);
@@ -91,13 +105,19 @@ export class PlannerHeader extends Component {
     }
 
     opportunities = opportunities.slice(0, 10);
-
-    if (nextProps.todo.updateTodoItem) {
-      this.setState({trayOpen: true, updateTodoItem: nextProps.todo.updateTodoItem}, () => {
-        this.toggleAriaHiddenStuff(this.state.trayOpen);
-      });
-    }
+    this.setUpdateItemTray(!!nextProps.todo.updateTodoItem);
     this.setState({opportunities});
+  }
+
+  componentWillUpdate () {
+    this.props.preTriggerDynamicUiUpdates(document.getElementById('planner-app-fixed-element'));
+  }
+
+  componentDidUpdate () {
+    if (this.props.todo.updateTodoItem) {
+      this.toggleAriaHiddenStuff(this.state.trayOpen);
+    }
+    this.props.triggerDynamicUiUpdates();
   }
 
   handleSavePlannerItem = (plannerItem) => {
@@ -118,6 +138,16 @@ export class PlannerHeader extends Component {
     this.props.deletePlannerItem(plannerItem);
   }
 
+  handleCancelPlannerItem = () => {
+    this.toggleUpdateItemTray();
+    // let the dynamic ui manager manage focus on cancel.
+    // Don't scroll if it was the add button because it's in the sticky header.
+    const canceledNewItem = !this.props.todo.updateTodoItem;
+    if (this.props.cancelEditingPlannerItem) {
+      this.props.cancelEditingPlannerItem({noScroll: canceledNewItem});
+    }
+  }
+
   toggleAriaHiddenStuff = (hide) => {
     if (hide) {
       this.props.ariaHideElement.setAttribute('aria-hidden', 'true');
@@ -127,11 +157,14 @@ export class PlannerHeader extends Component {
   }
 
   toggleUpdateItemTray = () => {
-    const trayOpen = this.state.trayOpen;
-    this.setState({ trayOpen: !trayOpen }, () => {
-      if (this.state.trayOpen) {
-        focusStore.setItemToFocus(this.addNoteBtn);
-      }
+    this.setUpdateItemTray(!this.state.trayOpen);
+  }
+
+  setUpdateItemTray (trayOpen) {
+    if (trayOpen && !this.state.trayOpen && this.props.openEditingPlannerItem) {
+      this.props.openEditingPlannerItem();
+    }
+    this.setState({ trayOpen }, () => {
       this.toggleAriaHiddenStuff(this.state.trayOpen);
     });
   }
@@ -144,9 +177,7 @@ export class PlannerHeader extends Component {
   }
 
   noteBtnOnClose = () => {
-    focusStore.focus();
     this.props.clearUpdateTodo();
-    this.setState({ updateTodoItem: null });
   }
 
   opportunityTitle = () => {
@@ -161,8 +192,8 @@ export class PlannerHeader extends Component {
   }
 
   getTrayLabel = () => {
-    if (this.state.updateTodoItem) {
-      return formatMessage('Edit {title}', { title: this.state.updateTodoItem.title });
+    if (this.props.todo.updateTodoItem) {
+      return formatMessage('Edit {title}', { title: this.props.todo.updateTodoItem.title });
     }
     return formatMessage("Add To Do");
   }
@@ -208,12 +239,12 @@ export class PlannerHeader extends Component {
           placement="end"
           trapFocus={true}
           onExited={this.noteBtnOnClose}
-          onRequestClose={this.toggleUpdateItemTray}
+          onRequestClose={this.handleCancelPlannerItem}
         >
           <UpdateItemTray
             locale={this.props.locale}
             timeZone={this.props.timeZone}
-            noteItem={this.state.updateTodoItem}
+            noteItem={this.props.todo.updateTodoItem}
             onSavePlannerItem={this.handleSavePlannerItem}
             onDeletePlannerItem={this.handleDeletePlannerItem}
             courses={this.props.courses}
@@ -225,8 +256,9 @@ export class PlannerHeader extends Component {
 }
 
 export const ThemedPlannerHeader = themeable(theme, styles)(PlannerHeader);
+export const NotifierPlannerHeader = notifier(ThemedPlannerHeader);
 
 const mapStateToProps = ({opportunities, loading, courses, todo}) => ({opportunities, loading, courses, todo});
-const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, getInitialOpportunities, getNextOpportunities, dismissOpportunity, clearUpdateTodo};
+const mapDispatchToProps = {addDay, savePlannerItem, deletePlannerItem, cancelEditingPlannerItem, openEditingPlannerItem, getInitialOpportunities, getNextOpportunities, dismissOpportunity, clearUpdateTodo};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ThemedPlannerHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(NotifierPlannerHeader);

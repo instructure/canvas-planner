@@ -243,7 +243,16 @@ describe('api actions', () => {
       const plannerItem = {some: 'data'};
       const savePromise = Actions.savePlannerItem(plannerItem)(mockDispatch, getBasicState);
       expect(isPromise(savePromise)).toBe(true);
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: plannerItem});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: {item: plannerItem, isNewItem: true}});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
+    });
+
+    it('sets isNewItem to false if the item id exists', () => {
+      const mockDispatch = jest.fn();
+      const plannerItem = {some: 'data', id: '42'};
+      const savePromise = Actions.savePlannerItem(plannerItem)(mockDispatch, getBasicState);
+      expect(isPromise(savePromise)).toBe(true);
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: {item: plannerItem, isNewItem: false}});
       expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
     });
 
@@ -265,7 +274,8 @@ describe('api actions', () => {
         savePromise
       ).then((result) => {
         expect(result).toMatchObject({
-          some: 'response data', transformedToInternal: true,
+          item: {some: 'response data', transformedToInternal: true},
+          isNewItem: true,
         });
       });
     });
@@ -376,7 +386,7 @@ describe('api actions', () => {
       const plannerItem = {some: 'data'};
       const savePromise = Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
       expect(isPromise(savePromise)).toBe(true);
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: plannerItem});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: {item: plannerItem, isNewItem: false}});
       expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
     });
 
@@ -420,10 +430,12 @@ describe('api actions', () => {
         togglePromise
       ).then((result) => {
         expect(result).toMatchObject({
-          ...plannerItem,
-          completed: false,
-          overrideId: 'override_id',
-          show: true,
+          item: {
+            ...plannerItem,
+            completed: false,
+            overrideId: 'override_id',
+            show: true,
+          },
         });
       });
     });

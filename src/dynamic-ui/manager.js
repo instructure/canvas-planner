@@ -23,8 +23,9 @@ import {Animator} from './animator';
 import {isNewActivityItem} from '../utilities/statusUtils';
 
 export class DynamicUiManager {
-  constructor (animator = new Animator()) {
-    this.animator = animator;
+  constructor (opts = {animator: new Animator(), document: document}) {
+    this.animator = opts.animator;
+    this.document = opts.document;
     this.animatableRegistry = new AnimatableRegistry();
     this.animationPlan = {};
     this.stickyOffset = 0;
@@ -44,7 +45,11 @@ export class DynamicUiManager {
 
   animationWillScroll () {
     return this.animationPlan.scrollToLastNewActivity ||
-      this.animationPlan.focusLastNewItem
+      this.animationPlan.focusLastNewItem ||
+      this.animationPlan.focusItem ||
+      // This works around a chrome bug where focusing something in the sticky header jumps the
+      // scroll position to the top of the document, so we need to maintain the scroll position.
+      this.animationPlan.focusPreOpenTrayElement
     ;
   }
 
@@ -67,6 +72,10 @@ export class DynamicUiManager {
       this.triggerFocusLastNewItem();
     } else if (this.animationPlan.focusFirstNewItem) {
       this.triggerFocusFirstNewItem();
+    } else if (this.animationPlan.focusItem) {
+      this.triggerFocusItem();
+    } else if (this.animationPlan.focusPreOpenTrayElement) {
+      this.triggerFocusPreOpenTrayElement();
     }
 
     this.clearAnimationPlan();
@@ -119,6 +128,22 @@ export class DynamicUiManager {
     this.animator.scrollTo(newActivityGroup.getScrollable(), this.stickyOffset);
   }
 
+  triggerFocusItem () {
+    const itemToFocus = this.animatableRegistry.getComponent('item', this.animationPlan.focusItem);
+    this.animator.focusElement(itemToFocus.component.getFocusable());
+
+    const groupToScroll = this.animatableRegistry.getComponent('group', this.animationPlan.focusItem);
+    this.animator.scrollTo(groupToScroll.component.getScrollable(), this.stickyOffset);
+  }
+
+  triggerFocusPreOpenTrayElement () {
+    this.animator.focusElement(this.animationPlan.preOpenTrayElement);
+    // make sure the focused item is in view in case they scrolled away from it while the tray was open
+    if (!this.animationPlan.noScroll) {
+      this.animator.scrollTo(this.animationPlan.preOpenTrayElement, this.stickyOffset);
+    }
+  }
+
   handleAction = (action) => {
     const handlerSuffix = changeCase.pascal(action.type);
     const handlerName = `handle${handlerSuffix}`;
@@ -157,5 +182,33 @@ export class DynamicUiManager {
     const sortedItems = _.sortBy(newItems, item => item.date);
     this.animationPlan.firstNewItem = sortedItems[0];
     this.animationPlan.lastNewItem = sortedItems[sortedItems.length - 1];
+  }
+
+  handleOpenEditingPlannerItem = (action) => {
+    this.animationPlan.preOpenTrayElement = this.document.activeElement;
+  }
+
+  handleCancelEditingPlannerItem = (action) => {
+    Object.assign(this.animationPlan, {focusPreOpenTrayElement: true, ready: true, ...action.payload});
+  }
+
+  handleSavedPlannerItem = (action) => {
+    if (action.payload.isNewItem) {
+      this.animationPlan.focusItem = action.payload.item.uniqueId;
+    } else {
+      this.animationPlan.focusPreOpenTrayElement = true;
+    }
+    this.animationPlan.ready = true;
+  }
+
+  handleDeletedPlannerItem = (action) => {
+    const sortedItems = this.animatableRegistry.getAllItemsSorted();
+    if (sortedItems.length === 1) return; // give up, no items to receive focus
+    const doomedItem = action.payload;
+    const doomedIndex = sortedItems.findIndex(item => item.itemIds[0] === doomedItem.uniqueId);
+    let newItemIndex = doomedIndex + 1;
+    if (newItemIndex === sortedItems.length) newItemIndex = doomedIndex - 1;
+    this.animationPlan.focusItem = sortedItems[newItemIndex].itemIds[0];
+    this.animationPlan.ready = true;
   }
 }

@@ -87,7 +87,7 @@ export class Grouping extends Component {
   }
 
   getFocusable () { return this.groupingLink; }
-  getScrollable () { return this.groupingLink; }
+  getScrollable () { return this.groupingLink || this.plannerNoteHero; }
 
   handleFacadeClick = (e) => {
     if (e) { e.preventDefault(); }
@@ -200,7 +200,7 @@ export class Grouping extends Component {
 
   renderGroupLink () {
     if (!this.props.title) {
-      return <span className={styles.hero}>
+      return <span className={styles.hero} ref={elt => this.plannerNoteHero = elt}>
         {this.renderGroupLinkBackground()}
         {this.renderGroupLinkTitle()}
       </span>;

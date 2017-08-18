@@ -151,6 +151,7 @@ export function transformPlannerNoteApiToInternalItem (plannerItemApiResponse, c
   }
   return {
     id: plannerNote.id,
+    uniqueId: `planner_note-${plannerNote.id}`,
     dateBucketMoment: moment.tz(plannerNote.todo_date, timeZone).startOf('day'),
     type: 'To Do',
     status: false,

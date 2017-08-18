@@ -153,7 +153,7 @@ export class PlannerApp extends Component {
       {this.renderLoadingPast()}
       {children}
       {this.renderLoadMore()}
-      <div ref={this.fixedElementRef} />
+      <div id="planner-app-fixed-element" ref={this.fixedElementRef} />
     </div>;
   }
 

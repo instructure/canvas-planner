@@ -268,6 +268,7 @@ Object {
   "status": false,
   "title": "abc123",
   "type": "To Do",
+  "uniqueId": "planner_note-14",
 }
 `;
 
@@ -283,5 +284,6 @@ Object {
   "status": false,
   "title": "abc123",
   "type": "To Do",
+  "uniqueId": "planner_note-14",
 }
 `;
