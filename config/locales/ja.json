@@ -110,8 +110,14 @@
   "missing_1a256b3b": {
     "message": "欠如"
   },
+  "missing_items_for_5ef30cea": {
+    "message": "～に不足しているアイテム"
+  },
   "new_activity_8b84847d": {
     "message": "新規アクティビティ"
+  },
+  "new_activity_for_ac84f6e6": {
+    "message": "～の新規アクティビティ"
   },
   "new_feedback_f5d9c97f": {
     "message": "新しいフィードバック"

@@ -110,8 +110,14 @@
   "missing_1a256b3b": {
     "message": "Mangler"
   },
+  "missing_items_for_5ef30cea": {
+    "message": "Manglende elementer for "
+  },
   "new_activity_8b84847d": {
     "message": "Ny aktivitet"
+  },
+  "new_activity_for_ac84f6e6": {
+    "message": "Ny aktivitet for "
   },
   "new_feedback_f5d9c97f": {
     "message": "Ny feedback"

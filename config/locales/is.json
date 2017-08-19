@@ -110,8 +110,14 @@
   "missing_1a256b3b": {
     "message": "Vantar"
   },
+  "missing_items_for_5ef30cea": {
+    "message": "Atriði sem vantar fyrir "
+  },
   "new_activity_8b84847d": {
     "message": "Ný virkni"
+  },
+  "new_activity_for_ac84f6e6": {
+    "message": "Ný virkni fyrir "
   },
   "new_feedback_f5d9c97f": {
     "message": "Ný endurgjöf"

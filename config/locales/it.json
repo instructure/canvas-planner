@@ -110,8 +110,14 @@
   "missing_1a256b3b": {
     "message": "Mancante"
   },
+  "missing_items_for_5ef30cea": {
+    "message": "Elementi mancanti per "
+  },
   "new_activity_8b84847d": {
     "message": "Nuova attività"
+  },
+  "new_activity_for_ac84f6e6": {
+    "message": "Nuova attività per "
   },
   "new_feedback_f5d9c97f": {
     "message": "Nuovo feedback"
