@@ -21,11 +21,6 @@ import { handleActions } from 'redux-actions';
 import { formatDayKey } from '../utilities/dateUtils';
 import { findPlannerItemById } from '../utilities/storeUtils';
 
-function addDay (state, action) {
-  const newState = state.concat([[action.payload, []]]);
-  return _.sortBy(newState, _.head);
-}
-
 function savedPlannerItem (state, action) {
   if (action.error) return state;
   const plannerItem = action.payload.item;
@@ -115,7 +110,6 @@ function gotItemsSuccess (state, items) {
 
 export default handleActions({
   GOT_ITEMS_SUCCESS: (state, action) => gotItemsSuccess(state, action.payload.internalItems),
-  ADD_DAY: addDay,
   SAVED_PLANNER_ITEM: savedPlannerItem,
   DELETED_PLANNER_ITEM: deletedPlannerItem,
 }, []);

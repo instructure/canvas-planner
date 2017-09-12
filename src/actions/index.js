@@ -15,11 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import { createAction, createActions } from 'redux-actions';
+import { createActions } from 'redux-actions';
 import axios from 'axios';
 import moment from 'moment';
 import configureAxios from '../utilities/configureAxios';
-import { formatDayKey } from '../utilities/dateUtils';
 import { alert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
 import parseLinkHeader from 'parse-link-header';
@@ -65,11 +64,6 @@ export const {
 );
 
 export * from './loading-actions';
-
-let dayCount = 1;
-export const addDay = createAction('ADD_DAY', () => {
-  return formatDayKey(moment().add(dayCount++, 'days'));
-});
 
 function saveExistingPlannerItem (apiItem) {
   return axios({
