@@ -17,21 +17,24 @@
  */
 import React from 'react';
 import LoadingPastIndicator from '../index';
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 
-it('renders stuff', () => {
+it('renders very little', () => {
   const wrapper = shallow(<LoadingPastIndicator />);
   expect(wrapper).toMatchSnapshot();
 });
 
-it('invokes callback when about to unmount', () => {
-  const mockFn = jest.fn();
-  const wrapper = mount(<LoadingPastIndicator onComponentWillUnmount={mockFn} />);
-  wrapper.unmount();
-  expect(mockFn).toHaveBeenCalled();
+it('renders spinner while loading', () => {
+  const wrapper = shallow(<LoadingPastIndicator loadingPast={true} />);
+  expect(wrapper).toMatchSnapshot();
 });
 
-it('does not crash if not given an unmount callback', () => {
-  const wrapper = mount(<LoadingPastIndicator />);
-  wrapper.unmount();
+it('still renders loading even when no more items in the past', () => {
+  const wrapper = shallow(<LoadingPastIndicator loadingPast={true} allPastItemsLoaded={true} />);
+  expect(wrapper).toMatchSnapshot();
+});
+
+it('renders TV when all past items loaded', () => {
+  const wrapper = shallow(<LoadingPastIndicator allPastItemsLoaded={true} />);
+  expect(wrapper).toMatchSnapshot();
 });

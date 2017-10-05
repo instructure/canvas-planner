@@ -2,7 +2,9 @@
 
 exports[`renders empty page 1`] = `
 <div>
-  <DesertSvg />
+  <DesertSvg
+    aria-hidden="true"
+  />
   <div>
     <Heading
       border="none"

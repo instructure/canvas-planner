@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import _ from 'lodash';
 import Velocity from 'velocity-animate';
 
 export function animateSlideDown (elt) {
@@ -41,10 +40,7 @@ function handleWindowScrollKey (cb, wind, e) {
 }
 
 export function registerScrollEvents (scrollIntoPastCb, wind = window) {
-  // do debounce here so tests aren't dependant on global state
-  const boundWindowWheel = _.debounce(
-    handleWindowWheel.bind(undefined, scrollIntoPastCb, wind),
-  500, {leading: true, trailing: false});
+  const boundWindowWheel = handleWindowWheel.bind(undefined, scrollIntoPastCb, wind);
   wind.addEventListener('wheel', boundWindowWheel);
 
   const boundScrollKey = handleWindowScrollKey.bind(undefined, scrollIntoPastCb, wind);

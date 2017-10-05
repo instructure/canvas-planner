@@ -114,10 +114,9 @@ export class PlannerApp extends Component {
   }
 
   renderLoadingPast () {
-    if (this.props.loadingPast) {
-      return <LoadingPastIndicator
-        onComponentWillUnmount={this.handleLoadingPastIndicatorWillUnmount} />;
-    }
+    return <LoadingPastIndicator
+      loadingPast={this.props.loadingPast}
+      allPastItemsLoaded={this.props.allPastItemsLoaded} />;
   }
 
   renderLoadMore () {

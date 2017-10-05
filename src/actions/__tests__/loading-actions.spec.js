@@ -114,7 +114,6 @@ describe('api actions', () => {
      const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
      return moxiosRespond([], loadingPromise).then((result) => {
        expect(fakeDispatch).toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
-       expect(fakeDispatch).toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
      });
    });
   });
@@ -282,6 +281,14 @@ describe('api actions', () => {
       return moxiosRespond([], fetchPromise, {headers: {link: '<futureNextUrl>; rel="next"'}}).then(result => {
         expect(mockDispatch).not.toHaveBeenCalledWith(expect.objectContaining({type: 'ALL_PAST_ITEMS_LOADED'}));
       });
+    });
+
+    it('does not make the api call if allPastItemsLoaded', () => {
+      const mockDispatch = jest.fn();
+      let modifiedState = getBasicState();
+      modifiedState.loading.allPastItemsLoaded = true;
+      Actions.scrollIntoPast()(mockDispatch, () => modifiedState);
+      expect(mockDispatch).not.toHaveBeenCalled();
     });
   });
 

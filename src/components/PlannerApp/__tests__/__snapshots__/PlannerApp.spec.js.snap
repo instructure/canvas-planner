@@ -14,6 +14,10 @@ exports[`renders base component using dayKeys 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
+  <LoadingPastIndicator
+    allPastItemsLoaded={false}
+    loadingPast={false}
+  />
   <Animatable(Day)
     animatableIndex={0}
     day="2017-04-24"
@@ -78,6 +82,10 @@ exports[`shows new activity button when new activity is indicated 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
+  <LoadingPastIndicator
+    allPastItemsLoaded={false}
+    loadingPast={false}
+  />
   <Animatable(Day)
     animatableIndex={0}
     day="2017-04-24"
@@ -135,6 +143,10 @@ exports[`shows only the loading component when the isLoading prop is true 1`] = 
   >
     Load prior dates
   </ShowOnFocusButton>
+  <LoadingPastIndicator
+    allPastItemsLoaded={false}
+    loadingPast={false}
+  />
   <Container
     display="block"
     padding="xx-large medium"
@@ -166,7 +178,10 @@ exports[`shows the loading past indicator when loadingPast prop is true 1`] = `
   >
     Load prior dates
   </ShowOnFocusButton>
-  <LoadingPastIndicator />
+  <LoadingPastIndicator
+    allPastItemsLoaded={false}
+    loadingPast={true}
+  />
   <Animatable(Day)
     animatableIndex={0}
     day="2017-04-24"

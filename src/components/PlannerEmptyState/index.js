@@ -43,7 +43,7 @@ class PlannerEmptyState extends Component {
   render () {
     return (
       <div className={styles.root}>
-        <DesertSvg className={styles.desert}/>
+        <DesertSvg className={styles.desert} aria-hidden="true" />
         <div className={styles.title}>
           <Heading>{formatMessage("No Due Dates Assigned")}</Heading>
         </div>

@@ -87,7 +87,6 @@ export function getPlannerItems (fromMoment) {
       onGotItems: handleGotItems,
       onNothing: () => {
         dispatch(allFutureItemsLoaded());
-        dispatch(allPastItemsLoaded());
       }
     };
     return sendFetchRequest(loadingOptions);
@@ -111,15 +110,17 @@ export function loadFutureItems (options = {}) {
 
 export function scrollIntoPast () {
   return (dispatch, getState) => {
-    dispatch(gettingPastItems());
-    const loadingOptions = {
-      dispatch, getState,
-      intoThePast: true,
-      fromMoment: getFirstLoadedMoment(getState().days, getState().timeZone),
-      onGotItems: handleGotItems,
-      onNothing: () => dispatch(allPastItemsLoaded()),
-    };
-    return sendFetchRequest(loadingOptions);
+    if (!getState().loading.allPastItemsLoaded) {
+      dispatch(gettingPastItems());
+      const loadingOptions = {
+        dispatch, getState,
+        intoThePast: true,
+        fromMoment: getFirstLoadedMoment(getState().days, getState().timeZone),
+        onGotItems: handleGotItems,
+        onNothing: () => dispatch(allPastItemsLoaded()),
+      };
+      return sendFetchRequest(loadingOptions);
+    }
   };
 }
 

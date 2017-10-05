@@ -41,19 +41,6 @@ describe('wheel events', () => {
     expect(mockCb).toHaveBeenCalled();
   });
 
-  it('leading debounces the scroll callback', () => {
-    const mockWindow = {
-      addEventListener: jest.fn(),
-      pageYOffset: 0,
-    };
-    const mockCb = jest.fn();
-    registerScrollEvents(mockCb, mockWindow);
-    const wheelHandler = mockWindow.addEventListener.mock.calls[0][1];
-    wheelHandler({deltaY: -42, preventDefault: jest.fn()});
-    wheelHandler({deltaY: -42, preventDefault: jest.fn()});
-    expect(mockCb).toHaveBeenCalledTimes(1);
-  });
-
   it('does not invoke the callback when the window is not scrolled to the top', () => {
     const mockWindow = {
       addEventListener: jest.fn(),

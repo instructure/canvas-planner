@@ -1,6 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders stuff 1`] = `
+exports[`renders TV when all past items loaded 1`] = `
+<div>
+  <Container
+    as="div"
+    display={null}
+    padding="small"
+    textAlign="center"
+  >
+    <Container
+      display="block"
+      margin="small"
+    >
+      <TV
+        aria-hidden="true"
+        role="img"
+      />
+    </Container>
+    <Typography
+      as="div"
+      letterSpacing="normal"
+      size="large"
+    >
+      Beginning of Your To-Do History
+    </Typography>
+    <Typography
+      as="div"
+      letterSpacing="normal"
+      size="medium"
+    >
+      You've scrolled back to your very first To-Do!
+    </Typography>
+  </Container>
+</div>
+`;
+
+exports[`renders spinner while loading 1`] = `
+<div>
+  <Container
+    as="div"
+    display={null}
+    padding="small"
+    textAlign="center"
+  >
+    <Container
+      display="inline"
+    >
+      <Spinner
+        margin="0 x-small 0 0"
+        size="small"
+        title="Loading past items"
+        variant="default"
+      />
+    </Container>
+    <Typography
+      as="span"
+      color="secondary"
+      letterSpacing="normal"
+      size="small"
+    >
+      Loading past items
+    </Typography>
+  </Container>
+</div>
+`;
+
+exports[`renders very little 1`] = `<div />`;
+
+exports[`still renders loading even when no more items in the past 1`] = `
 <div>
   <Container
     as="div"
