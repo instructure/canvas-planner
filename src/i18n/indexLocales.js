@@ -39,7 +39,7 @@ import ko from '../../config/locales/ko.json';
 import mi from '../../config/locales/mi.json';
 import nl from '../../config/locales/nl.json';
 import nn from '../../config/locales/nn.json';
-import no from '../../config/locales/no.json';
+import nb from '../../config/locales/no.json';
 import pl from '../../config/locales/pl.json';
 import ptBR from '../../config/locales/pt-BR.json';
 import pt from '../../config/locales/pt.json';
@@ -58,6 +58,6 @@ import zhHant from '../../config/locales/zh-Hant.json';
 export default {
   enflip: flipAll(en), ar, bg, cs, da, de, el, enAU, enGB, en,
   es, faIR, frCA, fr, he, ht, hu, hy, it, ja, ko, mi, nl, nn,
-  no, pl, ptBR, pt, ro, ru, sq, sr, sv, tkTM, tr, ukUA, vi,
+  nb, pl, ptBR, pt, ro, ru, sq, sr, sv, tkTM, tr, ukUA, vi,
   zhHans, zhHant
 };
