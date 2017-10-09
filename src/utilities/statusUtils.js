@@ -19,14 +19,14 @@ import formatMessage from '../format-message';
 import _ from 'lodash';
 
 const PILL_MAPPING = {
-  'missing': { id: 'missing', text: formatMessage('Missing'), variant: 'danger' },
-  'late': { id: 'late', text: formatMessage('Late'), variant: 'danger' },
-  'graded': { id: 'graded', text: formatMessage('Graded') },
-  'excused': { id: 'excused', text: formatMessage('Excused') },
-  'submitted': { id: 'submitted', text: formatMessage('Submitted') },
-  'new_grades': { id: 'new_grades', text: formatMessage('New Grades') },
-  'new_feedback': { id: 'new_feedback', text: formatMessage('New Feedback') },
-  'new_replies': { id: 'new_replies', text: formatMessage('New Replies') },
+  'missing': () => ({ id: 'missing', text: formatMessage('Missing'), variant: 'danger' }),
+  'late': () => ({ id: 'late', text: formatMessage('Late'), variant: 'danger' }),
+  'graded': () => ({ id: 'graded', text: formatMessage('Graded') }),
+  'excused': () => ({ id: 'excused', text: formatMessage('Excused') }),
+  'submitted': () => ({ id: 'submitted', text: formatMessage('Submitted') }),
+  'new_grades': () => ({ id: 'new_grades', text: formatMessage('New Grades') }),
+  'new_feedback': () => ({ id: 'new_feedback', text: formatMessage('New Feedback') }),
+  'new_replies': () => ({ id: 'new_replies', text: formatMessage('New Replies') }),
 };
 
 export function isNewActivityItem (item) {
@@ -46,13 +46,13 @@ export function getBadgesForItem (item) {
   if (item.status) {
     badges = Object.keys(item.status)
       .filter(key => item.status[key] && PILL_MAPPING.hasOwnProperty(key))
-      .map(a => PILL_MAPPING[a]);
+      .map(a => PILL_MAPPING[a]());
 
     if (item.status.unread_count) {
-      badges.push(PILL_MAPPING.new_replies);
+      badges.push(PILL_MAPPING.new_replies());
     }
     if (item.newActivity && item.status.has_feedback) {
-      badges.push(PILL_MAPPING.new_feedback);
+      badges.push(PILL_MAPPING.new_feedback());
     }
   }
 
@@ -65,13 +65,13 @@ export function getBadgesForItem (item) {
 export function getBadgesForItems (items) {
   const badges = [];
   if (items.some(i => i.status && i.newActivity && i.status.graded)) {
-    badges.push(PILL_MAPPING.new_grades);
+    badges.push(PILL_MAPPING.new_grades());
   }
   if (items.some(i => i.status && i.newActivity && i.status.has_feedback)) {
-    badges.push(PILL_MAPPING.new_feedback);
+    badges.push(PILL_MAPPING.new_feedback());
   }
   if (items.some(i => i.status && i.status.unread_count)) {
-    badges.push(PILL_MAPPING.new_replies);
+    badges.push(PILL_MAPPING.new_replies());
   }
   return badges;
 }
