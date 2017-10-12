@@ -24,6 +24,7 @@ exports[`renders empty page 1`] = `
       ellipsis={false}
       linkRef={[Function]}
       onClick={[Function]}
+      variant="default"
     >
       Go to Dashboard Card View
     </Link>

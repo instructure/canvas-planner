@@ -12,6 +12,7 @@ exports[`renders the base component correctly 1`] = `
         ellipsis={false}
         href="http://www.non_default_url.com"
         linkRef={[Function]}
+        variant="default"
       >
         this is a description about the opportunity
       </Link>
@@ -78,6 +79,7 @@ exports[`renders the base component correctly without points 1`] = `
         ellipsis={false}
         href="http://www.non_default_url.com"
         linkRef={[Function]}
+        variant="default"
       >
         this is a description about the opportunity
       </Link>

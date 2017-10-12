@@ -65,9 +65,9 @@ it('toggles the new item tray', () => {
   );
   const button = wrapper.find('[children="Add To Do"]');
   button.simulate('click');
-  expect(wrapper.find('Tray').props().isOpen).toEqual(true);
+  expect(wrapper.find('Tray').props().open).toEqual(true);
   button.simulate('click');
-  expect(wrapper.find('Tray').props().isOpen).toEqual(false);
+  expect(wrapper.find('Tray').props().open).toEqual(false);
 });
 
 it('sends focus back to the add new item button', () => {

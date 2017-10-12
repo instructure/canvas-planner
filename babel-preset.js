@@ -44,8 +44,6 @@ module.exports = function (context, opts = {}) {
       [[
         require.resolve('instructure-ui/babel/plugins/transform-themeable'),
         {
-          'postcssrc': './postcss.config.js',
-          'themeablerc': './themeable.config.js'
         }
       ]]
     );

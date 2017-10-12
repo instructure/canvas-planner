@@ -36,10 +36,13 @@ exports[`renders the item to update if provided 1`] = `
         value="Planner Item"
       />
       <DateInput
+        datePickerRef={[Function]}
         defaultDateValue="2017-04-25 01:49:00-0700"
         format="LL"
+        inputRef={[Function]}
         label="Date"
         locale="en"
+        messages={Array []}
         nextLabel="Next Month"
         onDateChange={[Function]}
         placement="start"

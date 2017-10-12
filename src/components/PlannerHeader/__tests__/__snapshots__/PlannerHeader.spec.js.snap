@@ -17,13 +17,38 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     />
   </Button>
   <Popover
+    applicationElement={null}
+    closeButtonLabel={null}
+    closeButtonRef={[Function]}
+    constrain="window"
     contentRef={[Function]}
+    defaultFocusElement={null}
     defaultShow={false}
+    insertAt="bottom"
+    label={null}
+    mountNode={null}
+    offsetX={0}
+    offsetY={0}
     on="click"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDismiss={[Function]}
+    onFocus={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+    onPositionChanged={[Function]}
+    onPositioned={[Function]}
+    onShow={[Function]}
     onToggle={[Function]}
     placement="bottom center"
-    rootClose={true}
+    positionTarget={null}
+    shouldCloseOnDocumentClick={true}
+    shouldCloseOnEscape={true}
+    shouldContainFocus={false}
+    shouldRenderOffscreen={false}
+    shouldReturnFocus={true}
     show={false}
+    trackPosition={true}
     variant="default"
     withArrow={true}
   >
@@ -81,19 +106,32 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     </PopoverContent>
   </Popover>
   <Tray
+    applicationElement={[Function]}
     border={false}
     closeButtonLabel="Close"
     closeButtonRef={[Function]}
     closeButtonVariant="icon"
     contentRef={[Function]}
-    isDismissable={true}
-    isOpen={false}
+    defaultFocusElement={null}
+    insertAt="bottom"
     label="Add To Do"
+    mountNode={null}
+    onClose={[Function]}
+    onDismiss={[Function]}
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
     onExited={[Function]}
-    onRequestClose={[Function]}
+    onExiting={[Function]}
+    onOpen={[Function]}
+    open={false}
     placement="end"
     shadow={true}
-    trapFocus={true}
+    shouldCloseOnDocumentClick={false}
+    shouldContainFocus={true}
+    shouldReturnFocus={true}
+    size="small"
   >
     <UpdateItemTray
       courses={

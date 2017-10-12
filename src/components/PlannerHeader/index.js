@@ -234,12 +234,13 @@ export class PlannerHeader extends Component {
         </Popover>
         <Tray
           closeButtonLabel={formatMessage("Close")}
-          isOpen={this.state.trayOpen}
+          open={this.state.trayOpen}
           label={this.getTrayLabel()}
           placement="end"
-          trapFocus={true}
+          shouldContainFocus={true}
+          applicationElement={() => document.getElementById('application') }
           onExited={this.noteBtnOnClose}
-          onRequestClose={this.handleCancelPlannerItem}
+          onDismiss={this.handleCancelPlannerItem}
         >
           <UpdateItemTray
             locale={this.props.locale}
