@@ -99,7 +99,7 @@ export class UpdateItemTray extends Component {
     this.handleChange('title', value);
   }
 
-  handleDateChange = (date) => {
+  handleDateChange = (e, date) => {
     const value = date;
     this.handleChange('date', value);
     if (value === '') {

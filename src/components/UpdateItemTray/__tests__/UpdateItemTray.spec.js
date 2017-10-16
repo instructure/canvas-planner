@@ -19,6 +19,17 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import UpdateItemTray from '../index';
 
+function makeLocalISODateString(date) {
+  const d = new Date(date);
+  const tzo = -d.getTimezoneOffset();
+  const dif = tzo >= 0 ? '+' : '-';
+  const pad = function (num) {
+    const norm = Math.floor(Math.abs(num));
+    return (norm < 10 ? '0' : '') + norm;
+  };
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T` +
+         `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}${dif}${pad(tzo / 60)}:${pad(tzo % 60)}`;
+ }
 const defaultProps = {
   onSavePlannerItem: () => {},
   locale: 'en',
@@ -144,6 +155,24 @@ xit('clears the error message when a date is typed in', () => {
   expect(dateInput.props().messages).toEqual([]);
 });
 
+it('changes state when new date is typed in', () => {
+  const noteItem = {
+    title: 'Planner Item',
+    date: '2017-04-25 01:49:00-0700',
+  };
+  const mockCallback = jest.fn();
+  const wrapper = mount(<UpdateItemTray {...defaultProps} onSavePlannerItem={mockCallback} noteItem={noteItem} />);
+  const newDate = new Date('2017-10-16');
+  const dateInput = wrapper.find('DateInput');
+  const rawInput = dateInput.find('input');
+  rawInput.simulate('change', {target: {value: newDate.toISOString()}});
+  wrapper.instance().handleSave();
+  expect(mockCallback).toHaveBeenCalledWith({
+    title: noteItem.title,
+    date: makeLocalISODateString(newDate)
+  });
+});
+
 //------------------------------------------------------------------------
 
 it('does not render the delete button if an item is not specified', () => {
@@ -181,7 +210,7 @@ it('invokes save callback with updated data', () => {
     onSavePlannerItem={saveMock}
   />);
   wrapper.instance().handleTitleChange({target: {value: 'new title'}});
-  wrapper.instance().handleDateChange('2017-05-01');
+  wrapper.instance().handleDateChange({}, '2017-05-01');
   wrapper.instance().handleCourseIdChange({target: {value: '43'}});
   wrapper.instance().handleChange('details', 'new details');
   wrapper.instance().handleSave();
