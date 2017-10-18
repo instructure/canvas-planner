@@ -110,7 +110,9 @@ export class UpdateItemTray extends Component {
   }
 
   handleDeleteClick = () => {
-    this.props.onDeletePlannerItem(this.props.noteItem);
+    if (confirm(formatMessage('Are you sure you want to delete this planner item?'))) {
+      this.props.onDeletePlannerItem(this.props.noteItem);
+    }
   }
 
   findCurrentValue (field) {

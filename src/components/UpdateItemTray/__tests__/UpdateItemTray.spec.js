@@ -224,6 +224,9 @@ it('invokes the delete callback', () => {
   const wrapper = shallow(<UpdateItemTray {...defaultProps}
     noteItem={{title: 'a title'}}
     onDeletePlannerItem={mockDelete} />);
+  const confirmSpy = jest.spyOn(window, 'confirm').mockReturnValue(true);
   wrapper.instance().handleDeleteClick();
+  expect(confirmSpy).toHaveBeenCalled();
   expect(mockDelete).toHaveBeenCalledWith({title: 'a title'});
+  confirmSpy.mockRestore();
 });
