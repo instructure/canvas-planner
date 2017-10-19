@@ -22,10 +22,6 @@
   border-bottom-left-radius: var(--borderRadius);
   border-bottom-right-radius: var(--borderRadius);
 
-  @supports (position: sticky) or (position: -webkit-sticky) {
-    position: sticky;
-  }
-
   &::before {
     content: "";
     box-sizing: border-box;

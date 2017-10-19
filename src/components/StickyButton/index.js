@@ -85,9 +85,16 @@ class StickyButton extends Component {
       top: '0',
     };
 
-    if ( window.CSS &&
-      (window.CSS.supports('position', 'sticky') || window.CSS.supports('position', '-webkit-sticky')) ) {
-      style.top = offset;
+    if ( window.CSS) {
+      // in css, firefox reports false for both @supports (position: sticky) and
+      // @supports not (position: sticky), so we must set this style attribute here in JS.
+      // window.CSS.supports reports correctly.
+      const supportsSticky = window.CSS.supports('position', 'sticky');
+      const supportsWebKitSticky = window.CSS.supports('position', '-webkit-sticky');
+      if (supportsSticky || supportsWebKitSticky) {
+        style.top = offset;
+        style.position = supportsSticky ? 'sticky' : '-webkit-sticky';
+      }
     }
 
     return (
