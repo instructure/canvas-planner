@@ -48,7 +48,7 @@ const getItemDetailsFromPlannable = (apiResponse, timeZone) => {
     details.unread_count = plannable.unread_count;
   }
   if (plannable_type === 'announcement' && !details.date) {
-    details.date = plannable.posted_at;
+    details.date = plannable.delayed_post_at || plannable.posted_at;
   }
 
   if (plannable_type === 'planner_note') {
