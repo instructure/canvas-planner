@@ -11,6 +11,9 @@
   "assignmenttype_title_is_incomplete_a1d5fac0": {
     "message": "{ assignmentType } { title } terminé"
   },
+  "beginning_of_your_to_do_history_61ef2dce": {
+    "message": "Début de votre historique des choses à faire"
+  },
   "canvas_planner_98ed106": {
     "message": "Agenda Canvas"
   },
@@ -190,5 +193,8 @@
   },
   "yesterday_c6bd6abf": {
     "message": "Hier"
+  },
+  "you_ve_scrolled_back_to_your_very_first_to_do_29374681": {
+    "message": "Vous êtes revenu à votre toute première chose à faire."
   }
 }
