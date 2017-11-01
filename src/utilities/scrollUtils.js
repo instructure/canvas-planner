@@ -39,10 +39,37 @@ function handleWindowScrollKey (cb, wind, e) {
   }
 }
 
+// User drags a finger down the screen to scroll up.
+// When she gets to the top, and keeps on pulling down, call the callback
+let ongoingTouch = null;
+function handleTouchStart (e) {
+  if (ongoingTouch === null) {
+    ongoingTouch = e.changedTouches[0];
+  }
+}
+function handleWindowTouchMove (cb, wind, e) {
+  if (wind.pageYOffset === 0 && ongoingTouch) {
+    const thisTouch = e.changedTouches[ongoingTouch.identifier];
+    if (thisTouch) {
+      if (thisTouch.screenY - ongoingTouch.screenY > 3) {
+        cb();
+      }
+    }
+  }
+}
+function handleTouchEnd (e) {
+  ongoingTouch = null;
+}
+
 export function registerScrollEvents (scrollIntoPastCb, wind = window) {
   const boundWindowWheel = handleWindowWheel.bind(undefined, scrollIntoPastCb, wind);
   wind.addEventListener('wheel', boundWindowWheel);
 
   const boundScrollKey = handleWindowScrollKey.bind(undefined, scrollIntoPastCb, wind);
   wind.addEventListener('keydown', boundScrollKey);
+
+  wind.addEventListener('touchstart', handleTouchStart);
+  wind.addEventListener('touchend', handleTouchEnd);
+  const boundTouchMove = handleWindowTouchMove.bind(undefined, scrollIntoPastCb, wind);
+  wind.addEventListener('touchmove', boundTouchMove);
 }
