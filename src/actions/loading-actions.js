@@ -40,7 +40,7 @@ export const {
   'FLUSH_PENDING_PAST_ITEMS',
 );
 
-export const gettingPastItems = createAction('GETTING_PAST_ITEMS', (opts = {seekingNewActivity: false}) => {
+export const gettingPastItems = createAction('GETTING_PAST_ITEMS', (opts = {seekingNewActivity: false, somePastItemsLoaded: false}) => {
   return opts;
 });
 
@@ -111,7 +111,10 @@ export function loadFutureItems (options = {}) {
 export function scrollIntoPast () {
   return (dispatch, getState) => {
     if (!getState().loading.allPastItemsLoaded) {
-      dispatch(gettingPastItems());
+      dispatch(gettingPastItems({
+        seekingNewActivity: false,
+        somePastItemsLoaded: getState().loading.somePastItemsLoaded
+      }));
       const loadingOptions = {
         dispatch, getState,
         intoThePast: true,
@@ -125,7 +128,10 @@ export function scrollIntoPast () {
 }
 
 export const loadPastUntilNewActivity = () => (dispatch, getState) => {
-  dispatch(gettingPastItems({seekingNewActivity: true}));
+  dispatch(gettingPastItems({
+    seekingNewActivity: true,
+    somePastItemsLoaded: getState().loading.somePastItemsLoaded
+  }));
   const loadingOptions = {
     dispatch, getState,
     intoThePast: true,

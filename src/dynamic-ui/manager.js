@@ -53,11 +53,19 @@ export class DynamicUiManager {
     ;
   }
 
+  shouldMaintainCurrentSrcollingPosition () {
+    // We need to maintain our scrolling postion in the viewport if:
+    // 1. we will not animate and do not want to scroll from the current position at all,
+    //    which is the case when the user is scrolling into the past and we load more items, or
+    // 2. we are about to animate a scroll, in which case we want to start in the current spot
+    return !!(this.animationPlan.noScroll || this.animationWillScroll());
+  }
+
   preTriggerUpdates = (fixedElement) => {
     const animationPlan = this.animationPlan;
     if (!animationPlan.ready) return;
 
-    if (fixedElement && this.animationWillScroll()) {
+    if (fixedElement && this.shouldMaintainCurrentSrcollingPosition()) {
       this.animator.maintainViewportPosition(fixedElement);
     }
   }
@@ -168,7 +176,11 @@ export class DynamicUiManager {
     if (action.payload.seekingNewActivity) {
       this.animationPlan.scrollToLastNewActivity = true;
     } else {
-      this.animationPlan.focusLastNewItem = true;
+      // if there are no past items yet, focus on the last one
+      // otherwise leave scrolling position where it is and let
+      // the user simply scroll into the newly loaded ones as they choose to
+      this.animationPlan.focusLastNewItem = !action.payload.somePastItemsLoaded;
+      this.animationPlan.noScroll = !!action.payload.somePastItemsLoaded;
     }
   }
 

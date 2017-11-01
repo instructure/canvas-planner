@@ -42,7 +42,7 @@ const dynamicUiManager = new DynamicUiManager();
 export const store = configureStore(dynamicUiManager);
 
 function handleScrollIntoPastAttempt () {
-  if (!store.getState().loading.loadingPast && !store.getState().loading.loadingFuture) {
+  if (!store.getState().loading.loadingPast && !store.getState().loading.loadingFuture && !store.getState().loading.allPastItemsLoaded) {
     store.dispatch(scrollIntoPast());
   }
 }

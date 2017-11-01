@@ -156,6 +156,21 @@ describe('loading past items', () => {
     expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-0-group-2-item-2');
     expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-2', 42);
   });
+
+  it('does not animate to newly loaded items on subsequent retrievals', () => {
+    // order of operations is important here: simulates actual usage
+    const {manager, animator} = createManagerWithMocks();
+    manager.handleGettingPastItems({payload: {seekingNewActivity: false, somePastItemsLoaded: true}});
+    manager.handleGotItemsSuccess({payload: {
+      internalItems: [{uniqueId: 'day-0-group-2-item-2'}, {uniqueId: 'day-0-group-2-item-1'}],
+    }});
+    registerStandardDays(manager);
+    manager.preTriggerUpdates('fixed-element');
+    manager.triggerUpdates();
+    expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
+    expect(animator.focusElement).toHaveBeenCalledTimes(0);
+    expect(animator.scrollTo).toHaveBeenCalledTimes(0);
+  });
 });
 
 describe('getting new activity', () => {
