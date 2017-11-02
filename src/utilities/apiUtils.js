@@ -104,14 +104,18 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
 
   if ((!contextInfo.context) && apiResponse.plannable_type === 'planner_note' && (details.course_id)) {
     const course = courses.find(c => c.id === details.course_id);
-    contextInfo.context = {
-      type: 'Planner Note',
-      id: details.course_id,
-      title: course.shortName,
-      image_url: course.image,
-      color: course.color,
-      url: course.href
-    };
+    // shouldn't happen, but if the course data is missing, skip it.
+    // this has the effect of the planner note showing up as a vanilla todo not associated with a course
+    if (course) {
+      contextInfo.context = {
+        type: 'Planner Note',
+        id: details.course_id,
+        title: course.shortName,
+        image_url: course.image,
+        color: course.color,
+        url: course.href
+      };
+    }
   }
 
   if (details.unread_count) {

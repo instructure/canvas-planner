@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`transformApiToInternalItem copes with a non-existent (e.g. concluded) course 1`] = `
+Object {
+  "completed": false,
+  "course_id": 999,
+  "date": "2017-05-19T05:59:59Z",
+  "dateBucketMoment": "2017-05-19T00:00:00.000Z",
+  "details": "Some To Do Note Details :)",
+  "html_url": undefined,
+  "id": 10,
+  "newActivity": false,
+  "overrideAssignId": undefined,
+  "overrideId": null,
+  "points": undefined,
+  "status": false,
+  "title": "Some To Do Note",
+  "type": "To Do",
+  "uniqueId": "planner_note-10",
+}
+`;
+
 exports[`transformApiToInternalItem extracts and transforms the proper data for a assignment response 1`] = `
 Object {
   "completed": false,

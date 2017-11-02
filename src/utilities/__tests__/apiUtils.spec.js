@@ -426,6 +426,19 @@ describe('transformApiToInternalItem', () => {
   it('throws if the timezone parameter is missing', () => {
     expect(() => transformApiToInternalItem({}, [])).toThrow();
   });
+
+  it('copes with a non-existent (e.g. concluded) course', () => {
+    const apiResponse = makeApiResponse({
+      course_id: 999,
+      plannable_type: 'planner_note',
+      plannable: makePlannerNote({
+        course_id: 999
+      })
+    });
+
+    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
 });
 
 describe('transformInternalToApiItem', () => {
