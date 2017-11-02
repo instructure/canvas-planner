@@ -54,7 +54,7 @@
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
     "instructure-icons": "4.3.0",
-    "instructure-ui": "3.3.1 - 3.4.0",
+    "instructure-ui": "3.3.4",
     "keycode": "^2.1.9",
     "moment": "~2.10.6",
     "moment-timezone": "^0.5.13",

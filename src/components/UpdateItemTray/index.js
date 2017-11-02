@@ -48,19 +48,37 @@ export class UpdateItemTray extends Component {
 
   constructor (props) {
     super(props);
-    const updates = _.cloneDeep(props.noteItem) || {};
-    if (updates.context) {
-      updates.courseId = updates.context.id;
-      delete updates.context;
-    }
+    const updates = this.getNoteUpdates(props);
     if (!updates.date) {
-      updates.date = moment.tz(props.timeZone).format();
+      updates.date = props.noteItem && props.noteItem.date ? props.noteItem.date : moment.tz(props.timeZone).format();
     }
     this.state = {
       updates,
       titleMessages: [],
       dateMessages: [],
     };
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const updates = this.getNoteUpdates(nextProps);
+    this.setState({updates}, this.updateMessages);
+  }
+
+  getNoteUpdates (props) {
+    const updates = _.cloneDeep(props.noteItem) || {};
+    if (updates.context) {
+      updates.courseId = updates.context.id;
+      delete updates.context;
+    }
+    return updates;
+  }
+
+  updateMessages = () => {
+    if (!this.state.updates.date) {
+      this.setState({dateMessages: [{type: 'error', text: formatMessage('Date is required')}]});
+    } else {
+      this.setState({dateMessages: []});
+    }
   }
 
   handleSave = () => {
@@ -80,7 +98,7 @@ export class UpdateItemTray extends Component {
         ...this.state.updates,
         [field]: value
       }
-    });
+    }, this.updateMessages);
   }
 
   handleCourseIdChange = (e) => {
@@ -102,13 +120,8 @@ export class UpdateItemTray extends Component {
   }
 
   handleDateChange = (e, date) => {
-    const value = date;
-    this.handleChange('date', value);
-    if (value === '') {
-      this.setState({dateMessages: [{type: 'error', text: formatMessage('date is required')}]});
-    } else {
-      this.setState({dateMessages: []});
-    }
+    const value = date ? moment(date).format() : '';  // works if date is a moment obj (instui 3) or iso string (instui 4)
+      this.handleChange('date', value);
   }
 
   handleDeleteClick = () => {
@@ -161,19 +174,17 @@ export class UpdateItemTray extends Component {
   }
 
   renderDateInput () {
-    let startingDate = moment.tz(this.props.timeZone).format();
-    if (this.props.noteItem) {
-      startingDate = this.props.noteItem.date || startingDate;
-    }
     return (
       <DateInput
+        required={true}
+        messages={this.state.dateMessages}
         label={formatMessage("Date")}
         nextLabel={formatMessage("Next Month")}
         previousLabel={formatMessage("Previous Month")}
         locale={this.props.locale}
         timeZone={this.props.timeZone}
         placement="start"
-        defaultDateValue={startingDate}
+        dateValue={this.state.updates.date}
         onDateChange={this.handleDateChange}
       />
     );

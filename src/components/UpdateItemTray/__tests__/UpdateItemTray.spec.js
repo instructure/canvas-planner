@@ -17,19 +17,9 @@
  */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import moment from 'moment';
 import UpdateItemTray from '../index';
 
-function makeLocalISODateString(date) {
-  const d = new Date(date);
-  const tzo = -d.getTimezoneOffset();
-  const dif = tzo >= 0 ? '+' : '-';
-  const pad = function (num) {
-    const norm = Math.floor(Math.abs(num));
-    return (norm < 10 ? '0' : '') + norm;
-  };
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T` +
-         `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}${dif}${pad(tzo / 60)}:${pad(tzo % 60)}`;
- }
 const defaultProps = {
   onSavePlannerItem: () => {},
   locale: 'en',
@@ -42,7 +32,7 @@ it('renders the item to update if provided', () => {
   const noteItem = {
     title: 'Planner Item',
     date: '2017-04-25 01:49:00-0700',
-    context: {courseId: '1'},
+    context: {id: '1'},
     details: "You made this item to remind you of something, but you forgot what."
   };
   const wrapper = shallow(
@@ -113,7 +103,7 @@ it('sets default date when no date is provided', () => {
   const item = { title: 'an item', date: '' };
   const wrapper = shallow(<UpdateItemTray {...defaultProps} noteItem={item} />);
   const datePicker = wrapper.find('DateInput');
-  expect(!datePicker.props().defaultDateValue.length).toBe(false);
+  expect(!datePicker.props().dateValue.length).toBe(false);
 });
 
 it('enables the save button when title and date are present', () => {
@@ -173,22 +163,43 @@ xit('clears the error message when a date is typed in', () => {
 it('changes state when new date is typed in', () => {
   const noteItem = {
     title: 'Planner Item',
-    date: '2017-04-25 01:49:00-0700',
+    date: '2017-04-25',
   };
   const mockCallback = jest.fn();
   const wrapper = mount(<UpdateItemTray {...defaultProps} onSavePlannerItem={mockCallback} noteItem={noteItem} />);
-  const newDate = new Date('2017-10-16');
-  const dateInput = wrapper.find('DateInput');
-  const rawInput = dateInput.find('input');
-  rawInput.simulate('change', {target: {value: newDate.toISOString()}});
+  const newDate = moment('2017-10-16');
+  wrapper.instance().handleDateChange(undefined, newDate);  // TODO: change newDate.toISOString() for instui 4
   wrapper.instance().handleSave();
   expect(mockCallback).toHaveBeenCalledWith({
     title: noteItem.title,
-    date: makeLocalISODateString(newDate),
+    date: newDate.format(),
     context: {
       id: null
     }
   });
+});
+
+it('updates state when new note is passed in', () => {
+  const noteItem1 = {
+    title: 'Planner Item 1',
+    date: '2017-04-25',
+    context: {id: '1'},
+    details: "You made this item to remind you of something, but you forgot what."
+  };
+  const wrapper = shallow(<UpdateItemTray {...defaultProps} noteItem={noteItem1} courses={[
+    {id: '1', longName: 'first course'},
+    {id: '2', longName: 'second course'},
+  ]}/>);
+  expect(wrapper).toMatchSnapshot();
+
+  const noteItem2 = {
+    title: 'Planner Item 2',
+    date: '2017-12-25',
+    context: {id: '2'},
+    details: "This is another reminder"
+  };
+  wrapper.setProps({noteItem: noteItem2});
+  expect(wrapper).toMatchSnapshot();
 });
 
 //------------------------------------------------------------------------
@@ -233,7 +244,7 @@ it('invokes save callback with updated data', () => {
   wrapper.instance().handleChange('details', 'new details');
   wrapper.instance().handleSave();
   expect(saveMock).toHaveBeenCalledWith({
-    title: 'new title', date: '2017-05-01', context: {id: '43'}, details: 'new details',
+    title: 'new title', date: moment('2017-05-01').format(), context: {id: '43'}, details: 'new details',
   });
 });
 

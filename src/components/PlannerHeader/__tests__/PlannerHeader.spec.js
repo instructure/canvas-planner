@@ -294,3 +294,27 @@ it('shows only 10 opportunities badge when we over 10 items', () => {
     return item.prop('count') === 10; //src undefined
   }).length).toEqual(1);
 });
+
+
+it('edits new item in open tray', () => {
+  const openEditingPlannerItem = jest.fn();
+  const todo1 = {title: 'todo1'};
+  const todo2 = {title: 'todo2'};
+  // Because Tray renders its contents (UpdateItemTray) somewhere else in the DOM,
+  // if we mount(), we won't be able to find it to check its properties
+  const wrapper = shallow(
+    <PlannerHeader {...defaultProps()} openEditingPlannerItem={openEditingPlannerItem} />
+  );
+
+  // edit a PlannerItem
+  wrapper.setProps({...defaultProps({todo: {updateTodoItem: todo1}})});
+  expect(wrapper.find('Tray').prop('open')).toEqual(true);
+  expect(wrapper.find('UpdateItemTray').prop('noteItem')).toEqual(todo1);
+  expect(openEditingPlannerItem).toHaveBeenCalledTimes(1);
+
+  // edit another PlannerItem in open tray
+  wrapper.setProps({...defaultProps({todo: {updateTodoItem: todo2}})});
+  expect(wrapper.find('Tray').props().open).toEqual(true);
+  expect(wrapper.find('UpdateItemTray').prop('noteItem')).toEqual(todo2);
+  expect(openEditingPlannerItem).toHaveBeenCalledTimes(2);
+});

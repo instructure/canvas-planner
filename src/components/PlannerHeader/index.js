@@ -161,7 +161,7 @@ export class PlannerHeader extends Component {
   }
 
   setUpdateItemTray (trayOpen) {
-    if (trayOpen && !this.state.trayOpen && this.props.openEditingPlannerItem) {
+    if (trayOpen && this.props.openEditingPlannerItem) {
       this.props.openEditingPlannerItem();
     }
     this.setState({ trayOpen }, () => {
