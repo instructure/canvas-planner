@@ -47,3 +47,8 @@ it('invokes the callback when loading more button is clicked', () => {
   wrapper.find('Button').simulate('click');
   expect(mockLoad).toHaveBeenCalledWith({});
 });
+
+it('shows an Alert when there\'s a query error', () => {
+  const wrapper = shallow(<LoadingFutureIndicator loadingError={"uh oh"}/>);
+  expect(wrapper).toMatchSnapshot();
+});

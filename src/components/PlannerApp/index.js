@@ -42,6 +42,7 @@ export class PlannerApp extends Component {
     timeZone: string,
     isLoading: bool,
     loadingPast: bool,
+    loadingError: string,
     allPastItemsLoaded: bool,
     loadingFuture: bool,
     allFutureItemsLoaded: bool,
@@ -116,7 +117,8 @@ export class PlannerApp extends Component {
   renderLoadingPast () {
     return <LoadingPastIndicator
       loadingPast={this.props.loadingPast}
-      allPastItemsLoaded={this.props.allPastItemsLoaded} />;
+      allPastItemsLoaded={this.props.allPastItemsLoaded}
+      loadingError={this.props.loadingError} />;
   }
 
   renderLoadMore () {
@@ -124,6 +126,7 @@ export class PlannerApp extends Component {
     return <LoadingFutureIndicator
       loadingFuture={this.props.loadingFuture}
       allFutureItemsLoaded={this.props.allFutureItemsLoaded}
+      loadingError={this.props.loadingError}
       onLoadMore={this.props.loadFutureItems} />;
   }
 
@@ -185,6 +188,7 @@ const mapStateToProps = (state) => {
     allPastItemsLoaded: state.loading.allPastItemsLoaded,
     loadingFuture: state.loading.loadingFuture,
     allFutureItemsLoaded: state.loading.allFutureItemsLoaded,
+    loadingError: state.loading.loadingError,
     firstNewActivityDate: state.firstNewActivityDate,
     timeZone: state.timeZone,
   };

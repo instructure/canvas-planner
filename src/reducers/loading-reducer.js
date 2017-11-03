@@ -25,6 +25,7 @@ function loadingState (currentState, loadingState) {
     isLoading: false,
     loadingPast: false,
     loadingFuture: false,
+    loadingError: undefined,
     // all other properties should retain their current values unless loadingState sets them
     ...loadingState,
   };
@@ -69,8 +70,14 @@ function addPendingPastItems (state, action) {
   }
 }
 
+function gotItemsError (state, action) {
+  const error = action.payload.message || action.payload;
+  return loadingState(state, {loadingError: error});
+}
+
 export default handleActions({
   GOT_ITEMS_SUCCESS: gotItemsSuccess,
+  GOT_ITEMS_ERROR: gotItemsError,
   ADD_PENDING_PAST_ITEMS: addPendingPastItems,
   START_LOADING_OPPORTUNITIES: (state, action) => {
     return {...state, loadingOpportunities: true};
@@ -79,10 +86,17 @@ export default handleActions({
     return loadingState(state, {isLoading: true});
   },
   GETTING_PAST_ITEMS: (state, action) => {
-    return loadingState(state, {loadingPast: true, seekingNewActivity: action.payload.seekingNewActivity});
+    return loadingState(state, {
+      loadingError: state.loadingError, // don't reset error until we're successful
+      loadingPast: true,
+      seekingNewActivity: action.payload.seekingNewActivity
+    });
   },
   GETTING_FUTURE_ITEMS: (state, action) => {
-    return loadingState(state, {loadingFuture: true});
+    return loadingState(state, {
+      loadingError: state.loadingError, // don't reset error until we're successful
+      loadingFuture: true
+    });
   },
   ALL_FUTURE_ITEMS_LOADED: (state, action) => {
     return loadingState(state, {allFutureItemsLoaded: true});

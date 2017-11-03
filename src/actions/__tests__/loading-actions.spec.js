@@ -160,11 +160,7 @@ describe('api actions', () => {
       // GOT_ITEMS_SUCCESS is dispatched by the action when internal promise is fulfulled
     });
 
-    it('calls alert on error', () => {
-      const fakeAlert = jest.fn();
-      alertInitialize({
-        visualErrorCallback: fakeAlert
-      });
+    it('dispatches gotItemsError on fetch error', () => {
       const mockDispatch = jest.fn();
       const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
       return moxiosRespond(
@@ -172,7 +168,9 @@ describe('api actions', () => {
         fetchPromise,
         { status: 500 }
       ).then((result) => {
-        expect(fakeAlert).toHaveBeenCalled();
+        expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
+          type: 'GOT_ITEMS_ERROR'
+        }));
       });
     });
 

@@ -41,15 +41,15 @@ it('renders TV when all past items loaded', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-it('should update only when props change', () => {
-  const wrapper = shallow(<LoadingPastIndicator allPastItemsLoaded={false} loadingPast={false}/>);
+it('updates only when props change', () => {
+  const wrapper = shallow(<LoadingPastIndicator allPastItemsLoaded={false} loadingPast={false} />);
   let shouldUpdate = wrapper.instance().shouldComponentUpdate({allPastItemsLoaded: false, loadingPast: false});
   expect(shouldUpdate).toBe(false);
   shouldUpdate = wrapper.instance().shouldComponentUpdate({allPastItemsLoaded: true, loadingPast: false});
   expect(shouldUpdate).toBe(true);
 });
 
-it('should run animation only when props transition to true', () => {
+it('runs the animation only when props transition to true', () => {
   const wrapper = shallow(<LoadingPastIndicator allPastItemsLoaded={false} loadingPast={false}/>);
 
   // we change a prop then call componentDidUpdate with the previous properties and
@@ -70,4 +70,12 @@ it('should run animation only when props transition to true', () => {
   // no prop change. even though allPastItemsLoaded is true, animation should not run
   wrapper.instance().componentDidUpdate({allPastItemsLoaded: true, loadingPast: false});
   expect(animateSlideDown).toHaveBeenCalledTimes(2);
+
+  wrapper.instance().componentDidUpdate({loadingError: 'whoops'});
+  expect(animateSlideDown).toHaveBeenCalledTimes(3);
+});
+
+it('shows an Alert when there\'s a query error', () => {
+  const wrapper = shallow(<LoadingPastIndicator loadingError={'uh oh'}/>);
+  expect(wrapper).toMatchSnapshot();
 });

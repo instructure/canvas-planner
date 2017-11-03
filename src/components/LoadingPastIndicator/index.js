@@ -20,6 +20,7 @@ import PropTypes from 'prop-types';
 import Container from 'instructure-ui/lib/components/Container';
 import Spinner from 'instructure-ui/lib/components/Spinner';
 import Typography from 'instructure-ui/lib/components/Typography';
+import ErrorAlert from '../ErrorAlert';
 import formatMessage from '../../format-message';
 import {animateSlideDown} from '../../utilities/scrollUtils';
 import TV from './tv.svg';
@@ -27,25 +28,51 @@ import TV from './tv.svg';
 export default class LoadingPastIndicator extends Component {
   static propTypes = {
     loadingPast: PropTypes.bool,            // actively loading?
-    allPastItemsLoaded: PropTypes.bool      // there are no more?
+    allPastItemsLoaded: PropTypes.bool,     // there are no more?
+    loadingError: PropTypes.string          // message if there was an error attempting to loaad items
   }
   static defaultProps = {
     loadingPast: false,
-    allPastItemsLoaded: false
+    allPastItemsLoaded: false,
+    loadingError: undefined
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    return this.props.allPastItemsLoaded !== nextProps.allPastItemsLoaded ||
-           this.props.loadingPast !== nextProps.loadingPast;
+    const should = this.props.allPastItemsLoaded !== nextProps.allPastItemsLoaded ||
+           this.props.loadingPast !== nextProps.loadingPast ||
+           this.props.loadingError !== nextProps.loadingError;
+    return should;
   }
 
   componentDidUpdate (prevProps) {
+    // only animate on the transition to loading error,
+    // regardless of the other property state
+    if (this.props.loadingError) {
+      if (!prevProps.loadingError) {
+        animateSlideDown(this.rootDiv);
+      }
+      return;
+    }
     // if we just transitioned from not loadingPast to loadingPast or
     // from not allPastItemsLoaded to allItemsLoaded, then run the transition
     // that slides the component in
     if((this.props.allPastItemsLoaded && this.props.allPastItemsLoaded !== prevProps.allPastItemsLoaded) ||
         (this.props.loadingPast && this.props.loadingPast !== prevProps.loadingPast)) {
       animateSlideDown(this.rootDiv);
+    }
+  }
+
+  renderError () {
+    if (this.props.loadingError) {
+      // Show an Alert for the user, while including the underlying root cause error
+      // in a hidden div in case we need to know what it was
+      return (
+        <div style={{width: '50%', margin: '0 auto'}}>
+          <ErrorAlert error={this.props.loadingError}>
+            {formatMessage('Error loading past items')}
+          </ErrorAlert>
+        </div>
+      );
     }
   }
 
@@ -85,6 +112,7 @@ export default class LoadingPastIndicator extends Component {
   render () {
     return (
       <div ref={(elt) => { this.rootDiv = elt; }}>
+        {this.renderError()}
         {this.renderLoading()}
         {this.renderNoMore()}
       </div>

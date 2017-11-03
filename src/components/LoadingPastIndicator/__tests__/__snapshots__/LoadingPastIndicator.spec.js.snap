@@ -67,6 +67,25 @@ exports[`renders spinner while loading 1`] = `
 
 exports[`renders very little 1`] = `<div />`;
 
+exports[`shows an Alert when there's a query error 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "margin": "0 auto",
+        "width": "50%",
+      }
+    }
+  >
+    <ErrorAlert
+      error="uh oh"
+    >
+      Error loading past items
+    </ErrorAlert>
+  </div>
+</div>
+`;
+
 exports[`still renders loading even when no more items in the past 1`] = `
 <div>
   <Container

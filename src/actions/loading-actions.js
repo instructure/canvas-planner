@@ -31,6 +31,7 @@ export const {
   allFutureItemsLoaded,
   allPastItemsLoaded,
   flushPendingPastItems,
+  gotItemsError,
 } = createActions(
   'START_LOADING_ITEMS',
   'FOUND_FIRST_NEW_ACTIVITY_DATE',
@@ -38,6 +39,7 @@ export const {
   'ALL_FUTURE_ITEMS_LOADED',
   'ALL_PAST_ITEMS_LOADED',
   'FLUSH_PENDING_PAST_ITEMS',
+  'GOT_ITEMS_ERROR',
 );
 
 export const gettingPastItems = createAction('GETTING_PAST_ITEMS', (opts = {seekingNewActivity: false, somePastItemsLoaded: false}) => {
@@ -87,7 +89,8 @@ export function getPlannerItems (fromMoment) {
       onGotItems: handleGotItems,
       onNothing: () => {
         dispatch(allFutureItemsLoaded());
-      }
+      },
+      onError: handleError,
     };
     return sendFetchRequest(loadingOptions);
   };
@@ -102,6 +105,7 @@ export function loadFutureItems (options = {}) {
       fromMoment: getLastLoadedMoment(getState().days, getState.timeZone).add(1, 'days'),
       onGotItems: handleGotItems,
       onNothing: () => dispatch(allFutureItemsLoaded()),
+      onError: handleError,
       ...options,
     };
     return sendFetchRequest(loadingOptions);
@@ -121,6 +125,7 @@ export function scrollIntoPast () {
         fromMoment: getFirstLoadedMoment(getState().days, getState().timeZone),
         onGotItems: handleGotItems,
         onNothing: () => dispatch(allPastItemsLoaded()),
+        onError: handleError,
       };
       return sendFetchRequest(loadingOptions);
     }
@@ -138,6 +143,7 @@ export const loadPastUntilNewActivity = () => (dispatch, getState) => {
     fromMoment: getFirstLoadedMoment(getState().days, getState().timeZone),
     onNothing: handleLoadPastItemsUntilNewActivity,
     onGotItems: handleLoadPastItemsUntilNewActivity,
+    onError: handleError,
   };
   return sendFetchRequest(loadingOptions);
 };
@@ -172,7 +178,7 @@ function handleLoadPastItemsUntilNewActivity (loadingOptions, response, newItems
 function sendFetchRequest (loadingOptions) {
   return axios.get(...fetchParams(loadingOptions))
     .then(response => handleFetchResponse(loadingOptions, response))
-    .catch(() => alert(formatMessage('Error loading items'), true));
+    .catch(ex => handleFetchError(loadingOptions, ex));
 }
 
 function fetchParams (loadingOptions) {
@@ -221,4 +227,12 @@ function transformItems (loadingOptions, items) {
     loadingOptions.getState().courses,
     loadingOptions.getState().timeZone,
   ));
+}
+
+function handleFetchError (loadingOptions, error) {
+  loadingOptions.onError(loadingOptions, error);
+}
+
+function handleError (loadingOptions, error) {
+  loadingOptions.dispatch(gotItemsError(error));
 }
