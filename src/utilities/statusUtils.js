@@ -24,9 +24,9 @@ const PILL_MAPPING = {
   'graded': () => ({ id: 'graded', text: formatMessage('Graded') }),
   'excused': () => ({ id: 'excused', text: formatMessage('Excused') }),
   'submitted': () => ({ id: 'submitted', text: formatMessage('Submitted') }),
-  'new_grades': () => ({ id: 'new_grades', text: formatMessage('New Grades') }),
-  'new_feedback': () => ({ id: 'new_feedback', text: formatMessage('New Feedback') }),
-  'new_replies': () => ({ id: 'new_replies', text: formatMessage('New Replies') }),
+  'new_grades': () => ({ id: 'new_grades', text: formatMessage('Graded') }),
+  'new_feedback': () => ({ id: 'new_feedback', text: formatMessage('Feedback') }),
+  'new_replies': () => ({ id: 'new_replies', text: formatMessage('Replies') }),
 };
 
 export function isNewActivityItem (item) {
@@ -45,6 +45,7 @@ export function getBadgesForItem (item) {
   let badges = [];
   if (item.status) {
     badges = Object.keys(item.status)
+      .filter((key, index, all) => item.status.graded && key === 'submitted' ? false : true) // if graded, ignore submitted
       .filter(key => item.status[key] && PILL_MAPPING.hasOwnProperty(key))
       .map(a => PILL_MAPPING[a]());
 

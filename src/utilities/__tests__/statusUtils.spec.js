@@ -43,7 +43,7 @@ describe('getBadgesForItem', () => {
   it('returns new_replies status when there is an unread_count', () => {
     const item = { status: { unread_count: 42 }};
     expect(getBadgesForItem(item)).toEqual([{
-      id: 'new_replies', text: 'New Replies',
+      id: 'new_replies', text: 'Replies',
     }]);
   });
 
@@ -67,7 +67,7 @@ describe('getBadgesForItems', () => {
     const items = [{ newActivity: true, status: { graded: true } }, { status: { excused: true } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_grades',
-      text: 'New Grades'
+      text: 'Graded'
     });
   });
 
@@ -75,7 +75,7 @@ describe('getBadgesForItems', () => {
     const items = [{ status: { fake: true } }, { newActivity: true, status: { has_feedback: true } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_feedback',
-      text: 'New Feedback'
+      text: 'Feedback'
     });
   });
 
@@ -93,7 +93,7 @@ describe('getBadgesForItems', () => {
     const items = [{ status: { unread_count: 0 } }, { status: { unread_count: 3 } }];
     expect(getBadgesForItems(items)).toContainEqual({
       id: 'new_replies',
-      text: 'New Replies'
+      text: 'Replies'
     });
   });
 });

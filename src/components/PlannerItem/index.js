@@ -134,7 +134,7 @@ export class PlannerItem extends Component {
         <BadgeList>
           {this.props.badges.map((b) => (
             <Pill
-              key={b.text}
+              key={b.id}
               text={b.text}
               variant={b.variant}
             />
