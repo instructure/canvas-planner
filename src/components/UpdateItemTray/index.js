@@ -67,6 +67,8 @@ export class UpdateItemTray extends Component {
     const updates = Object.assign({}, this.state.updates);
     if (updates.courseId) {
       updates.context = { id: updates.courseId };
+    } else {
+      updates.context = { id: null };
     }
     delete updates.courseId;
     this.props.onSavePlannerItem(updates);

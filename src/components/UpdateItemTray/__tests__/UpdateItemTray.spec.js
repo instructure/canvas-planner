@@ -94,6 +94,21 @@ it('handles courseid being none', () => {
   expect(wrapper.instance().state.updates.courseId).toBe(undefined);
 });
 
+it('correctly updates id to null when courseid is none', () => {
+  const item = { title: '', date: '2017-04-28' };
+  const mockCallback = jest.fn();
+  const wrapper = shallow(<UpdateItemTray {...defaultProps} onSavePlannerItem={mockCallback} noteItem={item} />);
+  wrapper.instance().handleCourseIdChange({target: {value: 'none'}});
+  wrapper.instance().handleSave();
+  expect(mockCallback).toHaveBeenCalledWith({
+    title: item.title,
+    date: item.date,
+    context: {
+      id: null
+    }
+  });
+});
+
 it('sets default date when no date is provided', () => {
   const item = { title: 'an item', date: '' };
   const wrapper = shallow(<UpdateItemTray {...defaultProps} noteItem={item} />);
@@ -169,7 +184,10 @@ it('changes state when new date is typed in', () => {
   wrapper.instance().handleSave();
   expect(mockCallback).toHaveBeenCalledWith({
     title: noteItem.title,
-    date: makeLocalISODateString(newDate)
+    date: makeLocalISODateString(newDate),
+    context: {
+      id: null
+    }
   });
 });
 
