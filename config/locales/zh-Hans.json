@@ -5,6 +5,9 @@
   "all_items_loaded_aa256183": {
     "message": "已加载所有项目"
   },
+  "are_you_sure_you_want_to_delete_this_planner_item_b71e330c": {
+    "message": "是否确定要删除此规划者项目？"
+  },
   "assignmenttype_title_is_complete_813e54f8": {
     "message": "{ assignmentType } { title } 已完成"
   },

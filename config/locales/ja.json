@@ -5,6 +5,9 @@
   "all_items_loaded_aa256183": {
     "message": "すべてのアイテムがロードされました"
   },
+  "are_you_sure_you_want_to_delete_this_planner_item_b71e330c": {
+    "message": "この計画項目をほんとうに削除しますか？"
+  },
   "assignmenttype_title_is_complete_813e54f8": {
     "message": "{ assignmentType } { title } 完了しています"
   },
