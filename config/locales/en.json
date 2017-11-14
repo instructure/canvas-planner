@@ -65,8 +65,11 @@
   "edit_title_72e5a21e": {
     "message": "Edit { title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "Error loading items"
+  "error_loading_more_items_3f109d9f": {
+    "message": "Error loading more items"
+  },
+  "error_loading_past_items_2881dbb1": {
+    "message": "Error loading past items"
   },
   "excused_cf8792eb": {
     "message": "Excused"
