@@ -209,15 +209,15 @@
     "untranslated_entities": 0
   },
   "fr_CA": {
-    "reviewed_percentage": "99%",
-    "completed": "99%",
-    "untranslated_words": 10,
-    "last_commiter": "canvastransifex",
-    "reviewed": 66,
-    "translated_entities": 66,
-    "translated_words": 231,
-    "last_update": "2017-11-01 19:44:26",
-    "untranslated_entities": 1
+    "reviewed_percentage": "100%",
+    "completed": "100%",
+    "untranslated_words": 0,
+    "last_commiter": "ZabOperations",
+    "reviewed": 67,
+    "translated_entities": 67,
+    "translated_words": 241,
+    "last_update": "2017-11-13 16:38:44",
+    "untranslated_entities": 0
   },
   "mi": {
     "reviewed_percentage": "100%",
