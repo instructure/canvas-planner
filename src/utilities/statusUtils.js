@@ -68,6 +68,9 @@ export function getBadgesForItems (items) {
   if (items.some(i => i.status && i.newActivity && i.status.graded)) {
     badges.push(PILL_MAPPING.new_grades());
   }
+  if (items.some(i => i.status && i.status.missing)) {
+    badges.push(PILL_MAPPING.missing());
+  }
   if (items.some(i => i.status && i.newActivity && i.status.has_feedback)) {
     badges.push(PILL_MAPPING.new_feedback());
   }

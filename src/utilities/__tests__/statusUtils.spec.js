@@ -79,6 +79,15 @@ describe('getBadgesForItems', () => {
     });
   });
 
+  it('returns Missing object when at least one new activity item has a missing status', () => {
+    const items = [{ status: { fake: true } }, { newActivity: true, status: { missing: true } }];
+    expect(getBadgesForItems(items)).toContainEqual({
+      id: 'missing',
+      text: 'Missing',
+      variant: 'danger'
+    });
+  });
+
   it('does not return New Grades object when only old items have a graded status', () => {
     const items = [{ status: { graded: true } }, { status: { excused: true } }];
     expect(getBadgesForItems(items)).toEqual([]);
