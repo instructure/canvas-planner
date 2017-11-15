@@ -65,9 +65,6 @@
   "edit_title_72e5a21e": {
     "message": "Editar { title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "Erro ao carregar itens"
-  },
   "excused_cf8792eb": {
     "message": "Dispensado"
   },
@@ -124,15 +121,6 @@
   },
   "new_activity_for_ac84f6e6": {
     "message": "Nova atividade para "
-  },
-  "new_feedback_f5d9c97f": {
-    "message": "Novo feedback"
-  },
-  "new_grades_7855c0dc": {
-    "message": "Novas notas"
-  },
-  "new_replies_ef068695": {
-    "message": "Novas respostas"
   },
   "next_month_749b1778": {
     "message": "Próximo mês"

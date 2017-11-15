@@ -65,9 +65,6 @@
   "edit_title_72e5a21e": {
     "message": "تحرير { title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "خطأ أثناء تحميل العناصر"
-  },
   "excused_cf8792eb": {
     "message": "غير إجباري"
   },
@@ -124,15 +121,6 @@
   },
   "new_activity_for_ac84f6e6": {
     "message": "نشاط جديد لـ "
-  },
-  "new_feedback_f5d9c97f": {
-    "message": "ملاحظات جديدة"
-  },
-  "new_grades_7855c0dc": {
-    "message": "درجات جديدة"
-  },
-  "new_replies_ef068695": {
-    "message": "ردود جديدة"
   },
   "next_month_749b1778": {
     "message": "الشهر القادم"

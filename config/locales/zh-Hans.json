@@ -65,9 +65,6 @@
   "edit_title_72e5a21e": {
     "message": "编辑{ title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "加载项目时出错"
-  },
   "excused_cf8792eb": {
     "message": "已请假"
   },
@@ -124,15 +121,6 @@
   },
   "new_activity_for_ac84f6e6": {
     "message": "新活动"
-  },
-  "new_feedback_f5d9c97f": {
-    "message": "新反馈"
-  },
-  "new_grades_7855c0dc": {
-    "message": "新评分"
-  },
-  "new_replies_ef068695": {
-    "message": "新回复"
   },
   "next_month_749b1778": {
     "message": "下个月"

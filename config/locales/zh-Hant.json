@@ -65,9 +65,6 @@
   "edit_title_72e5a21e": {
     "message": "編輯{ title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "載入項目時發生錯誤"
-  },
   "excused_cf8792eb": {
     "message": "已免除"
   },
@@ -124,15 +121,6 @@
   },
   "new_activity_for_ac84f6e6": {
     "message": "新活動"
-  },
-  "new_feedback_f5d9c97f": {
-    "message": "最新反饋"
-  },
-  "new_grades_7855c0dc": {
-    "message": "最新成續"
-  },
-  "new_replies_ef068695": {
-    "message": "最新回覆"
   },
   "next_month_749b1778": {
     "message": "下個月"

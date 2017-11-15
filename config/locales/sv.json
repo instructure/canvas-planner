@@ -65,9 +65,6 @@
   "edit_title_72e5a21e": {
     "message": "Redigera { title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "Det gick inte att läsa in föremål"
-  },
   "excused_cf8792eb": {
     "message": "Ursäktad"
   },
@@ -124,15 +121,6 @@
   },
   "new_activity_for_ac84f6e6": {
     "message": "Ny aktivitet för "
-  },
-  "new_feedback_f5d9c97f": {
-    "message": "Ny återkoppling"
-  },
-  "new_grades_7855c0dc": {
-    "message": "Nya betyg"
-  },
-  "new_replies_ef068695": {
-    "message": "Nya svar"
   },
   "next_month_749b1778": {
     "message": "Nästa månad"

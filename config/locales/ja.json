@@ -65,9 +65,6 @@
   "edit_title_72e5a21e": {
     "message": "編集{ title }"
   },
-  "error_loading_items_5218438e": {
-    "message": "アイテムの読み込み中にエラーが発生しました"
-  },
   "excused_cf8792eb": {
     "message": "免除"
   },
@@ -124,15 +121,6 @@
   },
   "new_activity_for_ac84f6e6": {
     "message": "～の新規アクティビティ"
-  },
-  "new_feedback_f5d9c97f": {
-    "message": "新しいフィードバック"
-  },
-  "new_grades_7855c0dc": {
-    "message": "新規成績"
-  },
-  "new_replies_ef068695": {
-    "message": "新規返信"
   },
   "next_month_749b1778": {
     "message": "翌月"

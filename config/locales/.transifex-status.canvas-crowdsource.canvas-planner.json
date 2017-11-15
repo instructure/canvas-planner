@@ -1,90 +1,90 @@
 {
   "el": {
     "reviewed_percentage": "0%",
-    "completed": "31%",
+    "completed": "33%",
     "untranslated_words": 218,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 21,
-    "translated_words": 23,
-    "last_update": "2017-11-01 19:44:27",
-    "untranslated_entities": 46
+    "translated_entities": 22,
+    "translated_words": 24,
+    "last_update": "2017-11-14 14:00:53",
+    "untranslated_entities": 45
   },
   "hy": {
     "reviewed_percentage": "0%",
     "completed": "27%",
-    "untranslated_words": 221,
+    "untranslated_words": 222,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 18,
     "translated_words": 20,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:39",
     "untranslated_entities": 49
   },
   "fa_IR": {
     "reviewed_percentage": "0%",
     "completed": "30%",
-    "untranslated_words": 219,
+    "untranslated_words": 220,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 20,
     "translated_words": 22,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:39",
     "untranslated_entities": 47
   },
   "nn": {
     "reviewed_percentage": "0%",
     "completed": "31%",
-    "untranslated_words": 218,
+    "untranslated_words": 219,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:40",
     "untranslated_entities": 46
   },
   "tr": {
     "reviewed_percentage": "0%",
     "completed": "51%",
-    "untranslated_words": 177,
+    "untranslated_words": 178,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 34,
     "translated_words": 64,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:40",
     "untranslated_entities": 33
   },
   "ko": {
     "reviewed_percentage": "0%",
     "completed": "27%",
-    "untranslated_words": 221,
+    "untranslated_words": 222,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 18,
     "translated_words": 20,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:39",
     "untranslated_entities": 49
   },
   "hu": {
     "reviewed_percentage": "0%",
     "completed": "31%",
-    "untranslated_words": 218,
+    "untranslated_words": 219,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:40",
     "untranslated_entities": 46
   },
   "uk_UA": {
     "reviewed_percentage": "0%",
     "completed": "31%",
-    "untranslated_words": 218,
+    "untranslated_words": 219,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 21,
     "translated_words": 23,
-    "last_update": "2017-11-01 19:44:27",
+    "last_update": "2017-11-14 13:58:40",
     "untranslated_entities": 46
   },
   "en": {
@@ -94,19 +94,19 @@
     "last_commiter": "canvastransifex",
     "reviewed": 0,
     "translated_entities": 67,
-    "translated_words": 241,
-    "last_update": "2017-11-01 19:44:27",
+    "translated_words": 242,
+    "last_update": "2017-11-14 13:58:40",
     "untranslated_entities": 0
   },
   "he": {
     "reviewed_percentage": "12%",
-    "completed": "72%",
+    "completed": "73%",
     "untranslated_words": 99,
     "last_commiter": "canvastransifex",
     "reviewed": 8,
-    "translated_entities": 48,
-    "translated_words": 142,
-    "last_update": "2017-11-01 19:44:27",
-    "untranslated_entities": 19
+    "translated_entities": 49,
+    "translated_words": 143,
+    "last_update": "2017-11-14 14:00:53",
+    "untranslated_entities": 18
   }
 }
