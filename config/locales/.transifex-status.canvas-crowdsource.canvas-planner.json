@@ -23,14 +23,14 @@
   },
   "fa_IR": {
     "reviewed_percentage": "0%",
-    "completed": "30%",
-    "untranslated_words": 220,
+    "completed": "31%",
+    "untranslated_words": 218,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 20,
-    "translated_words": 22,
-    "last_update": "2017-11-14 13:58:39",
-    "untranslated_entities": 47
+    "translated_entities": 21,
+    "translated_words": 24,
+    "last_update": "2017-11-20 11:09:30",
+    "untranslated_entities": 46
   },
   "nn": {
     "reviewed_percentage": "0%",
