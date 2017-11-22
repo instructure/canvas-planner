@@ -35,8 +35,14 @@
   "missing_1a256b3b": {
     "message": "Hiányzik"
   },
+  "next_month_749b1778": {
+    "message": "Következő hónap"
+  },
   "points_bceb5005": {
     "message": "pontszám"
+  },
+  "previous_month_bb1e3c84": {
+    "message": "Előző hónap"
   },
   "pts_699bd9aa": {
     "message": "pont"
