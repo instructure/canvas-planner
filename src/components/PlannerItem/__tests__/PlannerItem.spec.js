@@ -478,6 +478,19 @@ it('calls toggleCompletion when the checkbox is clicked', () => {
   expect(mock).toBeCalled();
 });
 
+it('disables the checkbox when toggleAPIPending is true', () => {
+  const mock = jest.fn();
+  const wrapper = shallow(
+    <PlannerItem
+      {...defaultProps({points: 35, date: DEFAULT_DATE})}
+      toggleAPIPending={true}
+      toggleCompletion={mock}
+    />
+  );
+  wrapper.find('Checkbox').simulate('change');
+  expect(wrapper.find('Checkbox').node.props.disabled).toBe(true);
+});
+
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
   const wrapper = mount(

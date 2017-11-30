@@ -129,6 +129,7 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
     type: getItemType(apiResponse.plannable_type),
     status: apiResponse.submissions,
     newActivity: apiResponse.new_activity,
+    toggleAPIPending: false,
     ...details
   };
 }

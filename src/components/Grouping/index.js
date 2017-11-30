@@ -129,6 +129,7 @@ export class Grouping extends Component {
           toggleCompletion={() => this.props.toggleCompletion(item)}
           badges={this.state.badgeMap[item.id]}
           details={item.details}
+          toggleAPIPending={item.toggleAPIPending}
         />
       </li>
     ));

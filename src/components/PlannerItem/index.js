@@ -60,6 +60,7 @@ export class PlannerItem extends Component {
       variant: string
     })),
     registerAnimatable: func,
+    toggleAPIPending: bool,
   };
 
   static defaultProps = {
@@ -81,7 +82,7 @@ export class PlannerItem extends Component {
     this.props.registerAnimatable('item', null, this.props.animatableIndex, [this.props.uniqueId]);
     this.props.registerAnimatable('item', this, nextProps.animatableIndex, [nextProps.uniqueId]);
     this.setState({
-      completed: nextProps.completed
+      completed: nextProps.completed,
     });
   }
 
@@ -221,8 +222,9 @@ export class PlannerItem extends Component {
           <Checkbox
             ref={this.registerFocusElementRef}
             label={<ScreenReaderContent>{checkboxLabel}</ScreenReaderContent>}
-            checked={this.state.completed}
+            checked={this.props.toggleAPIPending ? !this.state.completed : this.state.completed}
             onChange={this.props.toggleCompletion}
+            disabled={this.props.toggleAPIPending}
           />
         </div>
         <div

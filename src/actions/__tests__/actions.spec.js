@@ -384,9 +384,10 @@ describe('api actions', () => {
     it('dispatches saving and saved actions', () => {
       const mockDispatch = jest.fn();
       const plannerItem = {some: 'data'};
+      const savingItem = {...plannerItem, show: true, toggleAPIPending: true};
       const savePromise = Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
       expect(isPromise(savePromise)).toBe(true);
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVING_PLANNER_ITEM', payload: {item: plannerItem, isNewItem: false}});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: {item: savingItem, isNewItem: false}});
       expect(mockDispatch).toHaveBeenCalledWith({type: 'SAVED_PLANNER_ITEM', payload: savePromise});
     });
 
@@ -436,6 +437,27 @@ describe('api actions', () => {
             overrideId: 'override_id',
             show: true,
           },
+        });
+      });
+    });
+
+    it('calls the alert function and resends previous override when a failure occurs', () => {
+      const fakeAlert = jest.fn();
+      const mockDispatch = jest.fn();
+      alertInitialize({
+        visualErrorCallback: fakeAlert
+      });
+
+      const plannerItem = {some: 'data', planner_override: {id: 'override_id', marked_complete: false}};
+      const togglePromise = Actions.togglePlannerItemCompletion(plannerItem)(mockDispatch, getBasicState);
+      return moxiosRespond(
+        {some: 'response data'},
+        togglePromise,
+        { status: 500 }
+      ).then((result) => {
+        expect(fakeAlert).toHaveBeenCalled();
+        expect(result).toMatchObject({
+          item: { ...plannerItem}
         });
       });
     });

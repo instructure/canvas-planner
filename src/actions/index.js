@@ -193,7 +193,8 @@ function saveNewPlannerOverride (apiOverride) {
 
 export const togglePlannerItemCompletion = (plannerItem) => {
   return (dispatch, getState) => {
-    dispatch(savingPlannerItem({item: plannerItem, isNewItem: false}));
+    const savingItem = {...plannerItem, toggleAPIPending: true, show: true};
+    dispatch(savedPlannerItem({item: savingItem, isNewItem: false}));
     const apiOverride = transformInternalToApiOverride(plannerItem, getState().userId);
     apiOverride.marked_complete = !apiOverride.marked_complete;
     let promise = apiOverride.id ?
@@ -202,7 +203,13 @@ export const togglePlannerItemCompletion = (plannerItem) => {
     promise = promise.then(response => ({
       item: updateOverrideDataOnItem(plannerItem, response.data),
       isNewItem: false,
-    }));
+    })).catch(response => {
+      alert(formatMessage('Unable to mark as complete.'), true);
+      return ({
+        item: plannerItem,
+        isNewItem: false,
+      });
+    });
     dispatch(savedPlannerItem(promise));
     return promise;
   };
