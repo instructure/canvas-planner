@@ -130,8 +130,25 @@ export class PlannerApp extends Component {
       onLoadMore={this.props.loadFutureItems} />;
   }
 
+  renderLoadPastButton () {
+    return (
+      <ShowOnFocusButton
+        buttonProps={{
+          onClick: this.props.scrollIntoPast
+        }}
+        >
+          {formatMessage('Load prior dates')}
+      </ShowOnFocusButton>
+    );
+  }
+
   renderNoAssignments() {
-    return <PlannerEmptyState changeToDashboardCardView={this.props.changeToDashboardCardView}/>;
+    return (
+      <div>
+        {this.renderLoadPastButton()}
+        <PlannerEmptyState changeToDashboardCardView={this.props.changeToDashboardCardView}/>;
+      </div>
+    );
   }
 
   renderBody (children) {
@@ -145,13 +162,7 @@ export class PlannerApp extends Component {
 
     return <div className="PlannerApp">
       {this.renderNewActivity()}
-      <ShowOnFocusButton
-        buttonProps={{
-          onClick: this.props.scrollIntoPast
-        }}
-      >
-        {formatMessage('Load prior dates')}
-      </ShowOnFocusButton>
+      {this.renderLoadPastButton()}
       {this.renderLoadingPast()}
       {children}
       {this.renderLoadMore()}
