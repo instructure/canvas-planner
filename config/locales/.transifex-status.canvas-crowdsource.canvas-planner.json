@@ -100,13 +100,13 @@
   },
   "he": {
     "reviewed_percentage": "12%",
-    "completed": "99%",
-    "untranslated_words": 5,
-    "last_commiter": "Illango",
+    "completed": "100%",
+    "untranslated_words": 0,
+    "last_commiter": "zshilor",
     "reviewed": 8,
-    "translated_entities": 66,
-    "translated_words": 237,
-    "last_update": "2017-11-18 17:48:03",
-    "untranslated_entities": 1
+    "translated_entities": 67,
+    "translated_words": 242,
+    "last_update": "2017-12-02 20:30:12",
+    "untranslated_entities": 0
   }
 }

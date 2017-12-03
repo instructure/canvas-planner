@@ -77,6 +77,9 @@
   "failed_to_delete_to_do_64edff49": {
     "message": "ביטול המטלה לביצוע נכשל"
   },
+  "failed_to_get_new_activity_17e7ec7c": {
+    "message": "כשלון בקבלת פעילות חדשה"
+  },
   "failed_to_load_opportunities_52ab6404": {
     "message": "טעינת הזדמנויות נכשלה"
   },
