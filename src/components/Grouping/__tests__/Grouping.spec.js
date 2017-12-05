@@ -28,7 +28,8 @@ const getDefaultProps = () => ({
     context: {
       url: 'example.com',
       color: "#5678",
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     id: "6",
@@ -37,7 +38,8 @@ const getDefaultProps = () => ({
     title: 'Roll for the Galaxy',
     context: {
       color: "#5678",
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }],
   timeZone: "America/Denver",
@@ -169,6 +171,28 @@ it('renders a danger activity notification when there is a missing item', () => 
   expect(wrapper.find('ScreenReaderContent')).toHaveProperty('node.props.children', 'Missing items for ' + props.title);
 });
 
+it(`does not render a danger activity notification when there is a missing item
+  but the course is not configured to inform students of overdue submissions`, () => {
+  const props = getDefaultProps();
+  const item = props.items[1];
+  item.status = { missing: true };
+  item.context.inform_students_of_overdue_submissions = false;
+  const wrapper = shallow(<Grouping {...props} />);
+  expect(wrapper.find('Badge')).toHaveLength(0);
+  expect(wrapper.find('ScreenReaderContent')).toHaveLength(0);
+});
+
+it(`does not render a danger activity notification when there is a missing item
+  but the course is not present`, () => {
+  const props = getDefaultProps();
+  const item = props.items[1];
+  item.status = { missing: true };
+  delete item.context;
+  const wrapper = shallow(<Grouping {...props} />);
+  expect(wrapper.find('Badge')).toHaveLength(0);
+  expect(wrapper.find('ScreenReaderContent')).toHaveLength(0);
+});
+
 it('renders the to do screenreader text when there is no course', () => {
   let props = getDefaultProps();
   props.title = null;
@@ -227,8 +251,8 @@ describe('toggleCompletion', () => {
 
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
-  const firstItems = [{title: 'asdf', context: {id: 128}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256}, id: '2', uniqueId: 'second'}];
-  const secondItems = [{title: 'qwer', context: {id: 128}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256}, id: '4', uniqueId: 'fourth'}];
+  const firstItems = [{title: 'asdf', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '2', uniqueId: 'second'}];
+  const secondItems = [{title: 'qwer', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '4', uniqueId: 'fourth'}];
   const wrapper = mount(
     <Grouping
       {...getDefaultProps()}

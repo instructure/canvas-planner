@@ -84,6 +84,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
           Array [
             Object {
               "id": "1",
+              "informStudentsOfOverdueSubmissions": true,
               "shortName": "Course Short Name",
             },
           ]
@@ -138,6 +139,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
         Array [
           Object {
             "id": "1",
+            "informStudentsOfOverdueSubmissions": true,
             "shortName": "Course Short Name",
           },
         ]

@@ -95,6 +95,7 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
         id: contextId,
         title: course.shortName,
         image_url: course.image,
+        inform_students_of_overdue_submissions: course.informStudentsOfOverdueSubmissions,
         color: course.color,
         url: course.href
       };
@@ -112,6 +113,7 @@ export function transformApiToInternalItem (apiResponse, courses, timeZone) {
         id: details.course_id,
         title: course.shortName,
         image_url: course.image,
+        inform_students_of_overdue_submissions: course.informStudentsOfOverdueSubmissions,
         color: course.color,
         url: course.href
       };
@@ -149,6 +151,7 @@ export function transformPlannerNoteApiToInternalItem (plannerItemApiResponse, c
         id: plannerNote.course_id,
         title: course.shortName,
         image_url: course.image,
+        inform_students_of_overdue_submissions: course.informStudentsOfOverdueSubmissions,
         color: course.color,
         url: course.href
       };

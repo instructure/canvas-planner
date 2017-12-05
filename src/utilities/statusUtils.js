@@ -37,6 +37,16 @@ export function anyNewActivity (items) {
   return items && items.some(isNewActivityItem);
 }
 
+export function showPillForOverdueStatus(status, item) {
+  if (!['late', 'missing'].includes(status)) {
+    throw new Error(`Expected status to be 'late' or 'missing', but it was ${status}`);
+  } else if (!item.status || !item.status[status] || !item.context) {
+    return false;
+  }
+
+  return item.context.inform_students_of_overdue_submissions;
+}
+
 /**
 * Returns an array of pill objects that the particular item
 * qualifies to have
@@ -46,7 +56,17 @@ export function getBadgesForItem (item) {
   if (item.status) {
     badges = Object.keys(item.status)
       .filter((key, index, all) => item.status.graded && key === 'submitted' ? false : true) // if graded, ignore submitted
-      .filter(key => item.status[key] && PILL_MAPPING.hasOwnProperty(key))
+      .filter((key) => {
+        const validKeyPresent = item.status[key] && PILL_MAPPING.hasOwnProperty(key);
+
+        if (!validKeyPresent) {
+          return false;
+        } else if (['late', 'missing'].includes(key)) {
+          return showPillForOverdueStatus(key, item);
+        }
+
+        return true;
+      })
       .map(a => PILL_MAPPING[a]());
 
     if (item.status.unread_count) {
@@ -68,8 +88,10 @@ export function getBadgesForItems (items) {
   if (items.some(i => i.status && i.newActivity && i.status.graded)) {
     badges.push(PILL_MAPPING.new_grades());
   }
-  if (items.some(i => i.status && i.status.missing)) {
+  if (items.some(showPillForOverdueStatus.bind(this, 'missing'))) {
     badges.push(PILL_MAPPING.missing());
+  } else if (items.some(showPillForOverdueStatus.bind(this, 'late'))) {
+    badges.push(PILL_MAPPING.late());
   }
   if (items.some(i => i.status && i.newActivity && i.status.has_feedback)) {
     badges.push(PILL_MAPPING.new_feedback());

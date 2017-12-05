@@ -21,7 +21,7 @@ import themeable from 'instructure-ui/lib/themeable';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Container from 'instructure-ui/lib/components/Container';
-import { string, number, arrayOf, object, func, bool } from 'prop-types';
+import { shape, string, number, arrayOf, func, bool } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import { getFriendlyDate, getFullDate, isToday } from '../../utilities/dateUtils';
@@ -33,7 +33,11 @@ import { animatable } from '../../dynamic-ui';
 export class Day extends Component {
   static propTypes = {
     day: string.isRequired,
-    itemsForDay: arrayOf(object),
+    itemsForDay: arrayOf(shape({
+      context: shape({
+        inform_students_of_overdue_submissions: bool.isRequired
+      })
+    })),
     animatableIndex: number,
     timeZone: string.isRequired,
     toggleCompletion: func,

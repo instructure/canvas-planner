@@ -48,17 +48,20 @@ it('groups itemsForDay based on context id', () => {
   const items = [{
     title: 'Black Friday',
     context: {
-      id: 128
+      id: 128,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Roll for the Galaxy',
     context: {
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }];
 
@@ -75,19 +78,22 @@ it('renders grouping correctly when having itemsForDay', () => {
     title: 'Black Friday',
     context: {
       id: 128,
-      url:"http://www.non_default_url.com"
+      url:"http://www.non_default_url.com",
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
       id: 256,
-      url:"http://www.non_default_url.com"
+      url:"http://www.non_default_url.com",
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Roll for the Galaxy',
     context: {
       id: 256,
-      url:"http://www.non_default_url.com"
+      url:"http://www.non_default_url.com",
+      inform_students_of_overdue_submissions: true
     }
   }];
 
@@ -100,17 +106,20 @@ it('groups itemsForDay that have no context into the "Notes" category', () => {
   const items = [{
     title: 'Black Friday',
     context: {
-      id: 128
+      id: 128,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Roll for the Galaxy',
     context: {
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Get work done!'
@@ -127,12 +136,14 @@ it('groups itemsForDay that come in on prop changes', () => {
   const items = [{
     title: 'Black Friday',
     context: {
-      id: 128
+      id: 128,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }];
 
@@ -145,7 +156,8 @@ it('groups itemsForDay that come in on prop changes', () => {
   const newItemsForDay = items.concat([{
     title: 'Roll for the Galaxy',
     context: {
-      id: 256
+      id: 256,
+      inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Get work done!'
@@ -174,8 +186,8 @@ it('renders when there are no items but within two weeks', () => {
 
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
-  const firstItems = [{title: 'asdf', context: {id: 128}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256}, id: '2', uniqueId: 'second'}];
-  const secondItems = [{title: 'qwer', context: {id: 128}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256}, id: '4', uniqueId: 'fourth'}];
+  const firstItems = [{title: 'asdf', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '2', uniqueId: 'second'}];
+  const secondItems = [{title: 'qwer', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '4', uniqueId: 'fourth'}];
   const wrapper = mount(
     <Day
       day={'2017-08-11'}

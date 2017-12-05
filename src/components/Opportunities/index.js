@@ -59,6 +59,11 @@ export class Opportunities extends Component {
     }
   }
 
+  courseAttr = (id, attr) => {
+    const course = this.props.courses.find(c => c.id === id) || {};
+    return course[attr];
+  }
+
   renderOpportunity = () => {
     return (
       this.props.opportunities.map(opportunity =>
@@ -67,9 +72,8 @@ export class Opportunities extends Component {
             id={opportunity.id}
             dueAt={opportunity.due_at}
             points={opportunity.points_possible}
-            courseName={this.props.courses.filter(( course ) => {
-              return course.id === opportunity.course_id;
-            })[0].shortName}
+            showPill={this.courseAttr(opportunity.course_id, 'informStudentsOfOverdueSubmissions')}
+            courseName={this.courseAttr(opportunity.course_id, 'shortName')}
             opportunityTitle={opportunity.name}
             timeZone={this.props.timeZone}
             dismiss={this.props.dismiss}

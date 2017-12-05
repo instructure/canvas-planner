@@ -22,19 +22,23 @@ import containerQuery from 'instructure-ui/lib/util/containerQuery';
 import Badge from 'instructure-ui/lib/components/Badge';
 import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import { partition } from 'lodash';
-import { arrayOf, string, number, object, func } from 'prop-types';
+import { arrayOf, string, number, shape, bool, func } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 import PlannerItem from '../PlannerItem';
 import CompletedItemsFacade from '../CompletedItemsFacade';
 import moment from 'moment-timezone';
 import formatMessage from '../../format-message';
-import { getBadgesForItem, getBadgesForItems } from '../../utilities/statusUtils';
+import { getBadgesForItem, getBadgesForItems, showPillForOverdueStatus } from '../../utilities/statusUtils';
 import { animatable } from '../../dynamic-ui';
 
 export class Grouping extends Component {
   static propTypes = {
-    items: arrayOf(object).isRequired,
+    items: arrayOf(shape({
+      context: shape({
+        inform_students_of_overdue_submissions: bool.isRequired
+      })
+    })).isRequired,
     animatableIndex: number,
     title: string,
     color: string,
@@ -164,7 +168,7 @@ export class Grouping extends Component {
   renderNotificationBadge () {
     let missing = false;
     const newItem = this.props.items.find(item => {
-      if (item.status && item.status.missing) missing = true;
+      if (showPillForOverdueStatus('missing', item)) missing = true;
       return item.newActivity;
     });
     if (newItem || missing) {

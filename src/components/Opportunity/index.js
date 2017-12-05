@@ -26,7 +26,7 @@ import Pill from 'instructure-ui/lib/components/Pill';
 import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
 import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
 import IconXLine from 'instructure-icons/lib/Line/IconXLine';
-import { string, number, func, object } from 'prop-types';
+import { bool, string, number, func, object } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
 
@@ -35,6 +35,7 @@ export class Opportunity extends Component {
     id: string.isRequired,
     dueAt: string.isRequired,
     points: number,
+    showPill: bool.isRequired,
     courseName: string.isRequired,
     opportunityTitle: string.isRequired,
     timeZone: string.isRequired,
@@ -63,7 +64,7 @@ export class Opportunity extends Component {
         </div>
         <div className={styles.footer}>
           <div className={styles.status}>
-            <Pill text={formatMessage('Missing')} variant="danger"/>
+            {this.props.showPill && <Pill text={formatMessage('Missing')} variant="danger"/>}
             <div className={styles.due}>
               <span className={styles.dueText}>
                 {formatMessage('Due:')}</span> {this.fullDate}

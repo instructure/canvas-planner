@@ -18,14 +18,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Opportunity } from '../index';
+import Pill from 'instructure-ui/lib/components/Pill';
 
-function defaultProps (option) {
+function defaultProps (options) {
   return {
     id: "1",
     dueAt: "2017-03-09T20:40:35Z",
     courseName: "course about stuff",
     opportunityTitle: "this is a description about the opportunity",
     points: 20,
+    showPill: true,
     url: "http://www.non_default_url.com",
     timeZone: 'America/Denver',
     dismiss: () => {},
@@ -56,4 +58,17 @@ it('renders the base component correctly without points', () => {
     <Opportunity {...tempProps} />
   );
   expect(wrapper).toMatchSnapshot();
+});
+
+it('renders a Pill if passed showPill: true', () => {
+  const props = defaultProps();
+  const wrapper = shallow(<Opportunity {...props} />);
+  expect(wrapper.find(Pill).length).toEqual(1);
+});
+
+it('does not render a Pill if passed showPill: false', () => {
+  const props = defaultProps();
+  props.showPill = false;
+  const wrapper = shallow(<Opportunity {...props} />);
+  expect(wrapper.find(Pill).length).toEqual(0);
 });
