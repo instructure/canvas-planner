@@ -18,13 +18,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reduxPromise from 'redux-promise';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers';
 import {createDynamicUiMiddleware} from '../dynamic-ui';
+import allSagas from '../actions/sagas';
 
 export default function configureStore (uiManager, defaultState) {
+  const sagaMiddleware = createSagaMiddleware();
   let middlewares = [
     reduxThunk,
     reduxPromise,
+    sagaMiddleware,
     createDynamicUiMiddleware(uiManager),
   ];
 
@@ -34,9 +38,11 @@ export default function configureStore (uiManager, defaultState) {
     middlewares = [ ...middlewares, reduxLogger ];
   }
 
-  return createStore(
+  const store = createStore(
     rootReducer,
     defaultState,
     applyMiddleware(...middlewares)
   );
+  sagaMiddleware.run(allSagas);
+  return store;
 }

@@ -20,7 +20,6 @@ import axios from 'axios';
 import parseLinkHeader from 'parse-link-header';
 import { getFirstLoadedMoment, getLastLoadedMoment } from '../utilities/dateUtils';
 import { transformApiToInternalItem } from '../utilities/apiUtils';
-import { anyNewActivity } from '../utilities/statusUtils';
 import { alert, srAlert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
 
@@ -132,20 +131,13 @@ export function scrollIntoPast () {
   };
 }
 
+const startLoadingPastUntilNewActivity = createAction('START_LOADING_PAST_UNTIL_NEW_ACTIVITY');
 export const loadPastUntilNewActivity = () => (dispatch, getState) => {
   dispatch(gettingPastItems({
     seekingNewActivity: true,
     somePastItemsLoaded: getState().loading.somePastItemsLoaded
   }));
-  const loadingOptions = {
-    dispatch, getState,
-    intoThePast: true,
-    fromMoment: getFirstLoadedMoment(getState().days, getState().timeZone),
-    onNothing: handleLoadPastItemsUntilNewActivity,
-    onGotItems: handleLoadPastItemsUntilNewActivity,
-    onError: handleError,
-  };
-  return sendFetchRequest(loadingOptions);
+  dispatch(startLoadingPastUntilNewActivity()); // triggers that saga
 };
 
 function handleGotItems (loadingOptions, response, newItems) {
@@ -159,23 +151,7 @@ function handleGotItems (loadingOptions, response, newItems) {
   loadingOptions.dispatch(gotItemsSuccess(newItems, response));
 }
 
-function handleLoadPastItemsUntilNewActivity (loadingOptions, response, newItems) {
-  const dispatch = loadingOptions.dispatch;
-  const parsedLinkHeader = parseLinkHeader(response.headers.link);
-  const noMoreItems = !newItems;
-  const hasNext = !!(parsedLinkHeader && parsedLinkHeader.next);
-
-  if (newItems) dispatch(addPendingPastItems(newItems, response));
-  if (noMoreItems || !hasNext || anyNewActivity(newItems)) {
-    const allPastItems = loadingOptions.getState().pendingItems.past;
-    dispatch(gotItemsSuccess(allPastItems, response));
-    dispatch(flushPendingPastItems());
-  } else {
-    dispatch(loadPastUntilNewActivity());
-  }
-}
-
-function sendFetchRequest (loadingOptions) {
+export function sendFetchRequest (loadingOptions) {
   return axios.get(...fetchParams(loadingOptions))
     .then(response => handleFetchResponse(loadingOptions, response))
     .catch(ex => handleFetchError(loadingOptions, ex));
@@ -207,12 +183,12 @@ function fetchParams (loadingOptions) {
 
 function handleFetchResponse (loadingOptions, response) {
   if (nothingWasLoaded(loadingOptions, response)) {
-    loadingOptions.onNothing(loadingOptions, response);
+    if (loadingOptions.onNothing) loadingOptions.onNothing(loadingOptions, response);
     return [];
   } else {
     const transformedItems = transformItems(loadingOptions, response.data);
-    loadingOptions.onGotItems(loadingOptions, response, transformedItems);
-    return transformedItems;
+    if (loadingOptions.onGotItems) loadingOptions.onGotItems(loadingOptions, response, transformedItems);
+    return {response, transformedItems};
   }
 }
 

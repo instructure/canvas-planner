@@ -58,7 +58,8 @@ function getNextUrls (state, action) {
 function gotItemsSuccess (state, action) {
   const linkState = getNextUrls(state, action);
   const somePastItemsLoaded = state.somePastItemsLoaded || state.loadingPast;
-  const newState = {...linkState, somePastItemsLoaded};
+  const seekingNewActivity = false;
+  const newState = {...linkState, somePastItemsLoaded, seekingNewActivity};
   return loadingState(state, newState);
 }
 

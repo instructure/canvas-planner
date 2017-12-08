@@ -59,6 +59,7 @@ it('sets loading to false on GOT_ITEMS_SUCCESS', () => {
     isLoading: false,
     loadingPast: false,
     loadingFuture: false,
+    seekingNewActivity: false,
   });
 });
 

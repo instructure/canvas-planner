@@ -15,15 +15,15 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+import moment from 'moment-timezone';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import moment from 'moment';
 import UpdateItemTray from '../index';
 
 const defaultProps = {
   onSavePlannerItem: () => {},
   locale: 'en',
-  timeZone: 'America/Denver',
+  timeZone: 'Asia/Tokyo',
   onDeletePlannerItem: () => {},
   courses: [],
 };
@@ -168,7 +168,7 @@ it('changes state when new date is typed in', () => {
   const mockCallback = jest.fn();
   const wrapper = mount(<UpdateItemTray {...defaultProps} onSavePlannerItem={mockCallback} noteItem={noteItem} />);
   const newDate = moment('2017-10-16');
-  wrapper.instance().handleDateChange(undefined, newDate);  // TODO: change newDate.toISOString() for instui 4
+  wrapper.instance().handleDateChange({}, newDate.format());
   wrapper.instance().handleSave();
   expect(mockCallback).toHaveBeenCalledWith({
     title: noteItem.title,

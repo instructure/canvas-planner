@@ -62,6 +62,75 @@ describe('api actions', () => {
     moxios.uninstall();
   });
 
+  describe('sendFetchRequest', () => {
+    it('fetches from the specified moment if there is no next url in the loadingOptions', () => {
+      const fromMoment = moment.tz('Asia/Tokyo');
+      Actions.sendFetchRequest({
+        fromMoment, getState: () => ({loading: {}}),
+      });
+      return moxiosWait(request => {
+        expect(request.config.url).toBe('/api/v1/planner/items');
+        expect(request.config.params.start_date).toBe(fromMoment.format());
+      });
+    });
+
+    it('fetches using futureNextUrl if specified', () => {
+      const fromMoment = moment.tz('Asia/Tokyo');
+      Actions.sendFetchRequest({
+        fromMoment, getState: () => ({loading: {futureNextUrl: 'next url'}}),
+      });
+      return moxiosWait(request => {
+        expect(request.config.url).toBe('next url');
+      });
+    });
+
+    it('sends past parameters if intoThePast is specified', () => {
+      const fromMoment = moment.tz('Asia/Tokyo');
+      Actions.sendFetchRequest({
+        fromMoment, intoThePast: true, getState: () => ({loading: {}}),
+      });
+      return moxiosWait(request => {
+        expect(request.config.url).toBe('/api/v1/planner/items');
+        expect(request.config.params.end_date).toBe(fromMoment.format());
+        expect(request.config.params.order).toBe('desc');
+      });
+    });
+
+    it('sends pastNextUrl if intoThePast is specified', () => {
+      const fromMoment = moment.tz('Asia/Tokyo');
+      Actions.sendFetchRequest({
+        fromMoment, intoThePast: true, getState: () => ({loading: {pastNextUrl: 'past next url'}}),
+      });
+      return moxiosWait(request => {
+        expect(request.config.url).toBe('past next url');
+      });
+    });
+
+    it('invokes onError on fetch error', () => {
+      const onError = jest.fn();
+      const fromMoment = moment.tz('Asia/Tokyo');
+      const loadingOptions = {fromMoment, onError, getState: () => ({loading: {}})};
+      const fetchPromise = Actions.sendFetchRequest(loadingOptions);
+      return moxiosRespond(
+        { some: 'response data' },
+        fetchPromise,
+        { status: 500 }
+      ).then((result) => {
+        expect(onError).toHaveBeenCalledWith(loadingOptions, expect.anything());
+      });
+    });
+
+    it('transforms the results', () => {
+      const fromMoment = moment.tz('Asia/Tokyo');
+      const fetchPromise = Actions.sendFetchRequest({fromMoment, getState: () => ({loading: {}})});
+      return moxiosRespond([{some: 'items'}], fetchPromise).then(result => {
+        expect(result).toEqual({
+          response: expect.anything(),
+          transformedItems: [{some: 'items', transformedToInternal: true}]});
+      });
+    });
+  });
+
   describe('getPlannerItems', () => {
    it('dispatches startLoadingItems and getFirstNewActivityDate initially', () => {
      const fakeDispatch = jest.fn();
@@ -195,11 +264,10 @@ describe('api actions', () => {
       });
     });
 
-    it('resolves the promise with transformed response data', () => {
+    it('dispatches GOT_ITEMS_SUCCESS with transformed response data', () => {
       const mockDispatch = jest.fn();
       const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
       return moxiosRespond([{some: 'response'}], fetchPromise).then(result => {
-        expect(result).toMatchObject([{some: 'response', transformedToInternal: true}]);
         const gotItemsParams = mockDispatch.mock.calls[1][0];
         expect(gotItemsParams).toMatchObject({
           type: 'GOT_ITEMS_SUCCESS',
@@ -291,58 +359,11 @@ describe('api actions', () => {
   });
 
   describe('loadPastUntilNewActivity', () => {
-    it('dispatches getting past items', () => {
+    it('dispatches getting past items and starts the saga', () => {
       const mockDispatch = jest.fn();
       Actions.loadPastUntilNewActivity()(mockDispatch, (getBasicState));
       expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS', payload: {seekingNewActivity: true}});
+      expect(mockDispatch).toHaveBeenCalledWith({type: 'START_LOADING_PAST_UNTIL_NEW_ACTIVITY'});
     });
-
-    it('sends a fetch with the past url', () => {
-      const mockDispatch = jest.fn();
-      const state = getBasicState();
-      state.loading.pastNextUrl = 'some-past-url';
-      Actions.loadPastUntilNewActivity()(mockDispatch, () => state);
-      return moxiosWait((request) => {
-        expect(request.url).toBe('some-past-url');
-      });
-    });
-
-    it('appends to pending and redispatches itself if result is no new activity', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.loadPastUntilNewActivity()(mockDispatch, getBasicState);
-      return moxiosRespond([{some: 'item', status: {}}], fetchPromise, {headers: {link: '<next-past-url>; rel="next"'}})
-      .then((response) => {
-        expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
-          type: 'ADD_PENDING_PAST_ITEMS',
-          payload: expect.objectContaining({
-            internalItems: [{some: 'item', status: {}, transformedToInternal: true}],
-          }),
-        }));
-        // assume dispatching a function is it dispatching its thunk
-        expect(typeof mockDispatch.mock.calls[2][0]).toBe('function');
-      });
-    });
-
-    it('dispatches loading new items actions when result has new activity', () => {
-      const mockDispatch = jest.fn();
-      const state = getBasicState();
-      state.pendingItems.past = [{some: 'past'}];
-      const fetchPromise = Actions.loadPastUntilNewActivity()(mockDispatch, () => state);
-      const response = ([{some: 'new-item', status: {new_replies: true}, new_activity: true}]);
-      return moxiosRespond(response, fetchPromise, {headers: {link: '<next-past-url>; rel="next"'}})
-      .then((response) => {
-        expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({type: 'ADD_PENDING_PAST_ITEMS'}));
-        // note: this just makes sure the past items are added. The past doesn't include the newItem
-        // because our mockDispatch doesn't invoke the reducers that add the new-item to the past.
-        expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
-          type: 'GOT_ITEMS_SUCCESS',
-          payload: expect.objectContaining({
-            internalItems: [{some: 'past'}],
-          }),
-        }));
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'FLUSH_PENDING_PAST_ITEMS'});
-      });
-    });
-
   });
 });
