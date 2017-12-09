@@ -65,6 +65,12 @@
   "edit_title_72e5a21e": {
     "message": "Ändern { title }"
   },
+  "error_loading_more_items_3f109d9f": {
+    "message": "Fehler beim Laden weiterer Objekte"
+  },
+  "error_loading_past_items_2881dbb1": {
+    "message": "Fehler beim Laden bisheriger Objekte"
+  },
   "excused_cf8792eb": {
     "message": "Entschuldigt"
   },
@@ -79,6 +85,9 @@
   },
   "failed_to_save_to_do_ddc7503b": {
     "message": "Speichern der Aufgabe fehlgeschlagen"
+  },
+  "feedback_6dcc1991": {
+    "message": "Feedback"
   },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "Gehen Sie zur Dashboard-Kartenansicht."
@@ -148,6 +157,9 @@
   },
   "pts_699bd9aa": {
     "message": "Pkte."
+  },
+  "replies_4a8577c8": {
+    "message": "Antworten"
   },
   "save_11a80ec3": {
     "message": "Speichern"

@@ -65,6 +65,12 @@
   "edit_title_72e5a21e": {
     "message": "编辑{ title }"
   },
+  "error_loading_more_items_3f109d9f": {
+    "message": "加载更多项目时出错"
+  },
+  "error_loading_past_items_2881dbb1": {
+    "message": "加载过去的项目时出错"
+  },
   "excused_cf8792eb": {
     "message": "已请假"
   },
@@ -79,6 +85,9 @@
   },
   "failed_to_save_to_do_ddc7503b": {
     "message": "保存待办事项出错"
+  },
+  "feedback_6dcc1991": {
+    "message": "反馈"
   },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "转到仪表板卡视图"
@@ -148,6 +157,9 @@
   },
   "pts_699bd9aa": {
     "message": "得分"
+  },
+  "replies_4a8577c8": {
+    "message": "回复"
   },
   "save_11a80ec3": {
     "message": "保存"

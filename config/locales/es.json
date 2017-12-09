@@ -65,6 +65,12 @@
   "edit_title_72e5a21e": {
     "message": "Editar { title }"
   },
+  "error_loading_more_items_3f109d9f": {
+    "message": "Error al cargar más elementos"
+  },
+  "error_loading_past_items_2881dbb1": {
+    "message": "Error al cargar elementos anteriores"
+  },
   "excused_cf8792eb": {
     "message": "Justificado"
   },
@@ -79,6 +85,9 @@
   },
   "failed_to_save_to_do_ddc7503b": {
     "message": "Error al guardar tareas pendientes"
+  },
+  "feedback_6dcc1991": {
+    "message": "Retroalimentación"
   },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "Vaya a la vista de la tarjeta del tablero de control"
@@ -148,6 +157,9 @@
   },
   "pts_699bd9aa": {
     "message": "ptos."
+  },
+  "replies_4a8577c8": {
+    "message": "Respuestas"
   },
   "save_11a80ec3": {
     "message": "Guardar"

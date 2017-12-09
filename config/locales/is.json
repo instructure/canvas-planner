@@ -65,6 +65,12 @@
   "edit_title_72e5a21e": {
     "message": "Breyta { title }"
   },
+  "error_loading_more_items_3f109d9f": {
+    "message": "Villa kom upp við að hlaða fleiri atriðum"
+  },
+  "error_loading_past_items_2881dbb1": {
+    "message": "Villa kom upp við að hlaða eldri atriðum"
+  },
   "excused_cf8792eb": {
     "message": "Ekki með"
   },
@@ -79,6 +85,9 @@
   },
   "failed_to_save_to_do_ddc7503b": {
     "message": "Mistókst að vista Verkefni"
+  },
+  "feedback_6dcc1991": {
+    "message": "Endurgjöf"
   },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "Fara í sýn skjáborðskorts"
@@ -148,6 +157,9 @@
   },
   "pts_699bd9aa": {
     "message": "punktar"
+  },
+  "replies_4a8577c8": {
+    "message": "Svör"
   },
   "save_11a80ec3": {
     "message": "Vista"

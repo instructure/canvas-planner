@@ -65,6 +65,12 @@
   "edit_title_72e5a21e": {
     "message": "Rediger { title }"
   },
+  "error_loading_more_items_3f109d9f": {
+    "message": "Fejl ved indlæsning af flere elementer"
+  },
+  "error_loading_past_items_2881dbb1": {
+    "message": "Fejl ved indlæsning af forrige elementer"
+  },
   "excused_cf8792eb": {
     "message": "Undskyldt"
   },
@@ -79,6 +85,9 @@
   },
   "failed_to_save_to_do_ddc7503b": {
     "message": "Kunne ikke gemme opgave"
+  },
+  "feedback_6dcc1991": {
+    "message": "Feedback"
   },
   "go_to_dashboard_card_view_10398ef6": {
     "message": "Gå til forsidens kortvisning"
@@ -148,6 +157,9 @@
   },
   "pts_699bd9aa": {
     "message": "point"
+  },
+  "replies_4a8577c8": {
+    "message": "Svar"
   },
   "save_11a80ec3": {
     "message": "Gem"
