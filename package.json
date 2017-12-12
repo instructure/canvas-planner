@@ -1,6 +1,6 @@
 {
   "name": "canvas-planner",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "UI portion of planner application for canvas-lms.",
   "main": "lib/index.js",
   "repository": {
