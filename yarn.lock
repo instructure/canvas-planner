@@ -3788,15 +3788,15 @@ inquirer@^0.12.0:
     strip-ansi "^3.0.0"
     through "^2.3.6"
 
-instructure-icons@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/instructure-icons/-/instructure-icons-4.3.0.tgz#3905d721b0aff37fc300f02f4c6baf5d308c891c"
+instructure-icons@^4.3.0:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/instructure-icons/-/instructure-icons-4.3.2.tgz#bdcd677ba39c4cac9d2bd80cab6638336a2ab9cd"
   dependencies:
     prop-types "^15.5.8"
     shortid "^2.2.8"
     svg-to-jsx "^0.0.20"
 
-instructure-ui@3.3.4:
+instructure-ui@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/instructure-ui/-/instructure-ui-3.3.4.tgz#6a5640f60d5cd5c0c4462c021350407a8975f556"
   dependencies:
