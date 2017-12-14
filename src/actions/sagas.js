@@ -16,9 +16,17 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import moment from 'moment-timezone';
 import { put, select, call, all, takeEvery } from 'redux-saga/effects';
-import { addPendingPastItems, flushPendingPastItems, gotItemsError, gotItemsSuccess, sendFetchRequest } from './loading-actions';
+import { getFirstLoadedMoment, getLastLoadedMoment } from '../utilities/dateUtils';
+
+import {
+  gotItemsError, sendFetchRequest,
+} from './loading-actions';
+
+import {
+  mergeFutureItems, mergePastItems, mergePastItemsForNewActivity
+} from './saga-actions';
+
 
 export default function* allSagas () {
   yield all([
@@ -27,25 +35,60 @@ export default function* allSagas () {
 }
 
 function* watchForSagas () {
-  yield takeEvery('START_LOADING_PAST_UNTIL_NEW_ACTIVITY', loadPastUntilNewActivitySaga);
+  yield takeEvery('START_LOADING_PAST_SAGA', loadPastSaga);
+  yield takeEvery('START_LOADING_FUTURE_SAGA', loadFutureSaga);
+  yield takeEvery('START_LOADING_PAST_UNTIL_NEW_ACTIVITY_SAGA', loadPastUntilNewActivitySaga);
 }
 
-export function* loadPastUntilNewActivitySaga () {
-  let currentState = yield select();
-  const getState = () => currentState;
+// fromMomentFunction: function
+//   arg: currentState
+//   returns: the fromMoment that should be passed to the fetch request
+// actionCreator: function
+//   arg: transformedItems - an array of new items to merge into the state
+//   arg: response - the response of the fetch
+//   returns: an action that returns a thunk.
+//     The thunk should return:
+//        true if the conditions were met and we can stop loading items
+//        false if the new items did not meet the conditions and we should load more items
+// opts: for sendFetchRequest
+//   intoThePast
+function* loadingLoop (fromMomentFunction, actionCreator, opts) {
   try {
-    while (currentState.loading.seekingNewActivity) {
-      const fromMoment = moment.tz(currentState.timeZone).startOf('day');
-      const loadingOptions = {fromMoment, getState, intoThePast: true};
-      const {transformedItems, response} = yield call(sendFetchRequest, loadingOptions);
-      yield put(addPendingPastItems(transformedItems, response));
+    let currentState = null;
+    const getState = () => currentState; // don't want create a new function inside a loop
+    let continueLoading = true;
+    while (continueLoading) {
       currentState = yield select();
+      const fromMoment = fromMomentFunction(currentState);
+      const loadingOptions = {fromMoment, getState, ...opts};
+      const {transformedItems, response} = yield call(sendFetchRequest, loadingOptions);
+      const thunk = yield call(actionCreator, transformedItems, response);
+      continueLoading = !(yield put(thunk));
     }
-    yield put(gotItemsSuccess(currentState.pendingItems.past));
   } catch (e) {
     yield put(gotItemsError(e));
     throw e;
-  } finally {
-    yield put(flushPendingPastItems());
   }
+}
+
+export function* loadPastSaga () {
+  yield* loadingLoop(fromMomentPast, mergePastItems, {intoThePast: true});
+}
+
+export function* loadFutureSaga () {
+  yield* loadingLoop(fromMomentFuture, mergeFutureItems, {intoThePast: false});
+}
+
+export function* loadPastUntilNewActivitySaga () {
+  yield* loadingLoop(fromMomentPast, mergePastItemsForNewActivity, {intoThePast: true});
+}
+
+function fromMomentPast (state) {
+  return getFirstLoadedMoment(state.days, state.timeZone);
+}
+
+function fromMomentFuture (state) {
+  const lastMoment = getLastLoadedMoment(state.days, state.timeZone);
+  if (state.days.length) lastMoment.add(1, 'days');
+  return lastMoment;
 }

@@ -37,6 +37,10 @@ export function anyNewActivity (items) {
   return items && items.some(isNewActivityItem);
 }
 
+export function anyNewActivityDays (days) {
+  return days.some(day => anyNewActivity(day[1]));
+}
+
 export function showPillForOverdueStatus(status, item) {
   if (!['late', 'missing'].includes(status)) {
     throw new Error(`Expected status to be 'late' or 'missing', but it was ${status}`);

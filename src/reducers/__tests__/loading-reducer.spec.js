@@ -16,45 +16,45 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import loadingReducer from '../loading-reducer';
+import * as Actions from '../../actions/loading-actions';
+
+function initialState (opts = {}) {
+  return {
+    ...loadingReducer(undefined, {}),
+    ...opts
+  };
+}
+
+function linkHeader (nextLink) {
+  return {
+    headers: {
+      link: `<${nextLink}>; rel="next"`,
+    }
+  };
+}
+
+function mockItem (id) {
+  return { id };
+}
 
 it('sets loading to true on START_LOADING_ITEMS', () => {
-  const newState = loadingReducer({}, {
-    type: 'START_LOADING_ITEMS'
-  });
-
-  expect(newState).toMatchObject({
-    isLoading: true
-  });
+  const newState = loadingReducer(initialState(), Actions.startLoadingItems());
+  expect(newState).toMatchObject({ isLoading: true });
 });
 
 it('sets loadingPast to true on GETTING_PAST_ITEMS', () => {
-  const newState = loadingReducer({}, {
-    type: 'GETTING_PAST_ITEMS',
-    payload: {seekingNewActivity: false},
-  });
-
-  expect(newState).toMatchObject({
-    loadingPast: true
-  });
+  const newState = loadingReducer(initialState(), Actions.gettingPastItems());
+  expect(newState).toMatchObject({ loadingPast: true });
 });
 
 it('sets loadingFuture to true on GETTING_FUTURE_ITEMS', () => {
-  const newState = loadingReducer({}, {
-    type: 'GETTING_FUTURE_ITEMS',
-    payload: {},
-  });
-
-  expect(newState).toMatchObject({
-    loadingFuture: true
-  });
+  const newState = loadingReducer(initialState(), Actions.gettingFutureItems());
+  expect(newState).toMatchObject({ loadingFuture: true });
 });
 
-it('sets loading to false on GOT_ITEMS_SUCCESS', () => {
-  const initialState = { isLoading: true };
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS', payload: {},
-  });
-
+it('sets loading to false on GOT_DAYS_SUCCESS', () => {
+  const state = initialState({isLoading: true});
+  const newState = loadingReducer(state, Actions.gotDaysSuccess([]));
   expect(newState).toMatchObject({
     isLoading: false,
     loadingPast: false,
@@ -63,139 +63,161 @@ it('sets loading to false on GOT_ITEMS_SUCCESS', () => {
   });
 });
 
-it('sets loadingPast to false on GOT_ITEMS_SUCCESS', () => {
-  const initialState = { loadingPast: true };
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS', payload: {},
-  });
+it('sets loadingPast to false on GOT_DAYS_SUCCESS', () => {
+  const state = initialState({ loadingPast: true });
+  const newState = loadingReducer(state, Actions.gotDaysSuccess([]));
+  expect(newState).toMatchObject({ loadingPast: false });
+});
 
+it('purges complete days from partial days on GOT_DAYS_SUCCES', () => {
+  const state = initialState({
+    partialFutureDays: [['2017-12-18', []], ['2017-12-19', []]],
+    partialPastDays: [['2017-12-17', []], ['2017-12-16', []]],
+  });
+  const newState = loadingReducer(state, Actions.gotDaysSuccess([
+    ['2017-12-18', []], ['2017-12-17', []]
+  ]));
   expect(newState).toMatchObject({
-    loadingPast: false,
+    partialFutureDays: [['2017-12-19', []]],
+    partialPastDays: [['2017-12-16', []]],
   });
 });
 
-it('sets only futureNextUrl from response on GOT_ITEMS_SUCCESS when loadingFuture', () => {
-  const initialState = {loadingFuture: true, pastNextUrl: 'original'};
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS',
-    payload: {
-      response: { headers: { link: '<someurl>; rel="next"'}},
-    },
-  });
+it('sets only futureNextUrl from response on GOT_PARTIAL_FUTURE_DAYS when loadingFuture', () => {
+  const state = initialState({loadingFuture: true, pastNextUrl: 'original'});
+  const newState = loadingReducer(state, Actions.gotPartialFutureDays([], {
+    ...linkHeader('someurl')
+  }));
   expect(newState).toMatchObject({
     futureNextUrl: 'someurl',
     pastNextUrl: 'original',
+    allFutureItemsLoaded: false,
   });
 });
 
-it('sets only futureNextUrl from link.next on initial GOT_ITEMS_SUCCESS', () => {
-  const initialState = {isLoading: true, futureNextUrl: 'originalFuture', pastNextUrl: 'originalPast'};
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS',
-    payload: {
-      response: { headers: { link: '<futureNextUrl>; rel="next"'}},
-    },
-  });
+it('sets only futureNextUrl from response on initial GOT_PARTIAL_FUTURE_DAYS', () => {
+  const state = initialState({isLoading: true, futureNextUrl: 'originalFuture', pastNextUrl: 'originalPast'});
+  const newState = loadingReducer(state, Actions.gotPartialFutureDays([], {
+    ...linkHeader('futureNextUrl'),
+  }));
   expect(newState).toMatchObject({
     futureNextUrl: 'futureNextUrl',
     pastNextUrl: 'originalPast',
+    allFutureItemsLoaded: false,
   });
 });
 
-it('sets PastNextUrl from link.next on GOT_ITEMS_SUCCESS when loadingPast', () => {
-  const initialState = {loadingPast: true, futureNextUrl: 'original'};
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS',
-    payload: {
-      response: { headers: { link: '<someurl>; rel="next"'}},
-    },
-  });
+it('sets pastNextUrl from response on GOT_PARTIAL_PAST_DAYS', () => {
+  const state = initialState({loadingPast: true, futureNextUrl: 'original'});
+  const newState = loadingReducer(state, Actions.gotPartialPastDays([], {
+     ...linkHeader('someurl'),
+   }));
   expect(newState).toMatchObject({
     futureNextUrl: 'original',
     pastNextUrl: 'someurl',
+    allPastItemsLoaded: false,
   });
 });
 
-it('clears future url when not found', () => {
-  const initialState = { isLoading: true, futureNextUrl: 'originalFuture', pastNextUrl: 'originalPast' };
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS',
-    payload: {
-      response: { headers: { link: '' }},
-    },
+it('clears future url and sets allAllFutureItemsLoaded when next is not found', () => {
+  const state = initialState({
+    isLoading: true,
+    allFutureItemsLoaded: false,
+    futureNextUrl: 'originalFuture',
+    allPastItemsLoaded: false,
+    pastNextUrl: 'originalPast'
   });
+  const newState = loadingReducer(state, Actions.gotPartialFutureDays([]));
   expect(newState).toMatchObject({
     futureNextUrl: null,
+    allFutureItemsLoaded: true,
     pastNextUrl: 'originalPast',
+    allPastItemsLoaded: false,
   });
 });
 
 it('clears past url when not found', () => {
-  const initialState = { loadingPast: true, futureNextUrl: 'originalFuture', pastNextUrl: 'originalPast' };
-  const newState = loadingReducer(initialState, {
-    type: 'GOT_ITEMS_SUCCESS',
-    payload: {
-      response: { headers: { link: '' }},
-    },
+  const state = initialState({
+    loadingPast: true,
+    futureNextUrl: 'originalFuture',
+    pastNextUrl: 'originalPast'
   });
+  const newState = loadingReducer(state, Actions.gotPartialPastDays([]));
   expect(newState).toMatchObject({
     futureNextUrl: 'originalFuture',
+    allFutureItemsLoaded: false,
     pastNextUrl: null,
+    allPastItemsLoaded: true,
   });
 });
 
-it('sets all future items loaded and nothing loading', () => {
-  const initialState = {
-    isLoading: true, loadingPast: true, loadingFuture: true,
-    allFutureItemsLoaded: false, allPastItemsLoaded: false,
-  };
-  const newState = loadingReducer(initialState, {type: 'ALL_FUTURE_ITEMS_LOADED'});
+it('adds to partialPastDays', () => {
+  const originalDays = [
+    ['2017-12-18', ['original items']],
+  ];
+  const state = initialState({
+    originalState: 'original state',
+    partialPastDays: originalDays,
+  });
+  const newDays = [
+    ['2017-12-17', ['prior items']],
+    ['2017-12-19', ['future items']],
+  ];
+  const newState = loadingReducer(state, Actions.gotPartialPastDays(newDays));
   expect(newState).toMatchObject({
-    isLoading: false, loadingPast: false, loadingFuture: false,
-    allFutureItemsLoaded: true, allPastItemsLoaded: false,
+    originalState: 'original state',
+    partialPastDays: [
+      newDays[0],
+      ...originalDays,
+      newDays[1],
+    ]
   });
 });
 
-it('sets all past items loaded and nothing loading', () => {
-  const initialState = {
-    isLoading: true, loadingPast: true, loadingFuture: true,
-    allFutureItemsLoaded: false, allPastItemsLoaded: false,
-  };
-  const newState = loadingReducer(initialState, {type: 'ALL_PAST_ITEMS_LOADED'});
+it('adds to partialFutureDays', () => {
+  const originalDays = [
+    ['2017-12-18', [mockItem(1)]],
+  ];
+  const state = initialState({
+    originalState: 'original state',
+    partialFutureDays: originalDays,
+  });
+  const newDays = [
+    ['2017-12-17', [mockItem(2)]],
+    ['2017-12-18', [mockItem(3)]],
+    ['2017-12-19', [mockItem(4)]],
+  ];
+  const newState = loadingReducer(state, Actions.gotPartialFutureDays(newDays));
   expect(newState).toMatchObject({
-    isLoading: false, loadingPast: false, loadingFuture: false,
-    allFutureItemsLoaded: false, allPastItemsLoaded: true,
+    originalState: 'original state',
+    partialFutureDays: [
+      newDays[0],
+      ['2017-12-18', [...originalDays[0][1], ...newDays[1][1]]],
+      newDays[2],
+    ]
   });
 });
 
-describe('ADD_PENDING_PAST_ITEMS', () => {
-  it('updates only urls if no new activity', () => {
-    const initialState = {
-      loadingPast: true,
-      pastNextUrl: null,
-    };
-    const newState = loadingReducer(initialState, {type: 'ADD_PENDING_PAST_ITEMS', payload: {
-      internalItems: [],
-      response: { headers: { link: '<someurl>; rel="next"'}},
-    }});
-    expect(newState).toMatchObject({
-      loadingPast: true,
-      pastNextUrl: 'someurl',
-    });
+it('adds to partialPastDays', () => {
+  const originalDays = [
+    ['2017-12-18', [mockItem(1)]],
+  ];
+  const state = initialState({
+    originalState: 'original state',
+    partialPastDays: originalDays,
   });
-
-  it('does update loading state if there is new activity', () => {
-    const initialState = {
-      loadingPast: true,
-      pastNextUrl: null,
-    };
-    const newState = loadingReducer(initialState, {type: 'ADD_PENDING_PAST_ITEMS', payload: {
-      internalItems: [{newActivity: true}],
-      response: { headers: { link: '<someurl>; rel="next"'}},
-    }});
-    expect(newState).toMatchObject({
-      loadingPast: false,
-      pastNextUrl: 'someurl',
-    });
+  const newDays = [
+    ['2017-12-17', [mockItem(2)]],
+    ['2017-12-18', [mockItem(3)]],
+    ['2017-12-19', [mockItem(4)]],
+  ];
+  const newState = loadingReducer(state, Actions.gotPartialPastDays(newDays));
+  expect(newState).toMatchObject({
+    originalState: 'original state',
+    partialPastDays: [
+      newDays[0],
+      ['2017-12-18', [...originalDays[0][1], ...newDays[1][1]]],
+      newDays[2],
+    ]
   });
 });

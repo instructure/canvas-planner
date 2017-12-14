@@ -15,13 +15,13 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import { createActions, createAction } from 'redux-actions';
 import axios from 'axios';
-import parseLinkHeader from 'parse-link-header';
-import { getFirstLoadedMoment, getLastLoadedMoment } from '../utilities/dateUtils';
 import { transformApiToInternalItem } from '../utilities/apiUtils';
-import { alert, srAlert } from '../utilities/alertUtils';
+import { alert } from '../utilities/alertUtils';
 import formatMessage from '../format-message';
+import { itemsToDays } from '../utilities/daysUtils';
 
 export const {
   startLoadingItems,
@@ -29,34 +29,40 @@ export const {
   gettingFutureItems,
   allFutureItemsLoaded,
   allPastItemsLoaded,
-  flushPendingPastItems,
   gotItemsError,
+  startLoadingPastSaga,
+  startLoadingFutureSaga,
+  startLoadingPastUntilNewActivitySaga,
 } = createActions(
   'START_LOADING_ITEMS',
   'FOUND_FIRST_NEW_ACTIVITY_DATE',
   'GETTING_FUTURE_ITEMS',
   'ALL_FUTURE_ITEMS_LOADED',
   'ALL_PAST_ITEMS_LOADED',
-  'FLUSH_PENDING_PAST_ITEMS',
   'GOT_ITEMS_ERROR',
+  'START_LOADING_PAST_SAGA',
+  'START_LOADING_FUTURE_SAGA',
+  'START_LOADING_PAST_UNTIL_NEW_ACTIVITY_SAGA',
 );
 
 export const gettingPastItems = createAction('GETTING_PAST_ITEMS', (opts = {seekingNewActivity: false, somePastItemsLoaded: false}) => {
   return opts;
 });
 
-export const gotItemsSuccess = createAction('GOT_ITEMS_SUCCESS', (newItems, response) => {
-  return {
-    internalItems: newItems,
-    response: response,
-  };
+export const gotDaysSuccess = createAction('GOT_DAYS_SUCCESS', (newDays, response) => {
+  return { internalDays: newDays, response };
 });
 
-export const addPendingPastItems = createAction('ADD_PENDING_PAST_ITEMS', (newItems, response) => {
-  return {
-    internalItems: newItems,
-    response: response,
-  };
+export function gotItemsSuccess (newItems, response) {
+  return gotDaysSuccess(itemsToDays(newItems), response);
+}
+
+export const gotPartialFutureDays = createAction('GOT_PARTIAL_FUTURE_DAYS', (newDays, response) => {
+  return { internalDays: newDays, response };
+});
+
+export const gotPartialPastDays = createAction('GOT_PARTIAL_PAST_DAYS', (newDays, response) => {
+  return { internalDays: newDays, response };
 });
 
 export function getFirstNewActivityDate (fromMoment) {
@@ -81,80 +87,42 @@ export function getPlannerItems (fromMoment) {
   return (dispatch, getState) => {
     dispatch(startLoadingItems());
     dispatch(getFirstNewActivityDate(fromMoment));
-    const loadingOptions = {
-      dispatch, getState,
-      fromMoment,
-      intoThePast: false,
-      onGotItems: handleGotItems,
-      onNothing: () => {
-        dispatch(allFutureItemsLoaded());
-      },
-      onError: handleError,
-    };
-    return sendFetchRequest(loadingOptions);
+    dispatch(startLoadingFutureSaga());
   };
 }
 
-export function loadFutureItems (options = {}) {
+export function loadFutureItems () {
   return (dispatch, getState) => {
-    dispatch(gettingFutureItems(options));
-    const loadingOptions = {
-      dispatch, getState,
-      intoThePast: false,
-      fromMoment: getLastLoadedMoment(getState().days, getState.timeZone).add(1, 'days'),
-      onGotItems: handleGotItems,
-      onNothing: () => dispatch(allFutureItemsLoaded()),
-      onError: handleError,
-      ...options,
-    };
-    return sendFetchRequest(loadingOptions);
+    if (getState().loading.allFutureItemsLoaded) return;
+    dispatch(gettingFutureItems());
+    dispatch(startLoadingFutureSaga());
   };
 }
 
 export function scrollIntoPast () {
   return (dispatch, getState) => {
-    if (!getState().loading.allPastItemsLoaded) {
-      dispatch(gettingPastItems({
-        seekingNewActivity: false,
-        somePastItemsLoaded: getState().loading.somePastItemsLoaded
-      }));
-      const loadingOptions = {
-        dispatch, getState,
-        intoThePast: true,
-        fromMoment: getFirstLoadedMoment(getState().days, getState().timeZone),
-        onGotItems: handleGotItems,
-        onNothing: () => dispatch(allPastItemsLoaded()),
-        onError: handleError,
-      };
-      return sendFetchRequest(loadingOptions);
-    }
+    if (getState().loading.allPastItemsLoaded) return;
+    dispatch(gettingPastItems({
+      seekingNewActivity: false,
+      somePastItemsLoaded: getState().loading.somePastItemsLoaded
+    }));
+    dispatch(startLoadingPastSaga());
   };
 }
 
-const startLoadingPastUntilNewActivity = createAction('START_LOADING_PAST_UNTIL_NEW_ACTIVITY');
 export const loadPastUntilNewActivity = () => (dispatch, getState) => {
   dispatch(gettingPastItems({
     seekingNewActivity: true,
     somePastItemsLoaded: getState().loading.somePastItemsLoaded
   }));
-  dispatch(startLoadingPastUntilNewActivity()); // triggers that saga
+  dispatch(startLoadingPastUntilNewActivitySaga());
 };
-
-function handleGotItems (loadingOptions, response, newItems) {
-  srAlert(
-    formatMessage(`Loaded { count, plural,
-      =0 {# items}
-      one {# item}
-      other {# items}
-    }`, { count: newItems.length})
-  );
-  loadingOptions.dispatch(gotItemsSuccess(newItems, response));
-}
 
 export function sendFetchRequest (loadingOptions) {
   return axios.get(...fetchParams(loadingOptions))
     .then(response => handleFetchResponse(loadingOptions, response))
-    .catch(ex => handleFetchError(loadingOptions, ex));
+    // no .catch: it's up to the sagas to handle errors
+  ;
 }
 
 function fetchParams (loadingOptions) {
@@ -182,19 +150,8 @@ function fetchParams (loadingOptions) {
 }
 
 function handleFetchResponse (loadingOptions, response) {
-  if (nothingWasLoaded(loadingOptions, response)) {
-    if (loadingOptions.onNothing) loadingOptions.onNothing(loadingOptions, response);
-    return [];
-  } else {
-    const transformedItems = transformItems(loadingOptions, response.data);
-    if (loadingOptions.onGotItems) loadingOptions.onGotItems(loadingOptions, response, transformedItems);
-    return {response, transformedItems};
-  }
-}
-
-function nothingWasLoaded (loadingOptions, response) {
-  const parsedLinkHeader = parseLinkHeader(response.headers.link);
-  return response.data.length === 0 && (!parsedLinkHeader || !parsedLinkHeader.next);
+  const transformedItems = transformItems(loadingOptions, response.data);
+  return {response, transformedItems};
 }
 
 function transformItems (loadingOptions, items) {
@@ -203,12 +160,4 @@ function transformItems (loadingOptions, items) {
     loadingOptions.getState().courses,
     loadingOptions.getState().timeZone,
   ));
-}
-
-function handleFetchError (loadingOptions, error) {
-  loadingOptions.onError(loadingOptions, error);
-}
-
-function handleError (loadingOptions, error) {
-  loadingOptions.dispatch(gotItemsError(error));
 }

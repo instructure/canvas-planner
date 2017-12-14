@@ -21,6 +21,9 @@ import changeCase from 'change-case';
 import {AnimatableRegistry} from './animatable-registry';
 import {Animator} from './animator';
 import {isNewActivityItem} from '../utilities/statusUtils';
+import {daysToItems} from '../utilities/daysUtils';
+import {srAlert} from '../utilities/alertUtils';
+import formatMessage from '../format-message';
 
 export class DynamicUiManager {
   constructor (opts = {animator: new Animator(), document: document}) {
@@ -168,10 +171,6 @@ export class DynamicUiManager {
     this.animationPlan.focusFirstNewItem = true;
   }
 
-  handleAllFutureItemsLoaded = (action) => {
-    this.clearAnimationPlan();
-  }
-
   handleGettingPastItems = (action) => {
     if (action.payload.seekingNewActivity) {
       this.animationPlan.scrollToLastNewActivity = true;
@@ -184,8 +183,17 @@ export class DynamicUiManager {
     }
   }
 
-  handleGotItemsSuccess = (action) => {
-    const newItems = action.payload.internalItems;
+  handleGotDaysSuccess = (action) => {
+    const newDays = action.payload.internalDays;
+    const newItems = daysToItems(newDays);
+    srAlert(
+      formatMessage(`Loaded { count, plural,
+        =0 {# items}
+        one {# item}
+        other {# items}
+      }`, { count: newItems.length})
+    );
+
     if (!newItems.length) return;
     this.animationPlan.ready = true;
 

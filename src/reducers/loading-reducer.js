@@ -15,9 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import { handleActions } from 'redux-actions';
 import parseLinkHeader from 'parse-link-header';
-import { anyNewActivity } from '../utilities/statusUtils';
+import {mergeDays, purgeDuplicateDays} from '../utilities/daysUtils';
 
 function loadingState (currentState, loadingState) {
   return {
@@ -49,26 +50,43 @@ function getNextUrls (state, action) {
   const linkState = {};
   const nextLink = findNextLink(state, action);
 
-  if (state.isLoading || state.loadingFuture) linkState.futureNextUrl = nextLink;
-  if (state.loadingPast) linkState.pastNextUrl = nextLink;
+  if (state.isLoading || state.loadingFuture) {
+    linkState.futureNextUrl = nextLink;
+    if (nextLink == null) linkState.allFutureItemsLoaded = true;
+  }
+  if (state.loadingPast) {
+    linkState.pastNextUrl = nextLink;
+    if (nextLink == null) linkState.allPastItemsLoaded = true;
+  }
 
   return linkState;
 }
 
-function gotItemsSuccess (state, action) {
-  const linkState = getNextUrls(state, action);
+function gotDaysSuccess (state, action) {
   const somePastItemsLoaded = state.somePastItemsLoaded || state.loadingPast;
   const seekingNewActivity = false;
-  const newState = {...linkState, somePastItemsLoaded, seekingNewActivity};
+  const newState = {somePastItemsLoaded, seekingNewActivity};
+  newState.partialPastDays = purgeDuplicateDays(state.partialPastDays, action.payload.internalDays);
+  newState.partialFutureDays = purgeDuplicateDays(state.partialFutureDays, action.payload.internalDays);
   return loadingState(state, newState);
 }
 
-function addPendingPastItems (state, action) {
-  if (anyNewActivity(action.payload.internalItems)) {
-    return gotItemsSuccess(state, action);
-  } else {
-    return {...state, ...getNextUrls(state, action)};
-  }
+function gotPartialPastDays (state, action) {
+  const linkState = getNextUrls(state, action);
+  return {
+    ...state,
+    ...linkState,
+    partialPastDays: mergeDays(state.partialPastDays, action.payload.internalDays)
+  };
+}
+
+function gotPartialFutureDays (state, action) {
+  const linkState = getNextUrls(state, action);
+  return {
+    ...state,
+    ...linkState,
+    partialFutureDays: mergeDays(state.partialFutureDays, action.payload.internalDays),
+  };
 }
 
 function gotItemsError (state, action) {
@@ -77,9 +95,10 @@ function gotItemsError (state, action) {
 }
 
 export default handleActions({
-  GOT_ITEMS_SUCCESS: gotItemsSuccess,
+  GOT_DAYS_SUCCESS: gotDaysSuccess,
   GOT_ITEMS_ERROR: gotItemsError,
-  ADD_PENDING_PAST_ITEMS: addPendingPastItems,
+  GOT_PARTIAL_PAST_DAYS: gotPartialPastDays,
+  GOT_PARTIAL_FUTURE_DAYS: gotPartialFutureDays,
   START_LOADING_OPPORTUNITIES: (state, action) => {
     return {...state, loadingOpportunities: true};
   },
@@ -119,4 +138,6 @@ export default handleActions({
   futureNextUrl: null,
   pastNextUrl: null,
   seekingNewActivity: false,
+  partialPastDays: [],
+  partialFutureDays: [],
 }));

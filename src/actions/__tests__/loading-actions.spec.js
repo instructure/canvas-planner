@@ -18,7 +18,7 @@
 import * as Actions from '../loading-actions';
 import moxios from 'moxios';
 import moment from 'moment-timezone';
-import {isPromise, moxiosWait, moxiosRespond} from '../../test-utils';
+import { moxiosWait, moxiosRespond} from '../../test-utils';
 import { initialize as alertInitialize } from '../../utilities/alertUtils';
 
 jest.mock('../../utilities/apiUtils', () => ({
@@ -38,6 +38,7 @@ const getBasicState = () => ({
     ['2017-05-24', [{id: '42', dateBucketMoment: moment.tz('2017-05-24', 'UTC')}]],
   ],
   loading: {
+    somePastItemsLoaded: false,
     futureNextUrl: null,
     pastNextUrl: null,
   },
@@ -106,20 +107,6 @@ describe('api actions', () => {
       });
     });
 
-    it('invokes onError on fetch error', () => {
-      const onError = jest.fn();
-      const fromMoment = moment.tz('Asia/Tokyo');
-      const loadingOptions = {fromMoment, onError, getState: () => ({loading: {}})};
-      const fetchPromise = Actions.sendFetchRequest(loadingOptions);
-      return moxiosRespond(
-        { some: 'response data' },
-        fetchPromise,
-        { status: 500 }
-      ).then((result) => {
-        expect(onError).toHaveBeenCalledWith(loadingOptions, expect.anything());
-      });
-    });
-
     it('transforms the results', () => {
       const fromMoment = moment.tz('Asia/Tokyo');
       const fetchPromise = Actions.sendFetchRequest({fromMoment, getState: () => ({loading: {}})});
@@ -132,59 +119,22 @@ describe('api actions', () => {
   });
 
   describe('getPlannerItems', () => {
-   it('dispatches startLoadingItems and getFirstNewActivityDate initially', () => {
-     const fakeDispatch = jest.fn();
-     Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
-     expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
-       type: 'START_LOADING_ITEMS'
-     }));
+    it('dispatches START_LOADING_ITEMS, getFirstNewActivityDate, and starts the saga', () => {
+      const mockDispatch = jest.fn();
+      Actions.getPlannerItems(moment('2017-12-18'))(mockDispatch, getBasicState);
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.startLoadingItems());
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.startLoadingFutureSaga());
 
-     // also dispatches getFirstNewActivityDate thunk
-     expect(typeof fakeDispatch.mock.calls[1][0]).toBe('function');
-     const getFirstNewActivityDateThunk = fakeDispatch.mock.calls[1][0];
-     const mockMoment = moment();
-     const newActivityPromise = getFirstNewActivityDateThunk(fakeDispatch, getBasicState);
-     return moxiosRespond([{dateBucketMoment: mockMoment}], newActivityPromise).then((result) => {
-       expect(fakeDispatch).toHaveBeenCalledWith(expect.objectContaining({
-         type: 'FOUND_FIRST_NEW_ACTIVITY_DATE',
-       }));
-     });
-   });
-
-   it('calls srAlert indicating the number of items retrieved', () => {
-     const fakeDispatch = jest.fn();
-     const fakeSrAlert = jest.fn();
-     alertInitialize({
-       srAlertCallback: fakeSrAlert
-     });
-     const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
-     return moxiosRespond([{some: 'data'}], loadingPromise).then((result) => {
-       expect(fakeSrAlert).toHaveBeenCalledWith('Loaded 1 item');
-     });
-   });
-
-   it('dispatches GOT_ITEMS_SUCCESS after items are loaded', () => {
-     const fakeDispatch = jest.fn();
-     const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
-     return moxiosRespond([{some: 'data'}], loadingPromise).then((result) => {
-       const callParams = fakeDispatch.mock.calls[2][0];
-       expect(callParams).toMatchObject({
-         type: 'GOT_ITEMS_SUCCESS',
-         payload: {
-           internalItems: [{some: 'data', transformedToInternal: true}],
-         },
-       });
-       expect(callParams.payload).toHaveProperty('response');
-     });
-   });
-
-   it('dispatches all items loaded if no items loaded', () => {
-     const fakeDispatch = jest.fn();
-     const loadingPromise = Actions.getPlannerItems(moment())(fakeDispatch, getBasicState);
-     return moxiosRespond([], loadingPromise).then((result) => {
-       expect(fakeDispatch).toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
-     });
-   });
+      expect(typeof mockDispatch.mock.calls[1][0]).toBe('function');
+      const getFirstNewActivityDateThunk = mockDispatch.mock.calls[1][0];
+      const mockMoment = moment();
+      const newActivityPromise = getFirstNewActivityDateThunk(mockDispatch, getBasicState);
+      return moxiosRespond([{dateBucketMoment: mockMoment}], newActivityPromise).then((result) => {
+        expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
+          type: 'FOUND_FIRST_NEW_ACTIVITY_DATE',
+        }));
+      });
+    });
   });
 
   describe('getFirstNewActivityDate', () => {
@@ -218,142 +168,35 @@ describe('api actions', () => {
   });
 
   describe('loadFutureItems', () => {
-    it('dispatches loading actions', () => {
+    it('dispatches GETTING_FUTURE_ITEMS and starts the saga', () => {
       const mockDispatch = jest.fn();
-      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
-      expect(isPromise(fetchPromise));
-      expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'GETTING_FUTURE_ITEMS',
-        payload: {},
-      }));
-      // GOT_ITEMS_SUCCESS is dispatched by the action when internal promise is fulfulled
-    });
-
-    it('dispatches gotItemsError on fetch error', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
-      return moxiosRespond(
-        { some: 'response data' },
-        fetchPromise,
-        { status: 500 }
-      ).then((result) => {
-        expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({
-          type: 'GOT_ITEMS_ERROR'
-        }));
-      });
-    });
-
-    it('sends the start_date parameter as one day after the last day if no futureNextUrl', () => {
-      const mockDispatch = jest.fn();
-      const numDays = getBasicState().days.length;
-      const afterMoment = getBasicState().days[numDays-1][1][0].dateBucketMoment
-        .clone().add(1, 'days');
       Actions.loadFutureItems()(mockDispatch, getBasicState);
-      return moxiosWait((request) => {
-        expect(moment(request.config.params.start_date).isSame(afterMoment)).toBeTruthy();
-      });
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.gettingFutureItems());
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.startLoadingFutureSaga());
     });
 
-    it('sends the next url if there is a futureNextUrl', () => {
+    it('dispatches nothing if allFutureItemsLoaded', () => {
       const mockDispatch = jest.fn();
-      const modifiedState = getBasicState();
-      modifiedState.loading.futureNextUrl = 'some next url';
-      Actions.loadFutureItems()(mockDispatch, () => modifiedState);
-      return moxiosWait((request) => {
-        expect(request.url).toBe('some next url');
-      });
-    });
-
-    it('dispatches GOT_ITEMS_SUCCESS with transformed response data', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
-      return moxiosRespond([{some: 'response'}], fetchPromise).then(result => {
-        const gotItemsParams = mockDispatch.mock.calls[1][0];
-        expect(gotItemsParams).toMatchObject({
-          type: 'GOT_ITEMS_SUCCESS',
-          payload: {
-            internalItems: [{some: 'response', transformedToInternal: true}],
-          },
-        });
-        expect(gotItemsParams.payload).toHaveProperty('response');
-      });
-    });
-
-    it('dispatches all future items loaded if no items loaded and there is no next link', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
-      return moxiosRespond([], fetchPromise).then(result => {
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
-      });
-    });
-
-    it('does not dispatch all future items loaded if no items loaded and there is a next link', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.loadFutureItems()(mockDispatch, getBasicState);
-      return moxiosRespond([], fetchPromise, {headers: {link: '<futureNextUrl>; rel="next"'}}).then(result => {
-        expect(mockDispatch).not.toHaveBeenCalledWith({type: 'ALL_FUTURE_ITEMS_LOADED'});
-      });
+      const state = getBasicState();
+      state.loading.allFutureItemsLoaded = true;
+      Actions.loadFutureItems()(mockDispatch, () => state);
+      expect(mockDispatch).not.toHaveBeenCalled();
     });
   });
 
   describe('scrollIntoPast', () => {
-    it('dispatches scrolling and got items actions', () => {
+    it('dispatches GETTING_PAST_ITEMS and starts the saga', () => {
       const mockDispatch = jest.fn();
-      const scrollPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
-      expect(isPromise(scrollPromise));
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS', payload: {seekingNewActivity: false}});
-      return moxiosRespond([{some: 'response'}], scrollPromise).then((result) => {
-        const gotItemsParams = mockDispatch.mock.calls[1][0];
-        expect(gotItemsParams).toMatchObject({
-          type: 'GOT_ITEMS_SUCCESS',
-          payload: {
-            internalItems: [{some: 'response', transformedToInternal: true}],
-          },
-        });
-        expect(gotItemsParams.payload).toHaveProperty('response');
-      });
-    });
-
-    it('sends end_date parameter as the first loaded day', () => {
-      const mockDispatch = jest.fn();
-      const beforeMoment = getBasicState().days[0][1][0].dateBucketMoment;
       Actions.scrollIntoPast()(mockDispatch, getBasicState);
-      return moxiosWait((request) => {
-        expect(moment(request.config.params.end_date).isSame(beforeMoment)).toBeTruthy();
-      });
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.gettingPastItems());
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.startLoadingPastSaga());
     });
 
-    it('sends the pastNextUrl if there is one', () => {
+    it('dispatches nothing if allPastItemsLoaded', () => {
       const mockDispatch = jest.fn();
-      const modifiedState = getBasicState();
-      modifiedState.loading.pastNextUrl = 'some past url';
-      Actions.scrollIntoPast()(mockDispatch, () => modifiedState);
-      return moxiosWait((request) => {
-        expect(request.url).toBe('some past url');
-      });
-    });
-
-    it('dispatches all past items loaded if nothing was loaded and there is no next link', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
-      return moxiosRespond([], fetchPromise).then(result => {
-        expect(mockDispatch).toHaveBeenCalledWith({type: 'ALL_PAST_ITEMS_LOADED'});
-      });
-    });
-
-    it('does not dispatch all past items loaded if there is a next link', () => {
-      const mockDispatch = jest.fn();
-      const fetchPromise = Actions.scrollIntoPast()(mockDispatch, getBasicState);
-      return moxiosRespond([], fetchPromise, {headers: {link: '<futureNextUrl>; rel="next"'}}).then(result => {
-        expect(mockDispatch).not.toHaveBeenCalledWith(expect.objectContaining({type: 'ALL_PAST_ITEMS_LOADED'}));
-      });
-    });
-
-    it('does not make the api call if allPastItemsLoaded', () => {
-      const mockDispatch = jest.fn();
-      let modifiedState = getBasicState();
-      modifiedState.loading.allPastItemsLoaded = true;
-      Actions.scrollIntoPast()(mockDispatch, () => modifiedState);
+      const state = getBasicState();
+      state.loading.allPastItemsLoaded = true;
+      Actions.scrollIntoPast()(mockDispatch, () => state);
       expect(mockDispatch).not.toHaveBeenCalled();
     });
   });
@@ -362,8 +205,11 @@ describe('api actions', () => {
     it('dispatches getting past items and starts the saga', () => {
       const mockDispatch = jest.fn();
       Actions.loadPastUntilNewActivity()(mockDispatch, (getBasicState));
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'GETTING_PAST_ITEMS', payload: {seekingNewActivity: true}});
-      expect(mockDispatch).toHaveBeenCalledWith({type: 'START_LOADING_PAST_UNTIL_NEW_ACTIVITY'});
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.gettingPastItems({
+        seekingNewActivity: true,
+        somePastItemsLoaded: false,
+      }));
+      expect(mockDispatch).toHaveBeenCalledWith(Actions.startLoadingPastUntilNewActivitySaga());
     });
   });
 });

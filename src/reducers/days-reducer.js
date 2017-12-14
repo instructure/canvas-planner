@@ -20,6 +20,7 @@ import moment from 'moment-timezone';
 import { handleActions } from 'redux-actions';
 import { formatDayKey } from '../utilities/dateUtils';
 import { findPlannerItemById } from '../utilities/storeUtils';
+import { daysToDaysHash, daysHashToDays, mergeDaysIntoDaysHash, itemsToDays } from '../utilities/daysUtils';
 
 function savedPlannerItem (state, action) {
   if (action.error) return state;
@@ -32,9 +33,9 @@ function savedPlannerItem (state, action) {
   const plannerDay = state.find(day => day[0] === plannerDateString);
   if (!plannerDay) {
     const newState = state.concat([[plannerDateString, []]]);
-    return gotItemsSuccess(newState, [plannerItem]);
+    return gotDaysSuccess(newState, itemsToDays([plannerItem]));
   }
-  return gotItemsSuccess(state, [plannerItem]);
+  return gotDaysSuccess(state, itemsToDays([plannerItem]));
 }
 
 function deletedPlannerItem (state, action) {
@@ -63,20 +64,6 @@ function _deletePlannerItem(state, payload) {
   return [...keyedState.entries()];
 }
 
-function mergeDays(firstDay, secondDay) {
-  const secondDayMap = new Map(secondDay.map(item => [item.id, item]));
-  const firstDayMerged = firstDay.map(firstDayItem => {
-    const secondDayItem = secondDayMap.get(firstDayItem.id);
-    if (secondDayItem) {
-      secondDayMap.delete(secondDayItem.id);
-      return secondDayItem;
-    } else {
-      return firstDayItem;
-    }
-  });
-  return firstDayMerged.concat([...secondDayMap.values()]);
-}
-
 function addMissingDays (dayKeyToItems) {
   const sortedDayKeys = Object.keys(dayKeyToItems).sort();
   if (sortedDayKeys.length === 0) return;
@@ -92,24 +79,15 @@ function addMissingDays (dayKeyToItems) {
   }
 }
 
-function gotItemsSuccess (state, items) {
-  const newGroups = _.groupBy(items, (item) => {
-    return formatDayKey(item.dateBucketMoment);
-  });
-  const mergedGroups = _.fromPairs(state);
-  _.mergeWith(mergedGroups, newGroups, (firstDay, secondDay) => {
-    if (firstDay == null) firstDay = [];
-    return mergeDays(firstDay, secondDay);
-  });
-  addMissingDays(mergedGroups);
-  return _.chain(mergedGroups)
-    .toPairs()
-    .sortBy(_.head)
-    .value();
+function gotDaysSuccess (state, days) {
+  const oldDaysHash = daysToDaysHash(state);
+  const mergedDaysHash = mergeDaysIntoDaysHash(oldDaysHash, days);
+  addMissingDays(mergedDaysHash);
+  return daysHashToDays(mergedDaysHash);
 }
 
 export default handleActions({
-  GOT_ITEMS_SUCCESS: (state, action) => gotItemsSuccess(state, action.payload.internalItems),
+  GOT_DAYS_SUCCESS: (state, action) => gotDaysSuccess(state, action.payload.internalDays),
   SAVED_PLANNER_ITEM: savedPlannerItem,
   DELETED_PLANNER_ITEM: deletedPlannerItem,
 }, []);

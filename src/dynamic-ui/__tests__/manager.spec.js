@@ -17,6 +17,8 @@
  */
 
 import {DynamicUiManager as Manager} from '../manager';
+import {gotItemsSuccess} from '../../actions/loading-actions';
+import { initialize as alertInitialize } from '../../utilities/alertUtils';
 
 class MockAnimator {
   animationOrder = []
@@ -81,6 +83,14 @@ function registerStandardItems (manager, dayIndex, groupIndex, opts = {}) {
   });
 }
 
+beforeEach(() => {
+  alertInitialize({
+    visualSuccessCallback () {},
+    visualErrorCallback () {},
+    srAlertCallback () {}
+  });
+});
+
 describe('registerAnimatable', () => {
   it('throws if does not recognize the registry name', () => {
     const {manager} = createManagerWithMocks();
@@ -105,13 +115,26 @@ describe('action handling', () => {
 });
 
 describe('loading future items', () => {
+  it('performs an srAlert when days are loaded', () => {
+    const srAlertMock = jest.fn();
+    alertInitialize({
+      srAlertCallback: srAlertMock
+    });
+    const {manager} = createManagerWithMocks();
+    manager.handleGettingFutureItems();
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-1-group-1-item-0'}, {uniqueId: 'day-1-group-0-item-0'}],
+    ));
+    expect(srAlertMock).toHaveBeenCalled();
+  });
+
   it('it focuses the first group of the new items according to ui index', () => {
     // order of operations is important here: simulates actual usage
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingFutureItems();
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-1-group-1-item-0'}, {uniqueId: 'day-1-group-0-item-0'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-1-group-1-item-0'}, {uniqueId: 'day-1-group-0-item-0'}],
+    ));
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -122,9 +145,9 @@ describe('loading future items', () => {
   it('falls back to first item in a group if the group has no focusable', () => {
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingFutureItems();
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-0-group-0-item-0'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-0-group-0-item-0'}],
+    ));
     registerStandardDays(manager, {groupFocusable: () => null});
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -134,7 +157,7 @@ describe('loading future items', () => {
   it('does not bork on an empty list of new items', () => {
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingFutureItems();
-    manager.handleGotItemsSuccess({payload: {internalItems: []}});
+    manager.handleGotDaysSuccess(gotItemsSuccess([]));
     manager.preTriggerUpdates();
     manager.triggerUpdates();
     expect(animator.animationOrder).toEqual([]);
@@ -146,9 +169,9 @@ describe('loading past items', () => {
     // order of operations is important here: simulates actual usage
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingPastItems({payload: {seekingNewActivity: false}});
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-0-group-2-item-2'}, {uniqueId: 'day-0-group-2-item-1'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-0-group-2-item-2'}, {uniqueId: 'day-0-group-2-item-1'}],
+    ));
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -161,9 +184,9 @@ describe('loading past items', () => {
     // order of operations is important here: simulates actual usage
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingPastItems({payload: {seekingNewActivity: false, somePastItemsLoaded: true}});
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-0-group-2-item-2'}, {uniqueId: 'day-0-group-2-item-1'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-0-group-2-item-2'}, {uniqueId: 'day-0-group-2-item-1'}],
+    ));
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -181,11 +204,10 @@ describe('getting new activity', () => {
     registerStandardDay(manager, 1);
     registerStandardDay(manager, 2);
     manager.handleGettingPastItems({payload: {seekingNewActivity: true}});
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [
+    manager.handleGotDaysSuccess(gotItemsSuccess([
         {uniqueId: 'day-0-group-2-item-2'},
-        {uniqueId: 'day-0-group-1-item-1', newActivity: true}],
-    }});
+        {uniqueId: 'day-0-group-1-item-1', newActivity: true},
+    ]));
     registerStandardDay(manager, 0);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -197,9 +219,9 @@ describe('getting new activity', () => {
   it('handles the case when there is no new activity in the new items', () => {
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingPastItems({payload: {seekingNewActivity: true}});
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-0-group-0-item0'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-0-group-0-item0'}],
+    ));
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -309,9 +331,9 @@ describe('update handling', () => {
     expect(animator.animationOrder).toEqual([]);
     expect(animator.focusElement).not.toHaveBeenCalled();
 
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-1-group-0-item-0'}, {uniqueId: 'day-1-group-0-item-1'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-1-group-0-item-0'}, {uniqueId: 'day-1-group-0-item-1'}],
+    ));
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -322,9 +344,9 @@ describe('update handling', () => {
   it('clears animation plans between triggers', () => {
     const {manager, animator} = createManagerWithMocks();
     manager.handleGettingFutureItems();
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-0-group-0-item-0'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-0-group-0-item-0'}],
+    ));
     registerStandardDays(manager);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
@@ -334,9 +356,9 @@ describe('update handling', () => {
     animator.animationOrder = [];
 
     manager.handleGettingFutureItems();
-    manager.handleGotItemsSuccess({payload: {
-      internalItems: [{uniqueId: 'day-3-group-0-item-0'}],
-    }});
+    manager.handleGotDaysSuccess(gotItemsSuccess(
+      [{uniqueId: 'day-3-group-0-item-0'}],
+    ));
     registerStandardDay(manager, 3);
     manager.preTriggerUpdates('fixed-element');
     manager.triggerUpdates();
