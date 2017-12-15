@@ -78,14 +78,14 @@
   },
   "uk_UA": {
     "reviewed_percentage": "0%",
-    "completed": "31%",
-    "untranslated_words": 224,
+    "completed": "32%",
+    "untranslated_words": 222,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 21,
-    "translated_words": 23,
-    "last_update": "2017-12-12 14:40:53",
-    "untranslated_entities": 47
+    "translated_entities": 22,
+    "translated_words": 25,
+    "last_update": "2017-12-14 12:48:00",
+    "untranslated_entities": 46
   },
   "en": {
     "reviewed_percentage": "0%",
