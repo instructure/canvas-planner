@@ -44,6 +44,9 @@
   "date_ee500367": {
     "message": "Dagsetning"
   },
+  "date_is_required_8660ec22": {
+    "message": "Dagsetningar er krafist"
+  },
   "delete_a6efa79d": {
     "message": "Eyða"
   },
@@ -187,6 +190,9 @@
   },
   "tomorrow_at_date_b53f2cf1": {
     "message": "Á morgun kl.  { date }"
+  },
+  "unable_to_mark_as_complete_8141856d": {
+    "message": "Ekki tókst að merkja þetta sem fullklárað."
   },
   "yesterday_at_date_1aa6d18e": {
     "message": "Í gær kl.  { date }"

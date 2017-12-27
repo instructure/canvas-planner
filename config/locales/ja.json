@@ -44,6 +44,9 @@
   "date_ee500367": {
     "message": "日付"
   },
+  "date_is_required_8660ec22": {
+    "message": "日付は必須です"
+  },
   "delete_a6efa79d": {
     "message": "削除"
   },
@@ -187,6 +190,9 @@
   },
   "tomorrow_at_date_b53f2cf1": {
     "message": "明日　　にて{ date }"
+  },
+  "unable_to_mark_as_complete_8141856d": {
+    "message": "終了とマークできません。"
   },
   "yesterday_at_date_1aa6d18e": {
     "message": "昨日　　にて{ date }"

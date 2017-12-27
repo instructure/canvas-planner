@@ -44,6 +44,9 @@
   "date_ee500367": {
     "message": "Date"
   },
+  "date_is_required_8660ec22": {
+    "message": "Date is required"
+  },
   "delete_a6efa79d": {
     "message": "Delete"
   },
@@ -187,6 +190,9 @@
   },
   "tomorrow_at_date_b53f2cf1": {
     "message": "Tomorrow at { date }"
+  },
+  "unable_to_mark_as_complete_8141856d": {
+    "message": "Unable to mark as complete."
   },
   "yesterday_at_date_1aa6d18e": {
     "message": "Yesterday at { date }"

@@ -44,6 +44,9 @@
   "date_ee500367": {
     "message": "التاريخ"
   },
+  "date_is_required_8660ec22": {
+    "message": "التاريخ مطلوب"
+  },
   "delete_a6efa79d": {
     "message": "حذف"
   },
@@ -187,6 +190,9 @@
   },
   "tomorrow_at_date_b53f2cf1": {
     "message": "غدًا الساعة { date }"
+  },
+  "unable_to_mark_as_complete_8141856d": {
+    "message": "يتعذر وضع علامة مكتمل."
   },
   "yesterday_at_date_1aa6d18e": {
     "message": "أمس الساعة { date }"

@@ -44,6 +44,9 @@
   "date_ee500367": {
     "message": "Dato"
   },
+  "date_is_required_8660ec22": {
+    "message": "Dato er påkrævet"
+  },
   "delete_a6efa79d": {
     "message": "Slet"
   },
@@ -187,6 +190,9 @@
   },
   "tomorrow_at_date_b53f2cf1": {
     "message": "I morgen kl. { date }"
+  },
+  "unable_to_mark_as_complete_8141856d": {
+    "message": "Kan ikke markeres som færdig."
   },
   "yesterday_at_date_1aa6d18e": {
     "message": "I går kl. { date }"
