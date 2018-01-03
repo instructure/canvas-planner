@@ -45,7 +45,7 @@ it('renders empty component with no assignments', () => {
   const wrapper = shallow(
     <PlannerApp {...opts}/>
   );
-  expect(wrapper.find('PlannerEmptyState').exists()).toBeTruthy();
+  expect(wrapper).toMatchSnapshot();
 });
 
 it('shows only the loading component when the isLoading prop is true', () => {

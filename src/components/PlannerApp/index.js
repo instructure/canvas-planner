@@ -146,7 +146,7 @@ export class PlannerApp extends Component {
     return (
       <div>
         {this.renderLoadPastButton()}
-        <PlannerEmptyState changeToDashboardCardView={this.props.changeToDashboardCardView}/>;
+        <PlannerEmptyState changeToDashboardCardView={this.props.changeToDashboardCardView}/>
       </div>
     );
   }
