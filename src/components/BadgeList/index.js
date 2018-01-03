@@ -16,9 +16,9 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React, { Children, Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
-import CustomPropTypes from 'instructure-ui/lib/util/CustomPropTypes';
-import Pill from 'instructure-ui/lib/components/Pill';
+import themeable from '@instructure/ui-themeable/lib';
+import CustomPropTypes from '@instructure/ui-utils/lib/react/CustomPropTypes';
+import Pill from '@instructure/ui-core/lib/components/Pill';
 
 import styles from './styles.css';
 import theme from './theme.js';

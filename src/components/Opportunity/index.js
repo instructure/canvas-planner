@@ -16,15 +16,15 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
+import themeable from '@instructure/ui-themeable/lib';
 import formatMessage from '../../format-message';
 import moment from 'moment-timezone';
 import { getFullDateAndTime } from '../../utilities/dateUtils';
-import Button from 'instructure-ui/lib/components/Button';
-import Link from 'instructure-ui/lib/components/Link';
-import Pill from 'instructure-ui/lib/components/Pill';
-import PresentationContent from 'instructure-ui/lib/components/PresentationContent';
-import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
+import Button from '@instructure/ui-core/lib/components/Button';
+import Link from '@instructure/ui-core/lib/components/Link';
+import Pill from '@instructure/ui-core/lib/components/Pill';
+import PresentationContent from '@instructure/ui-core/lib/components/PresentationContent';
+import ScreenReaderContent from '@instructure/ui-core/lib/components/ScreenReaderContent';
 import IconXLine from 'instructure-icons/lib/Line/IconXLine';
 import { bool, string, number, func, object } from 'prop-types';
 import styles from './styles.css';

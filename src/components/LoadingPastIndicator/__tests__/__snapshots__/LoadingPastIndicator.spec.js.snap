@@ -17,20 +17,20 @@ exports[`renders TV when all past items loaded 1`] = `
         role="img"
       />
     </Container>
-    <Typography
+    <Text
       as="div"
       letterSpacing="normal"
       size="large"
     >
       Beginning of Your To-Do History
-    </Typography>
-    <Typography
+    </Text>
+    <Text
       as="div"
       letterSpacing="normal"
       size="medium"
     >
       You've scrolled back to your very first To-Do!
-    </Typography>
+    </Text>
   </Container>
 </div>
 `;
@@ -53,14 +53,14 @@ exports[`renders spinner while loading 1`] = `
         variant="default"
       />
     </Container>
-    <Typography
+    <Text
       as="span"
       color="secondary"
       letterSpacing="normal"
       size="small"
     >
       Loading past items
-    </Typography>
+    </Text>
   </Container>
 </div>
 `;
@@ -104,14 +104,14 @@ exports[`still renders loading even when no more items in the past 1`] = `
         variant="default"
       />
     </Container>
-    <Typography
+    <Text
       as="span"
       color="secondary"
       letterSpacing="normal"
       size="small"
     >
       Loading past items
-    </Typography>
+    </Text>
   </Container>
 </div>
 `;

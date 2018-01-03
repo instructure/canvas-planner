@@ -4,10 +4,10 @@ exports[`passes trigger property functions and forwards the calls to the dynamic
 <DynamicUiProvider
   manager={
     Object {
-      "handleAction": [Function],
-      "preTriggerUpdates": [Function],
-      "registerAnimatable": [Function],
-      "triggerUpdates": [Function],
+      "handleAction": [MockFunction],
+      "preTriggerUpdates": [MockFunction],
+      "registerAnimatable": [MockFunction],
+      "triggerUpdates": [MockFunction],
     }
   }
 >

@@ -29,11 +29,11 @@ import moment from 'moment-timezone';
 import CanvasPlanner, { store as PlannerStore } from './index';
 import { addDay, getPlannerItems } from '../src/actions';
 
-import Button from 'instructure-ui/lib/components/Button';
-import Select from 'instructure-ui/lib/components/Select';
-import Grid, { GridCol, GridRow } from 'instructure-ui/lib/components/Grid';
-import Typography from 'instructure-ui/lib/components/Typography';
-import THEMES from 'instructure-ui/lib/themes';
+import Button from '@instructure/ui-core/lib/components/Button';
+import Select from '@instructure/ui-core/lib/components/Select';
+import Grid, { GridCol, GridRow } from '@instructure/ui-core/lib/components/Grid';
+import Text from '@instructure/ui-core/lib/components/Text';
+import THEMES from '@instructure/ui-themes/lib';
 
 const COURSES = [{
   id: "1",
@@ -135,9 +135,9 @@ class DemoArea extends Component {
   render () {
     return (
       <div style={{ backgroundColor: 'papayawhip', padding: '10px'}}>
-        <Typography weight="bold" color="error">
+        <Text weight="bold" color="error">
           This area is only shown here, not in production
-        </Typography>
+        </Text>
         <Grid vAlign="middle">
           <GridRow>
             <GridCol>

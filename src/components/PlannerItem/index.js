@@ -16,13 +16,13 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
-import containerQuery from 'instructure-ui/lib/util/containerQuery';
-import Typography from 'instructure-ui/lib/components/Typography';
-import Checkbox from 'instructure-ui/lib/components/Checkbox';
-import Link from 'instructure-ui/lib/components/Link';
-import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
-import Pill from 'instructure-ui/lib/components/Pill';
+import themeable from '@instructure/ui-themeable/lib';
+import containerQuery from '@instructure/ui-utils/lib/react/containerQuery';
+import Text from '@instructure/ui-core/lib/components/Text';
+import Checkbox from '@instructure/ui-core/lib/components/Checkbox';
+import Link from '@instructure/ui-core/lib/components/Link';
+import ScreenReaderContent from '@instructure/ui-core/lib/components/ScreenReaderContent';
+import Pill from '@instructure/ui-core/lib/components/Pill';
 import Assignment from 'instructure-icons/lib/Line/IconAssignmentLine';
 import Quiz from 'instructure-icons/lib/Line/IconQuizLine';
 import Announcement from 'instructure-icons/lib/Line/IconAnnouncementLine';
@@ -155,24 +155,24 @@ export class PlannerItem extends Component {
         <div className={styles.metrics}>
           {(this.props.points) ?
             <div className={styles.score}>
-              <Typography color="secondary">
-                <Typography size="large">{this.props.points}</Typography>
-                <Typography size="x-small">&nbsp;
+              <Text color="secondary">
+                <Text size="large">{this.props.points}</Text>
+                <Text size="x-small">&nbsp;
                   { this.props.points
                       ? formatMessage('pts')
                       : null
                   }
-                </Typography>
-              </Typography>
+                </Text>
+              </Text>
             </div> : null
           }
           <div className={styles.due}>
-            <Typography color="secondary" size="x-small">
+            <Text color="secondary" size="x-small">
                 { (this.props.date && !(this.props.associated_item === "To Do"))
                     ? this.renderDateField()
                     : null
                 }
-            </Typography>
+            </Text>
           </div>
         </div>
       </div>
@@ -191,9 +191,9 @@ export class PlannerItem extends Component {
     return (
       <div className={styles.details}>
         <div className={styles.type}>
-          <Typography size="x-small" color="secondary">
+          <Text size="x-small" color="secondary">
             {this.renderType()}
-          </Typography>
+          </Text>
         </div>
         <div className={styles.title}>
           <Link

@@ -16,7 +16,6 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import formatMessage from '../format-message';
-import _ from 'lodash';
 
 const PILL_MAPPING = {
   'missing': () => ({ id: 'missing', text: formatMessage('Missing'), variant: 'danger' }),

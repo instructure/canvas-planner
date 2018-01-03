@@ -16,7 +16,6 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import _ from 'lodash';
 import * as LA from './loading-actions.js';
 import {anyNewActivityDays} from '../utilities/statusUtils';
 import {itemsToDays} from '../utilities/daysUtils';

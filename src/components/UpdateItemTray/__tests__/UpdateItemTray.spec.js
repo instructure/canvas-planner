@@ -136,7 +136,7 @@ it('clears the error message when a title is typed in', () => {
   expect(titleInput.props().messages).toEqual([]);
 });
 
-// The Date picker does not support error handeling yet we are working with instui to get it working
+// The Date picker does not support error handling yet we are working with instui to get it working
 xit('does not set an initial error message on date', () => {
   const wrapper = shallow(<UpdateItemTray {...defaultProps} />);
   const dateInput = wrapper.find('TextInput').at(1);

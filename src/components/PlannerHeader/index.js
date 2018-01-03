@@ -17,15 +17,15 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import themeable from 'instructure-ui/lib/themeable';
-import Button from 'instructure-ui/lib/components/Button';
+import themeable from '@instructure/ui-themeable/lib';
+import Button from '@instructure/ui-core/lib/components/Button';
 import IconPlusLine from 'instructure-icons/lib/Line/IconPlusLine';
 import IconAlertsLine from 'instructure-icons/lib/Line/IconAlertsLine';
-import Popover, {PopoverTrigger, PopoverContent} from 'instructure-ui/lib/components/Popover';
+import Popover, {PopoverTrigger, PopoverContent} from '@instructure/ui-core/lib/components/Popover';
 import PropTypes from 'prop-types';
 import UpdateItemTray from '../UpdateItemTray';
-import Tray from 'instructure-ui/lib/components/Tray';
-import Badge from 'instructure-ui/lib/components/Badge';
+import Tray from '@instructure/ui-core/lib/components/Tray';
+import Badge from '@instructure/ui-core/lib/components/Badge';
 import Opportunities from '../Opportunities';
 import {addDay, savePlannerItem, deletePlannerItem, cancelEditingPlannerItem, openEditingPlannerItem, getNextOpportunities, getInitialOpportunities, dismissOpportunity, clearUpdateTodo} from '../../actions';
 

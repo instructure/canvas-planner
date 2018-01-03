@@ -1,1 +1,1 @@
-require('instructure-ui/lib/themes');
+require('@instructure/ui-themes/lib/canvas');

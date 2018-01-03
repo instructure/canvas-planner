@@ -16,10 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
-import containerQuery from 'instructure-ui/lib/util/containerQuery';
-import CheckboxFacade from 'instructure-ui/lib/components/Checkbox/CheckboxFacade';
-import Pill from 'instructure-ui/lib/components/Pill';
+import themeable from '@instructure/ui-themeable/lib';
+import containerQuery from '@instructure/ui-utils/lib/react/containerQuery';
+import CheckboxFacade from '@instructure/ui-core/lib/components/Checkbox/CheckboxFacade';
+import Pill from '@instructure/ui-core/lib/components/Pill';
 import BadgeList from '../BadgeList';
 import { func, number, string, arrayOf, shape } from 'prop-types';
 import {animatable} from '../../dynamic-ui';

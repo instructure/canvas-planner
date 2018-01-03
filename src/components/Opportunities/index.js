@@ -16,12 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
-import scopeTab from 'instructure-ui/lib/util/dom/scopeTab';
+import themeable from '@instructure/ui-themeable/lib';
+import scopeTab from '@instructure/ui-utils/lib/dom/scopeTab';
 import keycode from 'keycode';
 
 import Opportunity from '../Opportunity';
-import Button from 'instructure-ui/lib/components/Button';
+import Button from '@instructure/ui-core/lib/components/Button';
 import { findDOMNode } from 'react-dom';
 import { array, string, func} from 'prop-types';
 import formatMessage from '../../format-message';
@@ -41,8 +41,8 @@ export class Opportunities extends Component {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line react/no-find-dom-node
     setTimeout(() =>{
+      // eslint-disable-next-line react/no-find-dom-node
       let closeButtonRef = findDOMNode(this.closeButton);
       closeButtonRef.focus();
     }, 200);

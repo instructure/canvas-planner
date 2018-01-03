@@ -17,10 +17,10 @@
  */
 import React, { Component } from 'react';
 import {bool, func, string} from 'prop-types';
-import Button from 'instructure-ui/lib/components/Button';
-import Container from 'instructure-ui/lib/components/Container';
-import Spinner from 'instructure-ui/lib/components/Spinner';
-import Typography from 'instructure-ui/lib/components/Typography';
+import Button from '@instructure/ui-core/lib/components/Button';
+import Container from '@instructure/ui-core/lib/components/Container';
+import Spinner from '@instructure/ui-core/lib/components/Spinner';
+import Text from '@instructure/ui-core/lib/components/Text';
 import ErrorAlert from '../ErrorAlert';
 import Waypoint from 'react-waypoint';
 import formatMessage from '../../format-message';
@@ -33,7 +33,7 @@ export default class LoadingFutureIndicator extends Component {
     loadingError: string,
   }
 
-  static defaultProps: {
+  static defaultProps = {
     loadingFuture: false,
     allFutureItemsLoaded: false,
     onLoadMore: () => {},
@@ -78,16 +78,16 @@ export default class LoadingFutureIndicator extends Component {
         <Container display="inline">
           <Spinner size="small" margin="0 x-small 0 0" title={formatMessage('Loading...')} />
         </Container>
-        <Typography size="small" color="secondary">
-          {formatMessage('Loading...')}</Typography>
+        <Text size="small" color="secondary">
+          {formatMessage('Loading...')}</Text>
       </Container>;
     }
   }
 
   renderEverythingLoaded () {
     if (this.props.allFutureItemsLoaded) {
-      return <Typography color="secondary" size="small">
-        {formatMessage('All items loaded')}</Typography>;
+      return <Text color="secondary" size="small">
+        {formatMessage('All items loaded')}</Text>;
     }
   }
 

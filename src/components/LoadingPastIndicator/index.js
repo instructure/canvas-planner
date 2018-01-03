@@ -17,9 +17,9 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Container from 'instructure-ui/lib/components/Container';
-import Spinner from 'instructure-ui/lib/components/Spinner';
-import Typography from 'instructure-ui/lib/components/Typography';
+import Container from '@instructure/ui-core/lib/components/Container';
+import Spinner from '@instructure/ui-core/lib/components/Spinner';
+import Text from '@instructure/ui-core/lib/components/Text';
 import ErrorAlert from '../ErrorAlert';
 import formatMessage from '../../format-message';
 import {animateSlideDown} from '../../utilities/scrollUtils';
@@ -83,9 +83,9 @@ export default class LoadingPastIndicator extends Component {
           <Container display="inline">
             <Spinner size="small" margin="0 x-small 0 0" title={formatMessage('Loading past items')}/>
           </Container>
-          <Typography size="small" color="secondary">
+          <Text size="small" color="secondary">
             {formatMessage('Loading past items')}
-          </Typography>
+          </Text>
         </Container>
       );
     }
@@ -98,12 +98,12 @@ export default class LoadingPastIndicator extends Component {
           <Container display="block" margin="small">
             <TV role="img" aria-hidden="true" />
           </Container>
-          <Typography size="large" as="div">
+          <Text size="large" as="div">
             {formatMessage('Beginning of Your To-Do History')}
-          </Typography>
-          <Typography size="medium" as="div">
+          </Text>
+          <Text size="medium" as="div">
             {formatMessage('You\'ve scrolled back to your very first To-Do!')}
-          </Typography>
+          </Text>
         </Container>
       );
     }

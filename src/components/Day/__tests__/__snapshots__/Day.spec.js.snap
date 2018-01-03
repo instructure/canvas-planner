@@ -8,7 +8,7 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
     ellipsis={false}
     level="h2"
   >
-    <Typography
+    <Text
       as="div"
       letterSpacing="normal"
       lineHeight="condensed"
@@ -16,15 +16,15 @@ exports[`renders grouping correctly when having itemsForDay 1`] = `
       transform="uppercase"
     >
       Tuesday
-    </Typography>
-    <Typography
+    </Text>
+    <Text
       as="div"
       letterSpacing="normal"
       lineHeight="condensed"
       size="medium"
     >
       April 25, 2017
-    </Typography>
+    </Text>
   </Heading>
   <div>
     <Animatable(Grouping)
@@ -91,7 +91,7 @@ exports[`renders the base component with required props 1`] = `
     ellipsis={false}
     level="h2"
   >
-    <Typography
+    <Text
       as="div"
       letterSpacing="normal"
       lineHeight="condensed"
@@ -99,15 +99,15 @@ exports[`renders the base component with required props 1`] = `
       transform="uppercase"
     >
       Tuesday
-    </Typography>
-    <Typography
+    </Text>
+    <Text
       as="div"
       letterSpacing="normal"
       lineHeight="condensed"
       size="medium"
     >
       April 25, 2017
-    </Typography>
+    </Text>
   </Heading>
   <div>
     <Container

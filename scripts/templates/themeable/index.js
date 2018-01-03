@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
+import themeable from '@instructure/ui-themeable/lib';
 
 import styles from './styles.css';
 import theme from './theme.js';

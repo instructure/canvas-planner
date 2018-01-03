@@ -17,10 +17,10 @@
  */
 import React, { Component } from 'react';
 import moment from 'moment-timezone';
-import themeable from 'instructure-ui/lib/themeable';
-import Heading from 'instructure-ui/lib/components/Heading';
-import Typography from 'instructure-ui/lib/components/Typography';
-import Container from 'instructure-ui/lib/components/Container';
+import themeable from '@instructure/ui-themeable/lib';
+import Heading from '@instructure/ui-core/lib/components/Heading';
+import Text from '@instructure/ui-core/lib/components/Text';
+import Container from '@instructure/ui-core/lib/components/Container';
 import { shape, string, number, arrayOf, func, bool } from 'prop-types';
 import styles from './styles.css';
 import theme from './theme.js';
@@ -102,20 +102,20 @@ export class Day extends Component {
           <Heading
             border={(this.hasItems()) ? 'none' : 'bottom'}
           >
-            <Typography
+            <Text
               as="div"
               transform="uppercase"
               lineHeight="condensed"
               size={isToday(this.props.day) ? 'large' : 'medium'}
             >
               {this.friendlyName}
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="div"
               lineHeight="condensed"
             >
               {this.fullDate}
-            </Typography>
+            </Text>
           </Heading>
 
         <div>

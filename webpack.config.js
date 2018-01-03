@@ -7,51 +7,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'canvas-planner.js',
   },
+  plugins: require('@instructure/ui-presets/webpack/plugins'),
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include: [path.resolve(__dirname, 'src')],
-        loader: 'eslint-loader',
-        enforce: 'pre'
-      },
-      {
-        test: /\.js$/,
-        include: [path.resolve(__dirname, 'src')],
-        use: [
-          {
-            loader: 'babel-loader',
-            query: {
-              babelrc: true,
-              cacheDirectory: '.babel-cache'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            query: {
-              babelrc: true,
-              cacheDirectory: '.babel-cache'
-            }
-          },
-          'instructure-ui/webpack/loaders/themeable-css-loader',
-          {
-            loader: 'css-loader',
-            options: {
-               importLoaders: 1,
-               localIdentName: require('./themeable.config').generateScopedName({ env: 'development'}),
-               modules: true
-             }
-          },
-          'postcss-loader'
-        ]
-      }
-    ],
+    rules: require('@instructure/ui-presets/webpack/module/rules')
   },
+  resolveLoader: require('@instructure/ui-presets/webpack/resolveLoader'),
 
   devtool: 'cheap-module-source-map',
 

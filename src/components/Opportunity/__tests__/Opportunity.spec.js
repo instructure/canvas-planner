@@ -18,7 +18,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Opportunity } from '../index';
-import Pill from 'instructure-ui/lib/components/Pill';
+import Pill from '@instructure/ui-core/lib/components/Pill';
 
 function defaultProps (options) {
   return {

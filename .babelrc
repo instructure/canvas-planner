@@ -1,5 +1,4 @@
 {
-
   "presets": [["./babel-preset"]],
   "env": {
     "test": {
@@ -8,6 +7,6 @@
   },
   "plugins": [
     "inline-react-svg",
-    "transform-regenerator"
+    "transform-regenerator",
   ]
 }

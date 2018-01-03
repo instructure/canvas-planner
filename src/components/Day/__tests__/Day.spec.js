@@ -33,7 +33,7 @@ it('renders the friendly name in large text when it is today', () => {
   const wrapper = shallow(
     <Day timeZone="America/Denver" day={today.format('YYYY-MM-DD')} />
   );
-  expect(wrapper.find('Typography').first().props().size).toEqual('large');
+  expect(wrapper.find('Text').first().props().size).toEqual('large');
 });
 
 it('renders the friendlyName in medium text when it is not today', () => {
@@ -41,7 +41,7 @@ it('renders the friendlyName in medium text when it is not today', () => {
   const wrapper = shallow(
     <Day timeZone="America/Denver" day={yesterday.format('YYYY-MM-DD')} />
   );
-  expect(wrapper.find('Typography').first().props().size).toEqual('medium');
+  expect(wrapper.find('Text').first().props().size).toEqual('medium');
 });
 
 it('groups itemsForDay based on context id', () => {

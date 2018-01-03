@@ -16,11 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react';
-import themeable from 'instructure-ui/lib/themeable';
+import themeable from '@instructure/ui-themeable/lib';
 import classnames from 'classnames';
-import containerQuery from 'instructure-ui/lib/util/containerQuery';
-import Badge from 'instructure-ui/lib/components/Badge';
-import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
+import containerQuery from '@instructure/ui-utils/lib/react/containerQuery';
+import Badge from '@instructure/ui-core/lib/components/Badge';
+import ScreenReaderContent from '@instructure/ui-core/lib/components/ScreenReaderContent';
 import { partition } from 'lodash';
 import { arrayOf, string, number, shape, bool, func } from 'prop-types';
 import styles from './styles.css';

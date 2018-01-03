@@ -17,17 +17,17 @@
  */
 import React, { Component } from 'react';
 import _ from 'lodash';
-import themeable from 'instructure-ui/lib/themeable';
-import Container from 'instructure-ui/lib/components/Container';
-import FormFieldGroup from 'instructure-ui/lib/components/FormFieldGroup';
-import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
-import Button from 'instructure-ui/lib/components/Button';
+import themeable from '@instructure/ui-themeable/lib';
+import Container from '@instructure/ui-core/lib/components/Container';
+import FormFieldGroup from '@instructure/ui-core/lib/components/FormFieldGroup';
+import ScreenReaderContent from '@instructure/ui-core/lib/components/ScreenReaderContent';
+import Button from '@instructure/ui-core/lib/components/Button';
 import formatMessage from '../../format-message';
 import PropTypes from 'prop-types';
-import TextInput from 'instructure-ui/lib/components/TextInput';
-import Select from 'instructure-ui/lib/components/Select';
-import TextArea from 'instructure-ui/lib/components/TextArea';
-import DateInput from 'instructure-ui/lib/components/DateInput';
+import TextInput from '@instructure/ui-core/lib/components/TextInput';
+import Select from '@instructure/ui-core/lib/components/Select';
+import TextArea from '@instructure/ui-core/lib/components/TextArea';
+import DateInput from '@instructure/ui-core/lib/components/DateInput';
 import moment from 'moment-timezone';
 
 import styles from './styles.css';
@@ -125,6 +125,7 @@ export class UpdateItemTray extends Component {
   }
 
   handleDeleteClick = () => {
+    // eslint-disable-next-line no-restricted-globals
     if (confirm(formatMessage('Are you sure you want to delete this planner item?'))) {
       this.props.onDeletePlannerItem(this.props.noteItem);
     }

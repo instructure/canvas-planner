@@ -17,8 +17,8 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Container from 'instructure-ui/lib/components/Container';
-import Spinner from 'instructure-ui/lib/components/Spinner';
+import Container from '@instructure/ui-core/lib/components/Container';
+import Spinner from '@instructure/ui-core/lib/components/Spinner';
 import { arrayOf, oneOfType, bool, object, string, number, func } from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import Day from '../Day';

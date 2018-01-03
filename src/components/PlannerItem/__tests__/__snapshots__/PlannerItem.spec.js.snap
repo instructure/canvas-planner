@@ -32,14 +32,14 @@ exports[`renders Announcement correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Announcement
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -57,38 +57,38 @@ exports[`renders Announcement correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               4
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -128,14 +128,14 @@ exports[`renders Announcement correctly with just date 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Announcement
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -153,14 +153,14 @@ exports[`renders Announcement correctly with just date 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -200,14 +200,14 @@ exports[`renders Announcement correctly with just points 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Announcement
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -225,31 +225,31 @@ exports[`renders Announcement correctly with just points 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               2
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -294,14 +294,14 @@ exports[`renders Announcement correctly without right side content 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Announcement
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -319,7 +319,7 @@ exports[`renders Announcement correctly without right side content 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -364,14 +364,14 @@ exports[`renders Assignment correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Assignment
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -389,38 +389,38 @@ exports[`renders Assignment correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               4
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -460,14 +460,14 @@ exports[`renders Assignment correctly with just date 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Assignment
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -485,14 +485,14 @@ exports[`renders Assignment correctly with just date 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -532,14 +532,14 @@ exports[`renders Assignment correctly with just points 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Assignment
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -557,31 +557,31 @@ exports[`renders Assignment correctly with just points 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               2
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -626,14 +626,14 @@ exports[`renders Assignment correctly without right side content 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Assignment
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -651,7 +651,7 @@ exports[`renders Assignment correctly without right side content 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -696,14 +696,14 @@ exports[`renders Calendar Event correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Calendar Event
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -721,38 +721,38 @@ exports[`renders Calendar Event correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               4
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -792,14 +792,14 @@ exports[`renders Calendar Event correctly with just date 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Calendar Event
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -817,14 +817,14 @@ exports[`renders Calendar Event correctly with just date 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -864,14 +864,14 @@ exports[`renders Calendar Event correctly with just points 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Calendar Event
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -889,31 +889,31 @@ exports[`renders Calendar Event correctly with just points 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               2
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -958,14 +958,14 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Calendar Event
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -983,7 +983,7 @@ exports[`renders Calendar Event correctly without right side content 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -1028,14 +1028,14 @@ exports[`renders Discussion correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Discussion
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1053,38 +1053,38 @@ exports[`renders Discussion correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               4
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -1124,14 +1124,14 @@ exports[`renders Discussion correctly with just date 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Discussion
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1149,14 +1149,14 @@ exports[`renders Discussion correctly with just date 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -1196,14 +1196,14 @@ exports[`renders Discussion correctly with just points 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Discussion
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1221,31 +1221,31 @@ exports[`renders Discussion correctly with just points 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               2
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -1290,14 +1290,14 @@ exports[`renders Discussion correctly without right side content 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Discussion
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1315,7 +1315,7 @@ exports[`renders Discussion correctly without right side content 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -1360,14 +1360,14 @@ exports[`renders Note correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           Math 101 TO DO
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1385,14 +1385,14 @@ exports[`renders Note correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -1432,14 +1432,14 @@ exports[`renders Note correctly without Course 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
            TO DO
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1457,7 +1457,7 @@ exports[`renders Note correctly without Course 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -1502,14 +1502,14 @@ exports[`renders Page correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Page
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1527,38 +1527,38 @@ exports[`renders Page correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               4
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -1598,14 +1598,14 @@ exports[`renders Page correctly with just date 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
            Page
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1623,14 +1623,14 @@ exports[`renders Page correctly with just date 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -1670,14 +1670,14 @@ exports[`renders Page correctly with just points 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Page
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1695,31 +1695,31 @@ exports[`renders Page correctly with just points 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               2
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -1764,14 +1764,14 @@ exports[`renders Page correctly without right side content 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Page
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1789,7 +1789,7 @@ exports[`renders Page correctly without right side content 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -1834,14 +1834,14 @@ exports[`renders Quiz correctly with everything 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Quiz
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1859,38 +1859,38 @@ exports[`renders Quiz correctly with everything 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               4
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -1930,14 +1930,14 @@ exports[`renders Quiz correctly with just date 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Quiz
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -1955,14 +1955,14 @@ exports[`renders Quiz correctly with just date 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>
@@ -2002,14 +2002,14 @@ exports[`renders Quiz correctly with just points 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Quiz
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -2027,31 +2027,31 @@ exports[`renders Quiz correctly with just points 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               2
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -2096,14 +2096,14 @@ exports[`renders Quiz correctly without right side content 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Quiz
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -2121,7 +2121,7 @@ exports[`renders Quiz correctly without right side content 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
@@ -2166,14 +2166,14 @@ exports[`renders correctly 1`] = `
   <div>
     <div>
       <div>
-        <Typography
+        <Text
           as="span"
           color="secondary"
           letterSpacing="normal"
           size="x-small"
         >
           A Course about being Diffrient Assignment
-        </Typography>
+        </Text>
       </div>
       <div>
         <Link
@@ -2191,38 +2191,38 @@ exports[`renders correctly 1`] = `
       <div />
       <div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="medium"
           >
-            <Typography
+            <Text
               as="span"
               letterSpacing="normal"
               size="large"
             >
               35
-            </Typography>
-            <Typography
+            </Text>
+            <Text
               as="span"
               letterSpacing="normal"
               size="x-small"
             >
                
               pts
-            </Typography>
-          </Typography>
+            </Text>
+          </Text>
         </div>
         <div>
-          <Typography
+          <Text
             as="span"
             color="secondary"
             letterSpacing="normal"
             size="x-small"
           >
             DUE: 3:30 AM
-          </Typography>
+          </Text>
         </div>
       </div>
     </div>

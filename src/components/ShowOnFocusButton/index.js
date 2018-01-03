@@ -19,9 +19,9 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { node, object, func } from 'prop-types';
 
-import themeable from 'instructure-ui/lib/themeable';
-import Button from 'instructure-ui/lib/components/Button';
-import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
+import themeable from '@instructure/ui-themeable/lib';
+import Button from '@instructure/ui-core/lib/components/Button';
+import ScreenReaderContent from '@instructure/ui-core/lib/components/ScreenReaderContent';
 
 import styles from './styles.css';
 import theme from './theme.js';
