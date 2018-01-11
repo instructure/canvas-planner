@@ -122,7 +122,7 @@ export default handleActions({
     return loadingState(state, {allFutureItemsLoaded: true});
   },
   ALL_OPPORTUNITIES_LOADED: (state, action) => {
-    return loadingState(state, {loadingOpportunities: false, allOpportunitiesLoaded: true});
+    return {...state, loadingOpportunities: false, allOpportunitiesLoaded: true};
   },
   ALL_PAST_ITEMS_LOADED: (state, action) => {
     return loadingState(state, {allPastItemsLoaded: true});

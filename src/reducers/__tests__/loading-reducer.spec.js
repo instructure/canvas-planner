@@ -17,6 +17,7 @@
  */
 import loadingReducer from '../loading-reducer';
 import * as Actions from '../../actions/loading-actions';
+import * as OtherActions from '../../actions';
 
 function initialState (opts = {}) {
   return {
@@ -67,6 +68,22 @@ it('sets loadingPast to false on GOT_DAYS_SUCCESS', () => {
   const state = initialState({ loadingPast: true });
   const newState = loadingReducer(state, Actions.gotDaysSuccess([]));
   expect(newState).toMatchObject({ loadingPast: false });
+});
+
+it('sets only opportunities fields on ALL_OPPORTUNITIES_LOADED', () => {
+  const state = initialState({
+    isLoading: true,
+    loadingFuture: true,
+    loadingPast: true,
+    loadingOpportunities: true,
+    allOpportunitiesLoaded: false,
+  });
+  const newState = loadingReducer(state, OtherActions.allOpportunitiesLoaded());
+  expect(newState).toMatchObject({
+    ...state,
+    loadingOpportunities: false,
+    allOpportunitiesLoaded: true,
+  });
 });
 
 it('purges complete days from partial days on GOT_DAYS_SUCCES', () => {
