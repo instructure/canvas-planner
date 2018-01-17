@@ -77,7 +77,11 @@ function registerStandardGroups (manager, dayIndex, opts = {}) {
 function registerStandardItems (manager, dayIndex, groupIndex, opts = {}) {
   return [2, 1, 0].map(itemIndex => {
     const uniqueId = `day-${dayIndex}-group-${groupIndex}-item-${itemIndex}`;
-    const itemElement = { uniqueId, getFocusable: () => `focusable-${uniqueId}` };
+    const itemElement = {
+      uniqueId,
+      getFocusable: () => `focusable-${uniqueId}`,
+      getScrollable: () => `scrollable-${uniqueId}`
+   };
     manager.registerAnimatable('item', itemElement, itemIndex, [uniqueId]);
     return itemElement;
   });
@@ -270,7 +274,7 @@ describe('manipulating items', () => {
     expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-0-group-0-item-0');
     // maintain and scrolling works around a chrome bug
     expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
-    expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-0', 42);
+    expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-0-item-0', 42);
   });
 
   it('sets focus to the new item when adding a new item', () => {
@@ -282,7 +286,7 @@ describe('manipulating items', () => {
     manager.triggerUpdates();
     expect(animator.focusElement).toHaveBeenCalledWith('focusable-day-0-group-0-item-0');
     expect(animator.maintainViewportPosition).toHaveBeenCalledWith('fixed-element');
-    expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-0', 42);
+    expect(animator.scrollTo).toHaveBeenCalledWith('scrollable-day-0-group-0-item-0', 42);
   });
 
   describe('deleting an item', () => {

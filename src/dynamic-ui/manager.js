@@ -142,9 +142,7 @@ export class DynamicUiManager {
   triggerFocusItem () {
     const itemToFocus = this.animatableRegistry.getComponent('item', this.animationPlan.focusItem);
     this.animator.focusElement(itemToFocus.component.getFocusable(this.animationPlan.trigger));
-
-    const groupToScroll = this.animatableRegistry.getComponent('group', this.animationPlan.focusItem);
-    this.animator.scrollTo(groupToScroll.component.getScrollable(), this.stickyOffset);
+    this.animator.scrollTo(itemToFocus.component.getScrollable(), this.stickyOffset);
   }
 
   triggerFocusPreOpenTrayElement () {

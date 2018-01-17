@@ -95,12 +95,20 @@ export class PlannerItem extends Component {
     this.props.updateTodo({updateTodoItem: {...this.props}});
   }
 
+  registerRootDivRef = (elt) => {
+    this.rootDivRef = elt;
+  }
+
   registerFocusElementRef = (elt) => {
     this.checkboxRef = elt;
   }
 
   getFocusable (which) {
     return which === 'update' ? this.itemLink : this.checkboxRef;
+  }
+
+  getScrollable () {
+    return this.rootDivRef;
   }
 
   renderDateField = () => {
@@ -217,7 +225,7 @@ export class PlannerItem extends Component {
       formatMessage('{assignmentType} {title} is incomplete',
         { assignmentType: assignmentType, title: this.props.title });
     return (
-      <div className={styles.root}>
+      <div className={styles.root} ref={this.registerRootDivRef}>
         <div className={styles.completed}>
           <Checkbox
             ref={this.registerFocusElementRef}
