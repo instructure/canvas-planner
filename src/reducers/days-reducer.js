@@ -23,18 +23,14 @@ import { daysToDaysHash, daysHashToDays, mergeDaysIntoDaysHash, itemsToDays } fr
 
 function savedPlannerItem (state, action) {
   if (action.error) return state;
-  const plannerItem = action.payload.item;
-  if(plannerItem.id) {
-    // editing existing, remove the old copy
-    state = _deletePlannerItem(state, plannerItem.id);
+  const newPlannerItem = action.payload.item;
+  const oldPlannerItem = newPlannerItem.id ? findPlannerItemById(state, newPlannerItem.id) : null;
+  let newState = state;
+  // if changing days, then we need to delete the old item from its current day
+  if (oldPlannerItem && !oldPlannerItem.dateBucketMoment.isSame(newPlannerItem.dateBucketMoment)) {
+    newState = _deletePlannerItem(newState, oldPlannerItem);
   }
-  const plannerDateString = formatDayKey(plannerItem.dateBucketMoment);
-  const plannerDay = state.find(day => day[0] === plannerDateString);
-  if (!plannerDay) {
-    const newState = state.concat([[plannerDateString, []]]);
-    return gotDaysSuccess(newState, itemsToDays([plannerItem]));
-  }
-  return gotDaysSuccess(state, itemsToDays([plannerItem]));
+  return gotDaysSuccess(newState, itemsToDays([newPlannerItem]));
 }
 
 function deletedPlannerItem (state, action) {
@@ -42,17 +38,7 @@ function deletedPlannerItem (state, action) {
   return _deletePlannerItem(state, action.payload);
 }
 
-function _deletePlannerItem(state, payload) {
-  let doomedPlannerItem;
-  if('string' === typeof payload) {
-    // payload is the item id. find it
-    doomedPlannerItem = findPlannerItemById(state, payload);
-  } else {
-    doomedPlannerItem = payload;
-  }
-  if (!doomedPlannerItem) {
-    return state;
-  }
+function _deletePlannerItem(state, doomedPlannerItem) {
   const plannerDateString = formatDayKey(doomedPlannerItem.dateBucketMoment);
   const keyedState = new Map(state);
   const existingDay = keyedState.get(plannerDateString);
