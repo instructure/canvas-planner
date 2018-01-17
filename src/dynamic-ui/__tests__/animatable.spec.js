@@ -30,6 +30,7 @@ it('passes trigger property functions and forwards the calls to the dynamic ui m
   const mockManager = {
     handleAction: jest.fn(),
     registerAnimatable: jest.fn(),
+    deregisterAnimatable: jest.fn(),
     preTriggerUpdates: jest.fn(),
     triggerUpdates: jest.fn(),
   };
@@ -44,4 +45,6 @@ it('passes trigger property functions and forwards the calls to the dynamic ui m
   const mockComponentProps = wrapper.find('MockComponent').props();
   mockComponentProps.registerAnimatable('type', 'component', 42, ['item']);
   expect(mockManager.registerAnimatable).toHaveBeenCalledWith('type', 'component', 42, ['item']);
+  mockComponentProps.deregisterAnimatable('type', 'component', ['item']);
+  expect(mockManager.deregisterAnimatable).toHaveBeenCalledWith('type', 'component', ['item']);
 });

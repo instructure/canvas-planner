@@ -33,6 +33,7 @@ export function animatable(WrappedComponent) {
     static contextTypes = {
       dynamicUiManager: shape({
         registerAnimatable: func,
+        deregisterAnimatable: func,
       }),
     }
 
@@ -43,8 +44,18 @@ export function animatable(WrappedComponent) {
       this.context.dynamicUiManager.registerAnimatable(type, component, index, itemIds);
     }
 
+    deregisterAnimatable = (type, component, itemIds) => {
+      // This should be required, but I don't want tests to have to muck with wrapping their stuff
+      // in a DynamicUiProvider
+      if (!this.context.dynamicUiManager) return;
+      this.context.dynamicUiManager.deregisterAnimatable(type, component, itemIds);
+    }
+
     render () {
-      return <WrappedComponent {...this.props} registerAnimatable={this.registerAnimatable} />;
+      return <WrappedComponent {...this.props}
+        registerAnimatable={this.registerAnimatable}
+        deregisterAnimatable={this.deregisterAnimatable}
+      />;
     }
   };
 }

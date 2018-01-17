@@ -56,21 +56,24 @@ it('displays Pills when given them', () => {
 
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
+  const fakeDeregister = jest.fn();
   const wrapper = mount(
     <CompletedItemsFacade
       onClick={() => {}}
       registerAnimatable={fakeRegister}
+      deregisterAnimatable={fakeDeregister}
       animatableIndex={42}
       animatableItemIds={['1', '2', '3']}
       itemCount={3}
     />
   );
-  expect(fakeRegister).toHaveBeenCalledWith('item', wrapper.instance(), 42, ['1', '2', '3']);
+  const instance = wrapper.instance();
+  expect(fakeRegister).toHaveBeenCalledWith('item', instance, 42, ['1', '2', '3']);
 
   wrapper.setProps({animatableItemIds: ['2', '3', '4']});
-  expect(fakeRegister).toHaveBeenCalledWith('item', null, 42, ['1', '2', '3']);
-  expect(fakeRegister).toHaveBeenCalledWith('item', wrapper.instance(), 42, ['2', '3', '4']);
+  expect(fakeDeregister).toHaveBeenCalledWith('item', instance, ['1', '2', '3']);
+  expect(fakeRegister).toHaveBeenCalledWith('item', instance, 42, ['2', '3', '4']);
 
   wrapper.unmount();
-  expect(fakeRegister).toHaveBeenCalledWith('item', null, 42, ['2', '3', '4']);
+  expect(fakeDeregister).toHaveBeenCalledWith('item', instance, ['2', '3', '4']);
 });

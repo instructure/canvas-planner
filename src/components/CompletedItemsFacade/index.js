@@ -41,11 +41,13 @@ export class CompletedItemsFacade extends Component {
     animatableIndex: number,
     animatableItemIds: arrayOf(string),
     registerAnimatable: func,
+    deregisterAnimatable: func,
   }
 
   static defaultProps = {
     badges: [],
     registerAnimatable: () => {},
+    deregisterAnimatable: () => {},
   }
 
   componentDidMount () {
@@ -53,12 +55,12 @@ export class CompletedItemsFacade extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    this.props.registerAnimatable('item', null, this.props.animatableIndex, this.props.animatableItemIds);
+    this.props.deregisterAnimatable('item', this, this.props.animatableItemIds);
     this.props.registerAnimatable('item', this, newProps.animatableIndex, newProps.animatableItemIds);
   }
 
   componentWillUnmount () {
-    this.props.registerAnimatable('item', null, this.props.animatableIndex, this.props.animatableItemIds);
+    this.props.deregisterAnimatable('item', this, this.props.animatableItemIds);
   }
 
   getFocusable () { return this.mainButton; }

@@ -42,6 +42,10 @@ export class DynamicUiManager {
     this.animatableRegistry.register(type, component, index, itemIds);
   }
 
+  deregisterAnimatable = (type, component, itemIds) => {
+    this.animatableRegistry.deregister(type, component, itemIds);
+  }
+
   clearAnimationPlan () {
     this.animationPlan = {};
   }

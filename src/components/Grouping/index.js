@@ -48,10 +48,12 @@ export class Grouping extends Component {
     toggleCompletion: func,
     updateTodo: func,
     registerAnimatable: func,
+    deregisterAnimatable: func,
   }
 
   static defaultProps = {
     registerAnimatable: () => {},
+    deregisterAnimatable: () => {},
   }
 
   constructor (props) {
@@ -67,12 +69,12 @@ export class Grouping extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    this.props.registerAnimatable('group', null, this.props.animatableIndex, this.itemUniqueIds());
+    this.props.deregisterAnimatable('group', this, this.itemUniqueIds());
     this.props.registerAnimatable('group', this, newProps.animatableIndex, this.itemUniqueIds(newProps));
   }
 
   componentWillUnmount () {
-    this.props.registerAnimatable('group', null, this.props.animatableIndex, this.itemUniqueIds());
+    this.props.deregisterAnimatable('group', this, this.itemUniqueIds());
   }
 
   itemUniqueIds (props = this.props) { return props.items.map(item => item.uniqueId); }

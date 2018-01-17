@@ -60,6 +60,7 @@ export class PlannerItem extends Component {
       variant: string
     })),
     registerAnimatable: func,
+    deregisterAnimatable: func,
     toggleAPIPending: bool,
   };
 
@@ -79,7 +80,7 @@ export class PlannerItem extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.props.registerAnimatable('item', null, this.props.animatableIndex, [this.props.uniqueId]);
+    this.props.deregisterAnimatable('item', this, [this.props.uniqueId]);
     this.props.registerAnimatable('item', this, nextProps.animatableIndex, [nextProps.uniqueId]);
     this.setState({
       completed: nextProps.completed,
@@ -87,7 +88,7 @@ export class PlannerItem extends Component {
   }
 
   componentWillUnmount () {
-    this.props.registerAnimatable('item', null, this.props.animatableIndex, [this.props.uniqueId]);
+    this.props.deregisterAnimatable('item', this, [this.props.uniqueId]);
   }
 
   toDoLinkClick = (e) => {

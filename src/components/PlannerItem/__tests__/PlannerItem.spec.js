@@ -493,6 +493,7 @@ it('disables the checkbox when toggleAPIPending is true', () => {
 
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
+  const fakeDeregister = jest.fn();
   const wrapper = mount(
     <PlannerItem
       {...defaultProps()}
@@ -500,14 +501,16 @@ it('registers itself as animatable', () => {
       uniqueId="first"
       animatableIndex={42}
       registerAnimatable={fakeRegister}
+      deregisterAnimatable={fakeDeregister}
     />
   );
-  expect(fakeRegister).toHaveBeenCalledWith('item', wrapper.instance(), 42, ['first']);
+  const instance = wrapper.instance();
+  expect(fakeRegister).toHaveBeenCalledWith('item', instance, 42, ['first']);
 
   wrapper.setProps({uniqueId: 'second'});
-  expect(fakeRegister).toHaveBeenCalledWith('item', null, 42, ['first']);
-  expect(fakeRegister).toHaveBeenCalledWith('item', wrapper.instance(), 42, ['second']);
+  expect(fakeDeregister).toHaveBeenCalledWith('item', instance, ['first']);
+  expect(fakeRegister).toHaveBeenCalledWith('item', instance, 42, ['second']);
 
   wrapper.unmount();
-  expect(fakeRegister).toHaveBeenCalledWith('item', null, 42, ['second']);
+  expect(fakeDeregister).toHaveBeenCalledWith('item', instance, ['second']);
 });

@@ -22,6 +22,7 @@ import {shape, func, element} from 'prop-types';
 const uiManagerShape = shape({
   handleAction: func.isRequired,
   registerAnimatable: func.isRequired,
+  deregisterAnimatable: func.isRequired,
   preTriggerUpdates: func.isRequired,
   triggerUpdates: func.isRequired,
 });

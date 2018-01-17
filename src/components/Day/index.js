@@ -44,6 +44,7 @@ export class Day extends Component {
     updateTodo: func,
     alwaysRender: bool,
     registerAnimatable: func,
+    deregisterAnimatable: func,
   }
 
   constructor (props) {
@@ -62,7 +63,7 @@ export class Day extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.props.registerAnimatable('day', null, this.props.animatableIndex, this.itemUniqueIds());
+    this.props.deregisterAnimatable('day', this, this.itemUniqueIds());
     this.props.registerAnimatable('day', this, nextProps.animatableIndex, this.itemUniqueIds(nextProps));
 
     this.setState((state) => {
@@ -73,7 +74,7 @@ export class Day extends Component {
   }
 
   componentWillUnmount () {
-    this.props.registerAnimatable('day', null, this.props.animatableIndex, this.itemUniqueIds());
+    this.props.deregisterAnimatable('day', this, this.itemUniqueIds());
   }
 
   itemUniqueIds (props = this.props) { return props.itemsForDay.map(item => item.uniqueId); }

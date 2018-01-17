@@ -36,11 +36,17 @@ export class AnimatableRegistry {
   register (type, component, index, itemIds) {
     this.validateType(type);
     const registry = this.registries[type];
-    if (component) {
-      itemIds.forEach(itemId => registry[itemId] = {component, index, itemIds});
-    } else {
-      itemIds.forEach(itemId => delete registry[itemId]);
-    }
+    itemIds.forEach(itemId => registry[itemId] = {component, index, itemIds});
+  }
+
+  deregister (type, component, itemIds) {
+    this.validateType(type);
+    const registry = this.registries[type];
+    itemIds.forEach(itemId => {
+      if (registry[itemId].component === component) {
+        delete registry[itemId];
+      }
+    });
   }
 
   getComponent (type, itemId) {

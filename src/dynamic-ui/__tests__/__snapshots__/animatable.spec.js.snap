@@ -4,6 +4,7 @@ exports[`passes trigger property functions and forwards the calls to the dynamic
 <DynamicUiProvider
   manager={
     Object {
+      "deregisterAnimatable": [MockFunction],
       "handleAction": [MockFunction],
       "preTriggerUpdates": [MockFunction],
       "registerAnimatable": [MockFunction],
@@ -13,6 +14,7 @@ exports[`passes trigger property functions and forwards the calls to the dynamic
 >
   <Animatable(MockComponent)>
     <MockComponent
+      deregisterAnimatable={[Function]}
       registerAnimatable={[Function]}
     >
       <div />

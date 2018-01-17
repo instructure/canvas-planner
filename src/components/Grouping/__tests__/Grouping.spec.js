@@ -251,6 +251,7 @@ describe('toggleCompletion', () => {
 
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
+  const fakeDeregister = jest.fn();
   const firstItems = [{title: 'asdf', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '2', uniqueId: 'second'}];
   const secondItems = [{title: 'qwer', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '4', uniqueId: 'fourth'}];
   const wrapper = mount(
@@ -259,14 +260,16 @@ it('registers itself as animatable', () => {
       items={firstItems}
       animatableIndex={42}
       registerAnimatable={fakeRegister}
+      deregisterAnimatable={fakeDeregister}
     />
   );
-  expect(fakeRegister).toHaveBeenCalledWith('group', wrapper.instance(), 42, ['first', 'second']);
+  const instance = wrapper.instance();
+  expect(fakeRegister).toHaveBeenCalledWith('group', instance, 42, ['first', 'second']);
 
   wrapper.setProps({items: secondItems});
-  expect(fakeRegister).toHaveBeenCalledWith('group', null, 42, ['first', 'second']);
-  expect(fakeRegister).toHaveBeenCalledWith('group', wrapper.instance(), 42, ['third', 'fourth']);
+  expect(fakeDeregister).toHaveBeenCalledWith('group', instance, ['first', 'second']);
+  expect(fakeRegister).toHaveBeenCalledWith('group', instance, 42, ['third', 'fourth']);
 
   wrapper.unmount();
-  expect(fakeRegister).toHaveBeenCalledWith('group', null, 42, ['third', 'fourth']);
+  expect(fakeDeregister).toHaveBeenCalledWith('group', instance, ['third', 'fourth']);
 });

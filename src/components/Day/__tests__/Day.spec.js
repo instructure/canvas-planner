@@ -148,7 +148,7 @@ it('groups itemsForDay that come in on prop changes', () => {
   }];
 
   const wrapper = shallow(
-    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} registerAnimatable={() => {}} />
+    <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} registerAnimatable={() => {}} deregisterAnimatable={() => {}} />
   );
   let groupedItems = wrapper.state('groupedItems');
   expect(Object.keys(groupedItems).length).toEqual(2);
@@ -186,6 +186,7 @@ it('renders when there are no items but within two weeks', () => {
 
 it('registers itself as animatable', () => {
   const fakeRegister = jest.fn();
+  const fakeDeregister = jest.fn();
   const firstItems = [{title: 'asdf', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '1', uniqueId: 'first'}, {title: 'jkl', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '2', uniqueId: 'second'}];
   const secondItems = [{title: 'qwer', context: {id: 128, inform_students_of_overdue_submissions: true}, id: '3', uniqueId: 'third'}, {title: 'uiop', context: {id: 256, inform_students_of_overdue_submissions: true}, id: '4', uniqueId: 'fourth'}];
   const wrapper = mount(
@@ -195,15 +196,17 @@ it('registers itself as animatable', () => {
       animatableIndex={42}
       itemsForDay={firstItems}
       registerAnimatable={fakeRegister}
+      deregisterAnimatable={fakeDeregister}
       updateTodo={() => {}}
     />
   );
-  expect(fakeRegister).toHaveBeenCalledWith('day', wrapper.instance(), 42, ['first', 'second']);
+  const instance = wrapper.instance();
+  expect(fakeRegister).toHaveBeenCalledWith('day', instance, 42, ['first', 'second']);
 
   wrapper.setProps({itemsForDay: secondItems});
-  expect(fakeRegister).toHaveBeenCalledWith('day', null, 42, ['first', 'second']);
-  expect(fakeRegister).toHaveBeenCalledWith('day', wrapper.instance(), 42, ['third', 'fourth']);
+  expect(fakeDeregister).toHaveBeenCalledWith('day', instance, ['first', 'second']);
+  expect(fakeRegister).toHaveBeenCalledWith('day', instance, 42, ['third', 'fourth']);
 
   wrapper.unmount();
-  expect(fakeRegister).toHaveBeenCalledWith('day', null, 42, ['third', 'fourth']);
+  expect(fakeDeregister).toHaveBeenCalledWith('day', instance, ['third', 'fourth']);
 });
