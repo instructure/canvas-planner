@@ -72,7 +72,7 @@ export class CompletedItemsFacade extends Component {
           {
             this.props.badges.map((b) => (
               <Pill
-                key={b.text}
+                key={b.id}
                 text={b.text}
                 variant={b.variant} />
             ))

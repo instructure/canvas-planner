@@ -44,39 +44,51 @@ it('renders the friendlyName in medium text when it is not today', () => {
   expect(wrapper.find('Text').first().props().size).toEqual('medium');
 });
 
-it('groups itemsForDay based on context id', () => {
+it('groups itemsForDay based on context type + context id', () => {
   const items = [{
     title: 'Black Friday',
     context: {
+      type: 'Course',
       id: 128,
       inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
+      type: 'Course',
       id: 256,
       inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Roll for the Galaxy',
     context: {
+      type: 'Course',
       id: 256,
       inform_students_of_overdue_submissions: true
     }
+  }, {
+      title: 'Same id, different type',
+      context: {
+        type: 'Group',
+        id: 256,
+        inform_students_of_overdue_submissions: false
+      }
   }];
 
   const wrapper = shallow(
     <Day timeZone="America/Denver" day="2017-04-25" itemsForDay={items} />
   );
   const groupedItems = wrapper.state('groupedItems');
-  expect(groupedItems[128].length).toEqual(1);
-  expect(groupedItems[256].length).toEqual(2);
+  expect(groupedItems['Course128'].length).toEqual(1);
+  expect(groupedItems['Course256'].length).toEqual(2);
+  expect(groupedItems['Group256'].length).toEqual(1);
 });
 
 it('renders grouping correctly when having itemsForDay', () => {
   const items = [{
     title: 'Black Friday',
     context: {
+      type: 'Course',
       id: 128,
       url:"http://www.non_default_url.com",
       inform_students_of_overdue_submissions: true
@@ -84,6 +96,7 @@ it('renders grouping correctly when having itemsForDay', () => {
   }, {
     title: 'San Juan',
     context: {
+      type: 'Course',
       id: 256,
       url:"http://www.non_default_url.com",
       inform_students_of_overdue_submissions: true
@@ -91,10 +104,18 @@ it('renders grouping correctly when having itemsForDay', () => {
   }, {
     title: 'Roll for the Galaxy',
     context: {
+      type: 'Course',
       id: 256,
       url:"http://www.non_default_url.com",
       inform_students_of_overdue_submissions: true
     }
+  }, {
+      title: 'Same id, different type',
+      context: {
+        type: 'Group',
+        id: 256,
+        inform_students_of_overdue_submissions: false
+      }
   }];
 
   const wrapper = shallow(
@@ -106,18 +127,21 @@ it('groups itemsForDay that have no context into the "Notes" category', () => {
   const items = [{
     title: 'Black Friday',
     context: {
+      type: 'Course',
       id: 128,
       inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
+      type: 'Course',
       id: 256,
       inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'Roll for the Galaxy',
     context: {
+      type: 'Course',
       id: 256,
       inform_students_of_overdue_submissions: true
     }
@@ -136,12 +160,14 @@ it('groups itemsForDay that come in on prop changes', () => {
   const items = [{
     title: 'Black Friday',
     context: {
+      type: 'Course',
       id: 128,
       inform_students_of_overdue_submissions: true
     }
   }, {
     title: 'San Juan',
     context: {
+      type: 'Course',
       id: 256,
       inform_students_of_overdue_submissions: true
     }
@@ -156,6 +182,7 @@ it('groups itemsForDay that come in on prop changes', () => {
   const newItemsForDay = items.concat([{
     title: 'Roll for the Galaxy',
     context: {
+      type: 'Course',
       id: 256,
       inform_students_of_overdue_submissions: true
     }

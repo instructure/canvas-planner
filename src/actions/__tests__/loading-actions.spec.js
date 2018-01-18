@@ -32,6 +32,7 @@ jest.mock('../../utilities/apiUtils', () => ({
 
 const getBasicState = () => ({
   courses: [],
+  groups: [],
   timeZone: 'UTC',
   days: [
     ['2017-05-22', [{id: '42', dateBucketMoment: moment.tz('2017-05-22', 'UTC')}]],

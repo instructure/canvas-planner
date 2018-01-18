@@ -79,7 +79,7 @@ export class Day extends Component {
 
   itemUniqueIds (props = this.props) { return props.itemsForDay.map(item => item.uniqueId); }
 
-  groupItems = (items) => groupBy(items, item => (item.context && item.context.id) || 'Notes');
+  groupItems = (items) => groupBy(items, item => (item.context && (item.context.type+item.context.id)) || 'Notes');
 
   hasItems () {
     return !!Object.keys(this.state.groupedItems).length;

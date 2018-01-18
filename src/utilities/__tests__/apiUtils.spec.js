@@ -30,6 +30,13 @@ const courses = [{
   color: '#abffaa',
   informStudentsOfOverdueSubmissions: true,
 }];
+const groups = [{
+  id: '9',
+  assetString: 'group_9',
+  name: 'group9',
+  color: '#ffeeee',
+  url: '/groups/9'
+}];
 
 function makeApiResponse (overrides = {}, assignmentOverrides = {}) {
   return {
@@ -268,7 +275,7 @@ describe('transformApiToInternalItem', () => {
       }
     });
 
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
 
     expect(result.status).toEqual({
       graded: true,
@@ -284,7 +291,7 @@ describe('transformApiToInternalItem', () => {
         submission_types: [ 'online_quiz' ],
       })
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -296,7 +303,7 @@ describe('transformApiToInternalItem', () => {
         submission_types: [ 'discussion_topic' ],
       })
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -309,7 +316,7 @@ describe('transformApiToInternalItem', () => {
         todo_date: "2017-05-19T05:59:59Z",
       })
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -324,7 +331,7 @@ describe('transformApiToInternalItem', () => {
         unread_count: 10
       })
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -338,7 +345,7 @@ describe('transformApiToInternalItem', () => {
         unread_count: 10
       })
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -350,7 +357,7 @@ describe('transformApiToInternalItem', () => {
         name: "How to be neutral",
       }),
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -362,7 +369,7 @@ describe('transformApiToInternalItem', () => {
       plannable: makePlannerNote()
     });
 
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -376,7 +383,7 @@ describe('transformApiToInternalItem', () => {
       })
     });
 
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -390,7 +397,7 @@ describe('transformApiToInternalItem', () => {
       })
     });
 
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 
@@ -399,7 +406,7 @@ describe('transformApiToInternalItem', () => {
       plannable_type: 'wiki_page',
       plannable: makeWikiPage({}),
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result.id).toEqual('1');
   });
 
@@ -410,7 +417,7 @@ describe('transformApiToInternalItem', () => {
         due_at: moment.tz('2017-05-24', 'Asia/Tokyo'),
       })
     });
-    const result = transformApiToInternalItem(apiResponse, courses, 'Europe/Paris');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'Europe/Paris');
     const expectedBucket = moment.tz('2017-05-23', 'Europe/Paris');
     expect(result.dateBucketMoment.isSame(expectedBucket)).toBeTruthy();
   });
@@ -420,7 +427,7 @@ describe('transformApiToInternalItem', () => {
     delete apiResponse.context;
     delete apiResponse.context_type;
     delete apiResponse.course_id;
-    const result = transformApiToInternalItem(apiResponse, courses, 'Europe/Paris');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'Europe/Paris');
     expect(result).toMatchObject({id: '10'});
   });
 
@@ -437,7 +444,21 @@ describe('transformApiToInternalItem', () => {
       })
     });
 
-    const result = transformApiToInternalItem(apiResponse, courses, 'UTC');
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
+    expect(result).toMatchSnapshot();
+  });
+
+  it('handles account-level group items', () => {
+    const apiResponse = makeApiResponse({
+      "context_type": "Group",
+      "group_id": "9",
+      "plannable_date": "2018-01-12T05:00:00Z",
+      "plannable_type": "wiki_page",
+      "plannable": makeWikiPage({page_id: "25", html_url:"/groups/9/pages/25"}),
+      "html_url": "/groups/9/pages/25"
+    });
+
+    const result = transformApiToInternalItem(apiResponse, courses, groups, 'UTC');
     expect(result).toMatchSnapshot();
   });
 });

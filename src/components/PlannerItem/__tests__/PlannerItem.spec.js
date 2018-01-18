@@ -53,6 +53,31 @@ function noteProps (option) {
   };
 }
 
+function groupProps (option) {
+  return {
+    "color": "#F06291",
+    "completed": false,
+    "id": "25",
+    "uniqueId": "wiki_page-25",
+    "courseName": "Account-level group 1",
+    "context": {
+      "type": "Group",
+      "id": "9",
+      "title": "Account-level group 1",
+      "inform_students_of_overdue_submissions": false,
+      "color": "#F06291",
+      "url": "/groups/9"
+    },
+    "date": DEFAULT_DATE,
+    "associated_item": "Page",
+    "title": "this is an account-level group page",
+    "html_url": "/groups/9/pages/this-is-an-account-level-group-page",
+    "badges": [],
+    toggleCompletion: () => {},
+    updateTodo: () => {}
+  };
+}
+
 it('renders correctly', () => {
   const wrapper = shallow(
     <PlannerItem {...defaultProps({points: 35, date: DEFAULT_DATE})} />
@@ -453,13 +478,22 @@ it('renders Note correctly without Course', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+it('renders Note correctly with Group', () => {
+  const wrapper = shallow(
+    <PlannerItem {
+      ...groupProps()
+    } />
+  );
+  expect(wrapper).toMatchSnapshot();
+});
+
 it('displays Pills when given them', () => {
   const wrapper = shallow(
     <PlannerItem
       {...defaultProps({points: 35, date: DEFAULT_DATE})}
       onClick={() => {}}
       itemCount={3}
-      badges={[{ text: 'New Grades' }]}
+      badges={[{id: 'new_grades', text: 'Graded' }]}
     />
   );
 

@@ -82,24 +82,18 @@ const getApiItemType = (overrideType) => {
 /**
 * Translates the API data to the format the planner expects
 **/
-export function transformApiToInternalItem (apiResponse, courses, timeZone) {
+export function transformApiToInternalItem (apiResponse, courses, groups, timeZone) {
   if (timeZone == null) throw new Error('timezone is required when interpreting api data in transformApiToInternalItem');
 
   const contextInfo = {};
-  if (apiResponse.context_type) {
-    const contextId = apiResponse[`${apiResponse.context_type.toLowerCase()}_id`];
+  const context_type = apiResponse.context_type + '';
+  const contextId = apiResponse[`${context_type.toLowerCase()}_id`];
+  if (context_type === 'Course') {
     const course = courses.find(c => c.id === contextId);
-    if (course) {
-      contextInfo.context = {
-        type: apiResponse.context_type,
-        id: contextId,
-        title: course.shortName,
-        image_url: course.image,
-        inform_students_of_overdue_submissions: course.informStudentsOfOverdueSubmissions,
-        color: course.color,
-        url: course.href
-      };
-    }
+    contextInfo.context = getCourseContext(apiResponse, course);
+  } else if (context_type === 'Group') {
+    const group = groups.find(g => g.id === contextId) || {name: "Unknown Group", color: "#666666", url: undefined};
+    contextInfo.context = getGroupContext(apiResponse, group);
   }
   const details = getItemDetailsFromPlannable(apiResponse, timeZone);
 
@@ -203,5 +197,31 @@ export function transformInternalToApiOverride (internalItem, userId) {
     plannable_type: type,
     user_id: userId,
     marked_complete: internalItem.completed
+  };
+}
+
+function getCourseContext(apiResponse, course) {
+  if (!course) return undefined;
+  return {
+    type: apiResponse.context_type,
+    id: course.id,
+    title: course.shortName,
+    image_url: course.image,
+    inform_students_of_overdue_submissions: course.informStudentsOfOverdueSubmissions,
+    color: course.color,
+    url: course.href
+  };
+}
+
+function getGroupContext(apiResponse, group) {
+  if (!group) return undefined;
+  return {
+    type: apiResponse.context_type,
+    id: group.id,
+    title: group.name,
+    image_url: undefined,
+    inform_students_of_overdue_submissions: false,  // group items don't have submissions
+    color: group.color,
+    url: group.url
   };
 }

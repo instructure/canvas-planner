@@ -20,6 +20,7 @@ import { handleAction } from 'redux-actions';
 import days from './days-reducer';
 import loading from './loading-reducer';
 import courses from './courses-reducer';
+import groups from './groups-reducer';
 import opportunities from './opportunities-reducer';
 import todo from './todo-reducer';
 
@@ -37,6 +38,7 @@ const firstNewActivityDate = handleAction('FOUND_FIRST_NEW_ACTIVITY_DATE', (stat
 
 export default combineReducers({
   courses,
+  groups,
   locale,
   timeZone,
   days,

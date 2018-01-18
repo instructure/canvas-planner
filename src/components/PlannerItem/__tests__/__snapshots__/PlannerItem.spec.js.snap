@@ -1328,6 +1328,78 @@ exports[`renders Discussion correctly without right side content 1`] = `
 </div>
 `;
 
+exports[`renders Note correctly with Group 1`] = `
+<div>
+  <div>
+    <Checkbox
+      checked={false}
+      disabled={false}
+      inline={false}
+      label={
+        <ScreenReaderContent
+          as="span"
+        >
+          Page this is an account-level group page is incomplete
+        </ScreenReaderContent>
+      }
+      onChange={[Function]}
+      size="medium"
+      variant="simple"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    style={
+      Object {
+        "color": "#F06291",
+      }
+    }
+  >
+    <IconMsWordLine />
+  </div>
+  <div>
+    <div>
+      <div>
+        <Text
+          as="span"
+          color="secondary"
+          letterSpacing="normal"
+          size="x-small"
+        >
+          Account-level group 1 Page
+        </Text>
+      </div>
+      <div>
+        <Link
+          as="button"
+          ellipsis={false}
+          href="/groups/9/pages/this-is-an-account-level-group-page"
+          linkRef={[Function]}
+          variant="default"
+        >
+          this is an account-level group page
+        </Link>
+      </div>
+    </div>
+    <div>
+      <div />
+      <div>
+        <div>
+          <Text
+            as="span"
+            color="secondary"
+            letterSpacing="normal"
+            size="x-small"
+          >
+            DUE: 3:30 AM
+          </Text>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders Note correctly with everything 1`] = `
 <div>
   <div>

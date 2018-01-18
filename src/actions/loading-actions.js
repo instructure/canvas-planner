@@ -76,7 +76,7 @@ export function getFirstNewActivityDate (fromMoment) {
       order: 'asc'
     }}).then(response => {
       if (response.data.length) {
-        const first = transformApiToInternalItem(response.data[0], getState().courses, getState().timeZone);
+        const first = transformApiToInternalItem(response.data[0], getState().courses, getState().groups, getState().timeZone);
         dispatch(foundFirstNewActivityDate(first.dateBucketMoment));
       }
     }).catch(() => alert(formatMessage('Failed to get new activity'), true));
@@ -158,6 +158,7 @@ function transformItems (loadingOptions, items) {
   return items.map(item => transformApiToInternalItem(
     item,
     loadingOptions.getState().courses,
+    loadingOptions.getState().groups,
     loadingOptions.getState().timeZone,
   ));
 }

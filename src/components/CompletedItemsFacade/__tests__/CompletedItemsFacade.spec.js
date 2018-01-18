@@ -47,7 +47,7 @@ it('displays Pills when given them', () => {
     <CompletedItemsFacade
       onClick={() => {}}
       itemCount={3}
-      badges={[{ text: 'New Grades' }]}
+      badges={[{id: 'new_graded', text: 'Graded' }]}
     />
   );
   expect(wrapper.find('Pill')).toHaveLength(1);

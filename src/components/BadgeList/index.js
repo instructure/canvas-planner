@@ -32,7 +32,7 @@ class BadgeList extends Component {
   renderChildren () {
     return Children.map(this.props.children, (child) => {
       return (
-        <li className={styles.item}>
+        <li key={child.key} className={styles.item}>
           {child}
         </li>
       );
