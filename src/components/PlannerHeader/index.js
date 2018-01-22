@@ -169,11 +169,23 @@ export class PlannerHeader extends Component {
     });
   }
 
-  toggleOpportunitiesDropdown = () => {
-    this.opportunitiesButton.focus();
-    this.setState({opportunitiesOpen: !this.state.opportunitiesOpen}, () => {
+  _doToggleOpportunitiesDropdown (openOrClosed) {
+    this.setState({opportunitiesOpen: !!openOrClosed}, () => {
       this.toggleAriaHiddenStuff(this.state.opportunitiesOpen);
+      this.opportunitiesButton.focus();
     });
+  }
+
+  closeOpportunitiesDropdown = () => {
+    this._doToggleOpportunitiesDropdown(false);
+  }
+
+  openOpportunitiesDropdown = () => {
+    this._doToggleOpportunitiesDropdown(true);
+  }
+
+  toggleOpportunitiesDropdown = () => {
+    this._doToggleOpportunitiesDropdown(!this.state.opportunitiesOpen);
   }
 
   noteBtnOnClose = () => {
@@ -209,7 +221,7 @@ export class PlannerHeader extends Component {
           <IconPlusLine title={formatMessage("Add To Do")} />
         </Button>
         <Popover
-          onToggle={this.toggleOpportunitiesDropdown}
+          onDismiss={this.closeOpportunitiesDropdown}
           show={this.state.opportunitiesOpen}
           on="click">
           <PopoverTrigger>
@@ -224,7 +236,7 @@ export class PlannerHeader extends Component {
           </PopoverTrigger>
           <PopoverContent>
             <Opportunities
-              togglePopover={this.toggleOpportunitiesDropdown}
+              togglePopover={this.closeOpportunitiesDropdown}
               opportunities={this.state.opportunities}
               courses={this.props.courses}
               timeZone={this.props.timeZone}
