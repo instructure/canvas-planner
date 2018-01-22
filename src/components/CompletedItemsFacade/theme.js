@@ -30,16 +30,6 @@ export default function generator ({ borders, colors, media, spacing, typography
     borderColor: colors.tiara,
     bottomMarginPhoneUp: spacing.xSmall,
 
-    buttonPadding: `${spacing.xSmall} 0`,
-    buttonFontSize: typography.fontSizeMedium,
-    buttonTextDecorationHover: 'underline',
-    buttonColor: colors.brand,
-
-    checkboxRightMarginPhoneUp: spacing.small,
-    checkboxRightMarginWideUp: spacing.medium,
-
-    badgeMargin: '0.0625rem',
-
     ...media
   };
 }

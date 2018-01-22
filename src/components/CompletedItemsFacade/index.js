@@ -18,7 +18,7 @@
 import React, { Component } from 'react';
 import themeable from '@instructure/ui-themeable/lib';
 import containerQuery from '@instructure/ui-utils/lib/react/containerQuery';
-import CheckboxFacade from '@instructure/ui-core/lib/components/Checkbox/CheckboxFacade';
+import Checkbox from '@instructure/ui-core/lib/components/Checkbox';
 import Pill from '@instructure/ui-core/lib/components/Pill';
 import BadgeList from '../BadgeList';
 import { func, number, string, arrayOf, shape } from 'prop-types';
@@ -87,25 +87,18 @@ export class CompletedItemsFacade extends Component {
     return (
       <div className={styles.root}>
         <div className={styles.contentPrimary}>
-          <button
-            ref={elt => this.mainButton = elt}
-            type="button"
-            className={styles.button}
+          <Checkbox
+            defaultChecked
+            inline
+            label={
+              formatMessage(`{
+                count, plural,
+                one {Show # completed item}
+                other {Show # completed items}
+              }`, { count: this.props.itemCount })
+            }
             onClick={this.props.onClick}
-          >
-            <span className={styles.buttonCheckbox} aria-hidden="true">
-              <CheckboxFacade checked={true}>{''}</CheckboxFacade>
-            </span>
-            <span>
-              {
-                formatMessage(`{
-                  count, plural,
-                  one {Show # completed item}
-                  other {Show # completed items}
-                }`, { count: this.props.itemCount })
-              }
-            </span>
-          </button>
+         />
         </div>
         <div className={styles.contentSecondary}>
           {this.renderBadges()}

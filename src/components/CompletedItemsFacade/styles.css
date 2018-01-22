@@ -17,34 +17,6 @@
   min-width: 1px;
 }
 
-.button {
-  user-select: none;
-  touch-action: manipulation;
-  box-sizing: border-box;
-  font-family: var(--fontFamily);
-  display: inline-flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  padding: var(--buttonPadding);
-  cursor: pointer;
-  outline: none;
-  font-size: var(--buttonFontSize);
-  color: var(--buttonColor);
-
-  &:focus,
-  &:hover {
-    text-decoration: var(--buttonTextDecorationHover);
-  }
-}
-
-.buttonCheckbox {
-  box-sizing: border-box;
-  width: 1.375rem;
-  margin-right: var(--checkboxRightMarginPhoneUp);
-  line-height: 1;
-}
-
 [data-media-medium] {
   &.root {
     padding: var(--paddingMedium);
@@ -65,9 +37,5 @@
 [data-media-x-large] {
   &.root {
     padding: var(--paddingLarge);
-  }
-
-  .buttonCheckbox {
-    margin-right: var(--checkboxRightMarginWideUp);
   }
 }
