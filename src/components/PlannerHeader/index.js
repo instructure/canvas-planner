@@ -210,7 +210,22 @@ export class PlannerHeader extends Component {
     return formatMessage("Add To Do");
   }
 
+  // Size the opportunities popover so that it fits on the screen under the trigger button
+  getPopupVerticalRoom () {
+    const trigger = this.opportunitiesHtmlButton;
+    if (trigger) {
+      const buffer = 30;
+      const minRoom = 250;
+      const rect = trigger.getBoundingClientRect();
+      const offset = rect.top + rect.height;
+      return Math.max(window.innerHeight - offset - buffer, minRoom);
+    }
+    return 'none';
+  }
+
   render () {
+    const verticalRoom = this.getPopupVerticalRoom();
+
     return (
       <div className={styles.root}>
         <Button
@@ -223,12 +238,17 @@ export class PlannerHeader extends Component {
         <Popover
           onDismiss={this.closeOpportunitiesDropdown}
           show={this.state.opportunitiesOpen}
-          on="click">
+          on="click"
+          constrain="none"
+          placement="bottom end"
+        >
           <PopoverTrigger>
             <Button
               onClick={this.toggleOpportunitiesDropdown}
               variant="icon"
-              ref={(b) => { this.opportunitiesButton = b; }}>
+              ref={(b) => { this.opportunitiesButton = b; }}
+              buttonRef={(b) => { this.opportunitiesHtmlButton = b; }}
+            >
               <Badge {...this.state.opportunities.length ? {count :this.state.opportunities.length} : {}}>
                 <IconAlertsLine title={this.opportunityTitle()} />
               </Badge>
@@ -241,6 +261,7 @@ export class PlannerHeader extends Component {
               courses={this.props.courses}
               timeZone={this.props.timeZone}
               dismiss={this.props.dismissOpportunity}
+              maxHeight={verticalRoom}
             />
           </PopoverContent>
         </Popover>

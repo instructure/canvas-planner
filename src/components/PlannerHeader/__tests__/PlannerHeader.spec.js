@@ -19,6 +19,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { PlannerHeader } from '../index';
 
+
 function defaultProps (options) {
   return {
     courses: [{id: "1", shortName: "Course Short Name", informStudentsOfOverdueSubmissions: true}],
@@ -317,4 +318,21 @@ it('edits new item in open tray', () => {
   expect(wrapper.find('Tray').props().open).toEqual(true);
   expect(wrapper.find('UpdateItemTray').prop('noteItem')).toEqual(todo2);
   expect(openEditingPlannerItem).toHaveBeenCalledTimes(2);
+});
+
+it('sets the maxHeight on the Opportunities', () => {
+  window.innerHeight = 700; // even though it doesn't actually change the window's size, you can do this.
+  const wrapper = shallow(
+    <PlannerHeader {...defaultProps()} />
+  );
+  // since we've shallow rendered, have to stub in the button
+  // (if we mount, then the popup isn't reachable from enzyme)
+  wrapper.instance().opportunitiesHtmlButton = {
+    getBoundingClientRect () {
+        return {top: 10, height: 20};
+    }
+  };
+  // triggers a re-render
+  wrapper.setState({opportunitiesOpen: true});
+  expect(wrapper.find('Opportunities').prop('maxHeight')).toEqual(640);
 });

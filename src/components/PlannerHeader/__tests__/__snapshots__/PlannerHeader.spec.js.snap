@@ -20,7 +20,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     applicationElement={null}
     closeButtonLabel={null}
     closeButtonRef={[Function]}
-    constrain="window"
+    constrain="none"
     contentRef={[Function]}
     defaultFocusElement={null}
     defaultShow={false}
@@ -40,7 +40,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
     onPositioned={[Function]}
     onShow={[Function]}
     onToggle={[Function]}
-    placement="bottom center"
+    placement="bottom end"
     positionTarget={null}
     shouldCloseOnDocumentClick={true}
     shouldCloseOnEscape={true}
@@ -90,6 +90,7 @@ exports[`renders the base component correctly with two buttons and a tray 1`] = 
           ]
         }
         dismiss={[Function]}
+        maxHeight="none"
         opportunities={
           Array [
             Object {

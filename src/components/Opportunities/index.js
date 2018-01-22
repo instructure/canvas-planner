@@ -23,7 +23,7 @@ import keycode from 'keycode';
 import Opportunity from '../Opportunity';
 import Button from '@instructure/ui-core/lib/components/Button';
 import { findDOMNode } from 'react-dom';
-import { array, string, func} from 'prop-types';
+import { array, string, func, number, oneOfType} from 'prop-types';
 import formatMessage from '../../format-message';
 
 import IconXLine from 'instructure-icons/lib/Line/IconXLine';
@@ -38,6 +38,10 @@ export class Opportunities extends Component {
     courses: array.isRequired,
     dismiss: func.isRequired,
     togglePopover: func.isRequired,
+    maxHeight: oneOfType([number, string])
+  }
+  static defaultProps = {
+    maxHeight: 'none'
   }
 
   componentDidMount() {
@@ -91,7 +95,9 @@ export class Opportunities extends Component {
         id="opportunities_parent"
         className={styles.root}
         onKeyDown={this.handleKeyDown}
-        ref={(c) => {this._content=c;}}>
+        ref={(c) => {this._content=c;}}
+        style={{maxHeight: this.props.maxHeight}}
+      >
         <div className={styles.header}>
           <Button
             variant="link"

@@ -4,6 +4,11 @@ exports[`renders nothing if no opportunities 1`] = `
 <div
   id="opportunities_parent"
   onKeyDown={[Function]}
+  style={
+    Object {
+      "maxHeight": "none",
+    }
+  }
 >
   <div>
     <Button
@@ -33,6 +38,11 @@ exports[`renders the base component correctly with one opportunity 1`] = `
 <div
   id="opportunities_parent"
   onKeyDown={[Function]}
+  style={
+    Object {
+      "maxHeight": "none",
+    }
+  }
 >
   <div>
     <Button
@@ -73,6 +83,11 @@ exports[`renders the right course with the right opportunity 1`] = `
 <div
   id="opportunities_parent"
   onKeyDown={[Function]}
+  style={
+    Object {
+      "maxHeight": "none",
+    }
+  }
 >
   <div>
     <Button

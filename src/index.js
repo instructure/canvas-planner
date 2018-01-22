@@ -71,7 +71,11 @@ export default {
     ReactDOM.render(applyTheme(
       <DynamicUiProvider manager={dynamicUiManager} >
         <Provider store={store}>
-          <PlannerApp stickyOffset={opts.stickyOffset} stickyZIndex={opts.stickyZIndex} changeToDashboardCardView={opts.changeToDashboardCardView} />
+          <PlannerApp
+            stickyOffset={opts.stickyOffset}
+            stickyZIndex={opts.stickyZIndex}
+            changeToDashboardCardView={opts.changeToDashboardCardView}
+          />
         </Provider>
       </DynamicUiProvider>
     , opts.theme), element);
