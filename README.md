@@ -3,6 +3,11 @@ canvas-planner
 
 Canvas Planner is the UI component for the List View Dashboard feature in [Canvas](https://github.com/instructure/canvas-lms).
 
+# !!! Deprecated !!!
+This repository is no longer being used. canvas-planner has been relocated to
+[canvas-lms/packages/canvas-planner](https://github.com/instructure/canvas-lms/tree/master/packages/canvas-planner)
+and the npm package has been deprecated.
+
 ## Production
 
 ### Usage
