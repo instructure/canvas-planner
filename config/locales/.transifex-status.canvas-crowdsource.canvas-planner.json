@@ -34,14 +34,14 @@
   },
   "nn": {
     "reviewed_percentage": "0%",
-    "completed": "32%",
-    "untranslated_words": 223,
+    "completed": "34%",
+    "untranslated_words": 221,
     "last_commiter": "canvastransifex",
     "reviewed": 0,
-    "translated_entities": 22,
-    "translated_words": 24,
-    "last_update": "2017-12-20 10:09:46",
-    "untranslated_entities": 46
+    "translated_entities": 23,
+    "translated_words": 26,
+    "last_update": "2018-02-05 15:37:59",
+    "untranslated_entities": 45
   },
   "tr": {
     "reviewed_percentage": "0%",
